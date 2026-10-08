@@ -9,7 +9,7 @@ export default function Root({ children }: PropsWithChildren) {
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
-        <meta name="description" content="Pants: jegyzetek és interaktív gyakorlók a DE IK programtervező informatikus első félévéhez." />
+        <meta name="description" content="Gatya: jegyzetek és interaktív gyakorlók a DE IK programtervező informatikus első félévéhez." />
         <ScrollViewStyleReset />
         <style dangerouslySetInnerHTML={{ __html: css }} />
       </head>

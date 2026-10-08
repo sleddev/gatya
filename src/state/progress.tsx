@@ -3,7 +3,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
-const KEY = 'pants:progress:v1';
+const KEY = 'gatya:progress:v1';
 
 type Stored = { learned: string[]; last?: string };
 

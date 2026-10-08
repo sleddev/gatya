@@ -1,4 +1,4 @@
-# Pants – notes for AI assistants
+# Gatya – notes for AI assistants
 
 Expo (SDK 57) app + static website. Hungarian study content in MDX.
 

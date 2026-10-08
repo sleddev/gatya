@@ -23,7 +23,7 @@ export function Sidebar() {
       <LinkRow href="/" style={{ paddingVertical: Spacing.two }}>
         <Text style={{ fontSize: 26 }}>🩳</Text>
         <Txt v="heading" style={{ fontSize: 20 }}>
-          Pants
+          Gatya
         </Txt>
       </LinkRow>
       <SearchInput

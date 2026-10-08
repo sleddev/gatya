@@ -22,7 +22,7 @@ export default function Home() {
       <View style={{ gap: Spacing.two }}>
         <View style={styles.brand}>
           <Text style={{ fontSize: 40 }}>🩳</Text>
-          <Txt v="display">Pants</Txt>
+          <Txt v="display">Gatya</Txt>
         </View>
         <Txt color={c.textSecondary}>
           Jegyzetek és interaktív gyakorlók a programtervező informatikus BSc első félévéhez (Debreceni Egyetem, IK, 2026 ősz).

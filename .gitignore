@@ -42,6 +42,6 @@ example
 /ios
 /android
 
-# Pants
+# Gatya
 src/content/generated/
 dist-android/

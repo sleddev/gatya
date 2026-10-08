@@ -76,7 +76,7 @@ export default function ContentView({ id, scheme, anchor, learned, native, botto
 
   if (!topic || !subject || !Content)
     return (
-      <div className="pants-doc" data-theme={scheme}>
+      <div className="gatya-doc" data-theme={scheme}>
         <article className="doc">
           <p>Ez a téma nem található: {id}</p>
         </article>
@@ -91,7 +91,7 @@ export default function ContentView({ id, scheme, anchor, learned, native, botto
     ...mdxComponents,
     a: ({ href = '', children, ...rest }: { href?: string; children?: ReactNode }) => {
       const internal = href.startsWith('/') || href.startsWith('#');
-      // Real href (for "open in new tab") must include the deploy sub-path, e.g. /pants on GitHub Pages.
+      // Real href (for "open in new tab") must include the deploy sub-path, e.g. /gatya on GitHub Pages.
       const shown = href.startsWith('/') && !native ? `${BASE}${href.replace('#', `?szakasz=`)}` : href;
       return (
         <a
@@ -129,7 +129,7 @@ export default function ContentView({ id, scheme, anchor, learned, native, botto
   const h2s = topic.headings.filter((h) => h.depth === 2);
 
   return (
-    <div className="pants-doc" data-theme={scheme} data-native={native ? '1' : undefined} style={style} ref={root}>
+    <div className="gatya-doc" data-theme={scheme} data-native={native ? '1' : undefined} style={style} ref={root}>
       <article className="doc">
         <header className="doc-head">
           <div className="eyebrow">

@@ -1,4 +1,4 @@
-# 🩳 Pants
+# 🩳 Gatya
 
 Study notes with interactive exercises for the first semester of the
 *programtervező informatikus BSc* at the University of Debrecen (Faculty of
@@ -89,7 +89,7 @@ builds the site and publishes it to GitHub Pages at
 **Settings → Pages → Source** and choose **GitHub Actions**.
 
 Any static host works. Build with `pnpm build:web` and upload `dist/`. Set
-`PANTS_BASE_URL=/subpath` if the site isn't served from the domain root. The
+`GATYA_BASE_URL=/subpath` if the site isn't served from the domain root. The
 host has to serve `/a/b` from `a/b.html`; GitHub Pages, Netlify, Cloudflare
 Pages and Vercel all do this by default.
 
