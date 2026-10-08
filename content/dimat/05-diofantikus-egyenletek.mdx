@@ -1,0 +1,121 @@
+---
+cim: Lineáris diofantikus egyenletek
+osszefoglalo: Az ax + by = c egyenlet egész megoldásai. Mikor van megoldás, hogyan találunk egyet a kiterjesztett euklideszi algoritmussal, és hogyan írjuk fel az összeset.
+allapot: kimaradt
+kulcsszavak: [diofantikus egyenlet, lineáris diofantikus, Bézout, kiterjesztett euklideszi algoritmus, egész megoldás, általános megoldás, szöveges feladat]
+forras: DiMat_ea.pdf 28. dia · Feladatsor 3.22–3.24
+---
+
+## Mi a kérdés?
+
+<Pelda cim="3.23: Gombóc Artúr">
+Gombóc Artúrnak 1420 Ft-ja van, és mindet csokoládéra akarja költeni. A lyukas csoki 35 Ft, a kerek 40 Ft. Hány darabot vehet az egyesekből?
+
+Ha $x$ lyukasat és $y$ kereket vesz: $35x + 40y = 1420$. Ennek **egész** (sőt nemnegatív) megoldásai kellenek. Tört csokit nem lehet venni.
+</Pelda>
+
+<Definicio>
+Az $ax + by = c$ alakú egyenlet, ahol $a, b, c \in \Z$ adottak és $x, y \in \Z$ ismeretlenek, **lineáris diofantikus egyenlet**.
+</Definicio>
+
+## Mikor van megoldás?
+
+<Tetel>
+Az $ax + by = c$ egyenlet pontosan akkor oldható meg, ha $(a, b) \mid c$.
+</Tetel>
+
+Az egyik irány könnyű: ha $d = (a, b)$, akkor $d \mid a$ és $d \mid b$, tehát $d \mid ax + by$ bármilyen egész $x, y$-ra. Így ha $d \nmid c$, nincs megoldás.
+
+<Pelda cim="3.22 (c)">
+$12x - 15y = 26$: $(12, 15) = 3$, de $3 \nmid 26$. **Nincs megoldás.** (A bal oldal mindig osztható 3-mal, a jobb nem.)
+</Pelda>
+
+## Egy megoldás: visszafelé az euklideszi algoritmuson
+
+Az euklideszi algoritmus lépéseit visszafelé olvasva a legnagyobb közös osztót előállíthatjuk $a$ és $b$ kombinációjaként: $d = a s + b t$ (ez a **Bézout-azonosság**). Ha ezt megszorozzuk $c/d$-vel, kész az egyenlet egy megoldása.
+
+<Pelda cim="az előadásból: 147x + 69y = 3">
+Az algoritmus:
+$$
+\begin{aligned}
+147 &= 69 \cdot 2 + 9 \\
+69 &= 9 \cdot 7 + 6 \\
+9 &= 6 \cdot 1 + 3 \\
+6 &= 3 \cdot 2 + 0
+\end{aligned}
+$$
+$(147, 69) = 3 \mid 3$, tehát van megoldás. Visszafelé, mindig a legutóbbi maradékot helyettesítve:
+$$
+\begin{aligned}
+3 &= 9 - 6 \cdot 1 \\
+&= 9 - (69 - 9 \cdot 7) = 8 \cdot 9 - 69 \\
+&= 8\,(147 - 69 \cdot 2) - 69 = 8 \cdot 147 - 17 \cdot 69.
+\end{aligned}
+$$
+Tehát $x_0 = 8$, $y_0 = -17$. Ellenőrzés: $1176 - 1173 = 3$. ✓
+</Pelda>
+
+## Az összes megoldás
+
+<Tetel>
+Ha $(x_0, y_0)$ egy megoldás, akkor az összes megoldás
+$$
+x = x_0 + t \cdot \frac{b}{(a, b)}, \qquad y = y_0 - t \cdot \frac{a}{(a, b)}, \qquad t \in \Z.
+$$
+</Tetel>
+
+Miért? Ha $x$-et $\frac{b}{d}$-vel növeljük, az $ax$ tag $\frac{ab}{d}$-vel nő. Ha közben $y$-t $\frac{a}{d}$-vel csökkentjük, a $by$ tag ugyanennyivel csökken, így az összeg nem változik.
+
+<Pelda>
+$147x + 69y = 3$ összes megoldása: $x = 8 + 23t$, $y = -17 - 49t$. Például $t = 1$-re $(31, -66)$: $147 \cdot 31 - 69 \cdot 66 = 4557 - 4554 = 3$. ✓
+</Pelda>
+
+## Egyszerűsítés a lnko-val
+
+Ha $(a, b) = d \mid c$, érdemes rögtön elosztani mindent $d$-vel. Kisebb számokkal könnyebb dolgozni.
+
+<Pelda cim="az előadásból: 140x + 322y = 98">
+$(140, 322) = 14$ és $14 \mid 98$, tehát osztható. Osztva: $10x + 23y = 7$.
+
+$23 = 10 \cdot 2 + 3$, $10 = 3 \cdot 3 + 1$, így $1 = 10 - 3 \cdot 3 = 10 - 3\,(23 - 10 \cdot 2) = 7 \cdot 10 - 3 \cdot 23$.
+
+Szorozva 7-tel: $49 \cdot 10 - 21 \cdot 23 = 7$, tehát $x_0 = 49$, $y_0 = -21$. Az összes megoldás: $x = 49 + 23t$, $y = -21 - 10t$. A legkisebb nemnegatív $x$-hez ($t = -2$): $x = 3$, $y = -1$. Ellenőrzés: $140 \cdot 3 - 322 = 98$. ✓
+</Pelda>
+
+## Szöveges feladat: nemnegatív megoldások
+
+<Pelda cim="3.23 megoldása">
+$35x + 40y = 1420$, osztva 5-tel: $7x + 8y = 284$.
+
+$8 = 7 \cdot 1 + 1$, tehát $1 = 8 - 7$, vagyis $7 \cdot (-1) + 8 \cdot 1 = 1$. Szorozva 284-gyel: $x_0 = -284$, $y_0 = 284$.
+
+Az összes megoldás: $x = -284 + 8t$, $y = 284 - 7t$. A csokik száma nem lehet negatív:
+- $x \ge 0 \iff t \ge 35{,}5$, tehát $t \ge 36$;
+- $y \ge 0 \iff t \le 40{,}57$, tehát $t \le 40$.
+
+Öt lehetőség van: $(x, y) = (4, 32), (12, 25), (20, 18), (28, 11), (36, 4)$. Ellenőrzés: $35 \cdot 4 + 40 \cdot 32 = 140 + 1280 = 1420$. ✓
+</Pelda>
+
+## Próbáld ki
+
+Kapcsold be a $c$-t, és a megoldó lépésről lépésre megmutatja az algoritmust, a Bézout-együtthatókat és az általános megoldást. Pozitív együtthatóknál a nemnegatív megoldásokat is kilistázza.
+
+<EuklideszAlgoritmus a={35} b={40} c={1420} />
+
+## Gyakorló feladatok
+
+<Feladat cim="3.22 (a)">
+Oldd meg: $14x - 18y = 6$.
+
+<Megoldas>
+$(14, 18) = 2 \mid 6$, osztva: $7x - 9y = 3$. Keressünk olyan $x$-et, amire $7x - 3$ osztható 9-cel: $x = 3$ esetén $21 - 3 = 18 = 9 \cdot 2$, tehát $y = 2$. Az összes megoldás: $x = 3 + 9t$, $y = 2 + 7t$. (Itt $b = -18$, így $b/d = -9$; a $t \to -t$ csere miatt a két alak ugyanaz.) Ellenőrzés: $42 - 36 = 6$. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3.22 (f)">
+Oldd meg: $18x + 28y = 10$.
+
+<Megoldas>
+$(18, 28) = 2 \mid 10$, osztva: $9x + 14y = 5$. Euklidesz: $14 = 9 \cdot 1 + 5$, $9 = 5 \cdot 1 + 4$, $5 = 4 \cdot 1 + 1$. Visszafelé: $1 = 5 - 4 = 5 - (9 - 5) = 2 \cdot 5 - 9 = 2\,(14 - 9) - 9 = 2 \cdot 14 - 3 \cdot 9$. Szorozva 5-tel: $x_0 = -15$, $y_0 = 10$. Összes: $x = -15 + 14t$, $y = 10 - 9t$; például $t = 2$: $(13, -8)$, és $18 \cdot 13 - 28 \cdot 8 = 234 - 224 = 10$. ✓
+</Megoldas>
+</Feladat>

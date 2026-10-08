@@ -1,0 +1,142 @@
+---
+cim: Függvények
+osszefoglalo: A függvény mint egyértelmű hozzárendelés, elemi függvények, transzformációk, valamint az injektív, szürjektív és bijektív függvények.
+allapot: ismetles
+kulcsszavak: [függvény, hozzárendelés, értelmezési tartomány, képtér, értékkészlet, injektív, szürjektív, bijektív, kölcsönösen egyértelmű, elemi függvények, transzformáció, grafikon]
+forras: DiMat_ea.pdf 8–11. dia · Feladatsor 1.9–1.12
+---
+
+## Mi a függvény?
+
+<Definicio cim="függvény">
+Az $f : D \to R$ függvény **egyértelmű hozzárendelés**: a $D$ halmaz (**értelmezési tartomány**) minden $x$ eleméhez pontosan egy $f(x) \in R$ elemet rendel. $R$ a **képtér**.
+</Definicio>
+
+Jelölés: $f : \R \to \R,\ x \mapsto x^2 - 3x + 2$. A $\mapsto$ nyíl elemek közti hozzárendelést jelöl, a $\to$ halmazok közöttit.
+
+A függvény felfogható **rendezett párok halmazaként** is: $f = \{(x, f(x)) \mid x \in D\} \subset D \times R$. Ez éppen a függvény **grafikonja**. Az egyértelműség itt azt jelenti, hogy
+$$
+(x, y_1) \in f \text{ és } (x, y_2) \in f \implies y_1 = y_2.
+$$
+
+## Függvény vagy nem?
+
+<Pelda cim="az előadásból">
+- $x \in \R,\ x \mapsto x^2$: **függvény**.
+- $x \in \R^+,\ x \mapsto$ „olyan szám, aminek a négyzete $x$”: **nem függvény**, mert $x = 4$-hez a $2$ és a $-2$ is jó, tehát nem egyértelmű.
+- $n \in \N,\ n \mapsto$ „olyan páratlan szám, ami osztója $n$-nek”: **nem függvény**, például $n = 15$-höz az $1, 3, 5, 15$ mind jó.
+- $n \in \N,\ n \mapsto$ „$n$ legnagyobb páratlan osztója”: **függvény**. Például $f(12) = 3$, $f(40) = 5$, $f(7) = 7$.
+</Pelda>
+
+A különbség mindig ugyanaz: a hozzárendelés minden bemenethez **pontosan egy** kimenetet ad-e.
+
+## Elemi függvények
+
+| név | képlet | megjegyzés |
+|---|---|---|
+| konstans | $f(x) = c$ | vízszintes egyenes |
+| elsőfokú | $f(x) = mx + b,\ m \ne 0$ | $m$ a meredekség, $b$ az $y$-tengelymetszet |
+| másodfokú | $f(x) = ax^2 + bx + c,\ a \ne 0$ | parabola |
+| exponenciális | $f(x) = a^x,\ a > 0,\ a \ne 1$ | mindig pozitív |
+| logaritmus | $f(x) = \log_a x,\ a > 0,\ a \ne 1$ | csak $x > 0$-ra értelmezett |
+| abszolútérték, előjel, identitás | $\lvert x \rvert$, $\operatorname{sgn} x$, $x$ | |
+
+A másodfokú függvény **gyöktényezős alakja**, ha vannak valós gyökei:
+$$
+ax^2 + bx + c = a\,(x - x_1)(x - x_2), \qquad x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+$$
+
+<Pelda cim="1.9 (e)">
+$f(x) = 2x^2 + 8x - 10$. A gyökök: $x_{1,2} = \frac{-8 \pm \sqrt{64 + 80}}{4} = \frac{-8 \pm 12}{4}$, tehát $1$ és $-5$. Gyöktényezős alakban $f(x) = 2(x - 1)(x + 5)$. A csúcs a két gyök közepén van, $x = -2$-nél: $f(-2) = 8 - 16 - 10 = -18$.
+</Pelda>
+
+Polinomok gyökeit és szélsőértékeit interaktívan a [SzMV polinomvizsgálójával](/szmv/gyokok-szelsoertekek-erinto) is nézheted.
+
+## Egyenes két pontból
+
+<Pelda cim="1.9 (d)">
+Melyik elsőfokú függvény grafikonja megy át a $(-3, 1)$ és a $(2, -2)$ pontokon?
+
+A meredekség: $m = \frac{-2 - 1}{2 - (-3)} = -\frac{3}{5}$. Behelyettesítve az első pontot: $1 = -\frac{3}{5} \cdot (-3) + b = \frac{9}{5} + b$, így $b = -\frac{4}{5}$.
+
+Tehát $f(x) = -\frac{3}{5}x - \frac{4}{5}$. Ellenőrzés: $f(2) = -\frac{6}{5} - \frac{4}{5} = -2$. ✓
+</Pelda>
+
+## Függvénytranszformációk
+
+Az 1.11-es feladat transzformációihoz ezt a táblázatot érdemes megjegyezni ($c > 0$):
+
+| képlet | hatás a grafikonra |
+|---|---|
+| $f(x) + c$ | eltolás felfelé $c$-vel |
+| $f(x - c)$ | eltolás **jobbra** $c$-vel (a zárójelen belül minden „fordítva” hat) |
+| $c \cdot f(x)$ | függőleges nyújtás $c$-szeresére |
+| $f(c\,x)$ | vízszintes **összenyomás** $c$-ed részére |
+| $-f(x)$ | tükrözés az $x$-tengelyre |
+| $f(-x)$ | tükrözés az $y$-tengelyre |
+
+<Pelda>
+$3f(-x) - 4$: először tükrözzük $f$-et az $y$-tengelyre, aztán háromszorosára nyújtjuk függőlegesen, végül 4-gyel lejjebb toljuk.
+</Pelda>
+
+<Figyelem>
+Az $f(2x - 4)$ **nem** „összenyomás 2-vel, aztán eltolás 4-gyel jobbra”. Írd át: $f(2x - 4) = f(2(x - 2))$, tehát összenyomás 2-vel, majd eltolás **2**-vel jobbra.
+</Figyelem>
+
+## Injektív, szürjektív, bijektív
+
+Legyen $f : D \to R$.
+
+<Definicio cim="injektív">
+$f$ injektív, ha $f(a) = f(b) \implies a = b$. Vagyis különböző elemekhez különböző értékeket rendel.
+</Definicio>
+
+<Definicio cim="szürjektív">
+$f$ szürjektív, ha minden $y \in R$-hez van $x \in D$, hogy $f(x) = y$. Vagyis a képtér minden eleme „el van találva”: a **képtér = értékkészlet**.
+</Definicio>
+
+<Definicio cim="bijektív">
+$f$ bijektív (**kölcsönösen egyértelmű**), ha injektív és szürjektív is.
+</Definicio>
+
+<Tipp cim="vízszintes egyenesek">
+Valós függvénynél rajzolj vízszintes egyeneseket a grafikonra. **Injektív**, ha egyik sem metszi egynél többször. **Szürjektív**, ha a képtér minden magasságában húzott egyenes metszi legalább egyszer.
+</Tipp>
+
+<Figyelem>
+Hogy szürjektív-e, az a **képtértől** függ. $\sin : \R \to \R$ nem szürjektív (a 2-t sosem veszi fel), de $\sin : [-\pi/2, \pi/2] \to [-1, 1]$ már bijektív.
+</Figyelem>
+
+<Besorolo
+  cim="Sorold be a függvényeket (1.12 stílusban)"
+  opciok={["csak injektív", "csak szürjektív", "bijektív", "egyik sem"]}
+  elemek={[
+    { kerdes: "f: ℝ → ℝ, x ↦ x²", helyes: 3, miert: "f(−1) = f(1), tehát nem injektív; negatív értéket sosem vesz fel, tehát nem szürjektív." },
+    { kerdes: "f: [0, ∞) → [0, ∞), x ↦ x²", helyes: 2, miert: "A két halmaz leszűkítése mindkét problémát megoldja: minden y ≥ 0-nak egyetlen ősképe van, √y." },
+    { kerdes: "f: ℝ → ℝ, x ↦ x³", helyes: 2, miert: "Szigorúan növekvő, tehát injektív, és minden valós értéket felvesz." },
+    { kerdes: "f: ℝ → ℝ, x ↦ x³ − x", helyes: 1, miert: "x(x−1)(x+1) = 0 három helyen, tehát nem injektív; páratlan fokú polinomként minden valós értéket felvesz." },
+    { kerdes: "f: ℝ → ℝ, x ↦ 2ˣ", helyes: 0, miert: "Szigorúan növekvő, de sosem ≤ 0, tehát ℝ-re nem szürjektív. (0, ∞)-re már bijektív lenne." },
+    { kerdes: "f: ℝ → ℝ, x ↦ ax + b (a ≠ 0)", helyes: 2, miert: "Az y = ax + b egyenletnek minden y-ra pontosan egy megoldása van: x = (y − b)/a." },
+    { kerdes: "f: ℝ → ℝ, x ↦ sin x", helyes: 3, miert: "Periodikus, tehát nem injektív; az értékei [−1, 1]-ben vannak, tehát ℝ-re nem szürjektív." },
+    { kerdes: "f: [−π/2, π/2] → [−1, 1], x ↦ sin x", helyes: 2, miert: "Ezen az intervallumon a sin szigorúan nő, és minden [−1, 1]-beli értéket felvesz." },
+    { kerdes: "f: ℕ → ℕ, n ↦ n legnagyobb páratlan osztója", helyes: 3, miert: "f(1) = f(2) = 1, tehát nem injektív; páros szám sosem érték, tehát nem szürjektív." }
+  ]}
+/>
+
+## Gyakorló feladatok
+
+<Feladat cim="1.10 (c)">
+Melyik elsőfokú függvény grafikonja illeszkedik a $(-2, 0)$ és $(3, 4)$ pontokra?
+
+<Megoldas>
+$m = \frac{4 - 0}{3 - (-2)} = \frac{4}{5}$. Az első pontból: $0 = \frac{4}{5} \cdot (-2) + b$, tehát $b = \frac{8}{5}$. Így $f(x) = \frac{4}{5}x + \frac{8}{5}$. Ellenőrzés: $f(3) = \frac{12}{5} + \frac{8}{5} = 4$. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat cim="1.12 (a)">
+Injektív, szürjektív, bijektív-e $f(x) = x^2 - 6x + 9$ ($\R \to \R$)?
+
+<Megoldas>
+$f(x) = (x - 3)^2$, egy felfelé nyíló parabola, csúcsa $(3, 0)$. Nem injektív, mert $f(2) = f(4) = 1$. Nem szürjektív, mert negatív értéket nem vesz fel. Tehát egyik sem.
+</Megoldas>
+</Feladat>

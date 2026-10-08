@@ -1,0 +1,93 @@
+---
+cim: Lineáris kongruenciák
+osszefoglalo: Az ax ≡ b (mod m) kongruencia megoldása. Mikor oldható meg, kétféle megoldási módszer, és hány megoldás van az eredeti modulus szerint.
+allapot: kimaradt
+kulcsszavak: [lineáris kongruencia, kongruencia egyenlet, inverz, moduláris inverz, megoldhatóság, diofantikus egyenlet, maradékosztály]
+forras: DiMat_ea.pdf 36–37. dia · Feladatsor 3.25
+---
+
+## A feladat
+
+Keressük azokat az egész $x$-eket, amelyekre
+$$
+ax \equiv b \pmod m.
+$$
+
+<Tetel>
+Az $ax \equiv b \pmod m$ kongruencia pontosan akkor oldható meg, ha $(a, m) \mid b$.
+</Tetel>
+
+**Miért?** $ax \equiv b \iff m \mid ax - b \iff$ van $y \in \Z$, hogy $my = ax - b$, vagyis $ax - my = b$. Ez egy [lineáris diofantikus egyenlet](/dimat/diofantikus-egyenletek), és az pontosan akkor oldható meg, ha $(a, m) \mid b$.
+
+Ha $c$ egy megoldás, akkor $c + km$ is az minden $k \in \Z$-re. A megoldások tehát mindig teljes maradékosztályok.
+
+## 2. módszer: osztás a lnko-val, majd inverz
+
+Ez a gyorsabb, kézzel ezt érdemes használni.
+
+<Lepesek>
+<Lepes>
+Számold ki $d = (a, m)$-et. Ha $d \nmid b$: nincs megoldás.
+</Lepes>
+<Lepes>
+Ossz el **mindent** $d$-vel: $\frac{a}{d}\, x \equiv \frac{b}{d} \pmod{\frac{m}{d}}$. Most már $\left(\frac{a}{d}, \frac{m}{d}\right) = 1$.
+</Lepes>
+<Lepes>
+Oldd meg az új kongruenciát: szorozz $\frac{a}{d}$ **inverzével** (azzal a számmal, amivel szorozva 1-et ad mod $\frac{m}{d}$), vagy add a jobb oldalhoz a modulus többszöröseit, amíg osztható nem lesz.
+</Lepes>
+<Lepes>
+Az eredeti modulus szerint $d$ darab megoldás van: $x_0,\ x_0 + \frac{m}{d},\ \dots,\ x_0 + (d - 1)\frac{m}{d}$.
+</Lepes>
+</Lepesek>
+
+<Pelda cim="az előadásból: 12x ≡ 8 (mod 16)">
+$d = (12, 16) = 4$ és $4 \mid 8$, tehát megoldható. Osztva 4-gyel:
+$$
+3x \equiv 2 \pmod 4.
+$$
+A jobb oldalhoz 4-et adva: $3x \equiv 6 \pmod 4$. Mivel $(3, 4) = 1$, a 3-mal egyszerűsíthetünk: $x \equiv 2 \pmod 4$.
+
+A megoldások: $x = \dots, -10, -6, -2, 2, 6, 10, \dots$; mod 16 szerint négy osztály: $x \equiv 2, 6, 10, 14 \pmod{16}$.
+</Pelda>
+
+<Pelda cim="3.25 (a): 3x ≡ 5 (mod 7)">
+$(3, 7) = 1$, tehát egyértelmű megoldás van mod 7. A 3 inverze mod 7: $3 \cdot 5 = 15 \equiv 1$, tehát 5. Szorozzunk 5-tel: $x \equiv 25 \equiv 4 \pmod 7$. Ellenőrzés: $3 \cdot 4 = 12 \equiv 5$. ✓
+</Pelda>
+
+<Pelda cim="nincs megoldás">
+$6x \equiv 5 \pmod 9$: $(6, 9) = 3 \nmid 5$. Nincs megoldás: $6x$ maradéka mod 9 mindig $0$, $3$ vagy $6$.
+</Pelda>
+
+## 1. módszer: diofantikus egyenletként
+
+A $12x \equiv 8 \pmod{16}$ ugyanaz, mint $12x - 16y = 8$, azaz (4-gyel osztva) $3x - 4y = 2$. Ennek egy megoldása $x = 2, y = 1$, az összes $x = 2 + 4t$. Ugyanazt kapjuk, csak több írással.
+
+## Próbáld ki
+
+<LinearisKongruencia a={12} b={8} m={16} />
+
+## Gyakorló feladatok
+
+<Feladat cim="3.25 (c)">
+$9x \equiv 15 \pmod{12}$
+
+<Megoldas>
+$d = (9, 12) = 3 \mid 15$. Osztva: $3x \equiv 5 \equiv 1 \pmod 4$. A 3 inverze mod 4 önmaga ($9 \equiv 1$), így $x \equiv 3 \pmod 4$. Mod 12: $x \equiv 3, 7, 11$. Ellenőrzés: $9 \cdot 3 = 27 \equiv 3 \equiv 15 \pmod{12}$. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3.25 (d)">
+$5x \equiv 4 \pmod{11}$
+
+<Megoldas>
+A 5 inverze mod 11: $5 \cdot 9 = 45 = 44 + 1$, tehát 9. $x \equiv 36 \equiv 3 \pmod{11}$. Ellenőrzés: $15 \equiv 4$. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3.25 (h)">
+$30x \equiv 48 \pmod{58}$
+
+<Megoldas>
+$d = (30, 58) = 2 \mid 48$. Osztva: $15x \equiv 24 \pmod{29}$. A 15 inverze mod 29: $15 \cdot 2 = 30 \equiv 1$, tehát 2. $x \equiv 48 \equiv 19 \pmod{29}$. Mod 58: $x \equiv 19, 48$. Ellenőrzés: $30 \cdot 19 - 48 = 522 = 58 \cdot 9$. ✓
+</Megoldas>
+</Feladat>

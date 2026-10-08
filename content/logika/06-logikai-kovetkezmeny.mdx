@@ -1,0 +1,86 @@
+---
+cim: Logikai következmény
+osszefoglalo: A Γ ⊨ A következményreláció, ellenőrzése igazságtáblával, a kapcsolat a kielégíthetetlenséggel, a logikai ekvivalencia, a dedukciótétel, és a nyelvi szintek különbsége (⊃ és ⊨, ≡ és ⇔).
+allapot: kimaradt
+kulcsszavak: [logikai következmény, szemantikai következmény, következményreláció, premissza, konklúzió, ellenpélda, logikai ekvivalencia, dedukciótétel, implikáció, metanyelv, helyes következtetés]
+forras: eloadas03-2026.pdf, eloadas04-2026.pdf
+---
+
+## Mit jelent, hogy valami következik?
+
+Visszatérünk az első előadás kérdésére: mikor helyes egy következtetés? Akkor, ha **valahányszor a premisszák igazak, a konklúzió is igaz**, bármit is jelentsenek a szavak.
+
+<Definicio>
+Az $A$ formula a $\Gamma$ formulahalmaz **logikai (szemantikai) következménye**, ha $\Gamma$ minden modellje $A$-nak is modellje. Jele: $\Gamma \models A$.
+</Definicio>
+
+Igazságtáblával: vedd azokat a sorokat, ahol **minden premissza 1** (ezek $\Gamma$ modelljei). Ha mindegyikben a konklúzió is 1, akkor $\Gamma \models A$. Ha van olyan sor, ahol a premisszák 1-ek, de a konklúzió 0, az egy **ellenpélda**, és $\Gamma \not\models A$.
+
+<Pelda cim="az előadásból: Feri tortája">
+1. Feri idősebb, mint Péter. ($A$)
+2. Ha Feri idősebb, mint Péter, akkor Ferinek több gyertya van a tortáján. ($A \supset B$)
+3. Tehát Ferinek több gyertya van a tortáján. ($B$)
+
+$\{A, A \supset B\} \models B$? Az igazságtábla négy sorából csak az $A = 1, B = 1$ sorban igaz mindkét premissza, és ott $B = 1$. Tehát **helyes**: ez a modus ponens.
+
+Fordítva: „Ferinek több gyertya van, tehát idősebb” a $\{A \supset B, B\} \models A$ séma lenne. Az $A = 0, B = 1$ sorban mindkét premissza igaz, a konklúzió hamis: **ellenpélda**, a következtetés helytelen.
+</Pelda>
+
+<KovetkezmenyEllenorzo />
+
+## Következmény és kielégíthetetlenség
+
+<Tetel>
+$\Gamma \models A \iff \Gamma \cup \{\neg A\}$ kielégíthetetlen.
+</Tetel>
+
+**Bizonyítás (⇒)**, indirekt: tegyük fel, hogy $\Gamma \models A$, de $\Gamma \cup \{\neg A\}$-nak van egy $\langle U, \varrho \rangle$ modellje. Ebben $\Gamma$ minden eleme igaz és $|\neg A| = 1$, azaz $|A| = 0$. Ez a $\Gamma$ egy olyan modellje, ami nem modellje $A$-nak. Ellentmondás.
+
+**(⇐)**, indirekt: tegyük fel, hogy $\Gamma \cup \{\neg A\}$ kielégíthetetlen, de $\Gamma \not\models A$. Akkor $\Gamma$-nak van olyan modellje, amelyben $|A| = 0$, azaz $|\neg A| = 1$. Ez modellje $\Gamma \cup \{\neg A\}$-nak. Ellentmondás.
+
+Ez a tétel adja a **cáfoláson alapuló** bizonyítási módszerek alapját: ha be akarjuk látni, hogy $A$ következik, megmutatjuk, hogy $A$ tagadása a premisszákkal együtt ellentmondásra vezet.
+
+<Megjegyzes cim="üres premisszahalmaz">
+$\emptyset \models A$, röviden $\models A$, azt jelenti, hogy minden interpretáció modellje $A$-nak, vagyis $A$ **érvényes**. Ha pedig $\Gamma$ kielégíthetetlen, akkor $\Gamma \models A$ **bármely** $A$-ra, mert nincs olyan modell, amely ellenpélda lehetne.
+</Megjegyzes>
+
+## Logikai ekvivalencia
+
+<Definicio>
+$A$ és $B$ **logikailag ekvivalens**, ha minden interpretációban ugyanaz az értékük: $|A|^{\langle U, \varrho \rangle} = |B|^{\langle U, \varrho \rangle}$. Jele: $A \Leftrightarrow B$.
+</Definicio>
+
+Ezzel egyenértékű: $A \models B$ és $B \models A$. Az ekvivalens formulák egymással helyettesíthetők; erre épülnek majd a normálformák.
+
+## Nyelvi szintek: ⊃ és ⊨, ≡ és ⇔
+
+<Figyelem cim="nem ugyanaz">
+- A $\supset$ és $\equiv$ **a nyelv részei**: formulákon belül szerepelnek, igaz vagy hamis értékük van egy interpretációban.
+- A $\models$ és $\Leftrightarrow$ **a formulákról szóló metanyelv részei**: formulák vagy formulahalmazok közti viszonyt írnak le, minden interpretációra egyszerre.
+
+A $p \supset q$ egy formula. A $p \models q$ egy (hamis) állítás a $p$ és $q$ formulákról.
+</Figyelem>
+
+A két szintet a dedukciótétel köti össze:
+
+<Tetel cim="dedukciótétel">
+Ha $\Gamma \cup \{A\} \models B$, akkor $\Gamma \models A \supset B$. (Rövidebben: $\Gamma, A \models B$.)
+
+A megfordítása is igaz: ha $\Gamma \models A \supset B$, akkor $\Gamma \cup \{A\} \models B$.
+</Tetel>
+
+<Tetel cim="következmény">
+$A \models B \iff \ \models A \supset B$, és $A \Leftrightarrow B \iff \ \models A \equiv B$.
+</Tetel>
+
+Tehát egy következtetés pontosan akkor helyes, ha a „premisszák konjunkciója $\supset$ konklúzió” formula logikai törvény. A fenti ellenőrző ezt is kiírja, ha a következmény fennáll.
+
+## Gyakorló feladatok
+
+<Feladat>
+Helyes-e a következtetés? „Ha jó idő van, kirándulunk. Ha kirándulunk, elfáradunk. Nem fáradtunk el. Tehát nem volt jó idő.”
+
+<Megoldas>
+$p$: jó idő van, $q$: kirándulunk, $r$: elfáradunk. Kérdés: $\{p \supset q,\ q \supset r,\ \neg r\} \models \neg p$? Igen: a láncszabályból $p \supset r$, a modus tollensből $\neg p$. Az ellenőrzőbe írva: premisszák `p -> q`, `q -> r`, `~r`; következmény `~p`. Nincs piros sor.
+</Megoldas>
+</Feladat>

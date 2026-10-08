@@ -1,0 +1,96 @@
+---
+cim: Nevezetes következmények és törvények
+osszefoglalo: Modus ponens, modus tollens, láncszabály, reductio ad absurdum, a nevezetes logikai törvények és ekvivalenciák (De Morgan, disztributivitás, elnyelés, kontrapozíció), ellenőrzésük igazságtáblával.
+allapot: kimaradt
+kulcsszavak: [modus ponens, modus tollens, láncszabály, reductio ad absurdum, ellentmondás törvénye, kizárt harmadik, kettős tagadás, kommutativitás, asszociativitás, idempotencia, disztributivitás, elnyelés, De Morgan, kontrapozíció]
+forras: eloadas04-2026.pdf
+---
+
+Az alábbiakban $A, B, C$ tetszőleges formulák helyén állnak: a törvények bármilyen formulákra igazak, ha ugyanazt írjuk ugyanannak a betűnek a helyére.
+
+## Nevezetes következmények
+
+| következmény | név |
+|---|---|
+| $\{A \supset B, A\} \models B$ | **modus ponens** (leválasztási szabály) |
+| $\{A \supset B, \neg B\} \models \neg A$ | **modus tollens** (indirekt cáfolás sémája) |
+| $\{A \supset B, B \supset C\} \models A \supset C$ | **láncszabály** |
+| $\{A \supset B, A \supset \neg B\} \models \neg A$ | **reductio ad absurdum** |
+| $\{A \vee B, \neg A\} \models B$ | diszjunktív szillogizmus |
+| $A \wedge B \models A$, $\ A \wedge B \models B$ | |
+| $A \models A \vee B$ | |
+| $\neg A \models A \supset B$, $\ B \models A \supset B$ | hamis előtag vagy igaz utótag mellett az implikáció igaz |
+| $A \supset \neg A \models \neg A$, $\ \neg A \supset A \models A$ | |
+
+<Pelda cim="modus tollens a hétköznapokban">
+„Ha a program helyes, minden teszt átmegy. Egy teszt nem ment át. Tehát a program nem helyes.” $\{p \supset q, \neg q\} \models \neg p$.
+
+A fordítottja **nem** helyes: „Minden teszt átment, tehát a program helyes” ($\{p \supset q, q\} \models p$): ez a tesztelés örök csapdája.
+</Pelda>
+
+## Nevezetes logikai törvények
+
+| érvényes formula | név |
+|---|---|
+| $\models \neg(A \wedge \neg A)$ | **az ellentmondás törvénye** |
+| $\models A \vee \neg A$ | **a kizárt harmadik törvénye** |
+| $\models A \supset A$ | |
+| $\models A \supset (\neg A \supset B)$ | ellentmondásból bármi következik |
+| $\models A \equiv A$, $\ \models \neg(A \equiv \neg A)$ | |
+
+## Nevezetes ekvivalenciák
+
+| ekvivalencia | név |
+|---|---|
+| $\neg\neg A \Leftrightarrow A$ | **kettős tagadás** |
+| $A \wedge B \Leftrightarrow B \wedge A$, $\ A \vee B \Leftrightarrow B \vee A$, $\ A \equiv B \Leftrightarrow B \equiv A$ | **kommutativitás** |
+| $A \wedge (B \wedge C) \Leftrightarrow (A \wedge B) \wedge C$, ugyanígy $\vee$ és $\equiv$ | **asszociativitás** |
+| $A \wedge A \Leftrightarrow A$, $\ A \vee A \Leftrightarrow A$ | **idempotencia** |
+| $A \vee (B \wedge C) \Leftrightarrow (A \vee B) \wedge (A \vee C)$ | **disztributivitás** |
+| $A \wedge (B \vee C) \Leftrightarrow (A \wedge B) \vee (A \wedge C)$ | **disztributivitás** |
+| $A \wedge (B \vee A) \Leftrightarrow A$, $\ A \vee (B \wedge A) \Leftrightarrow A$ | **elnyelés** |
+| $\neg(A \wedge B) \Leftrightarrow \neg A \vee \neg B$, $\ \neg(A \vee B) \Leftrightarrow \neg A \wedge \neg B$ | **De Morgan** |
+| $A \supset B \Leftrightarrow \neg B \supset \neg A$ | **kontrapozíció** |
+| $A \supset B \Leftrightarrow \neg A \vee B \Leftrightarrow \neg(A \wedge \neg B)$ | az implikáció kifejezése |
+| $A \equiv B \Leftrightarrow (A \supset B) \wedge (B \supset A)$ | az ekvivalencia kifejezése |
+
+<Megjegyzes cim="miért nincs a kontrapozíció a következmények között?">
+Mert erősebb annál: **ekvivalencia**. Mindkét irányban következmény, $A \supset B \models \neg B \supset \neg A$ és $\neg B \supset \neg A \models A \supset B$ is.
+</Megjegyzes>
+
+## Hogyan bizonyítunk ekvivalenciát?
+
+Ítéletlogikában a legbiztosabb az **igazságtábla**: ha a két oldal minden sorban egyezik, ekvivalensek. Ha akár egy sorban eltérnek, nem azok, és az a sor egy ellenpélda.
+
+<EkvivalenciaTeszt />
+
+<Figyelem cim="gyakori tévedések">
+- $p \supset q$ **nem** ekvivalens $q \supset p$-vel (megfordítás). Ellenpélda: $p = 0, q = 1$.
+- $(p \supset q) \supset r$ **nem** ekvivalens $p \supset (q \supset r)$-rel. Ellenpélda: $p = q = r = 0$: a bal oldal $1 \supset 0 = 0$, a jobb oldal $1$.
+- $\neg(p \wedge q)$ **nem** $\neg p \wedge \neg q$, hanem $\neg p \vee \neg q$.
+</Figyelem>
+
+## Gyakorló feladatok
+
+<Feladat>
+Igazold a De Morgan-azonosságot igazságtáblával: $\neg(p \vee q) \Leftrightarrow \neg p \wedge \neg q$.
+
+<Megoldas>
+| $p$ | $q$ | $p \vee q$ | $\neg(p \vee q)$ | $\neg p \wedge \neg q$ |
+|---|---|---|---|---|
+| 0 | 0 | 0 | 1 | 1 |
+| 0 | 1 | 1 | 0 | 0 |
+| 1 | 0 | 1 | 0 | 0 |
+| 1 | 1 | 1 | 0 | 0 |
+
+A két utolsó oszlop megegyezik. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat>
+Hozd egyszerűbb alakra: $\neg(p \supset q)$.
+
+<Megoldas>
+$p \supset q \Leftrightarrow \neg p \vee q$, tehát $\neg(p \supset q) \Leftrightarrow \neg(\neg p \vee q) \Leftrightarrow \neg\neg p \wedge \neg q \Leftrightarrow p \wedge \neg q$. Az implikáció pontosan akkor hamis, ha az előtag igaz és az utótag hamis.
+</Megoldas>
+</Feladat>

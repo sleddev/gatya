@@ -1,0 +1,79 @@
+---
+cim: Descartes-szorzat és relációk
+osszefoglalo: Rendezett párok, a Descartes-szorzat és elemszáma, relációk mint részhalmazok, értelmezési tartomány, értékkészlet és inverz reláció.
+allapot: kimaradt
+kulcsszavak: [Descartes-szorzat, rendezett pár, reláció, értelmezési tartomány, értékkészlet, inverz reláció, függvény, számosság]
+forras: relations.pdf
+---
+
+## Descartes-szorzat
+
+<Definicio>
+$A \times B = \{(a, b) \mid a \in A,\ b \in B\}$: az összes **rendezett pár**, amelynek első tagja $A$-ból, második tagja $B$-ből való.
+</Definicio>
+
+<Pelda cim="a gyakorlatról">
+$A = \{1, 2, 3\}$, $B = \{a, b\}$.
+- $A \times B = \{(1,a), (2,a), (3,a), (1,b), (2,b), (3,b)\}$
+- $B \times A = \{(a,1), (b,1), (a,2), (b,2), (a,3), (b,3)\}$
+
+A kettő **nem** ugyanaz: $(1, a) \ne (a, 1)$, mert a párban számít a sorrend. Az elemszám mindkettőnél $|A| \cdot |B| = 3 \cdot 2 = 6$.
+</Pelda>
+
+A Descartes-szorzatot táblázatként érdemes elképzelni: a sorok $A$ elemei, az oszlopok $B$ elemei, és minden cella egy pár. Innen látszik, hogy $|A \times B| = |A| \cdot |B|$.
+
+## Reláció
+
+<Definicio>
+Egy $A$ és $B$ közötti **reláció** a Descartes-szorzat egy részhalmaza: $R \subseteq A \times B$. Ha $(a, b) \in R$, azt mondjuk, $a$ relációban áll $b$-vel.
+</Definicio>
+
+Általában egy feltétellel adjuk meg: azokat a párokat válogatjuk ki, amelyekre a feltétel igaz.
+
+<Pelda cim="a gyakorlatról">
+$A = \{1, 4, 5\}$, $B = \{1, 2, 6\}$, $R = \{(a, b) \mid a > b\}$.
+
+Végigmegyünk az összes páron:
+- $a = 1$: $1 > 1$? nem. $1 > 2$? nem. $1 > 6$? nem.
+- $a = 4$: $4 > 1$ ✓, $4 > 2$ ✓, $4 > 6$? nem.
+- $a = 5$: $5 > 1$ ✓, $5 > 2$ ✓, $5 > 6$? nem.
+
+$R = \{(4, 1), (4, 2), (5, 1), (5, 2)\}$.
+
+Ugyanezekkel a halmazokkal $R = \{(a, b) \mid a = 4\} = \{(4, 1), (4, 2), (4, 6)\}$.
+</Pelda>
+
+<RelacioFelfedezo />
+
+## Értelmezési tartomány, értékkészlet, inverz
+
+<Definicio>
+Legyen $R \subseteq A \times B$.
+- **Értelmezési tartomány** $D_R$: a párok első koordinátái.
+- **Értékkészlet** $R_R$: a párok második koordinátái.
+- **Inverz reláció** $R^{-1} = \{(b, a) \mid (a, b) \in R\}$: minden párt megfordítunk.
+</Definicio>
+
+<Pelda cim="a gyakorlatról">
+$R = \{(2,4), (2,6), (4,7), (6,9), (7,7)\}$
+- $D_R = \{2, 4, 6, 7\}$
+- $R_R = \{4, 6, 7, 9\}$
+- $R^{-1} = \{(4,2), (6,2), (7,4), (9,6), (7,7)\}$
+
+A $(7, 7)$ megfordítva önmaga.
+</Pelda>
+
+## A függvény mint reláció
+
+Egy $R \subseteq A \times B$ reláció pontosan akkor **függvény** $A$-ból $B$-be, ha $A$ minden eleme **pontosan egy** párban szerepel első tagként. Ez ugyanaz a feltétel, mint a [Diszkrét matematikában](/dimat/fuggvenyek#mi-a-fuggveny) az „egyértelmű hozzárendelés”.
+
+<Kviz
+  kerdes="Függvény-e az R = {(2,4), (2,6), (4,7), (6,9), (7,7)} reláció?"
+  valaszok={["igen", "nem"]}
+  helyes={1}
+  magyarazat="A 2-höz két érték is tartozik (4 és 6), tehát a hozzárendelés nem egyértelmű."
+/>
+
+<Tipp>
+A relációfelfedezőben a „függvény?” sor mutatja, mikor teljesül ez. Próbáld ki az „a = b” feltétellel: ha $A \subseteq B$, az egy függvény (az identitás).
+</Tipp>

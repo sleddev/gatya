@@ -1,0 +1,207 @@
+---
+cim: Halmazok
+osszefoglalo: Halmazok megadása, részhalmaz és egyenlőség, hatványhalmaz, halmazműveletek, De Morgan-azonosságok és a Descartes-szorzat.
+allapot: ismetles
+kulcsszavak: [halmaz, részhalmaz, hatványhalmaz, számosság, unió, metszet, különbség, szimmetrikus differencia, komplementer, Descartes-szorzat, De Morgan, kvantor, szitaformula]
+forras: DiMat_ea.pdf 3–7. dia · Feladatsor 1.1–1.8
+---
+
+A halmaz a matematika egyik **alapfogalma**: nem definiáljuk, csak azt mondjuk meg, mikor eleme valami. Ha $x$ eleme az $A$ halmaznak, azt így írjuk: $x \in A$; ha nem eleme: $x \notin A$.
+
+## Halmazok megadása
+
+Kétféleképpen adhatunk meg halmazt:
+
+- **felsorolással**: $\{1, 2, 3\}$,
+- **tulajdonsággal**: egy ismert $H$ halmaz azon elemei, amelyekre igaz a $T$ tulajdonság: $\{x \in H \mid T(x)\}$.
+
+<Pelda>
+$\{x \in \N \mid 1 \le x \le 5\} = \{1, 2, 3, 4, 5\}$, és $\{x \in \Z \mid x^2 = 4\} = \{-2, 2\}$.
+</Pelda>
+
+Az **üres halmaz** az a halmaz, amelynek nincs eleme. Jele $\emptyset$ vagy $\{\,\}$.
+
+<Figyelem cim="a természetes számok">
+Ebben a tárgyban $\N = \{1, 2, 3, \dots\}$, vagyis **a 0 nem természetes szám**. Más tárgyakban (és sok könyvben) ez másképp lehet, ezért mindig nézd meg, melyik konvenciót használják.
+</Figyelem>
+
+A fontos számhalmazok: $\N$ (természetes), $\Z$ (egész), $\Q$ (racionális), $\R$ (valós) és $\C$ (komplex) számok. Mindegyik tartalmazza az előzőt: $\N \subset \Z \subset \Q \subset \R \subset \C$.
+
+## Részhalmaz és egyenlőség
+
+<Definicio cim="részhalmaz">
+$A \subset B$, ha $A$ minden eleme $B$-nek is eleme.
+</Definicio>
+
+<Definicio cim="egyenlőség">
+Két halmaz egyenlő, ha ugyanazok az elemeik. Ezzel ekvivalens:
+$$
+A = B \iff A \subset B \text{ és } B \subset A.
+$$
+</Definicio>
+
+A második alak mutatja, hogyan **bizonyítunk** halmazegyenlőséget: két irányban. Először megmutatjuk, hogy a bal oldal minden eleme benne van a jobb oldalban, aztán fordítva.
+
+<Pelda>
+- $\{1, 2\} \subset \{1, 2, 3\}$, de $\{1, 4\} \not\subset \{1, 2, 3\}$.
+- $\{1, 2, 2, 3\} = \{3, 2, 1\}$: az ismétlés és a sorrend nem számít.
+- Minden $A$ halmazra $\emptyset \subset A$ és $A \subset A$.
+</Pelda>
+
+Két halmaz **diszjunkt**, ha nincs közös elemük, azaz $A \cap B = \emptyset$.
+
+## Számosság és hatványhalmaz
+
+<Definicio cim="számosság">
+Véges halmaz elemeinek száma a halmaz **számossága**. Jele $|A|$ vagy $\#A$.
+</Definicio>
+
+<Definicio cim="hatványhalmaz">
+$A$ összes részhalmazának halmaza. Jele $\mathcal{P}(A)$ vagy $2^A$.
+</Definicio>
+
+<Tetel>
+Ha $|A| = n$, akkor $|\mathcal{P}(A)| = 2^n$.
+</Tetel>
+
+**Miért?** Egy részhalmaz összeállításakor minden elemről külön döntünk: benne lesz vagy nem. Ez $n$ darab igen/nem döntés, összesen $2 \cdot 2 \cdots 2 = 2^n$ lehetőség.
+
+<Pelda cim="az előadásból">
+$A = \{0, 1, 2, 3\}$, $|A| = 4$, tehát 16 részhalmaza van:
+
+$\mathcal{P}(A) = \{\emptyset, \{0\}, \{1\}, \{2\}, \{3\}, \{0,1\}, \{0,2\}, \{0,3\}, \{1,2\}, \{1,3\}, \{2,3\}, \{0,1,2\}, \{0,1,3\}, \{0,2,3\}, \{1,2,3\}, A\}$.
+</Pelda>
+
+<Kviz
+  kerdes="Hány eleme van 𝒫(∅)-nak, az üres halmaz hatványhalmazának?"
+  valaszok={["0", "1", "2"]}
+  helyes={1}
+  magyarazat="Az üres halmaznak egyetlen részhalmaza van, saját maga: 𝒫(∅) = {∅}. Ez egyelemű halmaz, és egyezik a képlettel: 2⁰ = 1."
+/>
+
+## Halmazműveletek
+
+Legyen $H$ az **alaphalmaz** (minden, amiről éppen beszélünk), és $A, B \subset H$.
+
+| művelet | jel | kik az elemei? |
+|---|---|---|
+| komplementer | $\overline{A}$ | $H$ elemei, amelyek nincsenek $A$-ban |
+| unió (egyesítés) | $A \cup B$ | legalább az egyikben benne vannak |
+| metszet | $A \cap B$ | mindkettőben benne vannak |
+| különbség | $A \setminus B$ | $A$-ban benne vannak, $B$-ben nem |
+| szimmetrikus differencia | $A \triangle B$ | pontosan az egyikben vannak benne („kizáró vagy”) |
+
+A szimmetrikus differencia kétféleképpen is felírható:
+$$
+A \triangle B = (A \cup B) \setminus (A \cap B) = (A \setminus B) \cup (B \setminus A).
+$$
+
+<Pelda cim="az előadásból">
+$A = \{0, 1, 2, 3, 4\}$, $B = \{2, 4, 6, 8, 10\}$.
+
+- $A \cup B = \{0, 1, 2, 3, 4, 6, 8, 10\}$
+- $A \cap B = \{2, 4\}$
+- $A \setminus B = \{0, 1, 3\}$, $B \setminus A = \{6, 8, 10\}$
+- $A \triangle B = \{0, 1, 3, 6, 8, 10\}$: az unióból kivesszük a közös részt.
+</Pelda>
+
+<VennDiagram />
+
+<HalmazKalkulator />
+
+## De Morgan-azonosságok
+
+<Tetel cim="De Morgan">
+Tetszőleges $A$ és $B$ halmazra
+$$
+\overline{A \cup B} = \overline{A} \cap \overline{B}, \qquad \overline{A \cap B} = \overline{A} \cup \overline{B}.
+$$
+Az azonosságok tetszőlegesen sok halmazra is érvényesek.
+</Tetel>
+
+Szavakkal: „nem igaz, hogy *esik vagy fúj*” ugyanaz, mint „*nem esik* és *nem fúj*”. A komplementer „átfordítja” az uniót metszetté és fordítva. Ugyanez a szabály jön elő a logikában is: [De Morgan-törvények](/logika/nevezetes-torvenyek#nevezetes-ekvivalenciak).
+
+<Tipp>
+A Venn-diagramon a két De Morgan-gombbal ellenőrizheted: $\overline{A \cup B}$ a két körön kívüli rész, ami pontosan az, ami $\overline{A}$-ban és $\overline{B}$-ben is benne van.
+</Tipp>
+
+## Descartes-szorzat
+
+<Definicio cim="Descartes-szorzat">
+$A \times B = \{(a, b) \mid a \in A,\ b \in B\}$: azok a **rendezett párok**, amelyeknek első tagja $A$-ból, második tagja $B$-ből való.
+</Definicio>
+
+<Pelda>
+$A = \{0, 1, 2\}$, $B = \{1, 2\}$ esetén
+$$
+A \times B = \{(0,1), (0,2), (1,1), (1,2), (2,1), (2,2)\}.
+$$
+Hat pár, mert $|A \times B| = |A| \cdot |B| = 3 \cdot 2$. A sorrend számít: $(0, 1) \in A \times B$, de $(0, 1) \notin B \times A$, mert $0 \notin B$.
+</Pelda>
+
+A Descartes-szorzat lesz a függvények és a relációk alapja: lásd [Függvények](/dimat/fuggvenyek) és [Relációk](/szmv/relaciok).
+
+## Kvantorok
+
+- $\exists$: „létezik”, „van olyan” (**egzisztenciális kvantor**),
+- $\forall$: „minden”, „bármely” (**univerzális kvantor**).
+
+<Pelda cim="az előadásból">
+- $\exists n \in \N : 2n = 6$ (igaz, $n = 3$), de $\nexists n \in \N : 2n = 7$.
+- $\forall m \in \N : m \in \Z$ (igaz), de $\neg\, \forall m \in \Z : m \in \N$ (például $m = -1$).
+</Pelda>
+
+A kvantorok tagadása: „nem minden” = „van olyan, amelyik nem”. Ezt részletesen a logika tárgy [kvantoros törvényei](/logika/kvantoros-torvenyek) tárgyalják.
+
+## Szitaformula
+
+Két halmaz uniójának elemszáma:
+$$
+|A \cup B| = |A| + |B| - |A \cap B|.
+$$
+A metszetet azért kell levonni, mert az $|A| + |B|$ összegben kétszer számoltuk.
+
+<Feladat cim="1.8">
+Egy társaságban 27-en beszélnek angolul, 23-an németül, 12-en mindkét nyelvet, 8-an egyiket sem. Hány tagú a társaság?
+
+<Megoldas>
+A legalább egy nyelvet beszélők száma $|A \cup N| = 27 + 23 - 12 = 38$. Hozzájön a 8 ember, aki egyiket sem beszéli: a társaság **46** fős.
+</Megoldas>
+</Feladat>
+
+## Gyakorló feladatok
+
+<Feladat cim="1.1">
+Legyen $A = \{x \in \N \mid x \text{ páros}\}$, $B = \{x \in \N \mid x > 4\}$ és $C = \{x \in \N \mid x < 6\}$. Mivel egyenlő $B \setminus C$, $A \setminus (B \cap C)$, $B \triangle C$, $(B \cup C) \setminus A$, $\overline{C}$ (alaphalmaz $\N$) és $A \setminus C$?
+
+<Megoldas>
+Írjuk ki: $A = \{2, 4, 6, \dots\}$, $B = \{5, 6, 7, \dots\}$, $C = \{1, 2, 3, 4, 5\}$.
+
+- $B \setminus C = \{6, 7, 8, \dots\}$
+- $B \cap C = \{5\}$, és $5 \notin A$, ezért $A \setminus (B \cap C) = A$.
+- $B \cup C = \N$ és $B \cap C = \{5\}$, így $B \triangle C = \N \setminus \{5\}$.
+- $(B \cup C) \setminus A = \N \setminus A = \{1, 3, 5, \dots\}$, a páratlan számok.
+- $\overline{C} = \{6, 7, 8, \dots\}$
+- $A \setminus C = \{6, 8, 10, \dots\}$
+</Megoldas>
+</Feladat>
+
+<Feladat cim="1.3">
+Írd fel az $A = \{a, b, c\}$ halmaz hatványhalmazát!
+
+<Megoldas>
+$\mathcal{P}(A) = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, \{a, b, c\}\}$, összesen $2^3 = 8$ elem.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="1.7">
+$|A| = m$ és $|B| = n$. Legalább, illetve legfeljebb hány eleme lehet $A \cup B$-nek, $A \cap B$-nek, $A \setminus B$-nek, $A \triangle B$-nek és $A \times B$-nek?
+
+<Megoldas>
+- $\max(m, n) \le |A \cup B| \le m + n$ (bal: az egyik tartalmazza a másikat; jobb: diszjunktak)
+- $0 \le |A \cap B| \le \min(m, n)$
+- $\max(0, m - n) \le |A \setminus B| \le m$
+- $|m - n| \le |A \triangle B| \le m + n$
+- $|A \times B| = mn$ mindig.
+</Megoldas>
+</Feladat>

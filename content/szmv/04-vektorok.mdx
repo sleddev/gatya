@@ -1,0 +1,73 @@
+---
+cim: Vektorok a síkon
+osszefoglalo: Pontok távolsága, két pont közötti vektor, vektorok összeadása, hossza és skalárral való szorzása, a GeoGebra Vector, Length, Distance és Translate parancsaival.
+allapot: kimaradt
+kulcsszavak: [vektor, pont, távolság, vektor hossza, összeadás, paralelogramma-szabály, skalárszoros, Vector, Length, Distance, Translate]
+forras: vector operations.pdf · vektorok.ggb
+---
+
+## Pontok távolsága
+
+<Pelda cim="a gyakorlatról: A(2, 3), B(5, 7)">
+A Pitagorasz-tétel szerint a két pont közötti vízszintes és függőleges eltérés egy derékszögű háromszög befogói:
+$$
+d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} = \sqrt{3^2 + 4^2} = \sqrt{25} = 5.
+$$
+GeoGebra: `Distance(A, B)`.
+</Pelda>
+
+## A vektor
+
+Egy **vektor** egy irányított szakasz: irány és hossz, de **nincs rögzített kezdőpontja**. Az $A$-ból $B$-be mutató vektor: „**vég mínusz kezdet**”.
+$$
+\overrightarrow{AB} = (B_x - A_x,\ B_y - A_y).
+$$
+
+<Pelda>
+$A(2, 3)$, $B(5, 7)$: $\overrightarrow{AB} = (5 - 2, 7 - 3) = (3, 4)$. GeoGebra: `u = Vector(A, B)`.
+</Pelda>
+
+Mivel a vektornak nincs helye, ugyanaz a $(3, 4)$ vektor bárhonnan indítható. A `vektorok.ggb` fájlban ezt mutatja a `Translate` parancs, amely egy vektor másolatát egy másik pontból indítja.
+
+## Összeadás
+
+$$
+\mathbf{u} + \mathbf{v} = (u_x + v_x,\ u_y + v_y)
+$$
+
+<Pelda cim="a gyakorlatról">
+$\mathbf{u} = (3, 4)$, $\mathbf{v} = (5, 2)$: $\mathbf{u} + \mathbf{v} = (8, 6)$. GeoGebra: `w = u + v`.
+</Pelda>
+
+Geometriailag: a két vektort egymás után fűzzük (a második eleje az első végére kerül), vagy közös pontból indítva a **paralelogramma** átlóját vesszük.
+
+## Hossz
+
+$$
+\|\mathbf{u}\| = \sqrt{u_x^2 + u_y^2}
+$$
+$\mathbf{u} = (3, 4)$ esetén $\|\mathbf{u}\| = 5$. GeoGebra: `Length(u)`. A pontok távolsága éppen a köztük lévő vektor hossza.
+
+## Skalárral való szorzás
+
+$$
+k \cdot \mathbf{u} = (k\,u_x,\ k\,u_y)
+$$
+$k = 5$, $\mathbf{u} = (3, 4)$: $5\mathbf{u} = (15, 20)$. GeoGebra: `a = k * u`.
+
+- $k > 1$: ugyanabba az irányba, hosszabb;
+- $0 < k < 1$: rövidebb;
+- $k < 0$: **ellentétes** irányba;
+- $\|k\mathbf{u}\| = |k| \cdot \|\mathbf{u}\|$.
+
+## Próbáld ki
+
+<VektorLabor modok={["pontok", "osszeg", "skalar"]} />
+
+<Feladat>
+$A(-1, 2)$, $B(3, -1)$. Mennyi $\overrightarrow{AB}$ és $|AB|$? Mi az $\overrightarrow{AB}$ irányú, 1 hosszú vektor?
+
+<Megoldas>
+$\overrightarrow{AB} = (4, -3)$, $|AB| = \sqrt{16 + 9} = 5$. Az egységvektor: $\frac{1}{5}(4, -3) = (0{,}8;\ -0{,}6)$.
+</Megoldas>
+</Feladat>

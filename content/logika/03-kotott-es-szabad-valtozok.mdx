@@ -1,0 +1,77 @@
+---
+cim: Kötött és szabad változók
+osszefoglalo: Mikor szabad és mikor kötött egy változó előfordulása, nyitott és zárt formulák, változóiban tiszta formula, és a kötött változók átnevezése.
+allapot: kimaradt
+kulcsszavak: [kötött változó, szabad változó, változó előfordulás, kvantor hatásköre, nyitott formula, zárt formula, változóiban tiszta, átnevezés, kongruencia]
+forras: eloadas02-2026.pdf, eloadas03-2026.pdf
+---
+
+## Szabad és kötött előfordulás
+
+A kvantor egy változót „leköt” egy részformulán belül, ez a kvantor **hatásköre**. Ugyanaz a változó egy formulában többször is előfordulhat, és az előfordulások különbözőek lehetnek.
+
+<Definicio>
+Legyen $A$ formula, $x$ változó. $x$ egy előfordulása $A$-ban
+- **szabad**, ha nem esik $A$ egyetlen $\forall x B$ vagy $\exists x B$ alakú részformulájába sem;
+- **kötött**, ha nem szabad.
+</Definicio>
+
+<Definicio cim="nyitott és zárt formula">
+- $A$ **nyitott**, ha legalább egy változó legalább egy helyen szabadon fordul elő benne.
+- $A$ **zárt**, ha minden változó minden előfordulása kötött.
+</Definicio>
+
+Miért fontos? Egy zárt formulának egy interpretációban **egyértelmű igazságértéke** van. Egy nyitott formula igazságértéke attól is függ, mit jelölnek a szabad változói (lásd [Interpretáció](/logika/interpretacio)). A „$x$ páros” se nem igaz, se nem hamis, amíg nem tudjuk, mi az $x$.
+
+## Példák az előadásból
+
+<Pelda>
+$\forall y\, \neg \exists x (P(f(x)) \vee Q(x, y))$
+
+A $\exists x$ hatásköre az egész $(P(f(x)) \vee Q(x, y))$, a $\forall y$ hatásköre minden utána következő. Minden előfordulás **kötött**, a formula **zárt**.
+</Pelda>
+
+<Pelda>
+$\forall y\, (\neg \exists x P(f(x)) \vee Q(x, y))$
+
+Most a $\exists x$ csak a $P(f(x))$-re vonatkozik (a kvantor a legerősebben köt). A $Q(x, y)$-beli $x$ ezért **szabad**, az $y$ kötött. A formula **nyitott**.
+</Pelda>
+
+Ugyanazok a jelek, más zárójelezés: egészen más formula.
+
+## Változóiban tiszta formula
+
+<Definicio>
+Egy formula **változóiban tiszta**, ha
+- nincs olyan változó, amely szabadon és kötötten is előfordul, és
+- különböző kvantorok különböző változókat kötnek.
+</Definicio>
+
+<Pelda>
+$\forall x (P(x) \supset Q(x, y)) \wedge R(x)$ nem tiszta: az $x$ az első részben kötött, az $R(x)$-ben szabad.
+
+A **kötött változók átnevezésével** tisztává tehető: $\forall z (P(z) \supset Q(z, y)) \wedge R(x)$. Az átnevezés nem változtat a jelentésen, ha új (sehol nem szereplő) változónevet választunk, és a kvantorral együtt az összes általa kötött előfordulást átírjuk. Az így kapott formulák **kongruensek**.
+</Pelda>
+
+<Figyelem>
+Szabad változót **nem** szabad átnevezni: $P(x)$ és $P(y)$ más-más dolgot állít. Csak a kvantor által kötött változók neve „mindegy”, mint egy függvény paraméterének a neve a programban.
+</Figyelem>
+
+## Próbáld ki
+
+Minden kvantor saját színt kap, és az általa kötött előfordulások ugyanazt a színt viselik. Ha az egeret egy színes jelre viszed, a többi elhalványul. A szabad előfordulás piros, hullámos aláhúzással.
+
+<ElsorenduVizsgalo />
+
+## Gyakorló feladatok
+
+<Feladat>
+Melyik előfordulás szabad, melyik kötött? Zárt-e a formula? Tiszta-e?
+$$
+\exists x \forall y R(x, y) \supset \forall x (P(x) \wedge Q(y))
+$$
+
+<Megoldas>
+Az első részben $x$ és $y$ is kötött. A második részben a $P(x)$-beli $x$ kötött (a második $\forall x$ köti), a $Q(y)$-beli $y$ viszont **szabad**, mert az első $\forall y$ hatásköre csak $R(x, y)$-ig tart. A formula nyitott és nem tiszta: $y$ szabadon és kötötten is előfordul, és az $x$-et két kvantor is köti. Írd be a vizsgálóba így: `exists x forall y R(x,y) -> forall x (P(x) & Q(y))`.
+</Megoldas>
+</Feladat>

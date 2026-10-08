@@ -1,0 +1,33 @@
+---
+cim: Mi jön ezután?
+osszefoglalo: "A tárgy hátralévő témái a tematika szerint: konjunktív és diszjunktív normálforma, prenex alak és a szekvent kalkulus."
+allapot: kovetkezo
+kulcsszavak: [normálforma, konjunktív normálforma, diszjunktív normálforma, KNF, DNF, prenex alak, szekvent kalkulus, Gentzen-kalkulus]
+forras: a tárgy tematikája
+---
+
+A tárgy leírása szerint ezek következnek:
+
+## Normálformák
+
+A **diszjunktív normálforma** (DNF) „vagyok és-ekből”, a **konjunktív normálforma** (KNF) „és-ek vagyokból” álló formula. Minden formula átalakítható mindkettőre, a [nevezetes ekvivalenciák](/logika/nevezetes-torvenyek#nevezetes-ekvivalenciak) ismételt alkalmazásával:
+
+1. Fejezd ki a $\supset$ és $\equiv$ jeleket: $A \supset B \Leftrightarrow \neg A \vee B$.
+2. Vidd be a tagadásokat az atomokig (De Morgan, kettős tagadás).
+3. Disztributivitással rendezd a kívánt alakra.
+
+<Pelda>
+$p \supset (q \wedge r)$
+- DNF: $\neg p \vee (q \wedge r)$
+- KNF: $(\neg p \vee q) \wedge (\neg p \vee r)$ (disztributivitás)
+</Pelda>
+
+Ellenőrizd az [ekvivalencia-tesztben](/logika/nevezetes-torvenyek#hogyan-bizonyitunk-ekvivalenciat), hogy a három alak ugyanaz!
+
+## Prenex alak
+
+Elsőrendű formulánál az összes kvantort a formula elejére hozzuk: $Q_1 x_1 \dots Q_n x_n\, B$, ahol $B$-ben nincs kvantor. Ehhez a [kvantoros törvényeket](/logika/kvantoros-torvenyek) és a kötött változók [átnevezését](/logika/kotott-es-szabad-valtozok#valtozoiban-tiszta-formula) használjuk.
+
+## Szekvent kalkulus
+
+A következményt eddig **szemantikusan** (interpretációkkal, igazságtáblával) vizsgáltuk. A Gentzen-féle szekvent kalkulus **szintaktikus** módszer: szabályok alapján, jelsorozatok átírásával vezetünk le formulákat, interpretáció nélkül.

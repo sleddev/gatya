@@ -1,0 +1,70 @@
+---
+cim: Skaláris szorzat és szög
+osszefoglalo: A skaláris (belső) szorzat koordinátákkal, két vektor szöge, a merőlegesség feltétele és a vetület.
+allapot: kimaradt
+kulcsszavak: [skaláris szorzat, belső szorzat, dot, szög, merőleges, ortogonális, vetület, koszinusz, Dot, Angle]
+forras: vector operations.pdf
+---
+
+## A skaláris szorzat
+
+<Definicio>
+$$
+\mathbf{u} \cdot \mathbf{v} = u_x v_x + u_y v_y \quad (\text{térben } + u_z v_z).
+$$
+Az eredmény egy **szám** (skalár), nem vektor.
+</Definicio>
+
+<Pelda cim="a gyakorlatról">
+$\mathbf{u} = (3, 4)$, $\mathbf{v} = (5, 2)$: $\mathbf{u} \cdot \mathbf{v} = 3 \cdot 5 + 4 \cdot 2 = 23$. GeoGebra: `u * v` vagy `Dot(u, v)`.
+</Pelda>
+
+## Két vektor szöge
+
+<Tetel>
+$$
+\mathbf{u} \cdot \mathbf{v} = \|\mathbf{u}\|\,\|\mathbf{v}\| \cos \alpha, \qquad\text{tehát}\qquad \cos \alpha = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|\,\|\mathbf{v}\|}.
+$$
+</Tetel>
+
+<Pelda cim="a gyakorlatról">
+$\|\mathbf{u}\| = 5$, $\|\mathbf{v}\| = \sqrt{29} \approx 5{,}385$:
+$$
+\cos \alpha = \frac{23}{5 \cdot \sqrt{29}} \approx 0{,}8542, \qquad \alpha \approx 31{,}33°.
+$$
+GeoGebra: `Angle(u, v)`.
+</Pelda>
+
+<Figyelem cim="kerekítés">
+A gyakorlati jegyzet a koszinuszt 0,85-re kerekíti, mielőtt arkuszkoszinuszt von, és így $31{,}79°$-ot kap. A pontos érték $\approx 31{,}33°$. Mindig **csak a végén kerekíts**: az arkuszkoszinusz érzékeny a bemenet kis változásaira.
+</Figyelem>
+
+## Merőlegesség
+
+Mivel $\cos 90° = 0$:
+$$
+\mathbf{u} \perp \mathbf{v} \iff \mathbf{u} \cdot \mathbf{v} = 0 \qquad (\mathbf{u}, \mathbf{v} \ne \mathbf{0}).
+$$
+Az előjelből a szög fajtája is látszik: pozitív skaláris szorzat hegyesszöget, negatív tompaszöget jelent.
+
+<Pelda>
+$(2, -1) \cdot (1, 2) = 2 - 2 = 0$, tehát merőlegesek. Melyik $k$-ra merőleges $(k, 3)$ a $(2, -4)$-re? $2k - 12 = 0$, tehát $k = 6$.
+</Pelda>
+
+## Vetület
+
+$\mathbf{u}$ merőleges vetülete a $\mathbf{v}$ egyenesére: előjeles hossza $\frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|}$. Ez a skaláris szorzat szemléletes jelentése: „mennyi $\mathbf{u}$-ból mutat $\mathbf{v}$ irányába”.
+
+## Próbáld ki
+
+Forgasd az egyik vektort, és figyeld, hol vált előjelet a skaláris szorzat: pontosan merőleges helyzetben.
+
+<VektorLabor mod="szorzat" modok={["szorzat"]} />
+
+<Feladat>
+Mekkora szöget zár be $(1, 1)$ és $(1, 0)$?
+
+<Megoldas>
+$\cos \alpha = \frac{1}{\sqrt 2 \cdot 1} = \frac{\sqrt 2}{2}$, tehát $\alpha = 45°$.
+</Megoldas>
+</Feladat>

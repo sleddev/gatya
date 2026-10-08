@@ -1,0 +1,12 @@
+cim: Diszkrét matematika
+rovid: DiMat
+szin: '#0C7768'
+szin_sotet: '#3DBFA9'
+oktato: Aradi Bernadett · előadás + gyakorlat
+sorrend: 1
+leiras: >-
+  Halmazokkal és függvényekkel indul, majd a teljes indukció után az egész számok
+  (oszthatóság, prímek, kongruenciák), végül a komplex számok következnek. Az
+  előadásdiák (DiMat_ea.pdf) eddig a komplex számokig jutottak; a gyakorlat a
+  Feladatsor_2026.pdf 1–4. fejezetét követi. Ahol az oldalakon feladatszám áll
+  (pl. 3.22), az erre a feladatsorra utal.

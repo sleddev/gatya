@@ -1,0 +1,76 @@
+---
+cim: Gyökök, szélsőértékek, érintő
+osszefoglalo: Zérushelyek és szélsőértékek polinomoknál, a derivált mint az érintő meredeksége, az érintő egyenlete, és a GeoGebra Root, Extremum, Tangent parancsai.
+allapot: kimaradt
+kulcsszavak: [gyök, zérushely, szélsőérték, maximum, minimum, derivált, érintő, meredekség, Root, Extremum, Tangent, polinom, kétszeres gyök]
+forras: functions.pdf · root_extremum_examples.zip
+---
+
+## Gyök (zérushely)
+
+<Definicio>
+Az $f$ függvény **gyöke** (zérushelye) az az $x$, ahol $f(x) = 0$, vagyis ahol a grafikon metszi vagy érinti az $x$-tengelyt. GeoGebra: `Root(f)`.
+</Definicio>
+
+Egy $n$-edfokú polinomnak legfeljebb $n$ valós gyöke van. Ha a grafikon csak **érinti** a tengelyt, az **többszörös gyök**: például $(x - 1)^2$-nek az 1 kétszeres gyöke.
+
+## A derivált mint meredekség
+
+A **derivált** $f'(x_0)$ az $x_0$ pontbeli **érintő meredeksége**: megmutatja, milyen gyorsan és milyen irányban változik ott a függvény.
+- $f'(x_0) > 0$: ott a függvény nő,
+- $f'(x_0) < 0$: ott csökken,
+- $f'(x_0) = 0$: vízszintes az érintő.
+
+Polinomokat tagonként deriválunk az $(x^n)' = n x^{n-1}$ szabállyal, a konstans deriváltja 0. Például $(x^3 - 3x + 1)' = 3x^2 - 3$.
+
+## Szélsőérték
+
+<Definicio>
+**Helyi szélsőérték** (maximum vagy minimum) ott lehet, ahol $f'(x) = 0$ és $f'$ ott **előjelet vált**. Ha $f''(x) < 0$, maximum; ha $f''(x) > 0$, minimum. GeoGebra: `Extremum(f)`.
+</Definicio>
+
+<Pelda cim="f(x) = x³ − 3x + 1">
+- $f'(x) = 3x^2 - 3 = 0 \iff x = \pm 1$.
+- $f''(x) = 6x$: $x = -1$-nél negatív, tehát **maximum**: $f(-1) = -1 + 3 + 1 = 3$. $x = 1$-nél pozitív, tehát **minimum**: $f(1) = 1 - 3 + 1 = -1$.
+- Mivel a maximum a tengely fölött, a minimum alatta van, és a függvény $-\infty$-ből jön és $+\infty$-be tart, **három** valós gyöke van.
+</Pelda>
+
+<Figyelem>
+$f'(x) = 0$ még nem jelent szélsőértéket. $f(x) = x^3$-ra $f'(0) = 0$, de a függvény végig nő, a 0-ban csak „megpihen” (inflexiós pont). Ezért kell az előjelváltás.
+</Figyelem>
+
+## Az érintő egyenlete
+
+Az $f$ grafikonjának $P = (x_0, f(x_0))$ pontbeli érintője az az egyenes, amely átmegy $P$-n, és meredeksége $m = f'(x_0)$:
+$$
+y - f(x_0) = f'(x_0)\,(x - x_0).
+$$
+
+A gyakorlati jegyzet másik módszere: vegyük a $Q = (x_0 + 1,\ f(x_0) + m)$ pontot (egyet jobbra, $m$-et felfelé), és húzzuk meg a `Line(P, Q)` egyenest. GeoGebrában közvetlenül: `Tangent(x0, f)`.
+
+<Pelda>
+$f(x) = x^3 - 3x + 1$, $x_0 = 2$: $f(2) = 8 - 6 + 1 = 3$, $f'(2) = 12 - 3 = 9$.
+
+Az érintő: $y - 3 = 9(x - 2)$, azaz $y = 9x - 15$. A második módszerrel $Q = (3, 12)$, és valóban $9 \cdot 3 - 15 = 12$. ✓
+</Pelda>
+
+## Próbáld ki
+
+A `root_extremum_examples` fájlok mind betölthetők a gombokkal: másodfokú, kétféle harmadfokú (szélsőértékkel és anélkül) és kétféle negyedfokú. Húzd a csúszkákat, és figyeld, mikor tűnik el két gyök: akkor, amikor egy szélsőérték áthalad a tengelyen.
+
+<PolinomVizsgalo fok={3} egyutthatok={[1, 0, -3, 1]} />
+
+<Kviz
+  kerdes="Hány szélsőértéke lehet legfeljebb egy negyedfokú polinomnak?"
+  valaszok={["2", "3", "4"]}
+  helyes={1}
+  magyarazat="A deriváltja harmadfokú, annak legfeljebb 3 gyöke van, tehát legfeljebb 3 helyen lehet szélsőérték."
+/>
+
+<Feladat>
+Hol van szélsőértéke $f(x) = x^2 - 4x + 1$-nek, és mi a $(0, 1)$ pontbeli érintője?
+
+<Megoldas>
+$f'(x) = 2x - 4 = 0 \iff x = 2$, és $f'' = 2 > 0$, tehát minimum: $f(2) = -3$. A $(0, 1)$ pontban $f'(0) = -4$, így az érintő $y = -4x + 1$.
+</Megoldas>
+</Feladat>

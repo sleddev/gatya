@@ -1,0 +1,142 @@
+---
+cim: Prímszámok és prímtényezős felbontás
+osszefoglalo: Prímszámok és összetett számok, a számelmélet alaptétele, lnko és lkkt a kanonikus alakból, az osztók száma, és miért van végtelen sok prím.
+allapot: kimaradt
+kulcsszavak: [prímszám, prím, összetett szám, számelmélet alaptétele, kanonikus alak, prímtényezős felbontás, osztók száma, végtelen sok prím, Euklidesz, faktoriális]
+forras: DiMat_ea.pdf 29–31. dia · Feladatsor 3.4–3.21
+---
+
+## Prímek és összetett számok
+
+Minden $n > 1$ természetes számnak van két pozitív osztója: az 1 és saját maga. Ezek a **triviális osztók**.
+
+<Definicio>
+- **Prímszám**: 1-nél nagyobb természetes szám, amelynek csak triviális osztói vannak. ($2, 3, 5, 7, 11, 13, \dots$)
+- **Összetett szám**: 1-nél nagyobb szám, amelynek van nem triviális osztója is. ($4, 6, 8, 9, 10, \dots$)
+- Az **1** se nem prím, se nem összetett: ő az **egységelem**.
+</Definicio>
+
+<Tetel cim="a prímek jellemzése">
+Egy $p > 1$ egész pontosan akkor prím, ha minden $a, b \in \Z$-re: $p \mid ab \implies p \mid a$ vagy $p \mid b$.
+</Tetel>
+
+<Pelda>
+Összetett számra ez nem igaz: $6 \mid 4 \cdot 9 = 36$, de $6 \nmid 4$ és $6 \nmid 9$. A 6 „szétoszlik” a két tényező között ($2 \mid 4$, $3 \mid 9$). Egy prím nem tud szétoszlani.
+</Pelda>
+
+## A számelmélet alaptétele
+
+<Tetel cim="a számelmélet alaptétele">
+Minden 1-nél nagyobb természetes szám felbontható véges sok prím szorzatára, és ez a felbontás a tényezők sorrendjétől eltekintve **egyértelmű**.
+</Tetel>
+
+Az egyértelmű szorzatot **kanonikus** vagy **prímtényezős alaknak** hívjuk:
+$$
+n = p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r},
+$$
+ahol $p_1, \dots, p_r$ különböző prímek és $\alpha_i \in \N$.
+
+<Pelda>
+$1260 = 2 \cdot 630 = 2^2 \cdot 315 = 2^2 \cdot 3^2 \cdot 35 = 2^2 \cdot 3^2 \cdot 5 \cdot 7$.
+</Pelda>
+
+## Lnko és lkkt a kanonikus alakból
+
+- **Legnagyobb közös osztó:** a *közös* prímtényezők, a *kisebb* kitevőn.
+- **Legkisebb közös többszörös:** az *összes* előforduló prímtényező, a *nagyobb* kitevőn.
+
+<Pelda cim="az előadásból">
+$1260 = 2^2 \cdot 3^2 \cdot 5 \cdot 7$ és $14850 = 2 \cdot 3^3 \cdot 5^2 \cdot 11$.
+- $(1260, 14850) = 2^1 \cdot 3^2 \cdot 5^1 = 90$
+- $[1260, 14850] = 2^2 \cdot 3^3 \cdot 5^2 \cdot 7 \cdot 11 = 207\,900$
+</Pelda>
+
+<Tetel>
+$(a, b) \cdot [a, b] = |ab|$.
+</Tetel>
+
+Ez azért igaz, mert minden prímnél a kisebb és a nagyobb kitevő összege éppen a két kitevő összege. A példán: $90 \cdot 207\,900 = 18\,711\,000 = 1260 \cdot 14850$. ✓
+
+Két szám pontosan akkor **relatív prím**, ha nincs közös prímtényezőjük.
+
+## Az osztók száma
+
+<Tetel>
+Az $n = p_1^{\alpha_1} \cdots p_r^{\alpha_r}$ szám pozitív osztóinak száma
+$$
+d(n) = (\alpha_1 + 1)(\alpha_2 + 1) \cdots (\alpha_r + 1).
+$$
+</Tetel>
+
+**Miért?** Egy osztóban a $p_1$ prím $0, 1, \dots, \alpha_1$-szer szerepelhet, ez $\alpha_1 + 1$ lehetőség, és így tovább minden prímre. A választások függetlenek, tehát szorzódnak.
+
+<Pelda>
+$12 = 2^2 \cdot 3$: $d(12) = (2+1)(1+1) = 6$. Valóban: $1, 2, 3, 4, 6, 12$.
+
+Az előadás példái: $1\,455\,300 = 2^2 \cdot 3^3 \cdot 5^2 \cdot 7^2 \cdot 11$, így $d = 3 \cdot 4 \cdot 3 \cdot 3 \cdot 2 = 216$; és $185\,130 = 2 \cdot 3^2 \cdot 5 \cdot 11^2 \cdot 17$, így $d = 2 \cdot 3 \cdot 2 \cdot 3 \cdot 2 = 72$.
+</Pelda>
+
+## Végtelen sok prím van
+
+<Tetel cim="Euklidesz">
+A prímszámok száma végtelen.
+</Tetel>
+
+<Lepesek>
+<Lepes>
+**Indirekt** tegyük fel, hogy csak véges sok prím van: $p_1, p_2, \dots, p_k$.
+</Lepes>
+<Lepes>
+Legyen $b = p_1 p_2 \cdots p_k + 1$. Ez nagyobb 1-nél, és mivel minden prímnél nagyobb, nem prím, tehát összetett. Így van prímosztója, valamelyik $p_i$.
+</Lepes>
+<Lepes>
+$p_i \mid b$ és $p_i \mid p_1 \cdots p_k$, ezért a különbségüknek is osztója: $p_i \mid 1$. Ez lehetetlen. Ellentmondás.
+</Lepes>
+</Lepesek>
+
+<Megjegyzes>
+A $b$ szám maga nem feltétlenül prím, a bizonyítás csak azt használja, hogy van prímosztója, ami nincs a listán. Például $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 + 1 = 30031 = 59 \cdot 509$.
+</Megjegyzes>
+
+## Hány nullára végződik 100!?
+
+<Pelda cim="3.4">
+Minden végső nullához egy $10 = 2 \cdot 5$ tényező kell. Kettes sokkal több van, mint ötös, tehát az ötösöket kell számolni:
+- az 5 többszörösei $100$-ig: $\lfloor 100/5 \rfloor = 20$ darab, mindegyik ad egy 5-öst;
+- a 25 többszörösei még egy-egy 5-öst adnak: $\lfloor 100/25 \rfloor = 4$.
+
+Összesen $20 + 4 = 24$ nulla.
+</Pelda>
+
+## Próbáld ki
+
+<Primtenyezok n={1455300} m={185130} />
+
+## Gyakorló feladatok
+
+<Feladat cim="3.18">
+Hány pozitív osztója van a 252, a 600 és az 528 számnak?
+
+<Megoldas>
+- $252 = 2^2 \cdot 3^2 \cdot 7$: $3 \cdot 3 \cdot 2 = 18$
+- $600 = 2^3 \cdot 3 \cdot 5^2$: $4 \cdot 2 \cdot 3 = 24$
+- $528 = 2^4 \cdot 3 \cdot 11$: $5 \cdot 2 \cdot 2 = 20$
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3.19">
+Melyik a legkisebb természetes szám, amelynek pontosan 12 pozitív osztója van?
+
+<Megoldas>
+$12$ felbontásai szorzattá (a kitevők $+1$-ei): $12$, $6 \cdot 2$, $4 \cdot 3$, $3 \cdot 2 \cdot 2$. A megfelelő legkisebb számok (a legnagyobb kitevő a legkisebb prímre):
+$2^{11} = 2048$, $2^5 \cdot 3 = 96$, $2^3 \cdot 3^2 = 72$, $2^2 \cdot 3 \cdot 5 = 60$. A legkisebb a **60**.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3.15">
+Legyen $p > 3$ prím. Mutasd meg, hogy $24 \mid p^2 - 1$.
+
+<Megoldas>
+$p^2 - 1 = (p - 1)(p + 1)$. Mivel $p$ páratlan, $p - 1$ és $p + 1$ két egymás utáni páros szám, közülük az egyik osztható 4-gyel: a szorzat osztható 8-cal. A $p - 1, p, p + 1$ közül az egyik osztható 3-mal, és ez nem a $p$ (mert $p > 3$ prím), tehát a szorzat osztható 3-mal is. $(8, 3) = 1$, így $24 \mid p^2 - 1$.
+</Megoldas>
+</Feladat>

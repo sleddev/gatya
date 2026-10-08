@@ -1,0 +1,773 @@
+/* Styles for MDX content and widgets. Everything is scoped to .pants-doc so the
+   web build can render it inline without leaking into the app shell. */
+
+.pants-doc {
+  --bg: #f4f6f1;
+  --surface: #ffffff;
+  --sunk: #e9ede4;
+  --ink: #1a2016;
+  --muted: #5b6553;
+  --line: #d6dcce;
+  --grid: #e3e8dd;
+  --axis: #9aa494;
+  --good: #1b8546;
+  --bad: #c03a2e;
+  --warn: #a86b00;
+  --q1: #2f6fd6;
+  --q2: #0c8f79;
+  --q3: #a046c4;
+  --q4: #c27400;
+  --q5: #d23f74;
+  --acc: #4f8236;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+  --math: 'STIX Two Math', 'Cambria Math', 'Latin Modern Math', math, serif;
+
+  color: var(--ink);
+  background: var(--bg);
+  font: 17px/1.62 var(--font);
+  -webkit-text-size-adjust: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.pants-doc[data-theme='dark'] {
+  --bg: #12160f;
+  --surface: #1a2016;
+  --sunk: #222a1d;
+  --ink: #e7ece2;
+  --muted: #a1ab98;
+  --line: #2f3829;
+  --grid: #222a1d;
+  --axis: #5e6858;
+  --good: #4cc47e;
+  --bad: #ff7a6b;
+  --warn: #e7b04a;
+  --q1: #6ea0ff;
+  --q2: #3dc9b0;
+  --q3: #d08cf0;
+  --q4: #f0b34a;
+  --q5: #ff7fa8;
+  color-scheme: dark;
+}
+.pants-doc *,
+.pants-doc *::before,
+.pants-doc *::after {
+  box-sizing: border-box;
+}
+.pants-doc[data-native] {
+  font-size: 16.5px;
+}
+
+/* ---------- document ---------- */
+.pants-doc .doc {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 28px 20px 0;
+  display: grid;
+  gap: 0;
+}
+@media (max-width: 520px) {
+  .pants-doc .doc {
+    padding: 18px 16px 0;
+  }
+}
+.pants-doc a {
+  color: var(--acc);
+  text-underline-offset: 2px;
+}
+.pants-doc :focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+.pants-doc .doc-head {
+  display: grid;
+  gap: 10px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--acc);
+  margin-bottom: 8px;
+}
+.pants-doc .eyebrow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  font: 600 0.74rem var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.pants-doc .eyebrow a {
+  text-decoration: none;
+}
+.pants-doc h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+.pants-doc .lead {
+  color: var(--muted);
+  margin: 0;
+  font-size: 1.04rem;
+}
+.pants-doc .source {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.pants-doc .toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.pants-doc .toc a {
+  font-size: 0.82rem;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+.pants-doc .toc a:hover {
+  border-color: var(--acc);
+}
+
+.pants-doc .status {
+  font: 600 0.66rem var(--mono);
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+}
+.pants-doc .status.kimaradt {
+  color: var(--bad);
+}
+.pants-doc .status.ismetles {
+  color: var(--muted);
+}
+.pants-doc .status.talan {
+  color: var(--warn);
+}
+.pants-doc .status.kovetkezo {
+  color: var(--acc);
+}
+
+.pants-doc .doc-body {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+.pants-doc .doc-body > * {
+  margin: 0;
+  min-width: 0;
+}
+.pants-doc h2 {
+  font-size: 1.45rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 26px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 12px;
+  text-wrap: balance;
+}
+.pants-doc h3 {
+  font-size: 1.12rem;
+  margin: 10px 0 0;
+  scroll-margin-top: 12px;
+}
+.pants-doc p,
+.pants-doc ul,
+.pants-doc ol {
+  margin: 0;
+}
+.pants-doc ul,
+.pants-doc ol {
+  padding-left: 1.3em;
+  display: grid;
+  gap: 4px;
+}
+.pants-doc li > p {
+  margin: 0;
+}
+.pants-doc strong {
+  font-weight: 600;
+}
+.pants-doc hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+.pants-doc code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--sunk);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.pants-doc pre {
+  background: var(--sunk);
+  padding: 10px 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.pants-doc pre code {
+  background: none;
+  padding: 0;
+}
+.pants-doc blockquote {
+  margin: 0;
+  border-left: 3px solid var(--line);
+  padding: 2px 14px;
+  color: var(--muted);
+}
+.pants-doc .tablewrap {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.pants-doc table {
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.pants-doc th,
+.pants-doc td {
+  border: 1px solid var(--line);
+  padding: 5px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.pants-doc th {
+  background: var(--sunk);
+  font-weight: 600;
+}
+.pants-doc .mono {
+  font-family: var(--mono);
+  font-size: 0.85em;
+}
+.pants-doc .muted {
+  color: var(--muted);
+}
+
+/* math (KaTeX MathML output) */
+.pants-doc math {
+  font-family: var(--math);
+  font-size: 1.08em;
+}
+.pants-doc math[display='block'] {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 0;
+  font-size: 1.15em;
+}
+.pants-doc .katex:has(> math[display='block']) {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* ---------- content blocks ---------- */
+.pants-doc .callout {
+  border-left: 3px solid var(--acc);
+  background: var(--surface);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  display: grid;
+  gap: 8px;
+}
+.pants-doc .callout > .label {
+  font: 600 0.7rem var(--mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+.pants-doc .callout.warn {
+  border-left-color: var(--warn);
+}
+.pants-doc .callout.warn > .label {
+  color: var(--warn);
+}
+.pants-doc .callout.tip {
+  border-left-color: var(--good);
+}
+.pants-doc .callout.tip > .label {
+  color: var(--good);
+}
+.pants-doc .callout.theorem {
+  border-left-width: 5px;
+}
+.pants-doc .callout > *:not(.label) {
+  margin: 0;
+}
+.pants-doc .example {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 12px 14px;
+  display: grid;
+  gap: 8px;
+}
+.pants-doc .example > .label {
+  font: 600 0.7rem var(--mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pants-doc .example > *:not(.label) {
+  margin: 0;
+}
+.pants-doc details.solution {
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: var(--bg);
+}
+.pants-doc details.solution > summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--acc);
+}
+.pants-doc details.solution[open] > summary {
+  margin-bottom: 8px;
+}
+.pants-doc details.solution > .inner {
+  display: grid;
+  gap: 8px;
+}
+.pants-doc details.solution > .inner > * {
+  margin: 0;
+}
+
+/* ---------- widget chrome ---------- */
+.pants-doc .bench {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.pants-doc .bench-h {
+  display: grid;
+  gap: 2px;
+}
+.pants-doc .bench-h .tag {
+  font: 600 0.64rem var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+.pants-doc .bench-h h4 {
+  margin: 0;
+  font-size: 1.04rem;
+}
+.pants-doc .bench-h p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.pants-doc .row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.pants-doc .cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  .pants-doc .cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.pants-doc .stack {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.pants-doc label.f {
+  display: grid;
+  gap: 3px;
+  font-size: 0.76rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.pants-doc input[type='text'],
+.pants-doc input[type='number'],
+.pants-doc select,
+.pants-doc textarea {
+  font: 400 0.95rem var(--mono);
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 9px;
+  min-width: 0;
+}
+.pants-doc input[type='number'] {
+  width: 6.5em;
+}
+.pants-doc input.formula {
+  font-family: var(--math);
+  font-size: 1.12rem;
+  width: 100%;
+}
+.pants-doc textarea {
+  resize: vertical;
+  width: 100%;
+}
+.pants-doc input.wide {
+  width: 100%;
+}
+.pants-doc input[type='range'] {
+  accent-color: var(--acc);
+  width: 100%;
+}
+.pants-doc input[type='checkbox'] {
+  accent-color: var(--acc);
+}
+.pants-doc .btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  font: 500 0.84rem var(--font);
+  padding: 6px 11px;
+  border-radius: 7px;
+  cursor: pointer;
+  min-height: 34px;
+}
+.pants-doc .btn:hover {
+  border-color: var(--acc);
+}
+.pants-doc .btn.on {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: var(--surface);
+}
+.pants-doc .btn.sym {
+  font-family: var(--math);
+  font-size: 1.02rem;
+  padding: 3px 10px;
+  min-width: 2.4em;
+}
+.pants-doc .out {
+  font-size: 0.93rem;
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.pants-doc .out p {
+  margin: 0;
+}
+.pants-doc .line {
+  font-family: var(--math);
+  font-size: 1.06rem;
+  overflow-x: auto;
+}
+.pants-doc dl.kv {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 12px;
+  align-items: baseline;
+  margin: 0;
+}
+.pants-doc dl.kv dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.pants-doc dl.kv dd {
+  margin: 0;
+  font-family: var(--math);
+  font-size: 1.04rem;
+  overflow-x: auto;
+}
+.pants-doc .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font: 600 0.74rem var(--mono);
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+.pants-doc .chip.ok {
+  color: var(--good);
+}
+.pants-doc .chip.no {
+  color: var(--bad);
+}
+.pants-doc .chip.mid {
+  color: var(--warn);
+}
+.pants-doc .err {
+  color: var(--bad);
+  font-size: 0.88rem;
+}
+.pants-doc .note {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+.pants-doc canvas.plane {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  background: var(--bg);
+  touch-action: none;
+  border: 1px solid var(--line);
+}
+.pants-doc .legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.pants-doc .legend span::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--c);
+  margin-right: 5px;
+  vertical-align: -1px;
+}
+
+/* truth tables */
+.pants-doc table.tt {
+  font-family: var(--math);
+  font-size: 0.98rem;
+}
+.pants-doc table.tt th,
+.pants-doc table.tt td {
+  padding: 2px 9px;
+  text-align: center;
+}
+.pants-doc table.tt th {
+  font-weight: 400;
+  white-space: nowrap;
+}
+.pants-doc table.tt th.main {
+  background: color-mix(in srgb, var(--acc) 22%, var(--surface));
+}
+.pants-doc table.tt td.main {
+  font-weight: 700;
+}
+.pants-doc table.tt tr.model td {
+  background: color-mix(in srgb, var(--good) 14%, var(--surface));
+}
+.pants-doc table.tt tr.counter td {
+  background: color-mix(in srgb, var(--bad) 18%, var(--surface));
+}
+.pants-doc table.tt td.v0 {
+  color: var(--muted);
+}
+.pants-doc table.tt .sep {
+  border-left: 2px solid var(--axis);
+}
+
+/* trees */
+.pants-doc .treebox {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  padding: 6px;
+}
+.pants-doc svg.tree text {
+  fill: var(--ink);
+  font-family: var(--math);
+  font-size: 15px;
+}
+.pants-doc svg.tree line {
+  stroke: var(--axis);
+  stroke-width: 1.4;
+}
+.pants-doc svg.tree circle {
+  fill: var(--surface);
+  stroke: var(--acc);
+  stroke-width: 2;
+}
+.pants-doc svg.tree circle.leaf {
+  fill: var(--acc);
+}
+
+/* first-order formula highlighting */
+.pants-doc .fol {
+  font-family: var(--math);
+  font-size: 1.25rem;
+  line-height: 2.2;
+  overflow-x: auto;
+  white-space: pre;
+}
+.pants-doc .fol .occ {
+  border-radius: 3px;
+  padding: 0 2px;
+  font-weight: 700;
+}
+.pants-doc .fol .free {
+  color: var(--bad);
+  text-decoration: underline wavy;
+  text-underline-offset: 4px;
+}
+.pants-doc .fol .dim {
+  opacity: 0.35;
+}
+
+/* clickable grids */
+.pants-doc table.rgrid {
+  font-family: var(--math);
+}
+.pants-doc table.rgrid td,
+.pants-doc table.rgrid th {
+  width: 2.5em;
+  height: 2.2em;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+}
+.pants-doc table.rgrid th {
+  font-weight: 400;
+}
+.pants-doc table.rgrid td.in {
+  background: color-mix(in srgb, var(--acc) 32%, var(--surface));
+  font-weight: 700;
+}
+.pants-doc table.rgrid td.click {
+  cursor: pointer;
+}
+.pants-doc table.rgrid td.click:hover {
+  outline: 2px solid var(--acc);
+  outline-offset: -2px;
+}
+
+/* quiz */
+.pants-doc .quiz {
+  display: grid;
+  gap: 8px;
+}
+.pants-doc .qi {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+}
+.pants-doc .qi .q {
+  font-weight: 500;
+}
+.pants-doc .qi .opts {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pants-doc .qi .opts .btn.right {
+  border-color: var(--good);
+  color: var(--good);
+  background: color-mix(in srgb, var(--good) 10%, var(--bg));
+}
+.pants-doc .qi .opts .btn.wrong {
+  border-color: var(--bad);
+  color: var(--bad);
+}
+.pants-doc .qi .why {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* steps */
+.pants-doc .steps {
+  display: grid;
+  gap: 8px;
+  counter-reset: step;
+}
+.pants-doc .steps .step {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+.pants-doc .steps .step::before {
+  counter-increment: step;
+  content: counter(step);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 600 0.8rem var(--mono);
+  background: var(--sunk);
+  color: var(--acc);
+}
+.pants-doc .steps .step > div {
+  display: grid;
+  gap: 6px;
+}
+.pants-doc .steps .step > div > * {
+  margin: 0;
+}
+
+/* ---------- footer ---------- */
+.pants-doc .doc-foot {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 16px;
+}
+.pants-doc .learned {
+  justify-self: start;
+  appearance: none;
+  border: 1px solid var(--acc);
+  color: var(--acc);
+  background: transparent;
+  font: 600 0.92rem var(--font);
+  padding: 9px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.pants-doc .learned.on {
+  background: var(--acc);
+  color: var(--surface);
+}
+.pants-doc .pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.pants-doc .pager-link {
+  display: grid;
+  gap: 2px;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.pants-doc .pager-link:hover {
+  border-color: var(--acc);
+}
+.pants-doc .pager-link span {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.pants-doc .pager-link.next {
+  text-align: right;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pants-doc * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

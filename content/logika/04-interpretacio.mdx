@@ -1,0 +1,101 @@
+---
+cim: Interpretáció és igazságtábla
+osszefoglalo: A formulák jelentése. Mi az interpretáció ⟨U, ϱ⟩, hogyan kapnak értéket a termek és a formulák, a logikai műveletek igazságtáblája, miért éppen így definiáljuk az implikációt, és hogyan működnek a kvantorok.
+allapot: kimaradt
+kulcsszavak: [szemantika, interpretáció, univerzum, értelmezési függvény, változókiértékelés, igazságérték, igazságtábla, implikáció, kondicionális, kvantor szemantikája]
+forras: eloadas02-2026.pdf, eloadas03-2026.pdf
+---
+
+A **szintaxis** azt mondja meg, mi a helyes formula. A **szemantika** azt, mit jelent: mikor igaz és mikor hamis. Ehhez meg kell mondani, miről beszélünk, és ezt adja meg az interpretáció.
+
+## Az interpretáció
+
+<Definicio>
+Az $L^{(1)}$ nyelv egy **interpretációja** az $\langle U, \varrho \rangle$ pár, ahol
+- $U \ne \emptyset$ az **univerzum**: azok a dolgok, amelyekről beszélünk, és amelyeken a „minden” és a „van olyan” végigfut;
+- $\varrho$ az **értelmezési függvény**, amely
+  - minden **névhez** $U$ egy elemét,
+  - minden $n$-argumentumú **függvényjelhez** egy $U^n \to U$ függvényt,
+  - minden **állításjelhez** ($P^{(0)}$) egy igazságértéket,
+  - minden $n$-argumentumú **predikátumhoz** $U^n$ egy részhalmazát rendeli (azokat az $n$-eseket, amelyekre igaz).
+</Definicio>
+
+A szabad változóknak egy **változókiértékelés** ad értéket: minden változóhoz hozzárendel egy $U$-beli elemet.
+
+<Pelda cim="az előadásból: a város lakói">
+- $U = \{\text{lakó}_1, \text{lakó}_2, \text{lakó}_3, \dots\}$, a város lakói.
+- $\varrho(\text{Péter}) = \text{lakó}_1$, $\varrho(\text{én}) = \text{lakó}_{42}$, $\varrho(\text{Mari néni}) = \text{lakó}_4$.
+- $\varrho(\text{édesanyja})$: $\text{lakó}_1 \mapsto \text{lakó}_3$, $\text{lakó}_2 \mapsto \text{lakó}_4$, …
+- $\varrho(\text{tanul}) = \{\text{lakó}_1, \text{lakó}_2\}$, $\varrho(\text{dolgozik}) = \{\text{lakó}_4\}$.
+- $\varrho(\text{munkatársak}) = \{(\text{lakó}_2, \text{lakó}_5), (\text{lakó}_5, \text{lakó}_2), (\text{lakó}_3, \text{lakó}_4), (\text{lakó}_4, \text{lakó}_3)\}$.
+
+Ebben az interpretációban:
+- $\text{tanul}(\text{Péter})$ **igaz**, mert $\text{lakó}_1 \in \varrho(\text{tanul})$.
+- $\text{dolgozik}(\text{édesanyja}(\text{Péter}))$ **hamis**: Péter édesanyja $\text{lakó}_3$, és $\text{lakó}_3 \notin \{\text{lakó}_4\}$.
+- $\text{munkatársak}(\text{édesanyja}(\text{Péter}), \text{Mari néni})$ **igaz**, mert $(\text{lakó}_3, \text{lakó}_4) \in \varrho(\text{munkatársak})$.
+</Pelda>
+
+Az eljárás mindig ugyanaz: **először a termeket értékeljük ki** (melyik elemet nevezik meg), **aztán a predikátumot** (benne van-e a kapott elem vagy $n$-es a predikátum halmazában).
+
+## A logikai műveletek szemantikája
+
+Jelölje $|A|^{\langle U, \varrho \rangle}$ az $A$ formula igazságértékét (1 = igaz, 0 = hamis).
+
+| $A$ | $B$ | $\neg A$ | $A \wedge B$ | $A \vee B$ | $A \supset B$ | $A \equiv B$ |
+|---|---|---|---|---|---|---|
+| 0 | 0 | 1 | 0 | 0 | 1 | 1 |
+| 0 | 1 | 1 | 0 | 1 | 1 | 0 |
+| 1 | 0 | 0 | 0 | 1 | 0 | 0 |
+| 1 | 1 | 0 | 1 | 1 | 1 | 1 |
+
+## Miért ilyen furcsa az implikáció?
+
+Az $A \supset B$ hamis $A$ esetén mindig igaz. Ez elsőre meglepő („Ha a Hold sajtból van, akkor $2 + 2 = 5$” igaz?), de jó oka van.
+
+A valódi feltételes állításokban („ha esik, vizes az út”) a közös minimum: **„Ha $A$, akkor $B$” nem lehet igaz, ha $A$ igaz, de $B$ hamis.** Minden más esetet igaznak veszünk. Definíció szerint tehát
+$$
+A \supset B \quad\text{ugyanaz, mint}\quad \neg(A \wedge \neg B).
+$$
+
+<Pelda cim="az előadásból: miért jó ez">
+Szeretnénk, ha $(A \wedge B) \supset B$ **mindig igaz** lenne, hiszen „ha $A$ és $B$, akkor $B$” biztosan helyes. Nézzük meg a négy esetet: ha $A \wedge B$ hamis (3 eset), az implikáció csak akkor lehet mindig igaz, ha hamis előtagra igazat adunk. Pont ezt teszi a definíció.
+</Pelda>
+
+<Tipp>
+Gondolj rá ígéretként: „Ha jövök, hozok sütit.” Csak akkor szegtem meg, ha jöttem és nem hoztam. Ha nem jöttem, az ígéretem nem volt hamis.
+</Tipp>
+
+## A kvantorok szemantikája
+
+Jelölje $\varrho[x : u]$ azt a kiértékelést, amely mindenben megegyezik $\varrho$-val, csak az $x$ változóhoz az $u \in U$ elemet rendeli.
+
+<Definicio>
+- $|\forall x A|^{\langle U, \varrho \rangle} = 1$, ha **minden** $u \in U$-ra $|A|^{\langle U, \varrho[x:u] \rangle} = 1$.
+- $|\exists x A|^{\langle U, \varrho \rangle} = 1$, ha **van olyan** $u \in U$, amelyre $|A|^{\langle U, \varrho[x:u] \rangle} = 1$.
+</Definicio>
+
+Vagyis: végigpróbáljuk az univerzum összes elemét az $x$ helyén.
+
+<Pelda cim="az előadásból: a bolygók">
+$R(b)$: „$b$ a Nap körül kering”.
+- Ha $U$ = a Naprendszer bolygói, akkor $\forall x R(x)$ **igaz**.
+- Ha $U$ = a Naprendszer összes égitestje (holdakkal együtt), akkor $\forall x R(x)$ **hamis** (a Hold a Földet kerüli), de $\exists x R(x)$ **igaz**.
+
+Ugyanaz a formula, más univerzum, más igazságérték. Ezért kell mindig megadni az interpretációt.
+</Pelda>
+
+Kis univerzumon kattintással építhetsz interpretációt a [kvantoros törvények oldalán](/logika/kvantoros-torvenyek#probald-ki).
+
+## Igazságtábla
+
+Ítéletlogikai formulánál (ahol nincs kvantor és predikátum) az interpretáció csak annyi, hogy az állításjelek igazak-e vagy hamisak. $n$ állításjelnél ez $2^n$ lehetőség: az **igazságtábla** sorai. A táblázatot belülről kifelé töltjük ki, részformulánként.
+
+<FormulaMuhely formula="¬p ∧ (q ⊃ r)" fa={false} peldak={[["igazságtábla-dia", "¬p ∧ (q ⊃ r)"], ["(A ∧ B) ⊃ B", "(A ∧ B) ⊃ B"], ["⊃ definíciója", "(p ⊃ q) ≡ ¬(p ∧ ¬q)"]]} />
+
+<Feladat>
+Mikor hamis a $(p \supset q) \supset (\neg q \supset \neg p)$ formula?
+
+<Megoldas>
+Soha. Ez egy logikai törvény: a kontrapozíció. Írd be a műhelybe, és mind a 4 sorban 1-et kapsz. Bővebben: [Nevezetes törvények](/logika/nevezetes-torvenyek).
+</Megoldas>
+</Feladat>

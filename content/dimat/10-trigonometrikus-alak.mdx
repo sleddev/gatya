@@ -1,0 +1,135 @@
+---
+cim: Trigonometrikus alak és Moivre-képlet
+osszefoglalo: A szinusz és koszinusz az egységkörön, a komplex szám abszolútértéke és irányszöge, átváltás algebrai és trigonometrikus alak között, szorzás, osztás és hatványozás trigonometrikus alakban.
+allapot: kimaradt
+kulcsszavak: [trigonometrikus alak, irányszög, argumentum, szinusz, koszinusz, egységkör, síknegyed, Moivre-képlet, hatványozás, szorzás, osztás]
+forras: DiMat_ea.pdf 41–51. dia · Feladatsor 4.4–4.6
+---
+
+## Szinusz és koszinusz az egységkörön
+
+Forgassuk el az origóból induló, $x$-tengely irányú egységvektort pozitív irányba (az óramutatóval ellentétesen) $\alpha$ szöggel. A kapott pont első koordinátája $\cos \alpha$, a második $\sin \alpha$.
+
+- Mindkettő $2\pi$ szerint periodikus, értékük $[-1, 1]$-ben van.
+- $\sin^2 \alpha + \cos^2 \alpha = 1$ (Pitagorasz).
+- $\cos$ páros: $\cos(-\alpha) = \cos \alpha$; $\sin$ páratlan: $\sin(-\alpha) = -\sin \alpha$.
+
+A gyakran kellő értékek:
+
+| $\alpha$ | $0$ | $\pi/6$ | $\pi/4$ | $\pi/3$ | $\pi/2$ | $\pi$ | $3\pi/2$ |
+|---|---|---|---|---|---|---|---|
+| $\cos \alpha$ | $1$ | $\sqrt{3}/2$ | $\sqrt{2}/2$ | $1/2$ | $0$ | $-1$ | $0$ |
+| $\sin \alpha$ | $0$ | $1/2$ | $\sqrt{2}/2$ | $\sqrt{3}/2$ | $1$ | $0$ | $-1$ |
+
+## A trigonometrikus alak
+
+A $z = a + bi$ pontot nemcsak a két koordinátája határozza meg, hanem az is, **milyen messze** van az origótól, és **milyen irányban**.
+
+<Definicio>
+- $|z| = \sqrt{a^2 + b^2}$ az abszolútérték (a vektor hossza).
+- $\varphi$, az **irányszög** (argumentum): a $(a, b)$ vektor és a valós tengely pozitív fele által bezárt szög, pozitív forgásirányban, $\varphi \in [0, 2\pi)$.
+
+Ekkor $a = |z| \cos \varphi$, $b = |z| \sin \varphi$, és
+$$
+z = |z|\,(\cos \varphi + i \sin \varphi).
+$$
+Ez $z$ **trigonometrikus alakja**.
+</Definicio>
+
+## Algebrai alakból trigonometrikusba
+
+A tengelyeken fekvő számok könnyűek:
+
+| $z$ | $\lvert z \rvert$ | $\varphi$ |
+|---|---|---|
+| $2$ | 2 | $0$ |
+| $-5$ | 5 | $\pi$ |
+| $3i$ | 3 | $\pi/2$ |
+| $-2i$ | 2 | $3\pi/2$ |
+
+A többinél (az előadás módszere):
+
+<Lepesek>
+<Lepes>
+Számold ki $|z|$-t, és döntsd el, melyik **síknegyedben** van $z$: a valós rész ($\cos$) és a képzetes rész ($\sin$) előjele szerint.
+</Lepes>
+<Lepes>
+Számold ki a hegyesszöget: $\cos \varphi_0 = \dfrac{|a|}{|z|}$, ahol $0 < \varphi_0 < \pi/2$.
+</Lepes>
+<Lepes>
+Igazítsd a síknegyedhez: I. $\varphi = \varphi_0$; II. $\varphi = \pi - \varphi_0$; III. $\varphi = \pi + \varphi_0$; IV. $\varphi = 2\pi - \varphi_0$.
+</Lepes>
+</Lepesek>
+
+<Pelda cim="az előadásból">
+- $1 + \sqrt{3}i$: $|z| = 2$, I. negyed, $\cos \varphi_0 = \frac{1}{2}$, $\varphi = \frac{\pi}{3}$. Tehát $z = 2\left(\cos \frac{\pi}{3} + i \sin \frac{\pi}{3}\right)$.
+- $-2 + 2i$: $|z| = \sqrt{8}$, II. negyed, $\cos \varphi_0 = \frac{2}{\sqrt 8} = \frac{\sqrt 2}{2}$, $\varphi_0 = \frac{\pi}{4}$, $\varphi = \frac{3\pi}{4}$.
+- $-\sqrt{3} - i$: $|z| = 2$, III. negyed, $\cos \varphi_0 = \frac{\sqrt 3}{2}$, $\varphi_0 = \frac{\pi}{6}$, $\varphi = \frac{7\pi}{6}$.
+- $1 - i$: $|z| = \sqrt{2}$, IV. negyed, $\varphi_0 = \frac{\pi}{4}$, $\varphi = \frac{7\pi}{4}$.
+</Pelda>
+
+<Figyelem>
+A $\tan \varphi = b/a$ képlettel könnyű rossz negyedbe kerülni: $-2 + 2i$-re és $2 - 2i$-re is $-1$-et ad. Mindig nézd meg az előjeleket, vagy rajzold le a számot.
+</Figyelem>
+
+## Trigonometrikusból algebraiba
+
+Csak ki kell számolni a $\cos$ és $\sin$ értékét.
+
+<Pelda cim="az előadásból">
+$|z| = 3$, $\varphi = \frac{\pi}{4}$: $z = 3\left(\frac{\sqrt 2}{2} + i\frac{\sqrt 2}{2}\right) = \frac{3\sqrt 2}{2} + \frac{3\sqrt 2}{2}\,i$.
+</Pelda>
+
+## Szorzás, osztás, hatványozás
+
+Legyen $z_1 = |z_1|(\cos \varphi_1 + i \sin \varphi_1)$ és $z_2 = |z_2|(\cos \varphi_2 + i \sin \varphi_2)$.
+
+<Tetel>
+$$
+z_1 z_2 = |z_1||z_2|\,\big(\cos(\varphi_1 + \varphi_2) + i \sin(\varphi_1 + \varphi_2)\big)
+$$
+$$
+\frac{z_1}{z_2} = \frac{|z_1|}{|z_2|}\,\big(\cos(\varphi_1 - \varphi_2) + i \sin(\varphi_1 - \varphi_2)\big) \quad (z_2 \ne 0)
+$$
+</Tetel>
+
+Szavakkal: **szorzásnál a hosszak szorzódnak, a szögek összeadódnak.** Egy komplex számmal szorozni tehát a síkon egy **nyújtás és forgatás**. Például $i$-vel szorozni $90°$-os forgatás.
+
+<Tetel cim="Moivre-képlet">
+Ha $z = |z|(\cos \varphi + i \sin \varphi)$ és $n \in \Z$, akkor
+$$
+z^n = |z|^n\,\big(\cos(n\varphi) + i \sin(n\varphi)\big).
+$$
+</Tetel>
+
+<Pelda cim="az előadásból">
+$z_1 = 3\left(\cos \frac{\pi}{5} + i \sin \frac{\pi}{5}\right)$, $z_2 = 2\left(\cos \frac{\pi}{3} + i \sin \frac{\pi}{3}\right)$.
+- $z_1 z_2 = 6\left(\cos \frac{8\pi}{15} + i \sin \frac{8\pi}{15}\right)$, mert $\frac{\pi}{5} + \frac{\pi}{3} = \frac{3\pi + 5\pi}{15}$.
+- $\frac{z_1}{z_2} = \frac{3}{2}\left(\cos \frac{28\pi}{15} + i \sin \frac{28\pi}{15}\right)$, mert $\frac{\pi}{5} - \frac{\pi}{3} = -\frac{2\pi}{15}$, és ehhez $2\pi$-t adunk.
+- $z_1^4 = 81\left(\cos \frac{4\pi}{5} + i \sin \frac{4\pi}{5}\right)$.
+</Pelda>
+
+<Pelda cim="az előadásból: (1 − i)⁶⁰">
+$1 - i = \sqrt{2}\left(\cos \frac{7\pi}{4} + i \sin \frac{7\pi}{4}\right)$. A Moivre-képlettel:
+$$
+(1 - i)^{60} = (\sqrt 2)^{60}\left(\cos \frac{420\pi}{4} + i \sin \frac{420\pi}{4}\right) = 2^{30}\,(\cos 105\pi + i \sin 105\pi).
+$$
+$105\pi$ ugyanoda mutat, mint $\pi$ (páratlanszor fél fordulat), így $\cos 105\pi = -1$, $\sin 105\pi = 0$. Az eredmény $-2^{30}$.
+</Pelda>
+
+<KomplexSik mod="szorzas" modok={["egy", "szorzas", "hatvany"]} z={[1, 1]} w={[0, 1]} n={4} />
+
+<Tipp>
+A „Hatványok” módban figyeld meg: ha $|z| > 1$, a hatványok kifelé csavarodó spirálon vannak; ha $|z| = 1$, körbe járnak az egységkörön.
+</Tipp>
+
+## Gyakorló feladatok
+
+<Feladat cim="4.4 (f), (g)">
+Add meg a trigonometrikus alakot: (f) $-\frac{1}{2} + \frac{\sqrt 3}{2}i$, (g) $-3 - 3\sqrt{3}i$.
+
+<Megoldas>
+- (f) $|z| = \sqrt{\frac14 + \frac34} = 1$, II. negyed, $\cos \varphi_0 = \frac12$, $\varphi_0 = \frac{\pi}{3}$, $\varphi = \frac{2\pi}{3}$. Tehát $z = \cos \frac{2\pi}{3} + i \sin \frac{2\pi}{3}$.
+- (g) $|z| = \sqrt{9 + 27} = 6$, III. negyed, $\cos \varphi_0 = \frac{3}{6} = \frac12$, $\varphi_0 = \frac{\pi}{3}$, $\varphi = \frac{4\pi}{3}$. Tehát $z = 6\left(\cos \frac{4\pi}{3} + i \sin \frac{4\pi}{3}\right)$.
+</Megoldas>
+</Feladat>

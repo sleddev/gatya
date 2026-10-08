@@ -1,0 +1,147 @@
+---
+cim: Kongruenciák és az Euler–Fermat-tétel
+osszefoglalo: Kongruencia modulo m, maradékosztályok, számolás kongruenciákkal, redukált maradékrendszer, Euler-féle φ-függvény, Euler–Fermat- és kis Fermat-tétel.
+allapot: kimaradt
+kulcsszavak: [kongruencia, modulus, maradékosztály, teljes maradékrendszer, reprezentáns, redukált maradékosztály, Euler-féle phi, φ-függvény, Euler–Fermat-tétel, kis Fermat-tétel, maradék, hatvány]
+forras: DiMat_ea.pdf 32–35. dia · Feladatsor 3.26
+---
+
+## Mit jelent a kongruencia?
+
+<Definicio>
+Legyen $m \in \N$. Az $a, b \in \Z$ számok **kongruensek modulo $m$**, ha $m \mid a - b$. Jele:
+$$
+a \equiv b \pmod m.
+$$
+$m$ a kongruencia **modulusa**.
+</Definicio>
+
+Ezzel ekvivalens: $a$ és $b$ **ugyanazt a maradékot adja** $m$-mel osztva.
+
+<Pelda>
+- Óra: 14 óra és 2 óra ugyanott áll a számlapon, $14 \equiv 2 \pmod{12}$.
+- $3 \equiv 11 \pmod 4$, mert $4 \mid 3 - 11 = -8$. Mindkettő maradéka 3.
+- $-1 \equiv 3 \pmod 4$, mert $-1 = 4 \cdot (-1) + 3$.
+- $10 \equiv 1 \pmod 9$. Ezért működik a 9-es oszthatósági szabály.
+</Pelda>
+
+## Maradékosztályok
+
+A mod $m$ kongruencia $\Z$-t $m$ darab **maradékosztályra** bontja: egy osztályba az egymással kongruens számok kerülnek. Reprezentánsaik a $0, 1, \dots, m - 1$ maradékok.
+
+<Definicio cim="teljes reprezentánsrendszer">
+$m$ darab szám, amelyek között minden maradékosztályból pontosan egy szerepel.
+</Definicio>
+
+<Pelda cim="az előadásból">
+Mod 5 teljes reprezentánsrendszer: $5, 6, 12, 28, -6$, mert maradékaik rendre $0, 1, 2, 3, 4$.
+</Pelda>
+
+## Számolás kongruenciákkal
+
+<Tetel>
+Ha $a \equiv b$ és $c \equiv d \pmod m$, akkor
+$$
+a \pm c \equiv b \pm d \pmod m, \qquad a \cdot c \equiv b \cdot d \pmod m.
+$$
+Következmény: $a^k \equiv b^k \pmod m$ minden $k \in \N$-re.
+</Tetel>
+
+Vagyis bármikor helyettesíthetsz egy számot a maradékával (vagy bármely vele kongruens számmal), és az eredmény maradéka nem változik. Nagy számokkal így kis számokká válik a számolás.
+
+<Pelda>
+Mennyi $10^{19} + 53$ maradéka 9-cel osztva? $10 \equiv 1$, tehát $10^{19} \equiv 1^{19} = 1$, és $53 \equiv 8$. Összesen $1 + 8 = 9 \equiv 0$: osztható 9-cel (3.1 (a)).
+</Pelda>
+
+<Pelda>
+Mi a $7^{100}$ utolsó jegye? Mod 10: $7^1 \equiv 7$, $7^2 = 49 \equiv 9$, $7^3 \equiv 63 \equiv 3$, $7^4 \equiv 21 \equiv 1$. A hatványok 4-esével ismétlődnek, $100 = 4 \cdot 25$, tehát $7^{100} = (7^4)^{25} \equiv 1$. Az utolsó jegy **1**.
+</Pelda>
+
+<Figyelem cim="osztani csak óvatosan">
+Ha $a c \equiv b c \pmod m$, akkor $a \equiv b$ **csak akkor** következik, ha $(c, m) = 1$.
+
+Ellenpélda: $2 \cdot 1 \equiv 2 \cdot 3 \pmod 4$ (mert $2 \equiv 6$), de $1 \not\equiv 3 \pmod 4$. A 2-vel nem lehet egyszerűsíteni, mert $(2, 4) \ne 1$.
+</Figyelem>
+
+<Tetel>
+Ha $a \equiv b \pmod m$, akkor $(a, m) = (b, m)$.
+</Tetel>
+
+Egy maradékosztály minden eleme tehát ugyanannyira „relatív prím” a modulushoz.
+
+## Redukált maradékosztályok és a φ-függvény
+
+<Definicio>
+Egy maradékosztály **redukált**, ha elemei relatív prímek a modulushoz. A redukált maradékosztályok száma az **Euler-féle φ-függvény**:
+$$
+\varphi(m) = \#\{a \in \{1, \dots, m\} \mid (a, m) = 1\}.
+$$
+</Definicio>
+
+| $m$ | redukált maradékok | $\varphi(m)$ |
+|---|---|---|
+| 2 | 1 | 1 |
+| 3 | 1, 2 | 2 |
+| 4 | 1, 3 | 2 |
+| 5 | 1, 2, 3, 4 | 4 |
+| 6 | 1, 5 | 2 |
+| 7 | 1, 2, 3, 4, 5, 6 | 6 |
+
+Prímre egyszerű: ha $p$ prím, $\varphi(p) = p - 1$, mert $1, \dots, p - 1$ mind relatív prím hozzá.
+
+<Tetel cim="φ képlete">
+Ha $m = p_1^{\alpha_1} \cdots p_r^{\alpha_r}$, akkor
+$$
+\varphi(m) = m \cdot \prod_{i=1}^{r} \left(1 - \frac{1}{p_i}\right).
+$$
+</Tetel>
+
+<Pelda>
+$\varphi(24)$: $24 = 2^3 \cdot 3$, tehát $\varphi(24) = 24 \cdot \frac{1}{2} \cdot \frac{2}{3} = 8$. Valóban: $1, 5, 7, 11, 13, 17, 19, 23$.
+</Pelda>
+
+## Az Euler–Fermat-tétel
+
+<Tetel cim="Euler–Fermat">
+Ha $(a, m) = 1$, akkor
+$$
+a^{\varphi(m)} \equiv 1 \pmod m.
+$$
+</Tetel>
+
+<Tetel cim="kis Fermat-tétel">
+Ha $p$ prím és $p \nmid a$, akkor $a^{p-1} \equiv 1 \pmod p$.
+</Tetel>
+
+**Hogyan használjuk?** Nagy kitevőnél a kitevőt $\varphi(m)$ szerinti maradékára cseréljük: ha $k = q \cdot \varphi(m) + r$, akkor
+$$
+a^k = \left(a^{\varphi(m)}\right)^q \cdot a^r \equiv 1^q \cdot a^r = a^r \pmod m.
+$$
+
+<Pelda cim="az előadásból: 2²⁰²⁶ mod 15">
+$(2, 15) = 1$, és $\varphi(15) = 15 \cdot \frac{2}{3} \cdot \frac{4}{5} = 8$. Mivel $2026 = 8 \cdot 253 + 2$:
+$$
+2^{2026} = (2^8)^{253} \cdot 2^2 \equiv 1 \cdot 4 = 4 \pmod{15}.
+$$
+A maradék **4**.
+</Pelda>
+
+<ModularisHatvany a={2} k={2026} m={15} />
+
+## Gyakorló feladatok
+
+<Feladat cim="3.26 (a)">
+Mennyi maradékot ad $3^{928}$, ha 29-cel osztjuk?
+
+<Megoldas>
+29 prím és $29 \nmid 3$, így a kis Fermat-tétel szerint $3^{28} \equiv 1$. $928 = 28 \cdot 33 + 4$, tehát $3^{928} \equiv 3^4 = 81 \equiv 81 - 58 = 23 \pmod{29}$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3.26 (b)">
+Mennyi maradékot ad $17^{40}$, ha 25-tel osztjuk?
+
+<Megoldas>
+$(17, 25) = 1$ és $\varphi(25) = 25 \cdot \frac{4}{5} = 20$. $40 = 2 \cdot 20$, tehát $17^{40} = (17^{20})^2 \equiv 1 \pmod{25}$.
+</Megoldas>
+</Feladat>

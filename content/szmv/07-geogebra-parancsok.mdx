@@ -1,0 +1,34 @@
+---
+cim: GeoGebra-parancsok
+osszefoglalo: Az eddigi laborokon használt GeoGebra-parancsok egy helyen, példákkal.
+allapot: ismetles
+kulcsszavak: [GeoGebra, parancs, FitPoly, Root, Extremum, Tangent, Derivative, Vector, Translate, Length, Distance, Dot, Angle, Cross, csúszka]
+forras: functions.pdf, vector operations.pdf, .ggb fájlok
+---
+
+A parancsokat a GeoGebra **Bevitel** sorába írjuk. Pontot nagybetűvel (`A = (2, 3)`), vektort kisbetűvel (`u = (3, 4)`) érdemes elnevezni: a GeoGebra így tudja, mit akarunk.
+
+| parancs | mit csinál | példa a laborokról |
+|---|---|---|
+| `FitPoly(A, B)` | polinom a pontokon át | $A(2,3), B(8,5) \to \frac{1}{3}x + \frac{7}{3}$ |
+| `FitPoly({A, B, C}, 2)` | adott fokszámú polinom | 3 pont, parabola |
+| `Root(f)` | zérushelyek | `root_extremum` fájlok |
+| `Extremum(f)` | helyi szélsőértékek | `root_extremum` fájlok |
+| `Derivative(f)` vagy `f'(x)` | derivált | érintő meredeksége |
+| `Tangent(x0, f)` | érintő az $x_0$ helyen | vagy `Line(P, Q)` kézzel |
+| `Vector(A, B)` | $A$-ból $B$-be mutató vektor | $A(2,3), B(5,7) \to (3,4)$ |
+| `Translate(v, A)` | $v$ másolata $A$-ból indítva | `vektorok.ggb` |
+| `Length(u)` | vektor hossza | $(3,4) \to 5$ |
+| `Distance(A, B)` | pontok távolsága | 5 |
+| `u + v`, `k * u` | összeg, skalárszoros | $(3,4) + (5,2) = (8,6)$ |
+| `u * v` vagy `Dot(u, v)` | skaláris szorzat | 23 |
+| `Angle(u, v)` | vektorok szöge | $\approx 31{,}33°$ |
+| `Cross(b, c)` | vektoriális szorzat (térben) | $(4,5,6) \times (7,8,9) = (-3,6,-3)$ |
+
+<Tipp cim="csúszkák">
+A `root_extremum_examples` fájlokban a polinom együtthatói ($a, b, c, \dots$) **csúszkák**. Ha egy betűnek nincs értéke, a GeoGebra felajánlja, hogy csúszkát hoz létre hozzá. Egy objektum beállításait dupla kattintással éred el.
+</Tipp>
+
+<Megjegyzes>
+Az itteni interaktív eszközök ugyanezeket a számításokat végzik el, és meg is mutatják a lépéseket: [polinom illesztése](/szmv/polinom-illesztes), [gyökök és szélsőértékek](/szmv/gyokok-szelsoertekek-erinto), [vektorok](/szmv/vektorok), [skaláris szorzat](/szmv/skalaris-szorzat), [vegyes szorzat](/szmv/vektorialis-es-vegyes-szorzat).
+</Megjegyzes>

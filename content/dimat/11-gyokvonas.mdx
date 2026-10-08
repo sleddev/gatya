@@ -1,0 +1,80 @@
+---
+cim: Gyökvonás és egységgyökök
+osszefoglalo: Egy komplex szám n-edik gyökei, miért van pontosan n darab, hogyan alkotnak szabályos sokszöget, és az egységgyökök.
+allapot: kimaradt
+kulcsszavak: [gyökvonás, n-edik gyök, egységgyök, komplex gyök, szabályos sokszög, négyzetgyök, köbgyök]
+forras: DiMat_ea.pdf 52–54. dia
+---
+
+## Az n-edik gyökök képlete
+
+<Tetel>
+Ha $z = |z|(\cos \varphi + i \sin \varphi) \ne 0$ és $n \in \N$, akkor az $x^n = z$ egyenletnek **pontosan $n$** megoldása van:
+$$
+w_k = \sqrt[n]{|z|}\,\left(\cos \frac{\varphi + 2k\pi}{n} + i \sin \frac{\varphi + 2k\pi}{n}\right), \qquad k = 0, 1, \dots, n - 1.
+$$
+</Tetel>
+
+**Miért pont ez?** A Moivre-képlet szerint $w_k^n$ hossza $\left(\sqrt[n]{|z|}\right)^n = |z|$, a szöge $\varphi + 2k\pi$, és ez ugyanaz az irány, mint $\varphi$. Tehát $w_k^n = z$. A $k = n$ már ugyanazt adná, mint $k = 0$, ezért pontosan $n$ különböző gyök van.
+
+A gyökök mind ugyanakkora, $\sqrt[n]{|z|}$ sugarú körön vannak, egymástól $\frac{2\pi}{n}$ szögre: **szabályos $n$-szöget** alkotnak.
+
+<Figyelem>
+A $\sqrt[n]{|z|}$ itt a szokásos, nemnegatív **valós** gyök. A $\frac{2k\pi}{n}$ tagot a szöghöz adjuk **mielőtt** $n$-nel osztunk, nem utána.
+</Figyelem>
+
+## Kidolgozott példák
+
+<Pelda cim="a 2i négyzetgyökei">
+$|2i| = 2$, $\varphi = \frac{\pi}{2}$, $n = 2$:
+- $w_0 = \sqrt 2\left(\cos \frac{\pi}{4} + i \sin \frac{\pi}{4}\right) = \sqrt 2 \cdot \frac{\sqrt 2}{2}(1 + i) = 1 + i$,
+- $w_1 = \sqrt 2\left(\cos \frac{5\pi}{4} + i \sin \frac{5\pi}{4}\right) = -1 - i$.
+
+Ellenőrzés: $(1 + i)^2 = 1 + 2i + i^2 = 2i$. ✓
+</Pelda>
+
+<Pelda cim="a 8 köbgyökei">
+$|8| = 8$, $\varphi = 0$, $n = 3$, $\sqrt[3]{8} = 2$:
+- $w_0 = 2$,
+- $w_1 = 2\left(\cos \frac{2\pi}{3} + i \sin \frac{2\pi}{3}\right) = -1 + \sqrt 3\, i$,
+- $w_2 = 2\left(\cos \frac{4\pi}{3} + i \sin \frac{4\pi}{3}\right) = -1 - \sqrt 3\, i$.
+
+A valós számok között csak a 2 a köbgyöke, de $\C$-ben három van.
+</Pelda>
+
+<Pelda cim="az előadásból: az i hatodik gyökei">
+$i = \cos \frac{\pi}{2} + i \sin \frac{\pi}{2}$, $n = 6$, tehát $w_k = \cos\left(\frac{\pi}{12} + \frac{k\pi}{3}\right) + i \sin\left(\frac{\pi}{12} + \frac{k\pi}{3}\right)$:
+
+a szögek $\frac{\pi}{12}, \frac{5\pi}{12}, \frac{9\pi}{12}, \frac{13\pi}{12}, \frac{17\pi}{12}, \frac{21\pi}{12}$. Szabályos hatszög az egységkörön.
+</Pelda>
+
+<Pelda cim="az előadásból: −√3 − i köbgyökei">
+$|z| = 2$, $\varphi = \frac{7\pi}{6}$. A gyökök: $\sqrt[3]{2}\left(\cos\left(\frac{7\pi}{18} + \frac{2k\pi}{3}\right) + i \sin\left(\frac{7\pi}{18} + \frac{2k\pi}{3}\right)\right)$, azaz a szögek $\frac{7\pi}{18}, \frac{19\pi}{18}, \frac{31\pi}{18}$.
+</Pelda>
+
+## Próbáld ki
+
+Állítsd be a $z$-t a $(-1{,}732; -1)$ pontra (ez $-\sqrt 3 - i$), és válts $n = 3$-ra: megjelenik az előző példa háromszöge.
+
+<KomplexSik mod="gyok" modok={["gyok", "egyseg"]} z={[0, 2]} n={2} />
+
+## Egységgyökök
+
+<Definicio>
+Az $1$ $n$-edik gyökei (az $x^n = 1$ egyenlet megoldásai) az **$n$-edik egységgyökök**:
+$$
+\varepsilon_k = \cos \frac{2k\pi}{n} + i \sin \frac{2k\pi}{n}, \qquad k = 0, 1, \dots, n - 1.
+$$
+</Definicio>
+
+Ez a gyökképlet $|z| = 1$, $\varphi = 0$ esetén. $\varepsilon_0 = 1$ mindig.
+
+<Pelda cim="az előadásból">
+- $n = 2$: $1, -1$.
+- $n = 3$: $1,\ -\frac12 + \frac{\sqrt 3}{2}i,\ -\frac12 - \frac{\sqrt 3}{2}i$.
+- $n = 4$: $1, i, -1, -i$.
+</Pelda>
+
+<Tipp>
+Bármely $z$ összes $n$-edik gyökét megkapod, ha egyetlen gyökét megszorzod az összes $n$-edik egységgyökkel. Ez a „forgatás $\frac{2\pi}{n}$-nel” a képletben.
+</Tipp>

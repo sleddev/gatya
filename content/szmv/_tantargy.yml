@@ -1,0 +1,12 @@
+cim: Számítógépes matematika és vizualizáció
+rovid: SzMV
+szin: '#AD5D08'
+szin_sotet: '#F0A54A'
+oktato: laborgyakorlat · GeoGebra
+sorrend: 3
+leiras: >-
+  A laborok GeoGebrában dolgoznak: relációk, függvények illesztése és vizsgálata
+  (gyökök, szélsőértékek, érintők), valamint vektorműveletek a síkon és a térben.
+  Az oldalak a gyakorlati jegyzetek (relations.pdf, functions.pdf, vector
+  operations.pdf) és a .ggb fájlok anyagát dolgozzák fel, mindegyik mellett a
+  megfelelő GeoGebra-paranccsal.

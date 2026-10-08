@@ -1,0 +1,129 @@
+---
+cim: Állítások és az elsőrendű nyelv
+osszefoglalo: Mi a helyes következtetés, mi az állítás, hogyan formalizálunk magyar mondatokat, és miből épül fel az elsőrendű logikai nyelv (logikai és nemlogikai jelek, termek, formulák).
+allapot: talan
+kulcsszavak: [állítás, kijelentés, helyes következtetés, extenzionális, igazságfüggvény, formalizálás, elsőrendű nyelv, logikai konstans, nemlogikai konstans, név, függvényjel, predikátum, term, formula, atomi formula]
+forras: eloadas02-2026.pdf
+---
+
+## Miről szól a logika?
+
+A logika a **helyes következtetés** tudománya. Arra keresi a választ, mikor következik egy állítás más állításokból, pusztán a **formájuk** miatt, függetlenül attól, miről szólnak.
+
+<Pelda>
+„Ha esik, vizes az út. Esik. Tehát vizes az út.” És: „Ha Feri idősebb Péternél, több gyertya van a tortáján. Feri idősebb Péternél. Tehát több gyertya van a tortáján.”
+
+A két következtetés tartalma különbözik, a formájuk azonos: „Ha A, akkor B. A. Tehát B.” Ez a forma minden esetben helyes. Ezt fogjuk precízen megfogalmazni.
+</Pelda>
+
+## Állítások és logikai kötőszavak
+
+<Definicio cim="állítás">
+Állításon olyan mondatot értünk, amelyről egyértelműen eldönthető, hogy **igaz** vagy **hamis**.
+</Definicio>
+
+Az „Esik az eső.” állítás. A „Csukd be az ablakot!” és a „Hány óra van?” nem az.
+
+Állításokból **logikai kötőszavakkal** (és, vagy, nem, ha… akkor, akkor és csak akkor) összetett állításokat képezhetünk.
+
+<Definicio cim="extenzionális logika">
+Az összetett állítás igazságértéke csak a részállítások igazságértékétől és a kötőszavak jelentésétől függ. A kötőszavak tehát **igazságfüggvények**.
+</Definicio>
+
+<Pelda>
+„Esik az eső és süt a nap” pontosan akkor igaz, ha mindkét részállítás igaz. Hogy *miről* szól a két rész, nem számít.
+
+Ellenpélda, nem extenzionális: „A vőlegény aggódott, **mert** a menyasszony késett.” Hiába igaz mindkét rész, a „mert” azt is állítja, hogy ok-okozati kapcsolat van köztük, és ezt az igazságértékek nem döntik el. Ilyen (intenzionális) logikával nem foglalkozunk.
+</Pelda>
+
+## Formalizálás lépésről lépésre
+
+<Pelda cim="az előadásból: Juli és Éva">
+„Juli elmegy, és Éva itt marad, vagy mindketten elmennek, és Juli vissza sem jön, de Éva vagy visszajön, vagy nem.”
+
+1. Keressük meg a fő szerkezetet: (Juli elmegy és Éva itt marad) **vagy** (mindketten elmennek és Juli nem jön vissza és Éva vagy visszajön, vagy nem).
+2. A „mindketten elmennek” valójában két állítás: Juli elmegy **és** Éva elmegy. A „de” logikailag „és”.
+3. Válasszuk szét a **neveket** és a **predikátumokat** („félkész állításokat”): J (Juli), É (Éva); $E(\cdot)$ elmegy, $IM(\cdot)$ itt marad, $V(\cdot)$ visszajön.
+
+Az eredmény:
+$$
+(E(J) \wedge IM(É)) \vee \big((E(J) \wedge E(É)) \wedge \neg V(J) \wedge (V(É) \vee \neg V(É))\big)
+$$
+</Pelda>
+
+<Tipp>
+A „de”, „viszont”, „pedig” logikailag mind „és”. A „vagy… vagy” a magyarban gyakran **kizáró** vagy, de a logikában a $\vee$ megengedő („legalább az egyik”). Ha kizáró vagyot akarsz, írd fel külön: $(A \vee B) \wedge \neg(A \wedge B)$.
+</Tipp>
+
+## Az elsőrendű nyelv
+
+<Definicio cim="klasszikus elsőrendű nyelv">
+$$
+L^{(1)} = \langle LC,\ Var,\ Con,\ Term,\ Form \rangle
+$$
+- $LC = \{\neg, \supset, \wedge, \vee, \equiv, \forall, \exists, (, )\}$: a **logikai konstansok** (logikai jelek). Ez az egyetlen véges halmaz.
+- $Var = \{x_1, x_2, x_3, \dots\}$: a **változók**.
+- $Con \ne \emptyset$: a **nemlogikai konstansok**, a „félkész” neveket és állításokat jelölő jelek. $LC \cap Con = \emptyset$.
+- $Term$: a **termek** („összetett nevek”).
+- $Form$: a **formulák** („összetett állítások”).
+</Definicio>
+
+A logikai jelek jelentése:
+
+| jel | név | olvasd |
+|---|---|---|
+| $\neg$ | negáció | nem |
+| $\wedge$ | konjunkció | és |
+| $\vee$ | diszjunkció | vagy |
+| $\supset$ | implikáció (kondicionális) | ha … akkor |
+| $\equiv$ | ekvivalencia | akkor és csak akkor |
+| $\forall$ | univerzális kvantor | minden |
+| $\exists$ | egzisztenciális kvantor | van olyan |
+
+### A nemlogikai konstansok fajtái
+
+A $Con$ elemeit aszerint osztályozzuk, hány „üres helyük” (argumentumuk) van:
+
+| fajta | mit jelöl | példa |
+|---|---|---|
+| $F^{(0)}$ | **név** (0 argumentumú függvényjel) | Péter, én, $u$ |
+| $F^{(n)}$ | **függvényjel** ($n$ argumentum) | édesanyja$(\cdot)$, $f(\cdot)$ |
+| $P^{(0)}$ | **állításjel** (0 argumentumú predikátum) | havazik, $p$, $q$ |
+| $P^{(n)}$ | **predikátum** ($n$ argumentum) | özvegy$(\cdot)$, munkatársak$(\cdot, \cdot)$ |
+
+<Pelda cim="az előadásból">
+- „Péter anyai nagyanyja özvegy”: $\text{özvegy}(\text{édesanyja}(\text{édesanyja}(\text{Péter})))$
+- „Péter édesanyja a munkatársam”: $\text{munkatársak}(\text{édesanyja}(\text{Péter}), \text{én})$
+</Pelda>
+
+## Termek és formulák képzési szabályai
+
+<Definicio cim="termek (induktív definíció)">
+1. Minden változó és minden név term.
+2. Ha $f \in F^{(n)}$ és $t_1, \dots, t_n$ termek, akkor $f(t_1, \dots, t_n)$ is term.
+3. Más term nincs.
+</Definicio>
+
+<Definicio cim="formulák (induktív definíció)">
+1. **Atomi formulák:** minden $P^{(0)}$-beli jel formula; ha $P \in P^{(n)}$ és $t_1, \dots, t_n$ termek, akkor $P(t_1, \dots, t_n)$ formula.
+2. Ha $A, B$ formulák, akkor $\neg A$, $(A \wedge B)$, $(A \vee B)$, $(A \supset B)$, $(A \equiv B)$ is formulák.
+3. Ha $A$ formula és $x$ változó, akkor $\forall x A$ és $\exists x A$ is formulák.
+4. Más formula nincs.
+</Definicio>
+
+A lényeg: **a term valamit megnevez, a formula valamit állít.** Függvényjel argumentumába term kerül, predikátum argumentumába is term, logikai jelek közé formula.
+
+<Besorolo
+  cim="Term, formula vagy egyik sem?"
+  opciok={["term", "formula", "egyik sem"]}
+  elemek={[
+    { kerdes: "édesanyja(édesanyja(Péter))", helyes: 0, miert: "Függvényjel termmel kitöltve: egy személyt nevez meg." },
+    { kerdes: "özvegy(édesanyja(Péter))", helyes: 1, miert: "Predikátum termmel kitöltve: atomi formula, igaz vagy hamis lehet." },
+    { kerdes: "munkatársak(édesanyja(Péter), én)", helyes: 1, miert: "Kétargumentumú predikátum két termmel: atomi formula." },
+    { kerdes: "¬havazik", helyes: 1, miert: "A havazik P⁽⁰⁾-beli (állításjel), maga is formula; a tagadása is formula." },
+    { kerdes: "édesanyja(özvegy(Péter))", helyes: 2, miert: "Az özvegy(Péter) formula, nem term, ezért nem lehet függvényjel argumentuma." },
+    { kerdes: "∀x özvegy(x)", helyes: 1, miert: "Kvantor + változó + formula: formula." },
+    { kerdes: "x", helyes: 0, miert: "Minden változó term." },
+    { kerdes: "havazik ∧ Péter", helyes: 2, miert: "A Péter név (term), nem állítás: logikai jel két oldalán formula kell." }
+  ]}
+/>

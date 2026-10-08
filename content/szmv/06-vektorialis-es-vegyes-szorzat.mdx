@@ -1,0 +1,76 @@
+---
+cim: Vektoriális és vegyes szorzat
+osszefoglalo: A térbeli vektorok vektoriális szorzata koordinátákkal és geometriailag, a vegyes szorzat, a paralelepipedon térfogata és a komplanaritás feltétele.
+allapot: kimaradt
+kulcsszavak: [vektoriális szorzat, keresztszorzat, cross, vegyes szorzat, triple product, paralelepipedon, térfogat, komplanáris, determináns, jobbkéz-szabály, Cross]
+forras: vector operations.pdf
+---
+
+## Vektoriális szorzat
+
+Csak **térbeli** vektorokra értelmezzük. Legyen $\mathbf{b} = (b_x, b_y, b_z)$, $\mathbf{c} = (c_x, c_y, c_z)$.
+
+<Definicio>
+$$
+\mathbf{b} \times \mathbf{c} = \big(b_y c_z - b_z c_y,\ \ b_z c_x - b_x c_z,\ \ b_x c_y - b_y c_x\big)
+$$
+</Definicio>
+
+Az eredmény egy **vektor**, amely
+- **merőleges** $\mathbf{b}$-re és $\mathbf{c}$-re is,
+- hossza a $\mathbf{b}$ és $\mathbf{c}$ által kifeszített **paralelogramma területe**,
+- iránya a **jobbkéz-szabály** szerinti: ha a jobb kéz ujjai $\mathbf{b}$-ből $\mathbf{c}$ felé görbülnek, a hüvelykujj mutatja.
+
+<Tipp cim="megjegyzés: ciklikus minta">
+Az első koordinátában $y, z$; a másodikban $z, x$; a harmadikban $x, y$ szerepel. Mindig „a következő kettő”, előbb pozitív, aztán fordított sorrendben negatív előjellel.
+</Tipp>
+
+<Pelda>
+$(1, 0, 0) \times (0, 1, 0) = (0 \cdot 0 - 0 \cdot 1,\ 0 \cdot 0 - 1 \cdot 0,\ 1 \cdot 1 - 0 \cdot 0) = (0, 0, 1)$. Az $x$ és $y$ tengely irányú egységvektorok szorzata a $z$ irányú egységvektor.
+</Pelda>
+
+<Pelda cim="a gyakorlatról">
+$\mathbf{b} = (4, 5, 6)$, $\mathbf{c} = (7, 8, 9)$:
+$$
+\mathbf{b} \times \mathbf{c} = (5 \cdot 9 - 6 \cdot 8,\ 6 \cdot 7 - 4 \cdot 9,\ 4 \cdot 8 - 5 \cdot 7) = (45 - 48,\ 42 - 36,\ 32 - 35) = (-3, 6, -3).
+$$
+GeoGebra: `u = Cross(b, c)`.
+</Pelda>
+
+<Figyelem>
+$\mathbf{b} \times \mathbf{c} = -(\mathbf{c} \times \mathbf{b})$: a sorrend számít, felcserélve ellentétes irányú vektort kapunk.
+</Figyelem>
+
+## Vegyes szorzat
+
+<Definicio>
+Az $\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c})$ szám a három vektor **vegyes szorzata**.
+</Definicio>
+
+- Abszolútértéke az $\mathbf{a}, \mathbf{b}, \mathbf{c}$ által kifeszített **paralelepipedon térfogata**.
+- Megegyezik azzal a $3 \times 3$-as determinánssal, amelynek sorai $\mathbf{a}$, $\mathbf{b}$, $\mathbf{c}$. (A determinánsok a Diszkrét matematika lineáris algebra részében jönnek.)
+- **Pontosan akkor 0, ha a három vektor egy síkban van** (komplanárisak).
+
+<Pelda cim="a gyakorlatról">
+$\mathbf{a} = (1, 2, 3)$, $\mathbf{b} \times \mathbf{c} = (-3, 6, -3)$:
+$$
+\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c}) = 1 \cdot (-3) + 2 \cdot 6 + 3 \cdot (-3) = -3 + 12 - 9 = 0.
+$$
+A három vektor egy síkban van: valóban, $(7, 8, 9) = 2 \cdot (4, 5, 6) - (1, 2, 3)$. GeoGebra: `d = a * u`.
+</Pelda>
+
+<Pelda>
+Az egységkocka élvektorai: $\mathbf{a} = (1, 0, 0)$, $\mathbf{b} = (0, 1, 0)$, $\mathbf{c} = (0, 0, 1)$. $\mathbf{b} \times \mathbf{c} = (1, 0, 0)$, és $\mathbf{a} \cdot (1, 0, 0) = 1$: a kocka térfogata 1. ✓
+</Pelda>
+
+## Próbáld ki
+
+<VegyesSzorzat />
+
+<Feladat>
+Egy síkban van-e $(1, 1, 0)$, $(0, 1, 1)$ és $(1, 0, -1)$?
+
+<Megoldas>
+$\mathbf{b} \times \mathbf{c} = (0, 1, 1) \times (1, 0, -1) = (1 \cdot (-1) - 1 \cdot 0,\ 1 \cdot 1 - 0 \cdot (-1),\ 0 \cdot 0 - 1 \cdot 1) = (-1, 1, -1)$. $\mathbf{a} \cdot (-1, 1, -1) = -1 + 1 + 0 = 0$. Igen, egy síkban vannak: $(1, 1, 0) = (0, 1, 1) + (1, 0, -1)$.
+</Megoldas>
+</Feladat>

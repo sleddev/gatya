@@ -1,0 +1,96 @@
+---
+cim: Kvantoros törvények
+osszefoglalo: A kvantorok tagadása (De Morgan), a kvantorok felcserélhetősége, a kvantorok és a ∧, ∨ kapcsolata, és ellenpéldák arra, amikor csak az egyik irány érvényes.
+allapot: kimaradt
+kulcsszavak: [kvantor, De Morgan, kvantor tagadása, kvantorcsere, univerzális, egzisztenciális, ellenpélda, interpretáció, prenex]
+forras: eloadas04-2026.pdf
+---
+
+## A kvantorok tagadása
+
+<Tetel cim="De Morgan-törvények kvantorokra">
+$$
+\neg \exists x A \Leftrightarrow \forall x \neg A, \qquad \neg \forall x A \Leftrightarrow \exists x \neg A.
+$$
+</Tetel>
+
+„Senki sem jött el” = „mindenki nem jött el”. „Nem mindenki jött el” = „van, aki nem jött el”.
+
+**Bizonyítás vázlata** ($\neg \exists x A \models \forall x \neg A$), indirekt: tegyük fel, hogy $\{\neg \exists x A, \neg \forall x \neg A\}$ kielégíthető, legyen $\langle U, \varrho \rangle$ egy modellje. A második miatt van $u \in U$, amelyre $|\neg A|^{\langle U, \varrho[x:u] \rangle} = 0$, azaz $|A|^{\langle U, \varrho[x:u] \rangle} = 1$. A $\exists$ szemantikája szerint ekkor $|\exists x A| = 1$, ellentmondásban az elsővel.
+
+<Pelda cim="tagadás lépésről lépésre">
+„Minden hallgató átment valamelyik vizsgán”: $\forall x (H(x) \supset \exists y (V(y) \wedge \acute{A}(x, y)))$.
+
+A tagadás:
+$$
+\begin{aligned}
+\neg \forall x (H(x) \supset \exists y (\dots)) &\Leftrightarrow \exists x\, \neg(H(x) \supset \exists y (\dots)) \\
+&\Leftrightarrow \exists x (H(x) \wedge \neg \exists y (V(y) \wedge \acute{A}(x, y))) \\
+&\Leftrightarrow \exists x (H(x) \wedge \forall y (V(y) \supset \neg \acute{A}(x, y))).
+\end{aligned}
+$$
+„Van olyan hallgató, aki egyik vizsgán sem ment át.” Közben használtuk: $\neg(A \supset B) \Leftrightarrow A \wedge \neg B$ és $\neg(V \wedge \acute{A}) \Leftrightarrow V \supset \neg \acute{A}$.
+</Pelda>
+
+## Kvantorok felcserélése
+
+<Tetel>
+Azonos kvantorok felcserélhetők:
+$$
+\forall x \forall y A \Leftrightarrow \forall y \forall x A, \qquad \exists x \exists y A \Leftrightarrow \exists y \exists x A.
+$$
+Különbözőek csak egy irányban:
+$$
+\exists x \forall y A(x, y) \models \forall y \exists x A(x, y).
+$$
+</Tetel>
+
+<Pelda>
+$A(x, y)$: „$x$ szereti $y$-t”.
+- $\exists x \forall y A(x, y)$: van valaki, aki mindenkit szeret.
+- $\forall y \exists x A(x, y)$: mindenkit szeret valaki.
+
+Az elsőből következik a második (az az egy ember mindenkit szeret). Fordítva nem: lehet, hogy mindenkit szeret valaki, de mindenkit más.
+</Pelda>
+
+<Pelda cim="az előadás ellenpéldája">
+$U = \{a, b\}$, $A(a, b)$ és $A(b, a)$ igaz, $A(a, a)$ és $A(b, b)$ hamis. Ekkor $\forall y \exists x A(x, y)$ igaz (a-hoz b, b-hez a), de $\exists x \forall y A(x, y)$ hamis (senki sem áll mindenkivel relációban, saját magával sem).
+</Pelda>
+
+## Kvantorok és a ∧, ∨
+
+<Tetel>
+$$
+\exists x (A(x) \vee B(x)) \Leftrightarrow \exists x A(x) \vee \exists x B(x), \qquad \forall x (A(x) \wedge B(x)) \Leftrightarrow \forall x A(x) \wedge \forall x B(x).
+$$
+A „fordított párosításnál” csak egy irány érvényes:
+$$
+\forall x A(x) \vee \forall x B(x) \models \forall x (A(x) \vee B(x)), \qquad \exists x (A(x) \wedge B(x)) \models \exists x A(x) \wedge \exists x B(x).
+$$
+</Tetel>
+
+<Pelda cim="az előadás ellenpéldája">
+$U = \{a, b\}$, $A(a)$ igaz, $A(b)$ hamis, $B(a)$ hamis, $B(b)$ igaz.
+- $\forall x (A(x) \vee B(x))$ igaz: mindenkire legalább az egyik teljesül. De $\forall x A(x) \vee \forall x B(x)$ hamis.
+- $\exists x A(x) \wedge \exists x B(x)$ igaz, de $\exists x (A(x) \wedge B(x))$ hamis: nincs olyan elem, amelyre mindkettő teljesül.
+</Pelda>
+
+<Tipp cim="így jegyezd meg">
+A $\forall$ jól „bánik” a $\wedge$-val, a $\exists$ a $\vee$-val. A másik párosításnál a kvantort bevinni szabad (gyengítés), kihozni nem.
+</Tipp>
+
+## Próbáld ki
+
+Kattints a cellákra, hogy beállítsd, hol igazak a predikátumok. Próbálj olyan interpretációt találni, ahol egy „⊨” sor bal oldala 1, a jobb oldala 0. Nem fog sikerülni, és pontosan ezt állítják a tételek. A fordított irányra viszont könnyen találsz ellenpéldát.
+
+<KvantorJatszoter />
+
+## Gyakorló feladatok
+
+<Feladat>
+Tagadd a „Van olyan szám, amely minden számnál nagyobb” állítást, és fogalmazd meg magyarul.
+
+<Megoldas>
+$\neg \exists x \forall y\, N(x, y) \Leftrightarrow \forall x\, \neg \forall y\, N(x, y) \Leftrightarrow \forall x \exists y\, \neg N(x, y)$: „Minden számhoz van olyan szám, amelynél nem nagyobb.”
+</Megoldas>
+</Feladat>

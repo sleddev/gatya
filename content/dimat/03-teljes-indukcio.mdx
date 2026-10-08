@@ -1,0 +1,169 @@
+---
+cim: Természetes számok és teljes indukció
+osszefoglalo: A Peano-axiómák, a teljes indukció elve és lépései, kidolgozott összeg-, oszthatósági és egyenlőtlenség-bizonyítások, tipikus hibák.
+allapot: kimaradt
+kulcsszavak: [teljes indukció, indukció, Peano-axiómák, rákövetkező, induktív halmaz, indukciós feltevés, kezdőlépés, bizonyítás, összegképlet, oszthatóság]
+forras: DiMat_ea.pdf 12–18. dia · Feladatsor 2.1–2.19
+---
+
+A teljes indukció a természetes számokra vonatkozó állítások bizonyításának legfontosabb módszere. Előbb azt nézzük meg, miért működik, és ehhez a természetes számok pontos definíciója kell.
+
+## A Peano-axiómák
+
+A természetes számok halmazát öt axióma határozza meg. $S(n)$ az $n$ **rákövetkezője** (successor), szemléletesen $n + 1$.
+
+<Definicio cim="Peano-axiómák">
+- **(P1)** $1 \in \N$: az 1 egy kitüntetett elem.
+- **(P2)** Minden $n \in \N$-nek van egyértelmű rákövetkezője, $S(n) \in \N$.
+- **(P3)** Az 1 senkinek sem rákövetkezője: $\nexists n \in \N : S(n) = 1$.
+- **(P4)** Ha $S(n) = S(m)$, akkor $n = m$. Vagyis $S$ **injektív**.
+- **(P5) Az indukció axiómája:** ha egy $A$ halmazra $1 \in A$, és minden $n \in A$ esetén $S(n) \in A$, akkor $\N \subset A$.
+</Definicio>
+
+Az olyan halmazt, amely tartalmazza az 1-et és minden eleme rákövetkezőjét, **induktív halmaznak** hívjuk. (P5) azt mondja, hogy **$\N$ a legszűkebb induktív halmaz**. Például $\R^+$ is induktív, csak sokkal bővebb.
+
+A természetes számok tehát: $1,\ S(1) = 2,\ S(S(1)) = 3,\ \dots$ Minden természetes szám elérhető az 1-ből a rákövetkezés ismételgetésével, és pontosan ezt használja ki az indukció.
+
+## Az indukciós bizonyítás receptje
+
+Legyen $T(n)$ egy állítás, amelyet minden $n \in \N$-re szeretnénk igazolni.
+
+<Lepesek>
+<Lepes>
+**Kezdőlépés.** Igazoljuk $T(1)$-et.
+</Lepes>
+<Lepes>
+**Indukciós feltevés.** Feltesszük, hogy $T(k)$ igaz egy tetszőleges $k \in \N$-re.
+</Lepes>
+<Lepes>
+**Indukciós lépés.** Bebizonyítjuk $T(k + 1)$-et, **felhasználva** az indukciós feltevést.
+</Lepes>
+</Lepesek>
+
+Ez azért elég, mert az igaz $T(n)$-ek halmaza tartalmazza az 1-et (1. lépés), és minden eleme rákövetkezőjét is (2–3. lépés). Tehát induktív halmaz, és (P5) szerint tartalmazza az összes természetes számot.
+
+<IndukcioDomino />
+
+## Kidolgozott példa: páratlan számok összege
+
+<Tetel>
+$1 + 3 + 5 + \dots + (2n - 1) = n^2$ minden $n \in \N$-re.
+</Tetel>
+
+<Lepesek>
+<Lepes>
+**$n = 1$:** bal oldal $1$, jobb oldal $1^2 = 1$. ✓
+</Lepes>
+<Lepes>
+**Feltesszük**, hogy $1 + 3 + \dots + (2k - 1) = k^2$.
+</Lepes>
+<Lepes>
+**Belátjuk $k + 1$-re.** A cél: $1 + 3 + \dots + (2k - 1) + (2(k+1) - 1) = (k + 1)^2$. Az első $k$ tagot a feltevés szerint $k^2$-tel helyettesítjük:
+$$
+\underbrace{1 + 3 + \dots + (2k - 1)}_{k^2} + (2k + 1) = k^2 + 2k + 1 = (k + 1)^2. \ ✓
+$$
+</Lepes>
+</Lepesek>
+
+## Kidolgozott példa: négyzetösszeg
+
+<Tetel cim="2.2">
+$1^2 + 2^2 + \dots + n^2 = \dfrac{n(n+1)(2n+1)}{6}$.
+</Tetel>
+
+**$n = 1$:** $1 = \frac{1 \cdot 2 \cdot 3}{6}$. ✓
+
+**Lépés:** a feltevés szerint az első $k$ tag összege $\frac{k(k+1)(2k+1)}{6}$, ehhez adjuk a $(k+1)^2$-et:
+$$
+\frac{k(k+1)(2k+1)}{6} + (k+1)^2 = \frac{(k+1)\,[\,k(2k+1) + 6(k+1)\,]}{6} = \frac{(k+1)(2k^2 + 7k + 6)}{6} = \frac{(k+1)(k+2)(2k+3)}{6}.
+$$
+Ez éppen a képlet $n = k + 1$-re. ✓
+
+<Tipp>
+A közös $(k+1)$ tényezőt **minél előbb emeld ki**. A cél képletben is ott van, és így nem kell harmadfokú polinomokat kibontani.
+</Tipp>
+
+## Oszthatósági állítások
+
+<Pelda cim="2.11: 6 | n³ − n">
+**$n = 1$:** $1 - 1 = 0$, és $6 \mid 0$. ✓
+
+**Lépés:** bontsuk ki, és keressük meg benne a feltevést:
+$$
+(k+1)^3 - (k+1) = k^3 + 3k^2 + 3k + 1 - k - 1 = (k^3 - k) + 3k(k+1).
+$$
+Az első tag a feltevés szerint osztható 6-tal. A $k(k+1)$ két egymás utáni szám szorzata, tehát páros, így $3k(k+1)$ osztható 6-tal. Két 6-tal osztható szám összege is osztható 6-tal. ✓
+</Pelda>
+
+<Pelda cim="2.13: 5 | 2⁴ⁿ⁺¹ + 3">
+**$n = 1$:** $2^5 + 3 = 35 = 5 \cdot 7$. ✓
+
+**Lépés:** a trükk: **adjunk hozzá és vonjunk ki** úgy, hogy előálljon a feltevés.
+$$
+2^{4(k+1)+1} + 3 = 16 \cdot 2^{4k+1} + 3 = 16\,(2^{4k+1} + 3) - 48 + 3 = 16\,(2^{4k+1} + 3) - 45.
+$$
+Az első tag a feltevés miatt osztható 5-tel, a $45$ is, tehát a különbség is. ✓
+</Pelda>
+
+## Egyenlőtlenség, nem 1-től induló kezdőlépéssel
+
+<Pelda cim="2.18: (n+1)! > 2ⁿ⁺³, ha n ≥ 5">
+Itt a kezdőlépés $n = 5$: $6! = 720 > 2^8 = 256$. ✓
+
+**Lépés** ($k \ge 5$): a feltevés szerint $(k+1)! > 2^{k+3}$, ezért
+$$
+(k+2)! = (k+2)\,(k+1)! > (k+2) \cdot 2^{k+3} \ge 2 \cdot 2^{k+3} = 2^{k+4}. \ ✓
+$$
+Az indukció bármely kezdőértékről indulhat: ilyenkor az állítás onnantól kezdve igaz.
+</Pelda>
+
+## Tipikus hibák
+
+<Figyelem cim="a kezdőlépés nem elhagyható">
+„Minden $n$-re $n^2 + n$ páratlan.” Az indukciós lépés **működik**: ha $k^2 + k$ páratlan, akkor $(k+1)^2 + (k+1) = (k^2 + k) + 2(k + 1)$ páratlan + páros, tehát páratlan. Csakhogy $n = 1$-re $1 + 1 = 2$ páros. A kezdőlépés hamis, így az egész állítás hamis. (Valójában $n^2 + n = n(n+1)$ mindig páros.)
+</Figyelem>
+
+<Figyelem cim="csak természetes számokra">
+Az előadás ellenpéldája: „$x + \frac{1}{x} \ge 2$ minden valós $x > 0$-ra.” Ez igaz, de **nem indukcióval** bizonyítjuk, mert valós számokról szól, és a valós számok nem állnak elő az 1-ből egyesével lépkedve.
+</Figyelem>
+
+<Figyelem cim="a feltevést használni kell">
+Ha a $k + 1$-es lépésben sehol nem használtad a $k$-ra vonatkozó feltevést, akkor vagy nem is volt szükség indukcióra, vagy valami hibás.
+</Figyelem>
+
+## Ellenőrizd számokkal
+
+<IndukcioEllenorzo />
+
+## Gyakorló feladatok
+
+<Feladat cim="2.1">
+Bizonyítsd be: $1 + 2 + \dots + n = \frac{n(n+1)}{2}$.
+
+<Megoldas>
+$n = 1$: $1 = \frac{1 \cdot 2}{2}$. ✓ Lépés: $\frac{k(k+1)}{2} + (k + 1) = \frac{(k+1)(k + 2)}{2}$. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat cim="2.7">
+Bizonyítsd be: $\frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \dots + \frac{1}{n(n+1)} = \frac{n}{n+1}$.
+
+<Megoldas>
+$n = 1$: $\frac{1}{2} = \frac{1}{2}$. ✓ Lépés:
+$$
+\frac{k}{k+1} + \frac{1}{(k+1)(k+2)} = \frac{k(k+2) + 1}{(k+1)(k+2)} = \frac{(k+1)^2}{(k+1)(k+2)} = \frac{k+1}{k+2}. \ ✓
+$$
+</Megoldas>
+</Feladat>
+
+<Feladat cim="2.12">
+Bizonyítsd be: $6 \mid n^3 + 5n$.
+
+<Megoldas>
+$n = 1$: $6 \mid 6$. ✓ Lépés:
+$$
+(k+1)^3 + 5(k+1) = (k^3 + 5k) + 3k^2 + 3k + 6 = (k^3 + 5k) + 3k(k+1) + 6.
+$$
+Mindhárom tag osztható 6-tal: az első a feltevés miatt, a második mert $k(k+1)$ páros, a harmadik maga a 6. ✓
+</Megoldas>
+</Feladat>

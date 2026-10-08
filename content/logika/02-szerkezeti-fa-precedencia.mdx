@@ -1,0 +1,91 @@
+---
+cim: Szerkezeti fa és precedencia
+osszefoglalo: Az egyértelmű elemzés tétele, a formula szerkezeti fája, fő logikai jel, közvetlen részformulák, összetettség, és mely zárójelek hagyhatók el a műveletek precedenciája alapján.
+allapot: kimaradt
+kulcsszavak: [szerkezeti fa, egyértelmű elemzés, szerkezeti indukció, fő logikai jel, közvetlen részformula, részformula, összetettség, zárójel, precedencia, kötési erősség]
+forras: eloadas02-2026.pdf, eloadas03-2026.pdf
+---
+
+## Egyértelmű elemzés és szerkezeti fa
+
+A formulák definíciója induktív: kisebb formulákból építünk nagyobbat. Visszafelé is igaz, hogy minden formula **egyértelműen** bontható szét: ez az **egyértelmű elemzés** tétele. A szétbontást egy fával ábrázoljuk, ez a **szerkezeti fa**.
+
+- A **gyökér** a formula **fő logikai jele**: az a művelet, amelyet „utoljára” végzünk el.
+- A gyökér gyerekei a **közvetlen részformulák**.
+- A **levelek** az atomi formulák.
+- Az **összetettség** a formulában lévő logikai jelek ($\neg, \wedge, \vee, \supset, \equiv, \forall, \exists$) száma.
+
+<Pelda cim="az előadásból">
+$((\neg r \wedge p) \supset (p \vee \neg r))$
+
+- fő logikai jel: $\supset$,
+- közvetlen részformulák: $(\neg r \wedge p)$ és $(p \vee \neg r)$,
+- összetettség: 5 (két $\neg$, egy $\wedge$, egy $\vee$, egy $\supset$).
+</Pelda>
+
+## Miért kellenek a zárójelek?
+
+Zárójelek nélkül a $p \supset q \equiv \neg p \supset \neg q$ jelsorozatnak több fája is lehetne:
+$$
+((p \supset q) \equiv (\neg p \supset \neg q)) \quad\text{vagy}\quad (p \supset (q \equiv (\neg(p \supset \neg q)))) \quad\text{vagy}\ \dots
+$$
+Ezek különböző formulák, más az igazságértékük is. A hivatalos szintaxis ezért mindenhová zárójelet tesz. Kézzel írva viszont kényelmetlen, ezért megállapodunk a **precedenciában**, ahogy az aritmetikában a $*$ erősebben köt, mint a $+$: $a + b * c = a + (b * c)$.
+
+## A logikai jelek precedenciája
+
+<Definicio cim="kötési erősség (előadás)">
+A legerősebbek a $\exists$, $\forall$ kvantorok (egyenrangúak), utánuk a műveletek csökkenő sorrendben:
+$$
+\neg \quad \wedge \quad \vee \quad \supset \quad \equiv
+$$
+</Definicio>
+
+További megállapodások:
+- $p \vee q \vee r$ és $p \wedge q \wedge r$ csoportosítása mindegy, mert az eredmény ugyanaz.
+- A $\supset$ **jobbra** csoportosít: $p \supset q \supset r$ jelentése $p \supset (q \supset r)$. Ez nem mindegy!
+- Kvantorok sorozata: $\exists x \forall y \forall z A$ jelentése $\exists x (\forall y (\forall z A))$.
+
+<Pelda cim="az előadásból: elhagyható zárójelek">
+| teljesen zárójelezve | rövidítve |
+|---|---|
+| $((p \supset q) \equiv (\neg p \supset \neg q))$ | $p \supset q \equiv \neg p \supset \neg q$ |
+| $(p \supset (q \equiv \neg(p \supset \neg q)))$ | $p \supset (q \equiv \neg(p \supset \neg q))$ |
+| $((p \vee (q \wedge r)) \vee s)$ | $p \vee q \wedge r \vee s$ |
+| $((p \vee q) \wedge (r \vee s))$ | $(p \vee q) \wedge (r \vee s)$, itt nem hagyható el |
+| $(\forall x (P(x) \vee Q(x)) \supset (\exists x R(x) \vee p))$ | $\forall x (P(x) \vee Q(x)) \supset \exists x R(x) \vee p$ |
+| $((\forall x P(x) \vee Q(x)) \supset (\exists x R(x) \vee p))$ | $\forall x P(x) \vee Q(x) \supset \exists x R(x) \vee p$ |
+</Pelda>
+
+<Figyelem>
+Az utolsó két sor különbsége fontos: $\forall x (P(x) \vee Q(x))$-ben a kvantor a zárójel egészére vonatkozik, $\forall x P(x) \vee Q(x)$-ben csak a $P(x)$-re. A második $Q(x)$-ben az $x$ már **szabad** (lásd [Kötött és szabad változók](/logika/kotott-es-szabad-valtozok)).
+</Figyelem>
+
+## Próbáld ki
+
+A műhely teljesen zárójelezi, amit beírsz, megrajzolja a szerkezeti fát, és megadja a fő logikai jelet és az összetettséget. Próbáld ki, hogyan változik a fa, ha a $p \supset q \supset r$-t átírod $(p \supset q) \supset r$-re.
+
+<FormulaMuhely formula="p ⊃ q ≡ ¬p ⊃ ¬q" tabla={false} />
+
+<Kviz
+  kerdes="Mi a p ∧ q ⊃ r ∨ s formula fő logikai jele?"
+  valaszok={["∧", "⊃", "∨"]}
+  helyes={1}
+  magyarazat="A ⊃ gyengébben köt, mint ∧ és ∨, ezért a formula (p ∧ q) ⊃ (r ∨ s): utoljára az implikációt végezzük el."
+/>
+
+<Kviz
+  kerdes="Melyik formula ugyanaz, mint ¬p ∧ q?"
+  valaszok={["¬(p ∧ q)", "(¬p) ∧ q"]}
+  helyes={1}
+  magyarazat="A ¬ erősebben köt, mint a ∧, ezért csak a p-re vonatkozik. A ¬(p ∧ q) egy másik formula (a De Morgan szerint ¬p ∨ ¬q)."
+/>
+
+## Gyakorló feladatok
+
+<Feladat>
+Írd fel teljesen zárójelezve, és add meg a fő logikai jelet: $\neg p \vee q \supset r \equiv s$.
+
+<Megoldas>
+Precedencia szerint először a $\neg$, aztán $\vee$, aztán $\supset$, végül $\equiv$: $(((\neg p \vee q) \supset r) \equiv s)$. Fő logikai jel: $\equiv$. Ellenőrizd a műhelyben!
+</Megoldas>
+</Feladat>

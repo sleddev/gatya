@@ -1,0 +1,73 @@
+---
+cim: Modell, kielégíthetőség, érvényesség
+osszefoglalo: Mikor modellje egy interpretáció egy formulának vagy formulahalmaznak, mi a kielégíthető, kielégíthetetlen, érvényes és cáfolható formula, és hogyan viselkednek a formulahalmazok.
+allapot: kimaradt
+kulcsszavak: [modell, kielégíthető, kielégíthetetlen, érvényes, logikai törvény, tautológia, ellentmondás, cáfolható, formulahalmaz]
+forras: eloadas03-2026.pdf, eloadas04-2026.pdf
+---
+
+## Modell
+
+<Definicio>
+Legyen adott egy $L^{(1)}$ nyelv és egy $\langle U, \varrho \rangle$ interpretáció.
+- $\langle U, \varrho \rangle$ az $A$ formula **modellje**, ha $|A|^{\langle U, \varrho \rangle} = 1$.
+- $\langle U, \varrho \rangle$ a $\Gamma$ formulahalmaz **modellje**, ha $\Gamma$ **minden** elemére $|A|^{\langle U, \varrho \rangle} = 1$.
+</Definicio>
+
+Ítéletlogikában egy modell egyszerűen az igazságtábla egy olyan sora, ahol a formula 1.
+
+## A négy fogalom
+
+<Definicio>
+- **Kielégíthető**: van modellje (lehet igaz).
+- **Kielégíthetetlen**: nincs modellje, minden interpretációban hamis. Más néven **ellentmondás**.
+- **Érvényes**: minden interpretációban igaz. Más néven **logikai törvény** vagy **tautológia**. Jele: $\models A$.
+- **Cáfolható**: van olyan interpretáció, amelyben hamis.
+</Definicio>
+
+Minden formula a következő három csoport egyikébe esik:
+
+| érvényes | kielégíthető **és** cáfolható | kielégíthetetlen |
+|---|---|---|
+| mindig 1 | néha 1, néha 0 | mindig 0 |
+| $p \vee \neg p$ | $p \supset q$ | $p \wedge \neg p$ |
+
+Az első kettő együtt a **kielégíthető** formulák, az utolsó kettő együtt a **cáfolható** formulák. Tehát minden érvényes formula kielégíthető, de fordítva nem.
+
+<Kviz
+  kerdes="Melyik igaz? Ha A nem érvényes, akkor…"
+  valaszok={["A kielégíthetetlen", "A cáfolható", "¬A érvényes"]}
+  helyes={1}
+  magyarazat="Nem érvényes = van interpretáció, ahol hamis = cáfolható. Ettől még lehet kielégíthető (például p ⊃ q), és ¬A sem lesz feltétlenül érvényes."
+/>
+
+<Kviz
+  kerdes="A pontosan akkor érvényes, ha ¬A …"
+  valaszok={["kielégíthető", "kielégíthetetlen", "cáfolható"]}
+  helyes={1}
+  magyarazat="A minden interpretációban igaz ⇔ ¬A minden interpretációban hamis ⇔ ¬A kielégíthetetlen. Ezt a kapcsolatot használja a következményfogalom is."
+/>
+
+## Formulahalmazok
+
+Egy $\Gamma$ formulahalmaz **kielégíthető**, ha van közös modellje: egy interpretáció, amelyben minden eleme egyszerre igaz. Ha nincs, $\Gamma$ **kielégíthetetlen**: van benne logikai ellentmondás.
+
+<Tetel>
+Ha $\Gamma$ kielégíthető és $\Delta \subseteq \Gamma$, akkor $\Delta$ is kielégíthető.
+</Tetel>
+
+**Bizonyítás.** Legyen $\langle U, \varrho \rangle$ a $\Gamma$ egy modellje. Ha $A \in \Delta$, akkor $A \in \Gamma$ is, tehát $|A|^{\langle U, \varrho \rangle} = 1$. Így $\langle U, \varrho \rangle$ a $\Delta$ modellje is.
+
+<Tetel>
+Ha $\Gamma$ kielégíthetetlen és $\Gamma \subseteq \Delta$, akkor $\Delta$ is kielégíthetetlen.
+</Tetel>
+
+**Bizonyítás.** Indirekt: ha $\Delta$ kielégíthető volna, az előző tétel szerint a részhalmaza, $\Gamma$ is az lenne. Ellentmondás.
+
+<Figyelem>
+Elemenként nem lehet dönteni: a $\{p, \neg p\}$ halmaz minden eleme külön-külön kielégíthető, a halmaz mégsem. Egy formulahalmaz úgy viselkedik, mint az elemei **konjunkciója**: $\{A_1, \dots, A_n\}$ kielégíthető $\iff$ $A_1 \wedge \dots \wedge A_n$ kielégíthető.
+</Figyelem>
+
+## Próbáld ki
+
+<FormulaMuhely formula="(p ⊃ q) ∧ p ∧ ¬q" fa={false} peldak={[["{p ⊃ q, p, ¬q} konjunkciója", "(p ⊃ q) ∧ p ∧ ¬q"], ["kizárt harmadik", "p ∨ ¬p"], ["kielégíthető és cáfolható", "p ⊃ q"], ["ellentmondás", "p ∧ ¬p"]]} />

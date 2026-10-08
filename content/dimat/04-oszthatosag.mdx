@@ -1,0 +1,164 @@
+---
+cim: Oszthatóság és az euklideszi algoritmus
+osszefoglalo: Az oszthatóság definíciója és tulajdonságai, oszthatósági szabályok, maradékos osztás, legnagyobb közös osztó, legkisebb közös többszörös és az euklideszi algoritmus.
+allapot: kimaradt
+kulcsszavak: [oszthatóság, osztó, többszörös, oszthatósági szabály, számjegyösszeg, maradékos osztás, legnagyobb közös osztó, lnko, legkisebb közös többszörös, lkkt, relatív prím, euklideszi algoritmus]
+forras: DiMat_ea.pdf 19–27. dia · Feladatsor 3.1–3.8
+---
+
+Az egész számok halmaza, $\Z$, a természetes számokból kivonással áll elő: ez a legszűkebb számhalmaz, amely tartalmazza $\N$-et és zárt a kivonásra. (Az $5 + x = 3$ egyenletnek $\N$-ben nincs megoldása, $\Z$-ben van.) Ebben a fejezetben $a, b, c \in \Z$.
+
+## Az oszthatóság definíciója
+
+<Definicio>
+$a$ **osztója** $b$-nek (vagy $b$ osztható $a$-val), ha létezik $c \in \Z$, hogy $b = a \cdot c$. Jele: $a \mid b$.
+</Definicio>
+
+<Pelda>
+- $3 \mid 12$, mert $12 = 3 \cdot 4$; és $-3 \mid 12$ is, mert $12 = (-3) \cdot (-4)$.
+- $3 \nmid 13$, mert nincs olyan egész $c$, amire $3c = 13$.
+- $5 \mid 0$, mert $0 = 5 \cdot 0$. Minden szám osztója a 0-nak.
+</Pelda>
+
+<Figyelem>
+$a \mid b$ egy **állítás** (igaz vagy hamis), nem művelet. Ne keverd az $a / b$ törttel: $3 \mid 12$ igaz, de a $12 / 3 = 4$ egy szám.
+</Figyelem>
+
+## Az oszthatóság tulajdonságai
+
+<Tetel>
+1. $a \mid 0$ (ha $a \ne 0$), $1 \mid a$, $a \mid a$.
+2. Ha $a \mid b$ és $c \in \Z$, akkor $a \mid bc$.
+3. Ha $a \mid b_1$ és $a \mid b_2$, akkor $a \mid b_1 + b_2$.
+4. Ha $a \mid b$ és $b \mid c$, akkor $a \mid c$ (tranzitivitás).
+5. Ha $a \mid b$ és $b \mid a$, akkor $a = \pm b$.
+</Tetel>
+
+A 2. és 3. együtt: ha $a$ osztója a $b_1, \dots, b_n$ számok mindegyikének, akkor bármely **lineáris kombinációjuknak** is osztója: $a \mid b_1c_1 + \dots + b_nc_n$. Ezt használtuk az [indukciós bizonyításoknál](/dimat/teljes-indukcio#oszthatosagi-allitasok) is.
+
+<Pelda>
+A 3. tulajdonság bizonyítása egy sor: ha $b_1 = a c_1$ és $b_2 = a c_2$, akkor $b_1 + b_2 = a(c_1 + c_2)$, és $c_1 + c_2 \in \Z$.
+</Pelda>
+
+## Oszthatósági szabályok
+
+Minden természetes szám felírható tízes számrendszerben: $A = a_n 10^n + \dots + a_2 10^2 + a_1 10 + a_0$, ahol $a_i$ a számjegyek. Ebből jönnek a szabályok:
+
+| osztó | miért? | szabály |
+|---|---|---|
+| 2, 5 | osztják a 10-et | az utolsó jegy dönt |
+| 4, 25 | osztják a 100-at | az utolsó két jegy dönt |
+| 8 | osztja az 1000-et | az utolsó három jegy dönt |
+| 3, 9 | osztják a $10^k - 1 = 99\dots9$ számot | a **számjegyösszeg** dönt |
+| 11 | $11 \mid 10^k + 1$, ha $k$ páratlan, és $11 \mid 10^k - 1$, ha $k$ páros | a **váltakozó összeg** $a_0 - a_1 + a_2 - \dots$ dönt |
+
+A 3-as és 9-es szabály levezetése:
+$$
+A = a_n(10^n - 1) + \dots + a_1(10 - 1) + (a_n + \dots + a_1 + a_0).
+$$
+Az első rész minden tagja osztható 9-cel (és 3-mal), így $A$ pontosan akkor osztható 9-cel (3-mal), ha a számjegyösszeg osztható.
+
+<Pelda>
+$A = 123\,456$:
+- számjegyösszeg $21$: osztható 3-mal, de 9-cel nem;
+- utolsó két jegy $56$: osztható 4-gyel; utolsó három $456 = 8 \cdot 57$: osztható 8-cal;
+- váltakozó összeg jobbról: $6 - 5 + 4 - 3 + 2 - 1 = 3$: nem osztható 11-gyel.
+</Pelda>
+
+<Pelda cim="3.2 (b): 36 | 762a4b">
+$36 = 4 \cdot 9$, és $4, 9$ relatív prímek, ezért mindkettővel oszthatónak kell lennie.
+- **4-gyel:** az utolsó két jegy $\overline{4b}$, azaz $40 + b$ osztható 4-gyel, így $b \in \{0, 4, 8\}$.
+- **9-cel:** $7 + 6 + 2 + a + 4 + b = 19 + a + b$ osztható 9-cel, így $a + b \in \{8, 17\}$.
+
+A megoldások: $(a, b) = (8, 0), (4, 4), (0, 8), (9, 8)$. Például $762\,840 = 36 \cdot 21\,190$.
+</Pelda>
+
+A szabályokat bármelyik számon kipróbálhatod a [prímtényezős felbontás eszközében](/dimat/primszamok#probald-ki).
+
+## Maradékos osztás
+
+<Tetel cim="maradékos osztás tétele">
+Bármely $a, b \in \Z$, $b \ne 0$ esetén **egyértelműen** léteznek $q, r \in \Z$ számok, hogy
+$$
+a = b \cdot q + r, \qquad 0 \le r < |b|.
+$$
+$q$ a hányados, $r$ a maradék.
+</Tetel>
+
+<Figyelem cim="negatív számok">
+A maradék **sosem negatív**. $-17$ osztása 5-tel: $-17 = 5 \cdot (-4) + 3$, tehát a maradék 3. A $-17 = 5 \cdot (-3) - 2$ felírás nem jó, mert $-2 < 0$.
+</Figyelem>
+
+## Legnagyobb közös osztó, legkisebb közös többszörös
+
+<Definicio cim="legnagyobb közös osztó">
+$d \in \N$ az $a$ és $b$ legnagyobb közös osztója, ha
+- $d \mid a$ és $d \mid b$ (közös osztó), és
+- minden $\bar d$ közös osztóra $\bar d \mid d$.
+
+Jele: $d = (a, b)$.
+</Definicio>
+
+Figyeld meg, hogy a „legnagyobb” itt **oszthatóság szerint** értendő: minden közös osztó osztója $d$-nek. (Pozitív számokra ez ugyanaz, mint a méret szerinti legnagyobb, de ez a definíció általánosítható, például polinomokra.)
+
+<Definicio cim="legkisebb közös többszörös">
+$k \in \N$ az $a_1, \dots, a_n$ legkisebb közös többszöröse, ha minden $a_i \mid k$, és minden $\bar k$ közös többszörösre $k \mid \bar k$. Jele: $k = [a_1, \dots, a_n]$.
+</Definicio>
+
+$a$ és $b$ **relatív prímek**, ha $(a, b) = 1$. Például $(8, 15) = 1$, pedig egyik sem prím.
+
+## Az euklideszi algoritmus
+
+Az ötlet: ha $a = bq + r$, akkor $a$ és $b$ közös osztói pontosan ugyanazok, mint $b$ és $r$ közös osztói (mert $r = a - bq$). Tehát
+$$
+(a, b) = (b, r).
+$$
+Ezt ismételjük, mindig kisebb számokkal. A maradékok szigorúan csökkennek ($|b| > r_0 > r_1 > \dots \ge 0$), ezért az eljárás véget ér.
+
+<Tetel>
+Az euklideszi algoritmus **utolsó nem nulla maradéka** $a$ és $b$ legnagyobb közös osztója.
+</Tetel>
+
+<Pelda cim="az előadásból: (1227, 216)">
+$$
+\begin{aligned}
+1227 &= 216 \cdot 5 + 147 \\
+216 &= 147 \cdot 1 + 69 \\
+147 &= 69 \cdot 2 + 9 \\
+69 &= 9 \cdot 7 + 6 \\
+9 &= 6 \cdot 1 + 3 \\
+6 &= 3 \cdot 2 + 0
+\end{aligned}
+$$
+Az utolsó nem nulla maradék 3, tehát $(1227, 216) = 3$. És $(-1227, -216)$ is 3, mert az lnko-t természetes számnak definiáltuk, és az előjel nem változtat az osztókon.
+</Pelda>
+
+<EuklideszAlgoritmus a={1227} b={216} />
+
+## Gyakorló feladatok
+
+<Feladat cim="3.8 (a), (b), (e)">
+Számítsd ki euklideszi algoritmussal: $(672, 360)$, $(455, -312)$, $(783, 1160)$.
+
+<Megoldas>
+- $672 = 360 \cdot 1 + 312$, $360 = 312 \cdot 1 + 48$, $312 = 48 \cdot 6 + 24$, $48 = 24 \cdot 2$. Tehát $(672, 360) = 24$.
+- $455 = 312 \cdot 1 + 143$, $312 = 143 \cdot 2 + 26$, $143 = 26 \cdot 5 + 13$, $26 = 13 \cdot 2$. Tehát $13$.
+- $1160 = 783 \cdot 1 + 377$, $783 = 377 \cdot 2 + 29$, $377 = 29 \cdot 13$. Tehát $29$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3.1 (a)">
+Igazold: $9 \mid 10^{19} + 53$.
+
+<Megoldas>
+$10^{19}$ számjegyösszege 1 (egy egyes és 19 nulla), így $10^{19} + 53$ számjegyei: egy 1-es, sok 0, aztán 5 és 3. A számjegyösszeg $1 + 5 + 3 = 9$, tehát osztható 9-cel. ✓ (Kongruenciákkal még gyorsabb: $10 \equiv 1 \pmod 9$, lásd [Kongruenciák](/dimat/kongruenciak).)
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3.6">
+Igazold, hogy négy egymást követő egész szám szorzata mindig osztható 24-gyel.
+
+<Megoldas>
+Négy egymást követő szám között van egy 4-gyel osztható és még egy páros, ez együtt $8$-as tényező. Van köztük 3-mal osztható is. Mivel $(8, 3) = 1$, a szorzat osztható $8 \cdot 3 = 24$-gyel.
+</Megoldas>
+</Feladat>
