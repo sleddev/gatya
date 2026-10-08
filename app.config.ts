@@ -4,6 +4,10 @@ import type { ExpoConfig } from 'expo/config';
 // e.g. "/gatya" on GitHub Pages. Leave it unset for a root deploy.
 const baseUrl = process.env.GATYA_BASE_URL || undefined;
 
+// Over-the-air updates (EAS Update). Run `pnpm dlx eas-cli init` once and paste the
+// project ID it prints here; until then the app simply ships without OTA updates.
+const easProjectId = '';
+
 const config: ExpoConfig = {
   name: 'Gatya',
   slug: 'gatya',
@@ -12,6 +16,15 @@ const config: ExpoConfig = {
   icon: './assets/images/icon.png',
   scheme: 'gatya',
   userInterfaceStyle: 'automatic',
+  // Builds share a runtime version until native code changes (new native package, SDK upgrade,
+  // config plugin change). Content and JS changes keep it, so they can ship as OTA updates.
+  runtimeVersion: { policy: 'fingerprint' },
+  ...(easProjectId
+    ? {
+        updates: { url: `https://u.expo.dev/${easProjectId}` },
+        extra: { eas: { projectId: easProjectId } },
+      }
+    : {}),
   ios: {
     bundleIdentifier: 'hu.gatya.app',
     supportsTablet: true,

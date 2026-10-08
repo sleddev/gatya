@@ -59,3 +59,32 @@ jobs:
           path: dist
       - id: deploy
         uses: actions/deploy-pages@v4
+
+  app-update:
+    # Over-the-air update for installed apps (EAS Update). Skipped until the EXPO_TOKEN
+    # repository secret exists; see README → "Updating the installed app".
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: check
+    runs-on: ubuntu-latest
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+    steps:
+      - if: env.EXPO_TOKEN == ''
+        run: echo "::notice::EXPO_TOKEN is not set, skipping the app update."
+      - if: env.EXPO_TOKEN != ''
+        uses: actions/checkout@v4
+      - if: env.EXPO_TOKEN != ''
+        uses: pnpm/action-setup@v4
+      - if: env.EXPO_TOKEN != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - if: env.EXPO_TOKEN != ''
+        run: pnpm install --frozen-lockfile
+      - if: env.EXPO_TOKEN != ''
+        name: Publish update to installed apps
+        env:
+          MESSAGE: ${{ github.event.head_commit.message }}
+        # "preview" is the channel the installable APK from `eas build --profile preview` listens on.
+        run: pnpm dlx eas-cli update --channel preview --environment preview --platform all --message "$MESSAGE" --non-interactive

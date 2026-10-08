@@ -8,4 +8,5 @@ Expo (SDK 57) app + static website. Hungarian study content in MDX.
 - New MDX component: `src/widgets/<Name>.tsx` exporting `<Name>`, listed in `src/widgets/index.ts`.
 - Pure logic lives in `src/lib/` with `node:test` tests (`pnpm test`); imports inside `src/lib` use explicit `.ts` extensions so Node can run them.
 - Verify with `pnpm check` (typecheck, tests, web + Android export).
-- On web, `<Link asChild>` children need flattened styles (`StyleSheet.flatten`).
+- Use `LinkRow` (`src/components/ui.tsx`) for in-app links, not `<Link asChild>` around a Pressable: on web that combination doesn't cancel the browser's navigation, so every click reloads the whole page.
+- Installed apps get JS/content changes as EAS Updates (runtime version policy `fingerprint`). Adding a package with native code needs a new build, so mention that when you add one.

@@ -101,6 +101,30 @@ Pages and Vercel all do this by default.
   install directly; the `production` profile is for the stores. The `postinstall`
   script generates the content on the build server.
 
+### Updating the installed app
+
+Topics, widgets and other JavaScript changes reach installed apps as
+over-the-air updates ([EAS Update](https://docs.expo.dev/eas-update/introduction/)),
+with no new APK. The app checks for updates when it starts or comes back to the
+foreground, downloads them in the background, and shows an *„Új tananyag
+érkezett”* banner that reloads into the new version.
+
+One-time setup:
+
+1. `pnpm dlx eas-cli login`, then `pnpm dlx eas-cli init`. Paste the project ID
+   it prints into `easProjectId` in `app.config.ts` and commit.
+2. Build and install the APK once: `pnpm dlx eas-cli build -p android --profile preview`.
+3. Create an access token at expo.dev → Account settings → Access tokens and
+   add it to the GitHub repository as the `EXPO_TOKEN` secret.
+
+After that, every push to `main` publishes the site *and* an app update. To
+publish by hand: `pnpm dlx eas-cli update --channel preview --environment preview -m "..."`.
+
+A new APK is only needed when native code changes: a new package with native
+code, an Expo SDK upgrade, or app config such as the icon or app ID. The
+`fingerprint` runtime version detects this, so an update is never sent to an
+app build it would not run on.
+
 ## How it works
 
 ```

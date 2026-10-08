@@ -6,6 +6,7 @@ import { View } from 'react-native';
 
 import { HeaderActions } from '@/components/header-actions';
 import { Sidebar } from '@/components/sidebar';
+import { UpdateBanner } from '@/components/update-banner';
 import { Colors } from '@/constants/theme';
 import { useScheme } from '@/hooks/use-scheme';
 import { useWide } from '@/hooks/use-wide';
@@ -57,6 +58,7 @@ export default function RootLayout() {
         ) : (
           stack
         )}
+        <UpdateBanner />
       </ProgressProvider>
     </ThemeProvider>
   );

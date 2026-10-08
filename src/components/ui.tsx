@@ -1,6 +1,6 @@
-import { Link, type Href } from 'expo-router';
+import { router, type Href } from 'expo-router';
 import { useState, type ReactNode } from 'react';
-import { Platform, Pressable, ScrollView, type PressableStateCallbackType, StyleSheet, Text, TextInput, View, type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
+import { type GestureResponderEvent, Platform, Pressable, ScrollView, type PressableStateCallbackType, StyleSheet, Text, TextInput, View, type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 
 import { Fonts, MaxContentWidth, Spacing, type Palette } from '@/constants/theme';
 import { STATUS_LABEL, type Subject, type TopicStatus } from '@/content/types';
@@ -8,6 +8,8 @@ import { usePalette } from '@/hooks/use-palette';
 import { useScheme } from '@/hooks/use-scheme';
 
 type Variant = 'display' | 'title' | 'heading' | 'body' | 'small' | 'label' | 'mono';
+
+const BASE_URL = (process.env.EXPO_BASE_URL ?? '').replace(/\/$/, '');
 
 export type HoverState = PressableStateCallbackType & { hovered?: boolean };
 
@@ -105,21 +107,39 @@ export function SubjectBadge({ subject, size = 40 }: { subject: Subject; size?: 
 }
 
 /** Row that navigates; renders a real <a> on web. */
+/** True for a plain left click; modified clicks (new tab, etc.) are left to the browser. */
+function plainClick(e: GestureResponderEvent) {
+  const n = e.nativeEvent as unknown as MouseEvent;
+  return !(n.metaKey || n.ctrlKey || n.shiftKey || n.altKey || (n.button != null && n.button !== 0));
+}
+
+/**
+ * A pressable row that navigates in-app. On web it renders a real <a href> (so "open in new tab"
+ * works) but handles plain clicks client-side. expo-router's <Link asChild> around a Pressable
+ * doesn't cancel the browser's default navigation, which caused a full page reload per click.
+ */
 export function LinkRow({ href, children, style, onPress }: { href: Href; children: ReactNode; style?: StyleProp<ViewStyle>; onPress?: () => void }) {
   const c = usePalette();
   const [hover, setHover] = useState(false);
+  const target = typeof href === 'string' ? href : href.pathname;
+  const webHref = Platform.OS === 'web' ? `${BASE_URL}${target === '/' ? '' : target}` || '/' : undefined;
   return (
-    <Link href={href} asChild onPress={onPress}>
-      <Pressable
-        onHoverIn={() => setHover(true)}
-        onHoverOut={() => setHover(false)}
-        onPressIn={() => setHover(true)}
-        onPressOut={() => setHover(false)}
-        // expo-router's <Link asChild> needs a flat style object, not an array.
-        style={StyleSheet.flatten([styles.row, hover && { backgroundColor: c.surfaceAlt }, style])}>
-        {children}
-      </Pressable>
-    </Link>
+    <Pressable
+      role="link"
+      {...(webHref ? { href: webHref } : {})}
+      onHoverIn={() => setHover(true)}
+      onHoverOut={() => setHover(false)}
+      onPress={(e) => {
+        if (Platform.OS === 'web') {
+          if (!plainClick(e)) return;
+          e.preventDefault();
+        }
+        onPress?.();
+        router.push(href);
+      }}
+      style={[styles.row, hover && { backgroundColor: c.surfaceAlt }, style]}>
+      {children}
+    </Pressable>
   );
 }
 
