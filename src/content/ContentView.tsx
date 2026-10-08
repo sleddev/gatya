@@ -68,6 +68,38 @@ export default function ContentView({ id, scheme, anchor, learned, native, botto
     }
   }, [native, scheme]);
 
+  // Inline formulas can't line-break; one wider than its line would make the whole page scroll
+  // sideways. Those get their own line and scroll by themselves (see .katex.wide).
+  useEffect(() => {
+    const el = root.current;
+    if (!el) return;
+    let width = -1;
+    const fit = () => {
+      if (el.clientWidth === width) return;
+      width = el.clientWidth;
+      const body = el.querySelector<HTMLElement>('.doc-body');
+      if (!body) return;
+      const column = body.getBoundingClientRect().right;
+      for (const k of body.querySelectorAll<HTMLElement>('.katex')) {
+        if (k.querySelector('math[display="block"]')) continue;
+        k.classList.remove('wide');
+        const box = k.parentElement?.closest<HTMLElement>('p, li, td, th, dd, div');
+        if (!box) continue;
+        const edge = Math.min(column, box.getBoundingClientRect().right - parseFloat(getComputedStyle(box).paddingRight));
+        if (k.getBoundingClientRect().right > edge + 1) k.classList.add('wide');
+      }
+    };
+    fit();
+    // Math fonts can arrive after the first layout and change formula widths.
+    void document.fonts?.ready.then(() => {
+      width = -1;
+      fit();
+    });
+    const ro = new ResizeObserver(fit);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [id]);
+
   useEffect(() => {
     const target = anchor?.split('@')[0];
     if (target) requestAnimationFrame(() => scrollToId(decodeURIComponent(target)));

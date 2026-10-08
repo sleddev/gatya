@@ -9,4 +9,6 @@ Expo (SDK 57) app + static website. Hungarian study content in MDX.
 - Pure logic lives in `src/lib/` with `node:test` tests (`pnpm test`); imports inside `src/lib` use explicit `.ts` extensions so Node can run them.
 - Verify with `pnpm check` (typecheck, tests, web + Android export).
 - Use `LinkRow` (`src/components/ui.tsx`) for in-app links, not `<Link asChild>` around a Pressable: on web that combination doesn't cancel the browser's navigation, so every click reloads the whole page.
+- Navigation: `src/components/sidebar.tsx` is a fixed column on wide web layouts and the content of the hamburger drawer (`src/components/drawer.tsx`) on phones and in the app.
+- Long inline formulas can't line-break; `ContentView` gives any that don't fit their own line with sideways scrolling (`.katex.wide`). Check new content at phone width (360px) for horizontal page scroll.
 - Installed apps get JS/content changes as EAS Updates (runtime version policy `fingerprint`). Adding a package with native code needs a new build, so mention that when you add one.

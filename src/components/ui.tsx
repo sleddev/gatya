@@ -106,7 +106,6 @@ export function SubjectBadge({ subject, size = 40 }: { subject: Subject; size?: 
   );
 }
 
-/** Row that navigates; renders a real <a> on web. */
 /** True for a plain left click; modified clicks (new tab, etc.) are left to the browser. */
 function plainClick(e: GestureResponderEvent) {
   const n = e.nativeEvent as unknown as MouseEvent;
@@ -118,7 +117,21 @@ function plainClick(e: GestureResponderEvent) {
  * works) but handles plain clicks client-side. expo-router's <Link asChild> around a Pressable
  * doesn't cancel the browser's default navigation, which caused a full page reload per click.
  */
-export function LinkRow({ href, children, style, onPress }: { href: Href; children: ReactNode; style?: StyleProp<ViewStyle>; onPress?: () => void }) {
+export function LinkRow({
+  href,
+  children,
+  style,
+  onPress,
+  dismiss,
+}: {
+  href: Href;
+  children: ReactNode;
+  style?: StyleProp<ViewStyle>;
+  /** Runs before navigating; return false to skip the navigation. */
+  onPress?: () => boolean | void;
+  /** Go back to an existing screen for this route (e.g. home) instead of pushing a new one. */
+  dismiss?: boolean;
+}) {
   const c = usePalette();
   const [hover, setHover] = useState(false);
   const target = typeof href === 'string' ? href : href.pathname;
@@ -134,8 +147,9 @@ export function LinkRow({ href, children, style, onPress }: { href: Href; childr
           if (!plainClick(e)) return;
           e.preventDefault();
         }
-        onPress?.();
-        router.push(href);
+        if (onPress?.() === false) return;
+        if (dismiss) router.dismissTo(href);
+        else router.push(href);
       }}
       style={[styles.row, hover && { backgroundColor: c.surfaceAlt }, style]}>
       {children}

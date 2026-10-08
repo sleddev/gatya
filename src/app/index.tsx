@@ -6,10 +6,12 @@ import { Card, type HoverState, LinkRow, ProgressBar, Screen, SearchInput, Statu
 import { Spacing } from '@/constants/theme';
 import { allTopics, subjects, topicHref } from '@/content';
 import { usePalette } from '@/hooks/use-palette';
+import { useWide } from '@/hooks/use-wide';
 import { useProgress } from '@/state/progress';
 
 export default function Home() {
   const c = usePalette();
+  const wide = useWide();
   const color = useSubjectColor();
   const { learned, last } = useProgress();
   const [q, setQ] = useState('');
@@ -20,10 +22,13 @@ export default function Home() {
   return (
     <Screen>
       <View style={{ gap: Spacing.two }}>
-        <View style={styles.brand}>
-          <Text style={{ fontSize: 40 }}>🩳</Text>
-          <Txt v="display">Gatya</Txt>
-        </View>
+        {/* Narrow layouts show the brand in the title bar instead. */}
+        {wide ? (
+          <View style={styles.brand}>
+            <Text style={{ fontSize: 40 }}>🩳</Text>
+            <Txt v="display">Gatya</Txt>
+          </View>
+        ) : null}
         <Txt color={c.textSecondary}>
           Jegyzetek és interaktív gyakorlók a programtervező informatikus BSc első félévéhez (Debreceni Egyetem, IK, 2026 ősz).
         </Txt>

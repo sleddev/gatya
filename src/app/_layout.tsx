@@ -4,7 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { View } from 'react-native';
 
-import { HeaderActions } from '@/components/header-actions';
+import { DrawerProvider, NavDrawer } from '@/components/drawer';
+import { Brand, HeaderActions } from '@/components/header-actions';
 import { Sidebar } from '@/components/sidebar';
 import { UpdateBanner } from '@/components/update-banner';
 import { Colors } from '@/constants/theme';
@@ -41,7 +42,10 @@ export default function RootLayout() {
         contentStyle: { backgroundColor: c.background },
         headerRight: () => <HeaderActions />,
       }}>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="index"
+        options={{ title: 'Gatya', headerTitle: () => <Brand />, headerTitleAlign: 'left', headerRight: () => <HeaderActions search={false} /> }}
+      />
       <Stack.Screen name="kereses" options={{ title: 'Keresés' }} />
     </Stack>
   );
@@ -49,16 +53,21 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={theme}>
       <ProgressProvider>
-        <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
-        {wide ? (
-          <View style={{ flex: 1, flexDirection: 'row', backgroundColor: c.background }}>
-            <Sidebar />
-            <View style={{ flex: 1 }}>{stack}</View>
-          </View>
-        ) : (
-          stack
-        )}
-        <UpdateBanner />
+        <DrawerProvider>
+          <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
+          {wide ? (
+            <View style={{ flex: 1, flexDirection: 'row', backgroundColor: c.background }}>
+              <Sidebar />
+              <View style={{ flex: 1 }}>{stack}</View>
+            </View>
+          ) : (
+            <>
+              {stack}
+              <NavDrawer />
+            </>
+          )}
+          <UpdateBanner />
+        </DrawerProvider>
       </ProgressProvider>
     </ThemeProvider>
   );

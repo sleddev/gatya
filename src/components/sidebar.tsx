@@ -9,29 +9,40 @@ import { useProgress } from '@/state/progress';
 
 import { LinkRow, SearchInput, Txt, useSubjectColor } from './ui';
 
-/** Permanent navigation for wide web layouts. */
-export function Sidebar() {
+/**
+ * Subject and topic navigation: a permanent column on wide web layouts, and the content of the
+ * slide-in drawer (`drawer`) on phones.
+ */
+export function Sidebar({ drawer, onClose }: { drawer?: boolean; onClose?: () => void }) {
   const c = usePalette();
   const path = usePathname();
   const { learned } = useProgress();
   const color = useSubjectColor();
   const [q, setQ] = useState('');
   const [closed, setClosed] = useState<Record<string, boolean>>({});
+  // In the drawer, following a link closes it; tapping the page you're on only closes it.
+  const follow = (href: string) => () => {
+    onClose?.();
+    return path !== href;
+  };
 
   return (
-    <View style={[styles.side, { backgroundColor: c.surface, borderRightColor: c.border }]}>
-      <LinkRow href="/" style={{ paddingVertical: Spacing.two }}>
+    <View style={drawer ? styles.drawer : [styles.side, { backgroundColor: c.surface, borderRightColor: c.border }]}>
+      <LinkRow href="/" dismiss onPress={follow('/')} style={{ paddingVertical: Spacing.two }}>
         <Text style={{ fontSize: 26 }}>🩳</Text>
-        <Txt v="heading" style={{ fontSize: 20 }}>
+        <Txt v="heading" style={{ fontSize: 20, fontWeight: '700' }}>
           Gatya
         </Txt>
       </LinkRow>
       <SearchInput
         value={q}
         onChangeText={setQ}
-        onSubmit={() => router.push({ pathname: '/kereses', params: { q } })}
+        onSubmit={() => {
+          onClose?.();
+          router.push({ pathname: '/kereses', params: { q } });
+        }}
       />
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: Spacing.six }}>
+      <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: Spacing.six }}>
         {subjects.map((s) => {
           const open = !closed[s.slug];
           const done = s.topics.filter((t) => learned.has(t.id)).length;
@@ -52,7 +63,7 @@ export function Sidebar() {
               </Pressable>
               {open ? (
                 <>
-                  <LinkRow href={`/${s.slug}` as Href} style={styles.topic}>
+                  <LinkRow href={`/${s.slug}` as Href} onPress={follow(`/${s.slug}`)} style={styles.topic}>
                     <Text style={{ color: path === `/${s.slug}` ? color(s) : c.textSecondary, fontSize: 14, fontWeight: path === `/${s.slug}` ? '600' : '400' }}>
                       Áttekintés
                     </Text>
@@ -63,6 +74,7 @@ export function Sidebar() {
                       <LinkRow
                         key={t.id}
                         href={topicHref(t) as Href}
+                        onPress={follow(topicHref(t))}
                         style={[styles.topic, active && { backgroundColor: c.surfaceAlt }]}>
                         <Text style={{ width: 14, color: learned.has(t.id) ? c.good : c.border, fontSize: 12 }}>{learned.has(t.id) ? '✓' : '•'}</Text>
                         <Text
@@ -84,6 +96,7 @@ export function Sidebar() {
 }
 
 const styles = StyleSheet.create({
+  drawer: { flex: 1, paddingHorizontal: Spacing.three, paddingTop: Spacing.two, gap: Spacing.two },
   side: { width: 300, borderRightWidth: 1, paddingHorizontal: Spacing.three, paddingTop: Spacing.three, gap: Spacing.two },
   subjectHead: { flexDirection: 'row', alignItems: 'center', gap: Spacing.two, paddingHorizontal: Spacing.two, paddingVertical: Spacing.two },
   subjectTitle: { flex: 1, fontWeight: '700', fontSize: 14 },
