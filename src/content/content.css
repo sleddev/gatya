@@ -591,6 +591,140 @@
   cursor: default;
 }
 
+/* course map (LogikaTerkep) */
+.gatya-doc .roadmap {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: 10px 12px 12px;
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.gatya-doc .roadmap .stages {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+@media (max-width: 560px) {
+  .gatya-doc .roadmap .stages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.gatya-doc .roadmap .stage {
+  font-size: 0.72rem;
+  line-height: 1.25;
+  padding: 6px 4px;
+  border-radius: 8px;
+  background: var(--sunk);
+  color: var(--muted);
+  text-align: center;
+  text-decoration: none;
+}
+.gatya-doc .roadmap .stage b {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+}
+.gatya-doc .roadmap .stage.done {
+  color: var(--ink);
+}
+.gatya-doc .roadmap .stage.on {
+  background: var(--acc);
+  color: var(--surface);
+}
+.gatya-doc .roadmap .why {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.gatya-doc .roadmap .why b {
+  color: var(--ink);
+}
+.gatya-doc .roadmap ol.here {
+  margin: 0;
+  padding-left: 1.4em;
+  font-size: 0.9rem;
+}
+.gatya-doc .roadmap li.cur {
+  font-weight: 700;
+}
+.gatya-doc .roadmap .you {
+  color: var(--acc);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+/* summary box */
+.gatya-doc .callout.summary {
+  background: color-mix(in srgb, var(--acc) 8%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--acc) 35%, var(--line));
+  border-left: 4px solid var(--acc);
+}
+.gatya-doc .callout.summary ul {
+  padding-left: 1.2em;
+}
+
+/* Zarojelezo */
+.gatya-doc ol.brk-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.gatya-doc ol.brk-steps li {
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--bg);
+  opacity: 0.75;
+}
+.gatya-doc ol.brk-steps li.cur {
+  opacity: 1;
+  border: 1px solid var(--line);
+}
+.gatya-doc ol.brk-steps .note {
+  margin: 0;
+}
+.gatya-doc .brk {
+  font-family: var(--math);
+  font-size: 1.12rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.gatya-doc .brk .new {
+  color: var(--acc);
+  font-weight: 700;
+  font-size: 1.2em;
+}
+.gatya-doc .brk .main {
+  color: var(--surface);
+  background: var(--bad);
+  border-radius: 4px;
+  padding: 0 3px;
+  font-weight: 700;
+}
+.gatya-doc .brk .scope {
+  text-decoration: underline;
+  text-decoration-color: var(--q1);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* KisVilag */
+.gatya-doc ol.eval-steps {
+  margin: 0;
+  padding-left: 1.6em;
+  display: grid;
+  gap: 6px;
+}
+.gatya-doc ol.eval-steps li > span {
+  display: block;
+}
+
 /* truth tables */
 .gatya-doc table.tt {
   font-family: var(--math);

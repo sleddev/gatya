@@ -6,6 +6,8 @@ kulcsszavak: [kvantor, De Morgan, kvantor tagadása, kvantorcsere, univerzális,
 forras: eloadas04-2026.pdf
 ---
 
+<LogikaTerkep />
+
 ## A kvantorok tagadása
 
 <Tetel cim="De Morgan-törvények kvantorokra">
@@ -15,6 +17,37 @@ $$
 </Tetel>
 
 „Senki sem jött el” = „mindenki nem jött el”. „Nem mindenki jött el” = „van, aki nem jött el”.
+
+Programban ugyanez (véges $U$-ra):
+
+```js
+// ¬∃x A ⇔ ∀x ¬A
+!U.some(x => A(x))
+  === U.every(x => !A(x))
+
+// ¬∀x A ⇔ ∃x ¬A
+!U.every(x => A(x))
+  === U.some(x => !A(x))
+```
+
+A szabály: **a tagadás átmegy a kvantoron, és közben megfordítja**: $\forall$-ból $\exists$ lesz, $\exists$-ből $\forall$. Ugyanaz, mint a De Morgan-azonosság a $\wedge$-ra és $\vee$-ra, hiszen véges univerzumon $\forall x A(x)$ egy hosszú konjunkció ($A(u_1) \wedge A(u_2) \wedge \dots$), $\exists x A(x)$ pedig egy hosszú diszjunkció.
+
+### Tagadás lépésről lépésre
+
+<Lepesek>
+<Lepes>
+Írd a $\neg$ jelet az egész formula elé.
+</Lepes>
+<Lepes>
+Vidd át a tagadást a legkülső kvantoron: $\neg\forall x \to \exists x\, \neg$, illetve $\neg\exists x \to \forall x\, \neg$. Ismételd, amíg kvantor áll a $\neg$ mögött.
+</Lepes>
+<Lepes>
+Vidd tovább befelé a kötőszavakon: $\neg(A \supset B) \to A \wedge \neg B$, $\neg(A \wedge B) \to \neg A \vee \neg B$, $\neg(A \vee B) \to \neg A \wedge \neg B$, $\neg\neg A \to A$.
+</Lepes>
+<Lepes>
+Amikor a $\neg$ már csak atomi formulák előtt áll, kész. Olvasd vissza magyarul, és nézd meg, tényleg az eredeti ellentéte-e.
+</Lepes>
+</Lepesek>
 
 **Bizonyítás vázlata** ($\neg \exists x A \models \forall x \neg A$), indirekt: tegyük fel, hogy $\{\neg \exists x A, \neg \forall x \neg A\}$ kielégíthető, legyen $\langle U, \varrho \rangle$ egy modellje. A második miatt van $u \in U$, amelyre $|\neg A|^{\langle U, \varrho[x:u] \rangle} = 0$, azaz $|A|^{\langle U, \varrho[x:u] \rangle} = 1$. A $\exists$ szemantikája szerint ekkor $|\exists x A| = 1$, ellentmondásban az elsővel.
 
@@ -44,6 +77,8 @@ $$
 \exists x \forall y A(x, y) \models \forall y \exists x A(x, y).
 $$
 </Tetel>
+
+Jó emlékeztető a kulcsok és a zárak. „Minden zárhoz van kulcs” ($\forall z\, \exists k$): lehet, hogy minden zárnak saját kulcsa van. „Van kulcs, ami minden zárt nyit” ($\exists k\, \forall z$): ez a **mesterkulcs**, ami sokkal erősebb állítás. Ha van mesterkulcs, akkor persze minden zárhoz van kulcs, de fordítva nem.
 
 <Pelda>
 $A(x, y)$: „$x$ szereti $y$-t”.
@@ -94,3 +129,10 @@ Tagadd a „Van olyan szám, amely minden számnál nagyobb” állítást, és 
 $\neg \exists x \forall y\, N(x, y) \Leftrightarrow \forall x\, \neg \forall y\, N(x, y) \Leftrightarrow \forall x \exists y\, \neg N(x, y)$: „Minden számhoz van olyan szám, amelynél nem nagyobb.”
 </Megoldas>
 </Feladat>
+
+<Osszefoglalo>
+- Tagadásnál a kvantor megfordul: $\neg\forall x A \Leftrightarrow \exists x \neg A$, $\neg\exists x A \Leftrightarrow \forall x \neg A$.
+- Azonos kvantorok felcserélhetők, különbözők nem: $\exists x \forall y \models \forall y \exists x$, fordítva nem (mesterkulcs).
+- $\forall$ a $\wedge$-val, $\exists$ a $\vee$-val „szétosztható”; a másik párosításnál csak egy irány érvényes.
+- Ha egy irányt cáfolni akarsz, keress kis ellenpéldát (két elemű univerzum általában elég).
+</Osszefoglalo>

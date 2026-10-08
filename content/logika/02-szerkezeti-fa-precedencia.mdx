@@ -6,7 +6,11 @@ kulcsszavak: [szerkezeti fa, egyértelmű elemzés, szerkezeti indukció, fő lo
 forras: eloadas02-2026.pdf, eloadas03-2026.pdf
 ---
 
+<LogikaTerkep />
+
 ## Egyértelmű elemzés és szerkezeti fa
+
+Ugyanezt csinálod, amikor kiszámolod a $2 + 3 \cdot 4$ értékét: tudod, hogy előbb a szorzás jön, tehát a kifejezés „igazából” $2 + (3 \cdot 4)$, és az utolsó művelet az összeadás. Egy fordítóprogram is pontosan így elemzi a kódot: a kifejezésből fát épít, és a fát értékeli ki alulról felfelé.
 
 A formulák definíciója induktív: kisebb formulákból építünk nagyobbat. Visszafelé is igaz, hogy minden formula **egyértelműen** bontható szét: ez az **egyértelmű elemzés** tétele. A szétbontást egy fával ábrázoljuk, ez a **szerkezeti fa**.
 
@@ -22,6 +26,10 @@ $((\neg r \wedge p) \supset (p \vee \neg r))$
 - közvetlen részformulák: $(\neg r \wedge p)$ és $(p \vee \neg r)$,
 - összetettség: 5 (két $\neg$, egy $\wedge$, egy $\vee$, egy $\supset$).
 </Pelda>
+
+<Tipp cim="hogyan olvasd a fát">
+Alulról felfelé: a levelek a legkisebb darabok, minden belső csúcs összerak egy nagyobb részformulát a gyerekeiből, a gyökér pedig a teljes formula. A fa magassága megmutatja, milyen mélyen vannak egymásba ágyazva a részek.
+</Tipp>
 
 ## Miért kellenek a zárójelek?
 
@@ -39,6 +47,10 @@ $$
 \neg \quad \wedge \quad \vee \quad \supset \quad \equiv
 $$
 </Definicio>
+
+Programozóként ismerős lehet: a C-ben, Javában, JavaScriptben is a `!` köt a legerősebben, aztán az `&&`, aztán a `||`. Az `a || b && c` ugyanúgy `a || (b && c)`, ahogy a $p \vee q \wedge r$ is $p \vee (q \wedge r)$.
+
+Egy jó emlékeztető: a **rövidebb** hatású jel köt erősebben. A $\neg$ egyetlen dolgot tagad, a $\wedge$ két szomszédot fog össze, a $\equiv$ pedig a formula két nagy felét köti össze.
 
 További megállapodások:
 - $p \vee q \vee r$ és $p \wedge q \wedge r$ csoportosítása mindegy, mert az eredmény ugyanaz.
@@ -59,6 +71,45 @@ További megállapodások:
 <Figyelem>
 Az utolsó két sor különbsége fontos: $\forall x (P(x) \vee Q(x))$-ben a kvantor a zárójel egészére vonatkozik, $\forall x P(x) \vee Q(x)$-ben csak a $P(x)$-re. A második $Q(x)$-ben az $x$ már **szabad** (lásd [Kötött és szabad változók](/logika/kotott-es-szabad-valtozok)).
 </Figyelem>
+
+## A fő logikai jel megkeresése
+
+<Lepesek>
+<Lepes>
+Ha az egész formula egy zárójelpárban van, vedd le a külső zárójeleket.
+</Lepes>
+<Lepes>
+Keresd meg azokat a kétargumentumú jeleket ($\wedge, \vee, \supset, \equiv$), amelyek **egyetlen zárójelen belül sincsenek**.
+</Lepes>
+<Lepes>
+Ezek közül a **leggyengébb** a fő jel (≡, aztán ⊃, aztán ∨, aztán ∧). Ha több ⊃ van, a **bal szélső** (mert jobbra csoportosít), több ∧ vagy ∨ esetén a jobb szélső.
+</Lepes>
+<Lepes>
+Ha nincs ilyen jel, a formula $\neg$-vel vagy kvantorral kezdődik, és az a fő jel. Ha az sincs, atomi formula.
+</Lepes>
+<Lepes>
+A fő jel két oldala (vagy a $\neg$ / kvantor utáni rész) a két **közvetlen részformula**. Ezekre ismételd meg, és kész a szerkezeti fa.
+</Lepes>
+</Lepesek>
+
+Ugyanez fordítva: ha zárójelezni akarsz, a legerősebb jeltől haladj a leggyengébbig, és mindegyik köré tegyél zárójelet:
+
+<Zarojelezo />
+
+<Besorolo
+  cim="Mi a fő logikai jel?"
+  opciok={["¬", "∧", "∨", "⊃", "≡", "kvantor"]}
+  elemek={[
+    { kerdes: "p ∧ q ∨ r", helyes: 2, miert: "(p ∧ q) ∨ r: a ∨ gyengébb, utoljára az jön." },
+    { kerdes: "¬p ∧ q", helyes: 1, miert: "A ¬ csak a p-re vonatkozik: (¬p) ∧ q." },
+    { kerdes: "¬(p ∧ q)", helyes: 0, miert: "A zárójel miatt a ¬ az egész p ∧ q-t tagadja." },
+    { kerdes: "p ⊃ q ⊃ r", helyes: 3, miert: "p ⊃ (q ⊃ r): a bal szélső ⊃ a fő jel." },
+    { kerdes: "p ⊃ q ≡ r", helyes: 4, miert: "(p ⊃ q) ≡ r: a ≡ a leggyengébb." },
+    { kerdes: "∀x P(x) ⊃ Q(x)", helyes: 3, miert: "A kvantor csak a P(x)-re vonatkozik: (∀x P(x)) ⊃ Q(x)." },
+    { kerdes: "∀x (P(x) ⊃ Q(x))", helyes: 5, miert: "A zárójel miatt a kvantor az egészre vonatkozik, ő a gyökér." },
+    { kerdes: "(p ∨ q) ∧ ¬r ∨ s", helyes: 2, miert: "((p ∨ q) ∧ ¬r) ∨ s: zárójelen kívül ∧ és ∨ áll, a ∨ a gyengébb." }
+  ]}
+/>
 
 ## Próbáld ki
 
@@ -89,3 +140,10 @@ A műhely teljesen zárójelezi, amit beírsz, megrajzolja a szerkezeti fát, é
 Precedencia szerint először a $\neg$, aztán $\vee$, aztán $\supset$, végül $\equiv$: $(((\neg p \vee q) \supset r) \equiv s)$. Fő logikai jel: $\equiv$. Ellenőrizd a műhelyben!
 </Megoldas>
 </Feladat>
+
+<Osszefoglalo>
+- Minden formula egyértelműen bontható szét: ez a **szerkezeti fa**. A gyökér a **fő logikai jel**, a levelek az atomi formulák.
+- **Összetettség** = a logikai jelek száma.
+- Kötési erősség: $\forall\, \exists\, \neg$ (legerősebbek), aztán $\wedge$, $\vee$, $\supset$, $\equiv$ (leggyengébb). A $\supset$ jobbra csoportosít.
+- A fő jel: a zárójeleken kívüli leggyengébb jel.
+</Osszefoglalo>

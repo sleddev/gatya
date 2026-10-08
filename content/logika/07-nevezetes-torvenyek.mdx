@@ -6,6 +6,8 @@ kulcsszavak: [modus ponens, modus tollens, láncszabály, reductio ad absurdum, 
 forras: eloadas04-2026.pdf
 ---
 
+<LogikaTerkep />
+
 Az alábbiakban $A, B, C$ tetszőleges formulák helyén állnak: a törvények bármilyen formulákra igazak, ha ugyanazt írjuk ugyanannak a betűnek a helyére.
 
 ## Nevezetes következmények
@@ -144,3 +146,10 @@ Hozd egyszerűbb alakra: $\neg(p \supset q)$.
 $p \supset q \Leftrightarrow \neg p \vee q$, tehát $\neg(p \supset q) \Leftrightarrow \neg(\neg p \vee q) \Leftrightarrow \neg\neg p \wedge \neg q \Leftrightarrow p \wedge \neg q$. Az implikáció pontosan akkor hamis, ha az előtag igaz és az utótag hamis.
 </Megoldas>
 </Feladat>
+
+<Osszefoglalo>
+- **Modus ponens**: $A \supset B$ és $A$, tehát $B$. **Modus tollens**: $A \supset B$ és $\neg B$, tehát $\neg A$.
+- Hibás minták: $A \supset B$ és $B$-ből **nem** következik $A$; $A \supset B$ és $\neg A$-ból **nem** következik $\neg B$.
+- A leggyakrabban használt ekvivalenciák: $A \supset B \Leftrightarrow \neg A \vee B$, De Morgan, kontrapozíció, kettős tagadás.
+- Ekvivalenciát igazságtáblával vagy lépésenkénti átalakítással bizonyítunk; minden lépésnél nevezd meg a törvényt.
+</Osszefoglalo>

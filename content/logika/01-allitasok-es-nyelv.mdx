@@ -6,6 +6,8 @@ kulcsszavak: [állítás, kijelentés, helyes következtetés, extenzionális, i
 forras: eloadas02-2026.pdf
 ---
 
+<LogikaTerkep />
+
 ## Miről szól a logika?
 
 A logika a **helyes következtetés** tudománya. Arra keresi a választ, mikor következik egy állítás más állításokból, pusztán a **formájuk** miatt, függetlenül attól, miről szólnak.
@@ -158,3 +160,44 @@ Egy kifejezést tehát **belülről kifelé** érdemes ellenőrizni: először a
     { kerdes: "havazik ∧ Péter", helyes: 2, miert: "A Péter név (term), nem állítás: logikai jel két oldalán formula kell." }
   ]}
 />
+
+## Kvantoros mondatok formalizálása
+
+A legtöbb hiba itt csúszik be, pedig négy minta szinte mindent lefed. $A$ és $B$ egy-egy predikátum (például „hallgató” és „tanul”):
+
+| magyarul | formula | olvasd így |
+|---|---|---|
+| Minden $A$ $B$. | $\forall x (A(x) \supset B(x))$ | bárkit nézek, **ha** $A$, **akkor** $B$ |
+| Van olyan $A$, amely $B$. | $\exists x (A(x) \wedge B(x))$ | van valaki, aki $A$ **és** $B$ |
+| Egy $A$ sem $B$. | $\forall x (A(x) \supset \neg B(x))$ | bárkit nézek, ha $A$, akkor nem $B$ |
+| Nem minden $A$ $B$. | $\exists x (A(x) \wedge \neg B(x))$ | van, aki $A$, de nem $B$ |
+
+<Figyelem cim="a két klasszikus hiba">
+- $\forall x (A(x) \wedge B(x))$ azt mondja, hogy **mindenki** $A$ és $B$ is. A „Minden hallgató tanul” ebben a formában azt állítaná, hogy mindenki hallgató.
+- $\exists x (A(x) \supset B(x))$ szinte mindig igaz: elég hozzá **egyetlen** valaki, aki nem $A$ (mert hamis előtagú implikáció igaz). A „Van olyan hallgató, aki tanul” nem ezt jelenti.
+
+Ökölszabály: **a $\forall$ mellé $\supset$, a $\exists$ mellé $\wedge$ illik.**
+</Figyelem>
+
+<Besorolo
+  cim="Melyik minta illik a mondatra?"
+  utmutato="A: az első, B: a második kiemelt tulajdonság."
+  opciok={["∀x (A(x) ⊃ B(x))", "∃x (A(x) ∧ B(x))", "∀x (A(x) ⊃ ¬B(x))", "∃x (A(x) ∧ ¬B(x))"]}
+  elemek={[
+    { kerdes: "Minden macska (A) emlős (B).", helyes: 0, miert: "Bármit nézünk: ha macska, akkor emlős." },
+    { kerdes: "Van olyan prím (A), amely páros (B).", helyes: 1, miert: "Létezik valami, ami prím és páros is (a 2)." },
+    { kerdes: "Egy hallgató (A) sem bukott meg (B).", helyes: 2, miert: "Bárkit nézünk: ha hallgató, akkor nem bukott meg. Ugyanez: ¬∃x (A(x) ∧ B(x))." },
+    { kerdes: "Nem minden madár (A) repül (B).", helyes: 3, miert: "Van olyan, ami madár, de nem repül (pingvin). Ugyanez: ¬∀x (A(x) ⊃ B(x))." },
+    { kerdes: "Akad olyan feladat (A), ami nehéz (B).", helyes: 1, miert: "„Akad olyan” = „van olyan”: ∃ és ∧." },
+    { kerdes: "Aki hallgató (A), az ösztöndíjat kap (B).", helyes: 0, miert: "Rejtett „minden”: bárki, ha hallgató, akkor ösztöndíjat kap." },
+    { kerdes: "Nincs olyan páros szám (A), amely páratlan (B).", helyes: 2, miert: "„Nincs olyan A, ami B” = „egy A sem B”." },
+    { kerdes: "Néhány program (A) nem fordul le (B).", helyes: 3, miert: "Van olyan, ami program, és nem fordul le." }
+  ]}
+/>
+
+<Osszefoglalo>
+- A logika a következtetések **formáját** vizsgálja, nem a tartalmukat.
+- Állítás = igaz vagy hamis mondat. A kötőszavak igazságfüggvények: csak a részek igazságértéke számít.
+- A nyelv építőkövei: **term** = megnevez valamit (név, változó, függvényjel termekkel), **formula** = állít valamit (predikátum termekkel, és ezekből kötőszavakkal, kvantorokkal).
+- Formalizálásnál a fő kötőszótól haladj befelé. „Minden A B” = $\forall x (A(x) \supset B(x))$, „Van A, ami B” = $\exists x (A(x) \wedge B(x))$.
+</Osszefoglalo>

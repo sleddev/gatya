@@ -6,6 +6,8 @@ kulcsszavak: [logikai következmény, szemantikai következmény, következmény
 forras: eloadas03-2026.pdf, eloadas04-2026.pdf
 ---
 
+<LogikaTerkep />
+
 ## Mit jelent, hogy valami következik?
 
 Visszatérünk az első előadás kérdésére: mikor helyes egy következtetés? Akkor, ha **valahányszor a premisszák igazak, a konklúzió is igaz**, bármit is jelentsenek a szavak.
@@ -14,7 +16,46 @@ Visszatérünk az első előadás kérdésére: mikor helyes egy következtetés
 Az $A$ formula a $\Gamma$ formulahalmaz **logikai (szemantikai) következménye**, ha $\Gamma$ minden modellje $A$-nak is modellje. Jele: $\Gamma \models A$.
 </Definicio>
 
-Igazságtáblával: vedd azokat a sorokat, ahol **minden premissza 1** (ezek $\Gamma$ modelljei). Ha mindegyikben a konklúzió is 1, akkor $\Gamma \models A$. Ha van olyan sor, ahol a premisszák 1-ek, de a konklúzió 0, az egy **ellenpélda**, és $\Gamma \not\models A$.
+Másképp: **nincs ellenpélda**. Ellenpélda egy olyan világ, amelyben minden premissza igaz, a konklúzió mégis hamis. Ha akár egyet találsz, a következtetés helytelen.
+
+### Ellenőrzés igazságtáblával
+
+<Lepesek>
+<Lepes>
+Írd fel az igazságtáblát az összes előforduló állításjelre, és számold ki minden premissza oszlopát.
+</Lepes>
+<Lepes>
+Jelöld meg azokat a sorokat, ahol **minden premissza 1**. Ezek a $\Gamma$ modelljei; a többi sor nem számít.
+</Lepes>
+<Lepes>
+Ezekben a sorokban nézd meg a konklúziót. Ha mindegyikben 1: $\Gamma \models A$.
+</Lepes>
+<Lepes>
+Ha valamelyikben 0, az egy **ellenpélda**: $\Gamma \not\models A$. Fogalmazd meg szavakkal is, ez a legjobb ellenőrzés.
+</Lepes>
+</Lepesek>
+
+<Pelda cim="modus ponens: {p ⊃ q, p} ⊨ q">
+| $p$ | $q$ | $p \supset q$ | $p$ | minden premissza 1? | $q$ |
+|---|---|---|---|---|---|
+| 0 | 0 | 1 | 0 | nem | |
+| 0 | 1 | 1 | 0 | nem | |
+| 1 | 0 | 0 | 1 | nem | |
+| 1 | 1 | 1 | 1 | **igen** | **1** ✓ |
+
+Egyetlen sorban igaz mindkét premissza, és ott a konklúzió is igaz. Nincs ellenpélda: a következtetés helyes.
+</Pelda>
+
+<Pelda cim="a fordítottja: {p ⊃ q, q} ⊨ p ?">
+| $p$ | $q$ | $p \supset q$ | $q$ | minden premissza 1? | $p$ |
+|---|---|---|---|---|---|
+| 0 | 0 | 1 | 0 | nem | |
+| 0 | 1 | 1 | 1 | **igen** | **0** ✗ |
+| 1 | 0 | 0 | 0 | nem | |
+| 1 | 1 | 1 | 1 | **igen** | **1** ✓ |
+
+A második sor ellenpélda: $p$ hamis, $q$ igaz. Szavakkal: „ha esik, vizes az út; vizes az út” mellett lehet, hogy nem esik, csak locsoltak. A következtetés helytelen.
+</Pelda>
 
 <Pelda cim="az előadásból: Feri tortája">
 1. Feri idősebb, mint Péter. ($A$)
@@ -61,6 +102,19 @@ Ezzel egyenértékű: $A \models B$ és $B \models A$. Az ekvivalens formulák e
 A $p \supset q$ egy formula. A $p \models q$ egy (hamis) állítás a $p$ és $q$ formulákról.
 </Figyelem>
 
+Programozóként: a $\supset$ egy **kifejezés**, amit egy adott bemenetre kiszámolsz. A $\models$ olyan, mint egy **teszt, ami az összes bemenetre lefut**:
+
+```js
+// ⊃: egy sorban kiszámolt érték
+const impl = (a, b) => !a || b;
+
+// Γ ⊨ A: minden sorra teljesül?
+// G(s): minden premissza igaz
+sorok.every(s => !G(s) || A(s))
+```
+
+Az utolsó sor értéke nem függ semmilyen bemenettől: egyszerűen igaz vagy hamis, a formulákról szól.
+
 A két szintet a dedukciótétel köti össze:
 
 <Tetel cim="dedukciótétel">
@@ -84,3 +138,11 @@ Helyes-e a következtetés? „Ha jó idő van, kirándulunk. Ha kirándulunk, e
 $p$: jó idő van, $q$: kirándulunk, $r$: elfáradunk. Kérdés: $\{p \supset q,\ q \supset r,\ \neg r\} \models \neg p$? Igen: a láncszabályból $p \supset r$, a modus tollensből $\neg p$. Az ellenőrzőbe írva: premisszák `p -> q`, `q -> r`, `~r`; következmény `~p`. Nincs piros sor.
 </Megoldas>
 </Feladat>
+
+<Osszefoglalo>
+- $\Gamma \models A$: ahol minden premissza igaz, ott a konklúzió is igaz. Másképp: **nincs ellenpélda**.
+- Igazságtáblával: csak azokat a sorokat nézd, ahol minden premissza 1.
+- $\Gamma \models A \iff \Gamma \cup \{\neg A\}$ kielégíthetetlen: ezen alapul a cáfolásos bizonyítás.
+- A $\supset$, $\equiv$ a nyelv jelei (egy interpretációban van értékük). A $\models$, $\Leftrightarrow$ a formulákról szólnak (minden interpretációra egyszerre).
+- Dedukciótétel: $\Gamma, A \models B \iff \Gamma \models A \supset B$.
+</Osszefoglalo>

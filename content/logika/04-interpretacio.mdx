@@ -6,7 +6,11 @@ kulcsszavak: [szemantika, interpretáció, univerzum, értelmezési függvény, 
 forras: eloadas02-2026.pdf, eloadas03-2026.pdf
 ---
 
+<LogikaTerkep />
+
 A **szintaxis** azt mondja meg, mi a helyes formula. A **szemantika** azt, mit jelent: mikor igaz és mikor hamis. Ehhez meg kell mondani, miről beszélünk, és ezt adja meg az interpretáció.
+
+Hasonlat: a formula olyan, mint egy program forráskódja. Önmagában nem igaz és nem hamis, ahogy egy program sem ad eredményt, amíg nem futtatod valamilyen bemenettel. Az **interpretáció a bemenet**: megmondja, mik a dolgok, és mit jelentenek a nevek, függvények, predikátumok. Más interpretációban ugyanaz a formula más értéket adhat.
 
 ## Az interpretáció
 
@@ -37,6 +41,30 @@ Ebben az interpretációban:
 
 Az eljárás mindig ugyanaz: **először a termeket értékeljük ki** (melyik elemet nevezik meg), **aztán a predikátumot** (benne van-e a kapott elem vagy $n$-es a predikátum halmazában).
 
+<Lepesek>
+<Lepes>
+**Termek, belülről kifelé.** Egy név jelentése $\varrho$-ból kiolvasható. Egy $f(t)$ termnél előbb $t$-t értékeld ki, aztán alkalmazd rá $\varrho(f)$-et.
+</Lepes>
+<Lepes>
+**Atomi formulák.** $P(t_1, \dots, t_n)$ igaz, ha a termek értékeiből álló $n$-es benne van $\varrho(P)$-ben.
+</Lepes>
+<Lepes>
+**Kötőszavak.** A részformulák értékéből az igazságtábla szerint (lent).
+</Lepes>
+<Lepes>
+**Kvantorok.** Próbáld végig az univerzum összes elemét a változó helyén. $\forall$: mindegyikre igaz kell; $\exists$: egy is elég.
+</Lepes>
+</Lepesek>
+
+Próbáld ki egy kis világon! Négy ember az univerzum, és te döntöd el, ki tanul és ki dolgozik. A formula értékét lépésenként, belülről kifelé számolja ki:
+
+<KisVilag />
+
+Érdemes megnézni:
+- `dolgozik(barátja(Anna))`: előbb a **term** kap értéket (Anna barátja Mari), csak utána a predikátum.
+- `tanul(x)`: nincs értéke, mert az $x$ **szabad**. Egy nyitott formulához a változóknak is értéket kell adni.
+- `∀x ∃y idősebb(y, x)`: hamis, mert Marinál senki sem idősebb. A kvantoroknál mindig azt keresd, **melyik elemen** bukik el (vagy melyik teljesíti).
+
 ## A logikai műveletek szemantikája
 
 Jelölje $|A|^{\langle U, \varrho \rangle}$ az $A$ formula igazságértékét (1 = igaz, 0 = hamis).
@@ -47,6 +75,16 @@ Jelölje $|A|^{\langle U, \varrho \rangle}$ az $A$ formula igazságértékét (1
 | 0 | 1 | 1 | 0 | 1 | 1 | 0 |
 | 1 | 0 | 0 | 0 | 1 | 0 | 0 |
 | 1 | 1 | 0 | 1 | 1 | 1 | 1 |
+
+Egy-egy mondat, amivel megjegyezheted:
+
+| jel | mikor igaz? | programban |
+|---|---|---|
+| $\neg A$ | ha $A$ hamis | `!a` |
+| $A \wedge B$ | ha **mindkettő** igaz | `a && b` |
+| $A \vee B$ | ha **legalább az egyik** igaz | `a \|\| b` |
+| $A \supset B$ | **mindig**, kivéve: $A$ igaz és $B$ hamis | `!a \|\| b` |
+| $A \equiv B$ | ha **egyformák** | `a === b` |
 
 ## Miért ilyen furcsa az implikáció?
 
@@ -74,7 +112,21 @@ Jelölje $\varrho[x : u]$ azt a kiértékelést, amely mindenben megegyezik $\va
 - $|\exists x A|^{\langle U, \varrho \rangle} = 1$, ha **van olyan** $u \in U$, amelyre $|A|^{\langle U, \varrho[x:u] \rangle} = 1$.
 </Definicio>
 
-Vagyis: végigpróbáljuk az univerzum összes elemét az $x$ helyén.
+Vagyis: végigpróbáljuk az univerzum összes elemét az $x$ helyén. Véges univerzumon ez szó szerint egy ciklus:
+
+```js
+// |∀x A| = 1, ha
+U.every(u => A({ ...rho, x: u }))
+
+// |∃x A| = 1, ha
+U.some(u => A({ ...rho, x: u }))
+```
+
+A $\varrho[x : u]$ jelölés pontosan a `{ ...rho, x: u }`: ugyanaz a kiértékelés, csak az $x$ értéke $u$.
+
+<Figyelem cim="üres univerzum nincs">
+Az $U \ne \emptyset$ feltétel nem véletlen. Üres univerzumban $\forall x A$ mindig igaz, $\exists x A$ mindig hamis lenne, és például $\forall x P(x) \models \exists x P(x)$ nem teljesülne.
+</Figyelem>
 
 <Pelda cim="az előadásból: a bolygók">
 $R(b)$: „$b$ a Nap körül kering”.
@@ -99,3 +151,10 @@ Mikor hamis a $(p \supset q) \supset (\neg q \supset \neg p)$ formula?
 Soha. Ez egy logikai törvény: a kontrapozíció. Írd be a műhelybe, és mind a 4 sorban 1-et kapsz. Bővebben: [Nevezetes törvények](/logika/nevezetes-torvenyek).
 </Megoldas>
 </Feladat>
+
+<Osszefoglalo>
+- Interpretáció: $\langle U, \varrho \rangle$. $U$ a dolgok halmaza, $\varrho$ megmondja, mit jelentenek a nevek, a függvényjelek és a predikátumok.
+- Kiértékelés belülről kifelé: termek → atomi formulák → kötőszavak → kvantorok.
+- $A \supset B$ csak akkor hamis, ha $A$ igaz és $B$ hamis.
+- $\forall x$: minden elemre igaz kell; $\exists x$: egy elem is elég. Ugyanaz a formula más interpretációban más értéket kaphat.
+</Osszefoglalo>

@@ -107,6 +107,7 @@ $A \subset B$, ha $A$ minden eleme $B$-nek is eleme.
 | `<Tipp>` | hasznos trükk | `cim` |
 | `<Megjegyzes>` | mellékes megjegyzés | `cim` |
 | `<Lepesek>` + `<Lepes>` | számozott lépések | – |
+| `<Osszefoglalo>` | „Röviden” doboz az oldal végére | `cim` (alapból „Röviden”) |
 | `<Kviz>` | egy feleletválasztós kérdés | `kerdes`, `valaszok`, `helyes` (0-tól számolt index), `magyarazat` |
 
 A nyitó és záró tag külön sorban legyen, köztük szabad Markdown és képlet:
@@ -166,6 +167,10 @@ Minden propnak van alapértéke, tehát `<KomplexSik />` is működik.
 | `<ElsorenduVizsgalo />` | kötött/szabad változók színezése | `formula`, `peldak` |
 | `<KovetkezmenyEllenorzo />` | Γ ⊨ A igazságtáblával | `premisszak` (lista), `kovetkezmeny`, `peldak` (bool) |
 | `<EkvivalenciaTeszt />` | A ⇔ B? | `a`, `b`, `peldak` (bool) |
+| `<LogikaTerkep />` | a tárgy térképe (nyelv → jelentés → következtetés), kiemeli az aktuális oldalt; minden logika-oldal elejére | – |
+| `<Zarojelezo />` | zárójelezés precedencia szerint, lépésenként, a fő logikai jelig | `formula` |
+| `<KisVilag />` | négyfős interpretáció, szerkeszthető; a formula kiértékelése lépésenként | `formula` |
+| `<KielegithetosegAbra />` | érvényes / kielégíthető és cáfolható / kielégíthetetlen, és hova kerül ¬A | `formula` |
 | `<TermFa />` | term vagy formula? színezett fa az előadás jeleivel | `kifejezes` |
 | `<ImplikacioDiagram />` | A ⊃ B mint tartalmazás: modus ponens/tollens, láncszabály | `mod` (`implikacio`, `lanc`), `a`, `b` (A és B jelentése szöveggel) |
 | `<KvantorJatszoter />` | interpretáció kis univerzumon | `resz` (`ketvaltozos`, `egyvaltozos`, `mindketto`) |

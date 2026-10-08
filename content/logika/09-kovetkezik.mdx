@@ -6,15 +6,25 @@ kulcsszavak: [normálforma, konjunktív normálforma, diszjunktív normálforma,
 forras: a tárgy tematikája
 ---
 
+<LogikaTerkep />
+
 A tárgy leírása szerint ezek következnek:
 
 ## Normálformák
 
 A **diszjunktív normálforma** (DNF) „vagyok és-ekből”, a **konjunktív normálforma** (KNF) „és-ek vagyokból” álló formula. Minden formula átalakítható mindkettőre, a [nevezetes ekvivalenciák](/logika/nevezetes-torvenyek#nevezetes-ekvivalenciak) ismételt alkalmazásával:
 
-1. Fejezd ki a $\supset$ és $\equiv$ jeleket: $A \supset B \Leftrightarrow \neg A \vee B$.
-2. Vidd be a tagadásokat az atomokig (De Morgan, kettős tagadás).
-3. Disztributivitással rendezd a kívánt alakra.
+<Lepesek>
+<Lepes>
+Fejezd ki a $\supset$ és $\equiv$ jeleket: $A \supset B \Leftrightarrow \neg A \vee B$, $A \equiv B \Leftrightarrow (A \supset B) \wedge (B \supset A)$.
+</Lepes>
+<Lepes>
+Vidd be a tagadásokat az atomokig (De Morgan, kettős tagadás).
+</Lepes>
+<Lepes>
+Disztributivitással rendezd a kívánt alakra: DNF-hez a $\wedge$-t, KNF-hez a $\vee$-t kell befelé vinni.
+</Lepes>
+</Lepesek>
 
 <Pelda>
 $p \supset (q \wedge r)$

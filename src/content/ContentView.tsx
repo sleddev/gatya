@@ -3,10 +3,10 @@
 import './content.css';
 
 import type { DOMProps } from 'expo/dom';
-import { Component, useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
+import { Component, useEffect, useRef, type ComponentType, type CSSProperties, type ReactNode } from 'react';
 
 import { mdxComponents } from '@/widgets';
-import { SchemeContext } from '@/widgets/theme';
+import { DocContext, SchemeContext } from '@/widgets/theme';
 
 import { subjects } from './generated/manifest';
 import { registry } from './generated/registry';
@@ -153,6 +153,8 @@ export default function ContentView({ id, scheme, anchor, learned, native, botto
     ),
   };
 
+  const doc = { id, Link: components.a as ComponentType<{ href: string; className?: string; children?: ReactNode }> };
+
   const style = {
     '--acc': scheme === 'dark' ? subject.colorDark : subject.color,
     paddingBottom: 48 + bottomInset,
@@ -197,9 +199,11 @@ export default function ContentView({ id, scheme, anchor, learned, native, botto
 
         <div className="doc-body">
           <SchemeContext.Provider value={scheme}>
-            <Boundary key={id}>
-              <Content components={components} />
-            </Boundary>
+            <DocContext.Provider value={doc}>
+              <Boundary key={id}>
+                <Content components={components} />
+              </Boundary>
+            </DocContext.Provider>
           </SchemeContext.Provider>
         </div>
 

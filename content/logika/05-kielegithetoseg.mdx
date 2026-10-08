@@ -6,6 +6,10 @@ kulcsszavak: [modell, kielégíthető, kielégíthetetlen, érvényes, logikai t
 forras: eloadas03-2026.pdf, eloadas04-2026.pdf
 ---
 
+<LogikaTerkep />
+
+Az előző oldalon egy formulát **egy** interpretációban értékeltünk ki. Most az összes lehetséges interpretációt egyszerre nézzük: igaz-e a formula mindegyikben, némelyikben, vagy egyikben sem? Képzeld el az interpretációkat **lehetséges világokként**: egy formula modelljei azok a világok, ahol igaz.
+
 ## Modell
 
 <Definicio>
@@ -34,6 +38,37 @@ Minden formula a következő három csoport egyikébe esik:
 
 Az első kettő együtt a **kielégíthető** formulák, az utolsó kettő együtt a **cáfolható** formulák. Tehát minden érvényes formula kielégíthető, de fordítva nem.
 
+<KielegithetosegAbra />
+
+Ítéletlogikában egy formula fajtája egyszerűen leolvasható:
+
+<Lepesek>
+<Lepes>
+Írd fel az igazságtáblát (az állításjelek minden lehetséges értékével).
+</Lepes>
+<Lepes>
+Számold meg, hány sorban 1 a formula.
+</Lepes>
+<Lepes>
+Minden sorban 1: **érvényes**. Egyik sorban sem: **kielégíthetetlen**. Különben: **kielégíthető és cáfolható**. (Egy 1-es sor egy modell, egy 0-s sor egy cáfoló interpretáció.)
+</Lepes>
+</Lepesek>
+
+<Besorolo
+  cim="Sorold be a formulákat!"
+  opciok={["érvényes", "kielégíthető és cáfolható", "kielégíthetetlen"]}
+  elemek={[
+    { kerdes: "p ∨ ¬p", helyes: 0, miert: "A kizárt harmadik törvénye: p bármi, az egyik tag igaz." },
+    { kerdes: "p ∧ q", helyes: 1, miert: "p = q = 1 esetén igaz, különben hamis." },
+    { kerdes: "p ∧ ¬p", helyes: 2, miert: "Egyszerre nem lehet p igaz és hamis." },
+    { kerdes: "p ⊃ p", helyes: 0, miert: "Igaz előtagnál az utótag is igaz, hamis előtagnál az implikáció igaz." },
+    { kerdes: "(p ⊃ q) ⊃ p", helyes: 1, miert: "p = 1 esetén igaz, p = 0, q = 0 esetén (1 ⊃ 0) hamis." },
+    { kerdes: "¬(p ⊃ p)", helyes: 2, miert: "Egy érvényes formula tagadása kielégíthetetlen." },
+    { kerdes: "(p ∧ q) ⊃ q", helyes: 0, miert: "Ha p ∧ q igaz, akkor q is igaz, más esetben az előtag hamis." },
+    { kerdes: "p ≡ ¬p", helyes: 2, miert: "Egy állítás nem lehet egyenlő a saját tagadásával." }
+  ]}
+/>
+
 <Kviz
   kerdes="Melyik igaz? Ha A nem érvényes, akkor…"
   valaszok={["A kielégíthetetlen", "A cáfolható", "¬A érvényes"]}
@@ -49,6 +84,8 @@ Az első kettő együtt a **kielégíthető** formulák, az utolsó kettő együ
 />
 
 ## Formulahalmazok
+
+Formulahalmazra gondolj úgy, mint **egyszerre** tett kijelentésekre: például egy tanú vallomására. A vallomás akkor ellentmondásmentes, ha van olyan világ, amelyben minden mondata egyszerre igaz.
 
 Egy $\Gamma$ formulahalmaz **kielégíthető**, ha van közös modellje: egy interpretáció, amelyben minden eleme egyszerre igaz. Ha nincs, $\Gamma$ **kielégíthetetlen**: van benne logikai ellentmondás.
 
@@ -71,3 +108,11 @@ Elemenként nem lehet dönteni: a $\{p, \neg p\}$ halmaz minden eleme külön-k�
 ## Próbáld ki
 
 <FormulaMuhely formula="(p ⊃ q) ∧ p ∧ ¬q" fa={false} peldak={[["{p ⊃ q, p, ¬q} konjunkciója", "(p ⊃ q) ∧ p ∧ ¬q"], ["kizárt harmadik", "p ∨ ¬p"], ["kielégíthető és cáfolható", "p ⊃ q"], ["ellentmondás", "p ∧ ¬p"]]} />
+
+<Osszefoglalo>
+- **Modell**: olyan interpretáció, amelyben a formula (vagy a halmaz minden eleme) igaz.
+- Minden formula pontosan egy dobozba esik: **érvényes** (mindig 1), **kielégíthető és cáfolható** (néha 1, néha 0), **kielégíthetetlen** (mindig 0).
+- Kielégíthető = van modellje; cáfolható = van, ahol hamis.
+- $A$ érvényes $\iff$ $\neg A$ kielégíthetetlen.
+- Formulahalmaz akkor kielégíthető, ha van **közös** modellje; elemenként nem lehet dönteni.
+</Osszefoglalo>

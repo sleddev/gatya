@@ -16,6 +16,8 @@ import { HalmazKalkulator } from './HalmazKalkulator';
 import { ImplikacioDiagram } from './ImplikacioDiagram';
 import { IndukcioDomino } from './IndukcioDomino';
 import { IndukcioEllenorzo } from './IndukcioEllenorzo';
+import { KielegithetosegAbra } from './KielegithetosegAbra';
+import { KisVilag } from './KisVilag';
 import { KomplexMuveletek } from './KomplexMuveletek';
 import { KomplexSik } from './KomplexSik';
 import { KovetkezmenyEllenorzo } from './KovetkezmenyEllenorzo';
@@ -25,11 +27,13 @@ import { Lekepezes } from './Lekepezes';
 import { Lepes } from './Lepes';
 import { Lepesek } from './Lepesek';
 import { LinearisKongruencia } from './LinearisKongruencia';
+import { LogikaTerkep } from './LogikaTerkep';
 import { MaradekOra } from './MaradekOra';
 import { MaradekosOsztas } from './MaradekosOsztas';
 import { Megjegyzes } from './Megjegyzes';
 import { Megoldas } from './Megoldas';
 import { ModularisHatvany } from './ModularisHatvany';
+import { Osszefoglalo } from './Osszefoglalo';
 import { Pelda } from './Pelda';
 import { PolinomIllesztes } from './PolinomIllesztes';
 import { PolinomVizsgalo } from './PolinomVizsgalo';
@@ -41,6 +45,7 @@ import { Tipp } from './Tipp';
 import { VegyesSzorzat } from './VegyesSzorzat';
 import { VektorLabor } from './VektorLabor';
 import { VennDiagram } from './VennDiagram';
+import { Zarojelezo } from './Zarojelezo';
 
 export const mdxComponents = {
   Besorolo,
@@ -58,6 +63,8 @@ export const mdxComponents = {
   ImplikacioDiagram,
   IndukcioDomino,
   IndukcioEllenorzo,
+  KielegithetosegAbra,
+  KisVilag,
   KomplexMuveletek,
   KomplexSik,
   KovetkezmenyEllenorzo,
@@ -67,11 +74,13 @@ export const mdxComponents = {
   Lepes,
   Lepesek,
   LinearisKongruencia,
+  LogikaTerkep,
   MaradekOra,
   MaradekosOsztas,
   Megjegyzes,
   Megoldas,
   ModularisHatvany,
+  Osszefoglalo,
   Pelda,
   PolinomIllesztes,
   PolinomVizsgalo,
@@ -83,4 +92,5 @@ export const mdxComponents = {
   VegyesSzorzat,
   VektorLabor,
   VennDiagram,
+  Zarojelezo,
 };

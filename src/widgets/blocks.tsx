@@ -45,6 +45,12 @@ export const MegjegyzesBlock = ({ cim, children }: { cim?: string; children: Rea
   </Callout>
 );
 
+export const OsszefoglaloBlock = ({ cim = 'Röviden', children }: { cim?: string; children: ReactNode }) => (
+  <Callout kind="summary" label={cim}>
+    {children}
+  </Callout>
+);
+
 export const PeldaBlock = ({ cim, children }: { cim?: string; children: ReactNode }) => (
   <div className="example">
     <span className="label">Példa{cim ? ` · ${cim}` : ''}</span>
