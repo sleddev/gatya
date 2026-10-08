@@ -83,15 +83,28 @@ invalid frontmatter, and LaTeX that KaTeX can't render.
 
 ### Website
 
-`.github/workflows/ci.yml` runs the checks on every push and PR. On `main` it
-builds the site and publishes it to GitHub Pages at
-`https://<user>.github.io/<repo>/`. To enable it, go to the repository's
-**Settings → Pages → Source** and choose **GitHub Actions**.
+`.github/workflows/ci.yml` runs the checks on every push and PR, then builds the
+site and deploys it to [Cloudflare Pages](https://pages.cloudflare.com/): `main`
+goes to production (`https://gatya.pages.dev`), and each pull request gets its own
+preview URL.
 
-Any static host works. Build with `pnpm build:web` and upload `dist/`. Set
-`GATYA_BASE_URL=/subpath` if the site isn't served from the domain root. The
-host has to serve `/a/b` from `a/b.html`; GitHub Pages, Netlify, Cloudflare
-Pages and Vercel all do this by default.
+One-time setup:
+
+1. Create the Pages project: `pnpm dlx wrangler login`, then
+   `pnpm dlx wrangler pages project create gatya --production-branch main`.
+   If the name is taken, choose another and change `--project-name` in the workflow.
+2. In the Cloudflare dashboard, create an API token with the **Cloudflare Pages: Edit**
+   permission and copy your account ID.
+3. Add both to the GitHub repository as the secrets `CLOUDFLARE_API_TOKEN` and
+   `CLOUDFLARE_ACCOUNT_ID`.
+
+To deploy by hand: `pnpm build:web && pnpm dlx wrangler pages deploy dist --project-name=gatya`.
+A custom domain can be added under the project's **Custom domains** tab.
+
+Any other static host works too: upload `dist/` after `pnpm build:web`. Set
+`GATYA_BASE_URL=/subpath` if the site isn't served from the domain root (for
+example GitHub Pages without a custom domain). The host has to serve `/a/b`
+from `a/b.html`, and should serve `404.html` for unknown paths.
 
 ### Apps
 

@@ -1,0 +1,6 @@
+# Cloudflare Pages response headers (other hosts ignore this file).
+# Bundles under /_expo/static and /assets have content hashes in their names.
+/_expo/static/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

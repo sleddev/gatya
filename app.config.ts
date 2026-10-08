@@ -6,7 +6,7 @@ const baseUrl = process.env.GATYA_BASE_URL || undefined;
 
 // Over-the-air updates (EAS Update). Run `pnpm dlx eas-cli init` once and paste the
 // project ID it prints here; until then the app simply ships without OTA updates.
-const easProjectId = '';
+const easProjectId = '8a13b1ef-0835-453f-83eb-478ce9c76a64';
 
 const config: ExpoConfig = {
   name: 'Gatya',

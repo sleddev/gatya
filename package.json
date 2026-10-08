@@ -14,7 +14,7 @@
     "web": "node scripts/dev.mjs --web",
     "content": "node scripts/build-content.mjs",
     "content:watch": "node scripts/build-content.mjs --watch",
-    "build:web": "pnpm content && expo export --platform web",
+    "build:web": "pnpm content && expo export --platform web && cp dist/+not-found.html dist/404.html",
     "typecheck": "pnpm content && tsc --noEmit",
     "test": "node --no-warnings --test \"src/lib/*.test.ts\"",
     "check": "pnpm typecheck && pnpm test && expo export --platform web --output-dir dist && expo export --platform android --output-dir dist-android",

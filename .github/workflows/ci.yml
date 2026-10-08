@@ -30,35 +30,40 @@ jobs:
       - name: Bundle the native app (catches native-only import errors)
         run: pnpm exec expo export --platform android --output-dir dist-android
 
-  pages:
-    # Static website on GitHub Pages: https://<user>.github.io/<repo>/
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+  website:
+    # Static website on Cloudflare Pages: https://<project>.pages.dev
+    # main → production; pull requests → a preview URL. Skipped until the
+    # CLOUDFLARE_API_TOKEN secret exists; see README → "Website".
     needs: check
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      contents: read
+      deployments: write
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - if: env.CLOUDFLARE_API_TOKEN == ''
+        run: echo "::notice::CLOUDFLARE_API_TOKEN is not set, skipping the website deploy."
+      - if: env.CLOUDFLARE_API_TOKEN != ''
+        uses: actions/checkout@v4
+      - if: env.CLOUDFLARE_API_TOKEN != ''
+        uses: pnpm/action-setup@v4
+      - if: env.CLOUDFLARE_API_TOKEN != ''
+        uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - name: Build static site
+      - if: env.CLOUDFLARE_API_TOKEN != ''
+        run: pnpm install --frozen-lockfile
+      - if: env.CLOUDFLARE_API_TOKEN != ''
         run: pnpm build:web
-        env:
-          GATYA_BASE_URL: /${{ github.event.repository.name }}
-      - run: cp "dist/+not-found.html" dist/404.html
-      - uses: actions/upload-pages-artifact@v3
+      - if: env.CLOUDFLARE_API_TOKEN != ''
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: dist
-      - id: deploy
-        uses: actions/deploy-pages@v4
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy dist --project-name=gatya --branch=${{ github.head_ref || github.ref_name }}
 
   app-update:
     # Over-the-air update for installed apps (EAS Update). Skipped until the EXPO_TOKEN
