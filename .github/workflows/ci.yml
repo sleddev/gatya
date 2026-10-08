@@ -57,13 +57,13 @@ jobs:
         run: pnpm install --frozen-lockfile
       - if: env.CLOUDFLARE_API_TOKEN != ''
         run: pnpm build:web
+      # wrangler is a devDependency; cloudflare/wrangler-action tries to `pnpm add` it and fails.
       - if: env.CLOUDFLARE_API_TOKEN != ''
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          command: pages deploy dist --project-name=gatya --branch=${{ github.head_ref || github.ref_name }}
+        name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: pnpm exec wrangler pages deploy dist --project-name=gatya --branch="$BRANCH"
 
   app-update:
     # Over-the-air update for installed apps (EAS Update). Skipped until the EXPO_TOKEN

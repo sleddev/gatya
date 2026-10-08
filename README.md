@@ -90,15 +90,15 @@ preview URL.
 
 One-time setup:
 
-1. Create the Pages project: `pnpm dlx wrangler login`, then
-   `pnpm dlx wrangler pages project create gatya --production-branch main`.
+1. Create the Pages project: `pnpm exec wrangler login`, then
+   `pnpm exec wrangler pages project create gatya --production-branch main`.
    If the name is taken, choose another and change `--project-name` in the workflow.
 2. In the Cloudflare dashboard, create an API token with the **Cloudflare Pages: Edit**
    permission and copy your account ID.
 3. Add both to the GitHub repository as the secrets `CLOUDFLARE_API_TOKEN` and
    `CLOUDFLARE_ACCOUNT_ID`.
 
-To deploy by hand: `pnpm build:web && pnpm dlx wrangler pages deploy dist --project-name=gatya`.
+To deploy by hand: `pnpm build:web && pnpm exec wrangler pages deploy dist --project-name=gatya`.
 A custom domain can be added under the project's **Custom domains** tab.
 
 Any other static host works too: upload `dist/` after `pnpm build:web`. Set
