@@ -45,3 +45,4 @@ example
 # Gatya
 src/content/generated/
 dist-android/
+.wrangler/
