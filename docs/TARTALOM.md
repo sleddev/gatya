@@ -140,6 +140,12 @@ Minden propnak van alapértéke, tehát `<KomplexSik />` is működik.
 
 | komponens | mit csinál | propok |
 |---|---|---|
+| `<Lekepezes />` | nyíldiagram: függvény-e, injektív, szürjektív | `kezdo` (`nem-fuggveny`, `egyik-sem`, `injektiv`, `szurjektiv`, `bijektiv`, `ures`) |
+| `<FuggvenyTranszformacio />` | a·f(b(x − c)) + d grafikonja, lépésekkel | `f` (`x2`, `abs`, `sqrt`, `x3`, `exp`, `sin`) |
+| `<MaradekosOsztas />` | a = bq + r a számegyenesen | `a`, `b` |
+| `<EuklideszTeglalap />` | euklideszi algoritmus négyzetekre vágott téglalappal | `a`, `b` |
+| `<DiofantikusRacs />` | ax + by = c egyenes és rácspontjai | `a`, `b`, `c` |
+| `<MaradekOra />` | maradékóra: osztályok, hatványok köre, φ(m) | `m`, `a`, `mod` (`osztalyok`, `hatvany`, `redukalt`), `modok` |
 | `<VennDiagram />` | két halmaz műveleteinek színezése | `muvelet` (`unio`, `metszet`, `a-b`, `b-a`, `szimdiff`, `a-komp`, `demorgan-1`, `demorgan-2`), `muveletek` (lista) |
 | `<HalmazKalkulator />` | halmazműveletek kiszámolása | `H`, `A`, `B` (vesszős lista) |
 | `<Besorolo />` | elemek besorolása kategóriákba | `cim`, `utmutato`, `opciok` (lista), `elemek` (`{kerdes, helyes, miert}` lista) |
@@ -160,6 +166,8 @@ Minden propnak van alapértéke, tehát `<KomplexSik />` is működik.
 | `<ElsorenduVizsgalo />` | kötött/szabad változók színezése | `formula`, `peldak` |
 | `<KovetkezmenyEllenorzo />` | Γ ⊨ A igazságtáblával | `premisszak` (lista), `kovetkezmeny`, `peldak` (bool) |
 | `<EkvivalenciaTeszt />` | A ⇔ B? | `a`, `b`, `peldak` (bool) |
+| `<TermFa />` | term vagy formula? színezett fa az előadás jeleivel | `kifejezes` |
+| `<ImplikacioDiagram />` | A ⊃ B mint tartalmazás: modus ponens/tollens, láncszabály | `mod` (`implikacio`, `lanc`), `a`, `b` (A és B jelentése szöveggel) |
 | `<KvantorJatszoter />` | interpretáció kis univerzumon | `resz` (`ketvaltozos`, `egyvaltozos`, `mindketto`) |
 
 Formulák: `~ & | -> <->` vagy `¬ ∧ ∨ ⊃ ≡`; elsőrendűben `forall x`, `exists x`.

@@ -25,8 +25,23 @@ Az alábbiakban $A, B, C$ tetszőleges formulák helyén állnak: a törvények 
 <Pelda cim="modus tollens a hétköznapokban">
 „Ha a program helyes, minden teszt átmegy. Egy teszt nem ment át. Tehát a program nem helyes.” $\{p \supset q, \neg q\} \models \neg p$.
 
-A fordítottja **nem** helyes: „Minden teszt átment, tehát a program helyes” ($\{p \supset q, q\} \models p$): ez a tesztelés örök csapdája.
+A fordítottja **nem** helyes: „Minden teszt átment, tehát a program helyes” ($\{p \supset q, q\} \not\models p$): ez a tesztelés örök csapdája.
 </Pelda>
+
+### Rajzban: az implikáció tartalmazás
+
+Az $A \supset B$ csak egy esetet tilt: hogy $A$ igaz, $B$ pedig hamis legyen. Ha a lehetséges helyzeteket pontokként képzeled el, az $A$ igaz helyzetek köre **teljesen benne van** a $B$ igaz helyzetek körében. Ebből a rajzból mind a négy következtetési séma leolvasható:
+
+<ImplikacioDiagram a="a program helyes" b="minden teszt átmegy" />
+
+| tudjuk | rajzban | következik? |
+|---|---|---|
+| $A$ | a kis körben vagyunk | $B$ igen: **modus ponens** |
+| $\neg B$ | a nagy körön kívül vagyunk | $\neg A$ igen: **modus tollens** |
+| $B$ | a nagy körben, de lehet a kicsin kívül is | $A$ **nem** következik |
+| $\neg A$ | a kis körön kívül, de lehet a nagyban is | $\neg B$ **nem** következik |
+
+A láncszabály ugyanígy: ha $A$ benne van $B$-ben, $B$ pedig $C$-ben, akkor $A$ is benne van $C$-ben. (Kapcsold át a rajzot.)
 
 ## Nevezetes logikai törvények
 
@@ -58,9 +73,44 @@ A fordítottja **nem** helyes: „Minden teszt átment, tehát a program helyes�
 Mert erősebb annál: **ekvivalencia**. Mindkét irányban következmény, $A \supset B \models \neg B \supset \neg A$ és $\neg B \supset \neg A \models A \supset B$ is.
 </Megjegyzes>
 
+### A De Morgan-azonosságok halmazokkal
+
+A logikai jelek és a halmazműveletek ugyanúgy viselkednek: $\wedge$ ↔ metszet, $\vee$ ↔ unió, $\neg$ ↔ komplementer. Ha $A$ jelenti az $A$ igaz helyzetek halmazát, akkor $\neg(A \vee B)$ azok a helyzetek, ahol **egyik sem** igaz, és ez ugyanaz a tartomány, mint $\neg A \wedge \neg B$:
+
+<VennDiagram muvelet="demorgan-1" muveletek={["unio", "metszet", "a-komp", "demorgan-1", "demorgan-2"]} />
+
 ## Hogyan bizonyítunk ekvivalenciát?
 
 Ítéletlogikában a legbiztosabb az **igazságtábla**: ha a két oldal minden sorban egyezik, ekvivalensek. Ha akár egy sorban eltérnek, nem azok, és az a sor egy ellenpélda.
+
+A másik út az **átalakítás**: a már ismert ekvivalenciákat lépésenként alkalmazzuk, mint az algebrában az azonosságokat. Minden lépésnél írd oda, melyik törvényt használtad.
+
+<Pelda cim="a kontrapozíció átalakítással">
+$$
+\begin{aligned}
+A \supset B &\Leftrightarrow \neg A \vee B && \text{(az implikáció kifejezése)} \\
+&\Leftrightarrow B \vee \neg A && \text{(kommutativitás)} \\
+&\Leftrightarrow \neg\neg B \vee \neg A && \text{(kettős tagadás)} \\
+&\Leftrightarrow \neg B \supset \neg A && \text{(az implikáció kifejezése, visszafelé)}
+\end{aligned}
+$$
+</Pelda>
+
+<Pelda cim="egyszerűsítés: ¬(p ∨ ¬q) ∨ q">
+<Lepesek>
+<Lepes>
+De Morgan a zárójelre: $\neg(p \vee \neg q) \Leftrightarrow \neg p \wedge \neg\neg q \Leftrightarrow \neg p \wedge q$.
+</Lepes>
+<Lepes>
+A formula most $(\neg p \wedge q) \vee q$. Kommutativitással $q \vee (\neg p \wedge q)$.
+</Lepes>
+<Lepes>
+Elnyelés ($A \vee (B \wedge A) \Leftrightarrow A$, itt $A = q$, $B = \neg p$): az eredmény $q$.
+</Lepes>
+</Lepesek>
+
+Ellenőrzés: ha $q$ igaz, a bal oldal is igaz; ha $q$ hamis, akkor $\neg(p \vee 1) \vee 0 = 0$. Tehát valóban $q$-val ekvivalens. Írd be a lenti tesztbe is!
+</Pelda>
 
 <EkvivalenciaTeszt />
 

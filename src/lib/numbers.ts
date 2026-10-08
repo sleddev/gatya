@@ -186,3 +186,25 @@ export const sortItems = (a: string[]) =>
   a.every((x) => !Number.isNaN(Number(x))) ? [...a].sort((x, y) => Number(x) - Number(y)) : [...a].sort();
 
 export const showSet = (a: string[]) => (a.length ? `{${sortItems(a).map(sgn).join(', ')}}` : '∅');
+
+/** Division with remainder as in the lecture: a = b·q + r with 0 ≤ r < |b|. */
+export function divRem(a: number, b: number): { q: number; r: number } {
+  const r = mod(a, Math.abs(b));
+  return { q: (a - r) / b, r };
+}
+
+/**
+ * The powers a¹, a², … mod m until they start repeating. `start` is the index (0-based, into `seq`)
+ * where the cycle begins, so seq[start..] repeats forever.
+ */
+export function powerCycle(a: number, m: number): { seq: number[]; start: number } {
+  const seq: number[] = [];
+  const seen = new Map<number, number>();
+  let v = mod(a, m);
+  while (!seen.has(v)) {
+    seen.set(v, seq.length);
+    seq.push(v);
+    v = mod(v * a, m);
+  }
+  return { seq, start: seen.get(v)! };
+}

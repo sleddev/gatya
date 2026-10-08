@@ -26,6 +26,8 @@ Az $ax + by = c$ egyenlet pontosan akkor oldható meg, ha $(a, b) \mid c$.
 
 Az egyik irány könnyű: ha $d = (a, b)$, akkor $d \mid a$ és $d \mid b$, tehát $d \mid ax + by$ bármilyen egész $x, y$-ra. Így ha $d \nmid c$, nincs megoldás.
 
+A másik irány a Bézout-azonosságból jön (lent): $d$ mindig előáll $as + bt$ alakban, így $d$ többszörösei is.
+
 <Pelda cim="3.22 (c)">
 $12x - 15y = 26$: $(12, 15) = 3$, de $3 \nmid 26$. **Nincs megoldás.** (A bal oldal mindig osztható 3-mal, a jobb nem.)
 </Pelda>
@@ -66,6 +68,12 @@ $$
 
 Miért? Ha $x$-et $\frac{b}{d}$-vel növeljük, az $ax$ tag $\frac{ab}{d}$-vel nő. Ha közben $y$-t $\frac{a}{d}$-vel csökkentjük, a $by$ tag ugyanennyivel csökken, így az összeg nem változik.
 
+**Geometriailag:** az $ax + by = c$ egyenlet egy egyenes a síkon. Az egész megoldások ennek az egyenesnek a **rácspontjai**, vagyis azok a pontjai, amelyeknek mindkét koordinátája egész. Ezek egyenlő távolságra követik egymást, és a szomszédos rácspontok között éppen $\left(\frac{b}{d}, -\frac{a}{d}\right)$ a lépés. Ha az egyenes egyetlen rácsponton sem megy át, nincs megoldás.
+
+<DiofantikusRacs a={7} b={8} c={284} />
+
+Az alapbeállítás a Gombóc Artúr-feladat ($7x + 8y = 284$, lent). A zöld pontok a nemnegatív megoldások. Próbáld ki a $12x - 15y = 26$ egyenletet is: az egyenes elsiklik a rácspontok között.
+
 <Pelda>
 $147x + 69y = 3$ összes megoldása: $x = 8 + 23t$, $y = -17 - 49t$. Például $t = 1$-re $(31, -66)$: $147 \cdot 31 - 69 \cdot 66 = 4557 - 4554 = 3$. ✓
 </Pelda>
@@ -95,6 +103,29 @@ Az összes megoldás: $x = -284 + 8t$, $y = 284 - 7t$. A csokik száma nem lehet
 
 Öt lehetőség van: $(x, y) = (4, 32), (12, 25), (20, 18), (28, 11), (36, 4)$. Ellenőrzés: $35 \cdot 4 + 40 \cdot 32 = 140 + 1280 = 1420$. ✓
 </Pelda>
+
+## A teljes recept
+
+<Lepesek>
+<Lepes>
+Számold ki $d = (a, b)$-t euklideszi algoritmussal. Ha $d \nmid c$, **nincs megoldás**, kész.
+</Lepes>
+<Lepes>
+Ossz el mindent $d$-vel. Az új egyenletben $(a', b') = 1$, és kisebbek a számok.
+</Lepes>
+<Lepes>
+Az algoritmus lépéseit visszafelé olvasva írd fel az 1-et: $1 = a'u + b'v$. Mindig a **legutóbbi maradékot** helyettesítsd be.
+</Lepes>
+<Lepes>
+Szorozz $c' = \frac{c}{d}$-vel: $x_0 = u c'$, $y_0 = v c'$ egy megoldás. **Ellenőrizd** behelyettesítéssel.
+</Lepes>
+<Lepes>
+Az összes megoldás: $x = x_0 + b' t$, $y = y_0 - a' t$, $t \in \Z$.
+</Lepes>
+<Lepes>
+Szöveges feladatnál írd fel a feltételeket ($x \ge 0$, $y \ge 0$, …) $t$-re, és sorold fel a megengedett $t$ értékeket.
+</Lepes>
+</Lepesek>
 
 ## Próbáld ki
 

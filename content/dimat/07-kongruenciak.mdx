@@ -25,9 +25,22 @@ Ezzel ekvivalens: $a$ és $b$ **ugyanazt a maradékot adja** $m$-mel osztva.
 - $10 \equiv 1 \pmod 9$. Ezért működik a 9-es oszthatósági szabály.
 </Pelda>
 
+Szemléletesen: tekerd fel a számegyenest egy $m$ beosztású órára. A $0$ a tetején van, és minden szám $m$ lépésenként ugyanoda ér vissza. Két szám pontosan akkor kongruens mod $m$, ha az órán **ugyanoda** esik.
+
+<MaradekOra m={12} a={14} modok={["osztalyok"]} />
+
+Állítsd át az $a$-t $-10$-re vagy $26$-ra: a mutató ugyanoda kerül, mint 14-nél. Negatív számnál visszafelé tekerünk.
+
 ## Maradékosztályok
 
-A mod $m$ kongruencia $\Z$-t $m$ darab **maradékosztályra** bontja: egy osztályba az egymással kongruens számok kerülnek. Reprezentánsaik a $0, 1, \dots, m - 1$ maradékok.
+A mod $m$ kongruencia $\Z$-t $m$ darab **maradékosztályra** bontja: egy osztályba az egymással kongruens számok kerülnek, vagyis amelyek az órán ugyanarra a helyre esnek. Reprezentánsaik a $0, 1, \dots, m - 1$ maradékok.
+
+| maradékosztály mod 4 | elemei |
+|---|---|
+| $\bar 0$ | $\dots, -8, -4, 0, 4, 8, \dots$ |
+| $\bar 1$ | $\dots, -7, -3, 1, 5, 9, \dots$ |
+| $\bar 2$ | $\dots, -6, -2, 2, 6, 10, \dots$ |
+| $\bar 3$ | $\dots, -5, -1, 3, 7, 11, \dots$ |
 
 <Definicio cim="teljes reprezentánsrendszer">
 $m$ darab szám, amelyek között minden maradékosztályból pontosan egy szerepel.
@@ -56,6 +69,12 @@ Mennyi $10^{19} + 53$ maradéka 9-cel osztva? $10 \equiv 1$, tehát $10^{19} \eq
 <Pelda>
 Mi a $7^{100}$ utolsó jegye? Mod 10: $7^1 \equiv 7$, $7^2 = 49 \equiv 9$, $7^3 \equiv 63 \equiv 3$, $7^4 \equiv 21 \equiv 1$. A hatványok 4-esével ismétlődnek, $100 = 4 \cdot 25$, tehát $7^{100} = (7^4)^{25} \equiv 1$. Az utolsó jegy **1**.
 </Pelda>
+
+A hatványok mod $m$ előbb-utóbb mindig **körbe érnek**, hiszen csak $m$ féle maradék van. Az órán ez úgy látszik, hogy a nyilak egy körbe zárulnak. A $7^{100}$ példában a kör hossza 4:
+
+<MaradekOra m={10} a={7} mod="hatvany" modok={["hatvany"]} />
+
+Próbáld ki a $2$-t mod 12: a hatványok $2, 4, 8, 4, 8, \dots$, és sosem érnek vissza az 1-hez, mert $(2, 12) \ne 1$.
 
 <Figyelem cim="osztani csak óvatosan">
 Ha $a c \equiv b c \pmod m$, akkor $a \equiv b$ **csak akkor** következik, ha $(c, m) = 1$.
@@ -89,6 +108,10 @@ $$
 
 Prímre egyszerű: ha $p$ prím, $\varphi(p) = p - 1$, mert $1, \dots, p - 1$ mind relatív prím hozzá.
 
+<MaradekOra m={12} mod="redukalt" modok={["redukalt"]} />
+
+Állíts be prímet (például 7-et vagy 13-at), aztán prímhatványt (8, 9, 27): prímhatványnál pontosan a $p$ többszörösei esnek ki.
+
 <Tetel cim="φ képlete">
 Ha $m = p_1^{\alpha_1} \cdots p_r^{\alpha_r}$, akkor
 $$
@@ -113,10 +136,31 @@ $$
 Ha $p$ prím és $p \nmid a$, akkor $a^{p-1} \equiv 1 \pmod p$.
 </Tetel>
 
+**Miért igaz?** Szorozzuk meg a redukált maradékokat $a$-val (mod $m$). Mivel $(a, m) = 1$, különböző maradékok különbözőkbe mennek, tehát ugyanazokat kapjuk vissza, csak más sorrendben. Mod 10, $a = 3$-mal: $\{1, 3, 7, 9\} \to \{3, 9, 1, 7\}$. A két halmaz szorzata egyenlő, ezért
+$$
+3^4 \cdot (1 \cdot 3 \cdot 7 \cdot 9) \equiv 1 \cdot 3 \cdot 7 \cdot 9 \pmod{10},
+$$
+és a zárójeles szorzattal (ami relatív prím 10-hez) egyszerűsítve $3^4 \equiv 1$. Általában ugyanígy jön ki $a^{\varphi(m)} \equiv 1$.
+
 **Hogyan használjuk?** Nagy kitevőnél a kitevőt $\varphi(m)$ szerinti maradékára cseréljük: ha $k = q \cdot \varphi(m) + r$, akkor
 $$
 a^k = \left(a^{\varphi(m)}\right)^q \cdot a^r \equiv 1^q \cdot a^r = a^r \pmod m.
 $$
+
+<Lepesek>
+<Lepes>
+Ellenőrizd, hogy $(a, m) = 1$. Ha nem, a tétel nem használható (ilyenkor bontsd fel $m$-et, vagy keresd meg kézzel a hatványok körét).
+</Lepes>
+<Lepes>
+Számold ki $\varphi(m)$-et a képlettel. Prím modulusnál ez $m - 1$.
+</Lepes>
+<Lepes>
+Oszd el a kitevőt maradékosan: $k = q \cdot \varphi(m) + r$.
+</Lepes>
+<Lepes>
+$a^k \equiv a^r \pmod m$. A kis $a^r$-t számold ki, és közben bármikor csökkentheted a részeredményeket mod $m$.
+</Lepes>
+</Lepesek>
 
 <Pelda cim="az előadásból: 2²⁰²⁶ mod 15">
 $(2, 15) = 1$, és $\varphi(15) = 15 \cdot \frac{2}{3} \cdot \frac{4}{5} = 8$. Mivel $2026 = 8 \cdot 253 + 2$:

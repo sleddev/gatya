@@ -51,6 +51,26 @@ $$
 $$
 </Pelda>
 
+Általában is ezt a sorrendet érdemes követni:
+
+<Lepesek>
+<Lepes>
+Keresd meg a **fő kötőszót**: azt, amelyik az egész mondatot két (vagy egy) részre bontja. Gyakran a vessző vagy a hangsúly segít.
+</Lepes>
+<Lepes>
+Bontsd az összevont mondatrészeket külön állításokra („mindketten elmennek” → „Juli elmegy és Éva elmegy”).
+</Lepes>
+<Lepes>
+Válaszd szét a neveket és a predikátumokat, és adj nekik rövid jelet.
+</Lepes>
+<Lepes>
+Írd fel a formulát a fő kötőszótól befelé, és tegyél ki minden zárójelet, ahol kétséges lehet.
+</Lepes>
+<Lepes>
+Olvasd vissza magyarul: ugyanazt jelenti, mint az eredeti mondat?
+</Lepes>
+</Lepesek>
+
 <Tipp>
 A „de”, „viszont”, „pedig” logikailag mind „és”. A „vagy… vagy” a magyarban gyakran **kizáró** vagy, de a logikában a $\vee$ megengedő („legalább az egyik”). Ha kizáró vagyot akarsz, írd fel külön: $(A \vee B) \wedge \neg(A \wedge B)$.
 </Tipp>
@@ -112,6 +132,17 @@ A $Con$ elemeit aszerint osztályozzuk, hány „üres helyük” (argumentumuk)
 </Definicio>
 
 A lényeg: **a term valamit megnevez, a formula valamit állít.** Függvényjel argumentumába term kerül, predikátum argumentumába is term, logikai jelek közé formula.
+
+| hova? | mi kerülhet oda? | eredmény |
+|---|---|---|
+| függvényjel argumentuma | term | term |
+| predikátum argumentuma | term | formula (atomi) |
+| $\neg$, $\wedge$, $\vee$, $\supset$, $\equiv$ mellé | formula | formula |
+| kvantor ($\forall x$, $\exists x$) után | formula | formula |
+
+Egy kifejezést tehát **belülről kifelé** érdemes ellenőrizni: először a legbelső neveket és változókat, aztán ami rájuk épül. Ha valahol formula kerül term helyére (vagy fordítva), a kifejezés nem jól formált.
+
+<TermFa />
 
 <Besorolo
   cim="Term, formula vagy egyik sem?"

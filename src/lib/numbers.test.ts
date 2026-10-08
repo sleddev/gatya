@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { diophantine, divisorCount, euclid, eulerPhi, factor, frac, linearCongruence, modPow } from './numbers.ts';
+import { diophantine, divRem, divisorCount, euclid, eulerPhi, factor, frac, linearCongruence, modPow, powerCycle } from './numbers.ts';
 
 test('Euclid: lecture example (1227, 216) = 3', () => {
   const e = euclid(1227, 216);
@@ -59,4 +59,16 @@ test('fractions', () => {
   assert.equal(frac(7 / 3), '7/3');
   assert.equal(frac(-0.5), '−1/2');
   assert.equal(frac(4), '4');
+});
+
+test('division with remainder keeps 0 ≤ r < |b|', () => {
+  assert.deepEqual(divRem(17, 5), { q: 3, r: 2 });
+  assert.deepEqual(divRem(-17, 5), { q: -4, r: 3 });
+  assert.deepEqual(divRem(17, -5), { q: -3, r: 2 });
+});
+
+test('power cycles mod m', () => {
+  assert.deepEqual(powerCycle(7, 10), { seq: [7, 9, 3, 1], start: 0 });
+  assert.deepEqual(powerCycle(2, 12), { seq: [2, 4, 8], start: 1 });
+  assert.equal(powerCycle(2, 15).seq.length, 4);
 });

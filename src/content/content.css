@@ -556,6 +556,41 @@
   vertical-align: -1px;
 }
 
+/* SVG diagrams (nyíldiagram, maradékóra, téglalap, …) */
+.gatya-doc svg.diagram {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+.gatya-doc svg.diagram text {
+  fill: var(--ink);
+  font: 600 15px var(--font);
+}
+.gatya-doc svg.diagram text.set {
+  font: italic 600 18px var(--math);
+}
+.gatya-doc svg.diagram text.small {
+  font: 500 11px var(--mono);
+  fill: var(--muted);
+}
+.gatya-doc svg.diagram .node {
+  cursor: pointer;
+}
+.gatya-doc svg.diagram .node:focus {
+  outline: none;
+}
+.gatya-doc svg.diagram .node:focus-visible circle {
+  stroke: var(--acc);
+  stroke-width: 3;
+}
+.gatya-doc .btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 /* truth tables */
 .gatya-doc table.tt {
   font-family: var(--math);

@@ -85,6 +85,14 @@ $$
 $q$ a hányados, $r$ a maradék.
 </Tetel>
 
+Szemléletesen: 0-ból indulva $|b|$ hosszú ugrásokkal megyünk $a$ felé, amíg át nem lépnénk rajta. Az ugrások száma (előjellel) a hányados, a hátralévő, mindig **jobbra** mutató darab a maradék.
+
+<Pelda cim="17 osztása 5-tel">
+Ugrások: $0 \to 5 \to 10 \to 15$. A következő ($20$) már túllőne a 17-en. Tehát 3 ugrás, és $15$-től $17$-ig még $2$ van hátra: $17 = 5 \cdot 3 + 2$.
+</Pelda>
+
+<MaradekosOsztas a={-17} b={5} />
+
 <Figyelem cim="negatív számok">
 A maradék **sosem negatív**. $-17$ osztása 5-tel: $-17 = 5 \cdot (-4) + 3$, tehát a maradék 3. A $-17 = 5 \cdot (-3) - 2$ felírás nem jó, mert $-2 < 0$.
 </Figyelem>
@@ -114,6 +122,37 @@ $$
 (a, b) = (b, r).
 $$
 Ezt ismételjük, mindig kisebb számokkal. A maradékok szigorúan csökkennek ($|b| > r_0 > r_1 > \dots \ge 0$), ezért az eljárás véget ér.
+
+<Pelda cim="miért ugyanazok a közös osztók?">
+$a = 84$, $b = 36$: $84 = 36 \cdot 2 + 12$.
+- Ami osztja 84-et és 36-ot, az osztja $84 - 2 \cdot 36 = 12$-t is.
+- Ami osztja 36-ot és 12-t, az osztja $36 \cdot 2 + 12 = 84$-et is.
+
+Tehát a $(84, 36)$ és a $(36, 12)$ pár közös osztói ugyanazok: $1, 2, 3, 4, 6, 12$. A legnagyobb mindkettőnél 12.
+</Pelda>
+
+### Kézzel, lépésről lépésre
+
+<Lepesek>
+<Lepes>
+Írd fel a nagyobbat a kisebbel maradékosan: $a = b \cdot q_1 + r_1$.
+</Lepes>
+<Lepes>
+Lépj eggyel jobbra: az **osztóból osztandó**, a **maradékból osztó** lesz: $b = r_1 \cdot q_2 + r_2$.
+</Lepes>
+<Lepes>
+Ismételd, amíg a maradék 0 nem lesz.
+</Lepes>
+<Lepes>
+Az **utolsó nem nulla maradék** a legnagyobb közös osztó. (Ha már az első maradék 0, akkor $b$ maga.)
+</Lepes>
+</Lepesek>
+
+### Szemléletesen: négyzetek egy téglalapban
+
+Képzelj el egy $a \times b$-s téglalapot. Az $a = b \cdot q + r$ lépés azt jelenti, hogy levágunk belőle $q$ darab $b$ oldalú négyzetet, és marad egy $b \times r$-es csík. Ezzel a csíkkal ugyanezt csináljuk, és így tovább. Az utolsó négyzetek pontosan kitöltik a maradékot, és az oldaluk az lnko: ez a **legnagyobb** négyzet, amellyel az egész téglalap hézag nélkül lefedhető.
+
+<EuklideszTeglalap a={168} b={64} />
 
 <Tetel>
 Az euklideszi algoritmus **utolsó nem nulla maradéka** $a$ és $b$ legnagyobb közös osztója.

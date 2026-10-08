@@ -30,6 +30,13 @@ $$
 
 A különbség mindig ugyanaz: a hozzárendelés minden bemenethez **pontosan egy** kimenetet ad-e.
 
+Véges halmazoknál ezt **nyíldiagrammal** érdemes elképzelni: $D$ minden eleméből egy nyíl mutat a képére. Egy hozzárendelés kétféleképpen bukhat el:
+
+- egy elemből **nem indul nyíl** (nincs képe), vagy
+- egy elemből **több nyíl indul** (nem egyértelmű).
+
+Ami **nem** baj: ha $R$ egy elemébe több nyíl fut, vagy egybe sem. Az a függvény tulajdonsága (injektív, szürjektív), lásd [lent](#injektiv-szurjektiv-bijektiv).
+
 ## Elemi függvények
 
 | név | képlet | megjegyzés |
@@ -54,12 +61,26 @@ Polinomok gyökeit és szélsőértékeit interaktívan a [SzMV polinomvizsgál�
 
 ## Egyenes két pontból
 
+Két pontból az egyenes egyenlete mindig ugyanígy jön ki:
+
+<Lepesek>
+<Lepes>
+**Meredekség:** $m = \dfrac{y_2 - y_1}{x_2 - x_1}$, vagyis mennyit lép fölfelé az egyenes, ha 1-et lépünk jobbra.
+</Lepes>
+<Lepes>
+**Tengelymetszet:** helyettesíts be egy pontot az $y = mx + b$ egyenletbe, és fejezd ki $b$-t.
+</Lepes>
+<Lepes>
+**Ellenőrzés:** a másik pontot behelyettesítve is jónak kell kijönnie.
+</Lepes>
+</Lepesek>
+
 <Pelda cim="1.9 (d)">
 Melyik elsőfokú függvény grafikonja megy át a $(-3, 1)$ és a $(2, -2)$ pontokon?
 
-A meredekség: $m = \frac{-2 - 1}{2 - (-3)} = -\frac{3}{5}$. Behelyettesítve az első pontot: $1 = -\frac{3}{5} \cdot (-3) + b = \frac{9}{5} + b$, így $b = -\frac{4}{5}$.
-
-Tehát $f(x) = -\frac{3}{5}x - \frac{4}{5}$. Ellenőrzés: $f(2) = -\frac{6}{5} - \frac{4}{5} = -2$. ✓
+1. $m = \frac{-2 - 1}{2 - (-3)} = \frac{-3}{5} = -\frac{3}{5}$. Jobbra 5-öt lépve 3-at esik.
+2. Az első pontot behelyettesítve: $1 = -\frac{3}{5} \cdot (-3) + b = \frac{9}{5} + b$, így $b = 1 - \frac{9}{5} = -\frac{4}{5}$.
+3. Tehát $f(x) = -\frac{3}{5}x - \frac{4}{5}$. Ellenőrzés: $f(2) = -\frac{6}{5} - \frac{4}{5} = -2$. ✓
 </Pelda>
 
 ## Függvénytranszformációk
@@ -75,9 +96,37 @@ Az 1.11-es feladat transzformációihoz ezt a táblázatot érdemes megjegyezni 
 | $-f(x)$ | tükrözés az $x$-tengelyre |
 | $f(-x)$ | tükrözés az $y$-tengelyre |
 
+Miért hat „fordítva” a zárójelen belüli rész? Nézd meg, hol veszi fel $g(x) = f(x - 2)$ azt az értéket, amit $f$ a 0-ban: ott, ahol $x - 2 = 0$, vagyis $x = 2$-ben. Minden pont **2-vel jobbra** kerül, pedig a képletben $-2$ áll. Ugyanígy $f(2x)$ az $x = 1$-ben veszi fel azt, amit $f$ a 2-ben: a grafikon a felére **összemegy**.
+
+A **külső** változtatások ($a \cdot f(\dots) + d$) az $y$-koordinátára hatnak, és úgy, ahogy várnád. A **belsők** ($f(b(x - c))$) az $x$-koordinátára, és fordítva.
+
 <Pelda>
 $3f(-x) - 4$: először tükrözzük $f$-et az $y$-tengelyre, aztán háromszorosára nyújtjuk függőlegesen, végül 4-gyel lejjebb toljuk.
 </Pelda>
+
+Egy összetett transzformációt mindig ebben a sorrendben érdemes elvégezni:
+
+<Lepesek>
+<Lepes>
+Hozd a képletet $a \cdot f\big(b\,(x - c)\big) + d$ alakra. Ha kell, emeld ki $b$-t a zárójelben: $f(2x - 4) = f\big(2(x - 2)\big)$.
+</Lepes>
+<Lepes>
+**Belül, $b$:** vízszintes összenyomás vagy nyújtás (és tükrözés az $y$-tengelyre, ha $b < 0$).
+</Lepes>
+<Lepes>
+**Belül, $c$:** vízszintes eltolás, $c > 0$ esetén jobbra.
+</Lepes>
+<Lepes>
+**Kívül, $a$:** függőleges nyújtás (és tükrözés az $x$-tengelyre, ha $a < 0$).
+</Lepes>
+<Lepes>
+**Kívül, $d$:** függőleges eltolás.
+</Lepes>
+</Lepesek>
+
+Próbáld ki a fenti példákat: a csúszkák pontosan ezt a négy számot állítják, és a kiemelt pont (például a parabola csúcsa) mutatja, hova kerül a grafikon.
+
+<FuggvenyTranszformacio />
 
 <Figyelem>
 Az $f(2x - 4)$ **nem** „összenyomás 2-vel, aztán eltolás 4-gyel jobbra”. Írd át: $f(2x - 4) = f(2(x - 2))$, tehát összenyomás 2-vel, majd eltolás **2**-vel jobbra.
@@ -99,6 +148,16 @@ $f$ szürjektív, ha minden $y \in R$-hez van $x \in D$, hogy $f(x) = y$. Vagyis
 $f$ bijektív (**kölcsönösen egyértelmű**), ha injektív és szürjektív is.
 </Definicio>
 
+Nyíldiagramon a három fogalom ránézésre látszik:
+
+| tulajdonság | a nyíldiagramon |
+|---|---|
+| injektív | $R$ minden elemébe **legfeljebb egy** nyíl fut |
+| szürjektív | $R$ minden elemébe **legalább egy** nyíl fut |
+| bijektív | $R$ minden elemébe **pontosan egy** nyíl fut: az elemek párba állnak |
+
+<Lekepezes />
+
 <Tipp cim="vízszintes egyenesek">
 Valós függvénynél rajzolj vízszintes egyeneseket a grafikonra. **Injektív**, ha egyik sem metszi egynél többször. **Szürjektív**, ha a képtér minden magasságában húzott egyenes metszi legalább egyszer.
 </Tipp>
@@ -106,6 +165,29 @@ Valós függvénynél rajzolj vízszintes egyeneseket a grafikonra. **Injektív*
 <Figyelem>
 Hogy szürjektív-e, az a **képtértől** függ. $\sin : \R \to \R$ nem szürjektív (a 2-t sosem veszi fel), de $\sin : [-\pi/2, \pi/2] \to [-1, 1]$ már bijektív.
 </Figyelem>
+
+Valós függvénynél a nyilakat nem lehet lerajzolni, ezért számolással döntünk:
+
+<Lepesek>
+<Lepes>
+**Injektív?** Tegyük fel, hogy $f(a) = f(b)$, és próbáljuk belőle kihozni, hogy $a = b$. Ha sikerül, injektív. Ha nem, keress két különböző számot ugyanazzal a képpel: ez ellenpélda.
+</Lepes>
+<Lepes>
+**Szürjektív?** Vegyél egy tetszőleges $y \in R$-et, és oldd meg az $f(x) = y$ egyenletet $x$-re. Ha minden $y$-ra van megoldás $D$-ben, szürjektív. Ha valamelyik $y$-ra nincs, az ellenpélda.
+</Lepes>
+</Lepesek>
+
+<Pelda cim="f(x) = 3x − 5, ℝ → ℝ">
+- **Injektív:** $3a - 5 = 3b - 5 \implies 3a = 3b \implies a = b$. ✓
+- **Szürjektív:** $3x - 5 = y \implies x = \frac{y + 5}{3}$, ez minden $y$-ra valós szám. ✓
+
+Tehát bijektív, és az inverze éppen $f^{-1}(y) = \frac{y + 5}{3}$.
+</Pelda>
+
+<Pelda cim="f(x) = x², ℝ → ℝ">
+- **Injektív?** $a^2 = b^2 \implies a = \pm b$, a $-$ jel nem zárható ki. Ellenpélda: $f(-2) = f(2) = 4$. ✗
+- **Szürjektív?** $x^2 = y$-nak $y = -1$-re nincs valós megoldása. ✗
+</Pelda>
 
 <Besorolo
   cim="Sorold be a függvényeket (1.12 stílusban)"
