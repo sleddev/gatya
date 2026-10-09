@@ -1,6 +1,7 @@
 // Every component that can be used as a tag in MDX content.
 // To add one: create src/widgets/<Name>.tsx exporting `<Name>`, then add it here.
 // (scripts/build-content.mjs checks MDX tags against the PascalCase file names in this folder.)
+import { Aramkor } from './Aramkor';
 import { Atalakitas } from './Atalakitas';
 import { Besorolo } from './Besorolo';
 import { Definicio } from './Definicio';
@@ -26,6 +27,7 @@ import { KisVilag } from './KisVilag';
 import { KomplexMuveletek } from './KomplexMuveletek';
 import { KomplexSik } from './KomplexSik';
 import { KovetkezmenyEllenorzo } from './KovetkezmenyEllenorzo';
+import { KvantorBejaro } from './KvantorBejaro';
 import { KvantorJatszoter } from './KvantorJatszoter';
 import { Kviz } from './Kviz';
 import { Lecke } from './Lecke';
@@ -40,12 +42,14 @@ import { Megjegyzes } from './Megjegyzes';
 import { Megoldas } from './Megoldas';
 import { ModellKereso } from './ModellKereso';
 import { ModularisHatvany } from './ModularisHatvany';
+import { NormalformaTabla } from './NormalformaTabla';
 import { Osszefoglalo } from './Osszefoglalo';
 import { Pelda } from './Pelda';
 import { PolinomIllesztes } from './PolinomIllesztes';
 import { PolinomVizsgalo } from './PolinomVizsgalo';
 import { Primtenyezok } from './Primtenyezok';
 import { RelacioFelfedezo } from './RelacioFelfedezo';
+import { Reszleges } from './Reszleges';
 import { SzabadKotott } from './SzabadKotott';
 import { TablaKitolto } from './TablaKitolto';
 import { TermFa } from './TermFa';
@@ -56,9 +60,11 @@ import { VegyesSzorzat } from './VegyesSzorzat';
 import { VektorLabor } from './VektorLabor';
 import { VennDiagram } from './VennDiagram';
 import { VilagKerdes } from './VilagKerdes';
+import { Vilagok } from './Vilagok';
 import { Zarojelezo } from './Zarojelezo';
 
 export const mdxComponents = {
+  Aramkor,
   Atalakitas,
   Besorolo,
   Definicio,
@@ -84,6 +90,7 @@ export const mdxComponents = {
   KomplexMuveletek,
   KomplexSik,
   KovetkezmenyEllenorzo,
+  KvantorBejaro,
   KvantorJatszoter,
   Kviz,
   Lecke,
@@ -98,12 +105,14 @@ export const mdxComponents = {
   Megoldas,
   ModellKereso,
   ModularisHatvany,
+  NormalformaTabla,
   Osszefoglalo,
   Pelda,
   PolinomIllesztes,
   PolinomVizsgalo,
   Primtenyezok,
   RelacioFelfedezo,
+  Reszleges,
   SzabadKotott,
   TablaKitolto,
   TermFa,
@@ -114,5 +123,6 @@ export const mdxComponents = {
   VektorLabor,
   VennDiagram,
   VilagKerdes,
+  Vilagok,
   Zarojelezo,
 };

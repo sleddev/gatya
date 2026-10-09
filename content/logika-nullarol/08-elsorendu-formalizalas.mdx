@@ -55,6 +55,12 @@ $$
 <Valasztas valaszok={["∀x (E(x) ∧ S(x))", "∀x (E(x) ⊃ S(x))"]} helyes={1} sym miert={["Ez azt mondja, hogy MINDENKI egyetemista és sportol: a nagymamád is, a kutyád is. Túl erős.", ""]}>
 „Minden egyetemi hallgató sportol.”
 </Valasztas>
+
+Nézd meg egy kis világban! Anna és Bence egyetemista, és mindketten sportolnak. Nagyi nem egyetemista, és nem sportol. Itt a mondat („minden egyetemista sportol”) **igaz**.
+
+<VilagKerdes U={["Anna", "Bence", "Nagyi"]} ikonok={{ Anna: "👩‍🎓", Bence: "👨‍🎓", Nagyi: "👵" }} rel={{ E: ["Anna", "Bence"], S: ["Anna", "Bence"] }} formulak={["∀x (E(x) ⊃ S(x))", "∀x (E(x) ∧ S(x))"]} magyarazat="A ∀x (E(x) ∧ S(x)) Nagyi miatt hamis, mert ő nem egyetemista. A mondat viszont igaz ebben a világban, tehát ez a fordítás rossz.">
+Melyik formula igaz ebben a világban?
+</VilagKerdes>
 </Kartya>
 
 <Kartya cim="A második aranyszabály: van → ∧">
@@ -67,6 +73,12 @@ $$
 <Valasztas valaszok={["∃x (E(x) ∧ S(x))", "∃x (E(x) ⊃ S(x))"]} helyes={0} sym miert={["", "Ez szinte mindig igaz: elég, ha van valaki, aki nem egyetemista, mert hamis előtag mellett az implikáció igaz. Ez nem az, amit mondani akartunk."]}>
 „Bizonyos egyetemi hallgatók sportolnak.” (**2.P.8 f**)
 </Valasztas>
+
+Egy másik világban Anna egyetemista, de nem sportol, Nagyi pedig se nem egyetemista, se nem sportol. Itt a mondat („van egyetemista, aki sportol”) **hamis**, hiszen senki sem sportol.
+
+<VilagKerdes U={["Anna", "Nagyi"]} ikonok={{ Anna: "👩‍🎓", Nagyi: "👵" }} rel={{ E: ["Anna"], S: [] }} formulak={["∃x (E(x) ∧ S(x))", "∃x (E(x) ⊃ S(x))"]} magyarazat="Az ∃x (E(x) ⊃ S(x)) igaz, mert Nagyira E(Nagyi) ⊃ S(Nagyi) = 0 ⊃ 0 = 1. Pedig senki sem sportol! Ezért nem jó a ⊃ az ∃ mellé.">
+Melyik formula igaz ebben a világban?
+</VilagKerdes>
 
 <Tipp cim="egy mondatban">
 **∀ mellé ⊃, ∃ mellé ∧.** Ha a ZH-n ∀x(… ∧ …) vagy ∃x(… ⊃ …) alakot írsz, gyanakodj!
@@ -104,6 +116,12 @@ $sz(x, y)$: „$x$ szereti $y$-t”. Vigyázz a sorrendre: az **első** argument
 $\forall x \exists y\, sz(x,y)$: mindenkinek van **valakije** (lehet mindenkinek más).
 
 $\exists y \forall x\, sz(x,y)$: van **egy** ember, akit mindenki szeret (ugyanaz az egy).
+
+A rajzon a nyíl azt jelenti, hogy „szereti”: Anna Beát, Bea Cilit, Cili Annát.
+
+<VilagKerdes U={["Anna", "Bea", "Cili"]} rel={{ sz: [["Anna", "Bea"], ["Bea", "Cili"], ["Cili", "Anna"]] }} formulak={["∀x ∃y sz(x, y)", "∃y ∀x sz(x, y)"]} magyarazat="Mindenkinek van valakije (mindenkiből indul nyíl), de nincs olyan ember, akibe mindenkitől érkezik nyíl.">
+Igaz vagy hamis ebben a világban?
+</VilagKerdes>
 
 <Valasztas valaszok={["∀x ∃y sz(x, y)", "∃y ∀x sz(x, y)"]} helyes={1} sym miert={["Ez csak azt mondja, hogy mindenkinek van valakije, de lehet mindenkinek más. Itt egyetlen közös személyről van szó.", ""]}>
 **2.P.6 (f)** „Van, akit mindenki szeret.”

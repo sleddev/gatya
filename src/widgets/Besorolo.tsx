@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
+import { useExercise } from './lesson';
 import { Bench } from './ui';
 
 type Item = { kerdes: string; helyes: number; miert?: string };
 
-/** A list of items to classify into one of the given categories. */
+/** A list of items to classify into one of the given categories. Inside a lesson card it counts as an exercise. */
 export function Besorolo({
   cim = 'Sorold be!',
   utmutato,
@@ -17,6 +18,13 @@ export function Besorolo({
   elemek: Item[];
 }) {
   const [picks, setPicks] = useState<Record<number, number>>({});
+  const ex = useExercise();
+  const pick = (i: number, j: number) => {
+    const next = { ...picks, [i]: j };
+    setPicks(next);
+    if (j !== elemek[i].helyes) ex.miss();
+    else if (elemek.every((e, k) => next[k] === e.helyes)) ex.solve();
+  };
   const done = Object.keys(picks).length;
   const right = elemek.filter((e, i) => picks[i] === e.helyes).length;
   return (
@@ -35,7 +43,7 @@ export function Besorolo({
                     key={j}
                     type="button"
                     className={`btn${p === undefined ? '' : j === e.helyes ? ' right' : p === j ? ' wrong' : ''}`}
-                    onClick={() => setPicks({ ...picks, [i]: j })}>
+                    onClick={() => pick(i, j)}>
                     {o}
                   </button>
                 ))}

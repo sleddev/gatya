@@ -1448,3 +1448,204 @@
 .gatya-doc .drill .opts {
   grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
 }
+
+/* possible worlds of an argument (Vilagok) */
+.gatya-doc ol.argument {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 3px;
+}
+.gatya-doc ol.argument li {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.gatya-doc ol.argument li.concl {
+  border-top: 1.5px solid var(--ink);
+  padding-top: 4px;
+  margin-top: 2px;
+  font-weight: 600;
+}
+.gatya-doc .arg-tag {
+  flex: none;
+  min-width: 3.2em;
+  font: 600 0.78rem var(--mono);
+  color: var(--muted);
+}
+.gatya-doc .worlds {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 8px;
+}
+.gatya-doc .wcard {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: 400 0.88rem var(--font);
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+.gatya-doc .wcard:hover {
+  border-color: var(--acc);
+}
+.gatya-doc .wcard.sel {
+  border-color: var(--acc);
+  background: color-mix(in srgb, var(--acc) 10%, var(--surface));
+  transform: translateY(-2px);
+}
+.gatya-doc .wcard.counter {
+  border-color: var(--bad);
+  background: color-mix(in srgb, var(--bad) 10%, var(--surface));
+}
+.gatya-doc .wcard.model {
+  border-color: var(--good);
+  background: color-mix(in srgb, var(--good) 9%, var(--surface));
+}
+.gatya-doc .wcard-h {
+  font: 600 0.72rem var(--mono);
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.gatya-doc .wvals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+  font: 600 0.74rem var(--mono);
+}
+.gatya-doc .wvals > span {
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+.gatya-doc .wvals .t {
+  color: var(--good);
+  background: color-mix(in srgb, var(--good) 12%, transparent);
+}
+.gatya-doc .wvals .f {
+  color: var(--bad);
+  background: color-mix(in srgb, var(--bad) 10%, transparent);
+}
+.gatya-doc .wvals.hidden {
+  color: var(--axis);
+}
+
+/* universe elements (KvantorBejaro, VilagKerdes) */
+.gatya-doc .elems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.gatya-doc .elem {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 78px;
+  padding: 8px 10px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 600 0.88rem var(--font);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.gatya-doc .elem.static {
+  cursor: default;
+}
+.gatya-doc .elem.in {
+  border-color: var(--acc);
+  background: color-mix(in srgb, var(--acc) 14%, var(--surface));
+}
+.gatya-doc .elem.cex {
+  box-shadow: 0 0 0 2px var(--bad);
+}
+.gatya-doc .elem.wit {
+  box-shadow: 0 0 0 2px var(--good);
+}
+.gatya-doc .elem-ic {
+  font-size: 1.7rem;
+  line-height: 1.1;
+}
+.gatya-doc .elem-v {
+  font: 500 0.72rem var(--mono);
+  color: var(--acc);
+}
+.gatya-doc .elem-v.off,
+.gatya-doc .elem:not(.in):not(.static) .elem-v {
+  color: var(--muted);
+}
+.gatya-doc .qrows {
+  display: grid;
+  gap: 10px;
+}
+.gatya-doc .qrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.gatya-doc .qexp {
+  flex: 1 1 14em;
+  min-width: 0;
+  font-family: var(--math);
+  color: var(--muted);
+  overflow-x: auto;
+}
+
+/* partial evaluation (Reszleges) */
+.gatya-doc ol.eval-steps.partial li > span {
+  display: inline;
+}
+.gatya-doc ol.eval-steps.partial li.main {
+  font-weight: 700;
+}
+.gatya-doc ol.eval-steps.partial b.unk {
+  color: var(--warn);
+}
+
+/* switches (Aramkor) */
+.gatya-doc svg.circuit .wire {
+  stroke: var(--axis);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.gatya-doc svg.circuit .wire.live {
+  stroke: var(--q4);
+}
+.gatya-doc svg.circuit .wire-dot {
+  fill: var(--ink);
+}
+.gatya-doc svg.circuit .lever {
+  stroke: var(--ink);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: all 0.15s;
+}
+.gatya-doc svg.circuit .battery {
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+.gatya-doc svg.circuit .lamp {
+  fill: var(--surface);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.gatya-doc svg.circuit .lamp.on {
+  fill: color-mix(in srgb, var(--q4) 45%, var(--surface));
+  filter: drop-shadow(0 0 8px var(--q4));
+}

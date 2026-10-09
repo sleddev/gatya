@@ -217,6 +217,10 @@ Ne használj `##` címsort leckén belül; a kártya címe a `cim`.
 | `<Kartya>` | egy lépés | `cim` |
 | `<Valasztas>` | feleletválasztás; a kérdés a tartalom | `valaszok`, `helyes` (index vagy indexek listája: több jó válasz), `miert` (magyarázat opciónként), `magyarazat`, `sym` (képlet-betűtípus) |
 | `<FormulaValasz>` | formula beírása | `helyes`, `mod` (`ekv`: ekvivalens is jó, alapértelmezés; `szerkezet`; `teljes`: teljes zárójelezés; `minimalis`: legkevesebb zárójel; `tiszta`: változóiban tiszta; `prenex`; `knf`; `dnf`), `elsorendu`, `kezdo`, `tipp`, `magyarazat` |
+| `<Vilagok>` | egy következtetés összes lehetséges világa kártyákon; ellenpéldát kell keresni, vagy kimondani, hogy nincs | `betuk` (betű → [igaz felirat, hamis felirat]), `premisszak`, `konkluzio`, `mondatok` (szöveges alak: premisszák, végül a konklúzió), `magyarazat` |
+| `<KvantorBejaro>` | egyváltozós predikátum kis univerzumon, a ∀ mint nagy ∧, az ∃ mint nagy ∨; `cel`-lal feladat | `elemek` („🐱 Cirmi” alakban), `pred`, `leiras`, `kezdo`, `cel` ([∀ értéke, ∃ értéke]; ha lehetetlen, az „Ez lehetetlen” gomb a jó válasz), `magyarazat` |
+| `<VilagKerdes>` | (lásd fent) egyváltozós predikátumoknál az elemeket kártyákon rajzolja; `ikonok`: elem → emoji | |
+| `<Besorolo>` | leckében feladatként számít: akkor kész, ha minden sor jó | |
 | `<TablaKitolto>` | igazságtábla kitöltése (részformulánként) | `formula`, `sor` (pl. `"X=1, Y=0"`: csak egy interpretáció), `reszek` |
 | `<FoJel>` | a fő logikai jel megkeresése; `fa`-val az egész szerkezeti fa felépítése | `formula`, `fa`, `elsorendu` |
 | `<SzabadKotott>` | változó-előfordulások jelölése szabadnak/kötöttnek | `formula` |
@@ -228,6 +232,11 @@ Ne használj `##` címsort leckén belül; a kártya címe a `cim`.
 Elsőrendű begépelésnél a nevek kisbetűs szavak (`veronika`), a változók `x y z v w`.
 A begépelt választ a program tartalom szerint ellenőrzi: ítéletlogikában igazságtáblával,
 elsőrendűben sok kis véletlen modellen.
+
+Kártyán belül, nem kötelező feladatként használható szemléltetők (a `Tovább` gombot nem tartják vissza):
+`<Aramkor mod="es|vagy">` (∧ és ∨ kapcsolókkal), `<Reszleges formula ismert="Z=1">` (kiértékelés
+részleges információból), `<NormalformaTabla formula>` (igazságtáblából DNF és KNF), valamint a régi
+logika tárgy `<ImplikacioDiagram>`, `<TermFa>`, `<KisVilag>`, `<KvantorJatszoter>` komponensei.
 
 ## Ellenőrzés
 

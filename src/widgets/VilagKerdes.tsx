@@ -48,6 +48,7 @@ export function VilagKerdes({
   children,
   magyarazat,
   abra = true,
+  ikonok = {},
 }: {
   vilag?: keyof typeof PRESETS;
   U?: string[];
@@ -59,6 +60,8 @@ export function VilagKerdes({
   children?: ReactNode;
   magyarazat?: ReactNode;
   abra?: boolean;
+  /** element → emoji, for drawing worlds with only one-place predicates */
+  ikonok?: Record<string, string>;
 }) {
   const preset = vilag ? PRESETS[vilag] : undefined;
   const U = U0 ?? preset?.U ?? [];
@@ -107,9 +110,7 @@ export function VilagKerdes({
           ))}
           {unary.map(([p, l]) => (
             <div key={p}>
-              ϱ({p}) = {'{'}
-              {(l as string[]).join(', ')}
-              {'}'}
+              ϱ({p}) = {l.length ? `{${(l as string[]).join(', ')}}` : '∅'}
             </div>
           ))}
           {Object.entries(fv).map(([f, m]) => (
@@ -124,6 +125,25 @@ export function VilagKerdes({
           ))}
         </div>
         {abra && binary.length ? <RelationGraph U={U} pairs={binary[0][1] as [string, string][]} unary={unary[0]?.[1] as string[] | undefined} /> : null}
+        {abra && !binary.length && unary.length ? (
+          <div className="elems" aria-label="Az univerzum elemei és tulajdonságaik">
+            {U.map((u) => (
+              <div key={u} className="elem static">
+                {ikonok[u] ? (
+                  <span className="elem-ic" aria-hidden>
+                    {ikonok[u]}
+                  </span>
+                ) : null}
+                <span>{u}</span>
+                {unary.map(([p, l]) => (
+                  <span key={p} className={`elem-v${(l as string[]).includes(u) ? '' : ' off'}`}>
+                    {(l as string[]).includes(u) ? p : `¬${p}`}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
       <ol className="wq">
         {items.map((it, i) => {
