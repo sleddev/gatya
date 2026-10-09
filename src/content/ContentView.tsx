@@ -97,7 +97,21 @@ export default function ContentView({ id, scheme, anchor, learned, native, botto
     });
     const ro = new ResizeObserver(fit);
     ro.observe(el);
-    return () => ro.disconnect();
+    // Lessons reveal their cards one by one, so new formulas appear without a resize.
+    let frame = 0;
+    const mo = new MutationObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        width = -1;
+        fit();
+      });
+    });
+    mo.observe(el, { childList: true, subtree: true });
+    return () => {
+      ro.disconnect();
+      mo.disconnect();
+      cancelAnimationFrame(frame);
+    };
   }, [id]);
 
   useEffect(() => {

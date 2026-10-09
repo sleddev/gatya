@@ -64,6 +64,8 @@
   margin: 0 auto;
   padding: 28px 20px 0;
   display: grid;
+  /* one column that never grows past the screen, whatever its children want */
+  grid-template-columns: minmax(0, 1fr);
   gap: 0;
 }
 @media (max-width: 520px) {
@@ -264,6 +266,9 @@
   font-size: 1.15em;
 }
 /* Grid children default to their content's width; keep them inside the column instead. */
+.gatya-doc .ex > *,
+.gatya-doc .bench > *,
+.gatya-doc .card-body > *,
 .gatya-doc .doc-body li,
 .gatya-doc .callout > *,
 .gatya-doc .example > *,
@@ -927,12 +932,15 @@
 }
 .gatya-doc .pager {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 .gatya-doc .pager-link {
   display: grid;
   gap: 2px;
+  /* long titles like „interpretációban” must break on narrow phones */
+  hyphens: auto;
+  overflow-wrap: anywhere;
   text-decoration: none;
   border: 1px solid var(--line);
   border-radius: 10px;
