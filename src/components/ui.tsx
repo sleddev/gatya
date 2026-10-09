@@ -99,7 +99,7 @@ export function SubjectBadge({ subject, size = 40 }: { subject: Subject; size?: 
   const color = useSubjectColor()(subject);
   return (
     <View style={[styles.badge, { width: size, height: size, backgroundColor: color }]}>
-      <Text style={{ color: '#fff', fontWeight: '700', fontSize: size * (subject.short.length <= 4 ? 0.3 : 0.22), fontFamily: Fonts?.mono }}>
+      <Text style={{ color: '#fff', fontWeight: '700', textAlign: 'center', fontSize: size * (subject.short.length <= 4 ? 0.3 : 0.22), fontFamily: Fonts?.mono }}>
         {subject.short}
       </Text>
     </View>
