@@ -50,6 +50,10 @@ Ugyanebben az interpretációban: munkatársak(édesanyja(Péter), Mari néni)?
 <Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["Az édesanyja(Péter) = lakó3, és lakó3 nincs a tanul halmazában.", ""]}>
 És a tanul(édesanyja(Péter))?
 </Valasztas>
+
+Egy kis világ, amit te szerkeszthetsz. A formula értékét belülről kifelé, lépésenként számolja ki:
+
+<KisVilag />
 </Kartya>
 
 <Kartya cim="Kvantorok értéke">
@@ -61,9 +65,19 @@ Véges univerzumon tehát: a $\forall$ egy nagy **és**, az $\exists$ egy nagy *
 - A $\forall$ **cáfolásához** elég **egy** ellenpélda.
 - Az $\exists$ **igazolásához** elég **egy** tanú.
 
+<KvantorBejaro elemek={["🐱 Cirmi", "🐶 Bodri", "🐰 Nyuszi"]} pred="alszik" leiras="x alszik" cel={[false, true]} magyarazat="Elég egy alvó állat (tanú) az ∃-hez, és elég egy ébren lévő (ellenpélda), hogy a ∀ hamis legyen.">
+Kapcsold be és ki az állatokat úgy, hogy $\exists x\, \text{alszik}(x)$ igaz, $\forall x\, \text{alszik}(x)$ pedig hamis legyen!
+</KvantorBejaro>
+
 <Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["Elég egy ellenpélda: van olyan lakó, aki nem tanul (pl. lakó3).", ""]}>
 Az előző interpretációban mennyi $\forall x\, \text{tanul}(x)$?
 </Valasztas>
+</Kartya>
+
+<Kartya cim="Lehetetlen küldetés?">
+<KvantorBejaro elemek={["🐱 Cirmi", "🐶 Bodri", "🐰 Nyuszi"]} pred="alszik" leiras="x alszik" cel={[true, false]} magyarazat="Ha minden állat alszik, akkor van alvó állat, hiszen az univerzum nem üres. Ezért ∀x A ⊨ ∃x A: ez az elsőrendű logika egyik következménye, és pont azon múlik, hogy U nem lehet üres.">
+Most fordítva: legyen $\forall x\, \text{alszik}(x)$ **igaz**, de $\exists x\, \text{alszik}(x)$ **hamis**! Ha szerinted nem lehet, nyomd meg az „Ez lehetetlen” gombot.
+</KvantorBejaro>
 </Kartya>
 
 <Kartya cim="Egy kis világ: oszthatóság (5.P.5)">

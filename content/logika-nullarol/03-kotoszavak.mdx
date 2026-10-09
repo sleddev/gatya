@@ -89,6 +89,10 @@ Ha a mondat kifejezetten kizárja, hogy mindkettő igaz legyen, azt **külön** 
 <Valasztas valaszok={["s ⊃ n", "n ⊃ s"]} helyes={0} sym miert={["", "Fordítva van! Szivárvány csak akkor van, ha süt a nap: tehát ha van szivárvány, akkor süt a nap. Abból, hogy süt a nap, még nem lesz szivárvány."]}>
 $s$: „Szivárvány van.” $n$: „Süt a nap.” Mi a formulája: „Szivárvány **csak akkor** van, ha süt a nap”?
 </Valasztas>
+
+Rajzban: az $A \supset B$ azt jelenti, hogy az $A$ kör **belül** van a $B$ körön. Szivárvány csak napsütésben van, a napsütés viszont szivárvány nélkül is lehet.
+
+<ImplikacioDiagram a="szivárvány van" b="süt a nap" />
 </Kartya>
 
 <Kartya cim="Implikáció a gyakorlatban">
@@ -107,6 +111,23 @@ $s$: „Szivárvány van.” $n$: „Süt a nap.” Mi a formulája: „Szivárv
 <FormulaValasz helyes="v ≡ t" tipp="„pontosan akkor, ha” = ≡">
 $v$: „Vizsgázhatok.” $t$: „Teljesítettem a gyakorlatot.” Formalizáld: „Pontosan akkor vizsgázhatok, ha teljesítettem a gyakorlatot.”
 </FormulaValasz>
+</Kartya>
+
+<Kartya cim="Gyors kör: melyik jel?">
+Mielőtt hosszabb mondatokat fordítanál, gyakorold a kötőszavakat! Minden sorban válaszd ki a jelet.
+
+<Besorolo cim="Kötőszó → jel" utmutato="Ha tévedsz, a sor megmutatja a jó választ; kattints rá, hogy továbbléphess." opciok={["¬", "∧", "∨", "⊃", "≡"]} elemek={[
+  { kerdes: "de", helyes: 1, miert: "Ellentétet fejez ki, de logikailag „és”." },
+  { kerdes: "nem igaz, hogy", helyes: 0 },
+  { kerdes: "feltéve, hogy", helyes: 3, miert: "Feltételt vezet be: az előtagba kerül." },
+  { kerdes: "bár", helyes: 1 },
+  { kerdes: "pontosan akkor, ha", helyes: 4 },
+  { kerdes: "vagy", helyes: 2, miert: "Megengedő vagy." },
+  { kerdes: "csak akkor, ha", helyes: 3, miert: "„A csak akkor, ha B”: A ⊃ B. A „ha” utáni rész az utótag!" },
+  { kerdes: "mégis", helyes: 1 },
+  { kerdes: "amennyiben", helyes: 3 },
+  { kerdes: "akkor és csak akkor, ha", helyes: 4 }
+]} />
 </Kartya>
 
 <Kartya cim="Egy hosszú mondat">

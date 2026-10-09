@@ -42,6 +42,16 @@ Figyeld meg: a definíció **nem** mondja, hogy a premisszák ténylegesen igaza
 </Valasztas>
 </Kartya>
 
+<Kartya cim="Ellenőrzés: minden lehetséges világ">
+Hogyan látható be, hogy **lehetetlen**, hogy a premisszák igazak, a konklúzió pedig hamis? Vegyük sorra az **összes lehetséges helyzetet**! Ezeket **világoknak** hívjuk. Ha az alapállítások: „esik-e az eső” és „sáros-e az út”, akkor négy világ van: mindkettő lehet igaz vagy hamis.
+
+A következtetés **helyes**, ha nincs olyan világ, ahol minden premissza igaz, a konklúzió pedig hamis. Egy ilyen világ az **ellenpélda**.
+
+<Vilagok betuk={{ e: ["🌧️ esik", "☀️ nem esik"], s: ["🟫 sáros az út", "✨ száraz az út"] }} premisszak={["e", "e ⊃ s"]} konkluzio="s" mondatok={["Esik az eső.", "Ha esik az eső, sáros az út.", "Sáros az út."]} magyarazat="Mindkét premissza csak az 1. világban igaz, és ott sáros az út. A 2. világ a második premisszát sérti (esik, mégis száraz), a 3. és a 4. az elsőt.">
+Helyes-e ez a következtetés? Nézd meg mind a négy világot!
+</Vilagok>
+</Kartya>
+
 <Kartya cim="A forma számít, nem a tartalom">
 Nézd meg ezt a hármat:
 
@@ -68,6 +78,12 @@ Ez a séma **nem** helyes: „Ha $A$, akkor $B$. $B$. Tehát $A$.” Egy példa 
 > Ha ebben a parkolóban parkolok, akkor az én autóm a legszebb a parkolóban. Ha az én autóm a legszebb a parkolóban, akkor a feleségem máshol parkol. A feleségem máshol parkol. → Tehát ebben a parkolóban parkolok.
 
 Lehetséges, hogy a premisszák igazak, a konklúzió mégis hamis? Igen: lehet, hogy egyikünk sem ebben a parkolóban áll, és a feleségem egyszerűen máshol parkol. A premisszák ekkor mind igazak.
+
+Nézd meg ugyanezt a sémát az esős példán:
+
+<Vilagok betuk={{ e: ["🌧️ esik", "☀️ nem esik"], s: ["🟫 sáros az út", "✨ száraz az út"] }} premisszak={["e ⊃ s", "s"]} konkluzio="e" mondatok={["Ha esik az eső, sáros az út.", "Sáros az út.", "Esik az eső."]} magyarazat="A 3. világban nem esik, mégis sáros az út (mondjuk elment egy locsolóautó). Ott mindkét premissza igaz, a konklúzió hamis.">
+„Ha esik, sáros. Sáros. Tehát esik.” Keresd meg az ellenpéldát!
+</Vilagok>
 
 <Valasztas valaszok={["Helyes, hiszen minden állítás igaz benne", "Nem helyes"]} helyes={1} miert={["Csapda! Hogy az állítások ténylegesen igazak, az nem számít. Ugyanez a séma igaz premisszákból hamis konklúzióra is vezethet (lásd a parkolót).", ""]} magyarazat="Ugyanaz a hibás séma, mint a parkolónál. Az, hogy a konklúzió történetesen igaz, nem teszi helyessé a következtetést.">
 **7.I.23 (b).** „Ha a 2 prímszám, akkor a 2 a legkisebb prímszám. Ha a 2 a legkisebb prímszám, akkor az 1 nem prímszám. Az 1 nem prímszám. Tehát a 2 prímszám.” Helyes-e ez a következtetés?
@@ -131,8 +147,9 @@ Melyek fejezik ki ugyanazt?
 - **Állítás:** kijelentő mondat, ami igaz vagy hamis.
 - **Helyes következtetés:** lehetetlen, hogy a premisszák igazak, a konklúzió hamis. Nem számít, hogy a premisszák ténylegesen igazak-e.
 - A helyesség csak a **logikai formától** függ (ha–akkor, és, vagy, nem, minden, van), a tartalomtól nem.
-- Helyes: $A$, ha $A$ akkor $B$ ⊢ $B$ (**modus ponens**); nem $B$, ha $A$ akkor $B$ ⊢ nem $A$ (**modus tollens**).
-- **Hibás:** ha $A$ akkor $B$, $B$ ⊢ $A$. Ez a leggyakoribb csapda.
+- Ellenőrzés: nézd végig a **lehetséges világokat**. Ha van, ahol minden premissza igaz, a konklúzió hamis (**ellenpélda**), akkor nem helyes.
+- Helyes: „$A$; ha $A$, akkor $B$; tehát $B$” (**modus ponens**); „nem $B$; ha $A$, akkor $B$; tehát nem $A$” (**modus tollens**).
+- **Hibás:** „ha $A$, akkor $B$; $B$; tehát $A$”. Ez a leggyakoribb csapda.
 - **Elhallgatott premissza:** az a kimondatlan feltevés, ami nélkül a következtetés nem helyes. Figyelj a „van legalább egy” típusú hiányokra!
 - Két mondat **ugyanazt állítja**, ha nem lehet, hogy az egyik igaz, a másik hamis. „Ha $A$, akkor $B$” = „ha nem $B$, akkor nem $A$” (kontrapozíció), de ≠ „ha $B$, akkor $A$”.
 </Osszefoglalo>
