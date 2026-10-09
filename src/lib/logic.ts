@@ -13,12 +13,14 @@ export type Quant = '∀' | '∃';
 
 export type Term = { t: 'v'; n: string; tok: number } | { t: 'c'; n: string } | { t: 'f'; n: string; args: Term[] };
 
-export type Formula =
+/** `s`: first and last token of the formula in the parsed text (without enclosing brackets). */
+export type Formula = (
   | { t: 'var'; n: string }
   | { t: 'atom'; n: string; args: Term[] }
-  | { t: 'not'; a: Formula }
-  | { t: 'bin'; op: BinOp; a: Formula; b: Formula }
-  | { t: 'q'; q: Quant; x: string; id: number; qtok: number; vtok: number; a: Formula };
+  | { t: 'not'; a: Formula; otok?: number }
+  | { t: 'bin'; op: BinOp; a: Formula; b: Formula; otok?: number }
+  | { t: 'q'; q: Quant; x: string; id: number; qtok: number; vtok: number; a: Formula }
+) & { s?: [number, number] };
 
 export interface Token {
   k: 'op' | 'id';
@@ -91,7 +93,11 @@ export function lex(src: string): Token[] {
     }
     const m = /^[\p{L}_][\p{L}\p{N}_']*/u.exec(src.slice(i));
     if (m) {
-      const w = m[0];
+      let w = m[0];
+      // "∀xP(x)" as in the textbook: after a quantifier only the variable belongs to it
+      const prev = out[out.length - 1];
+      const v = /^[xyzvw][0-9]*/.exec(w);
+      if (prev && (prev.v === '∀' || prev.v === '∃') && v && v[0].length < w.length) w = v[0];
       if (w === 'forall' || w === 'exists') out.push({ k: 'op', v: w === 'forall' ? '∀' : '∃', i, len: w.length });
       else out.push({ k: 'id', v: w, i, len: w.length });
       i += w.length;
@@ -116,32 +122,32 @@ export function parse(src: string, firstOrder = false): { ast: Formula; tokens: 
   const equiv = (): Formula => {
     let a = impl();
     while (peek()?.v === '≡') {
-      p++;
-      a = { t: 'bin', op: '≡', a, b: impl() };
+      const otok = p++;
+      a = span({ t: 'bin', op: '≡', a, b: impl(), otok });
     }
     return a;
   };
   const impl = (): Formula => {
     const a = or();
     if (peek()?.v === '⊃') {
-      p++;
-      return { t: 'bin', op: '⊃', a, b: impl() };
+      const otok = p++;
+      return span({ t: 'bin', op: '⊃', a, b: impl(), otok });
     }
     return a;
   };
   const or = (): Formula => {
     let a = and();
     while (peek()?.v === '∨') {
-      p++;
-      a = { t: 'bin', op: '∨', a, b: and() };
+      const otok = p++;
+      a = span({ t: 'bin', op: '∨', a, b: and(), otok });
     }
     return a;
   };
   const and = (): Formula => {
     let a = unary();
     while (peek()?.v === '∧') {
-      p++;
-      a = { t: 'bin', op: '∧', a, b: unary() };
+      const otok = p++;
+      a = span({ t: 'bin', op: '∧', a, b: unary(), otok });
     }
     return a;
   };
@@ -163,12 +169,22 @@ export function parse(src: string, firstOrder = false): { ast: Formula; tokens: 
     if (peek()?.v === '(') return { t: 'f', n: k.v, args: args() };
     return isVariable(k.v) ? { t: 'v', n: k.v, tok: p - 1 } : { t: 'c', n: k.v };
   };
+  const span = (f: Extract<Formula, { t: 'bin' }>): Formula => {
+    f.s = [f.a.s![0], f.b.s![1]];
+    return f;
+  };
   const unary = (): Formula => {
+    const start = p;
+    const f = unaryInner();
+    if (!f.s) f.s = [start, p - 1];
+    return f;
+  };
+  const unaryInner = (): Formula => {
     const k = peek();
     if (!k) return fail('A formula túl korán véget ér: hiányzik valami az utolsó művelet után.');
     if (k.v === '¬') {
-      p++;
-      return { t: 'not', a: unary() };
+      const otok = p++;
+      return { t: 'not', a: unary(), otok };
     }
     if (k.v === '∀' || k.v === '∃') {
       if (!firstOrder) fail('Kvantor csak elsőrendű formulában lehet. Ez az eszköz ítéletlogikai.', k);

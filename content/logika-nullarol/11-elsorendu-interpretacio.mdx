@@ -1,0 +1,113 @@
+---
+cim: Elsőrendű interpretáció
+osszefoglalo: "Univerzum és ϱ: mit jelölnek a nevek, a függvények és a predikátumok, hogyan kapjuk meg egy term és egy kvantoros formula értékét egy kis világban."
+allapot: lecke
+kulcsszavak: [interpretáció, univerzum, ϱ, term értéke, kvantor kiértékelése, objektumtartomány, reláció]
+forras: gyak03 (szemantikai szabályok) · gyak04 (5.P.1, 5.P.5, 2.P.6)
+---
+
+<Lecke>
+
+<Kartya cim="Miről beszélünk? Az univerzum">
+A „minden” szónak csak akkor van értelme, ha tudjuk, **mi mindenről** beszélünk. Az elsőrendű **interpretáció** egy $\langle U, \varrho \rangle$ pár:
+
+- $U$ az **univerzum** (objektumtartomány): nem üres halmaz, ezekről a dolgokról szólnak a formulák.
+- $\varrho$ megmondja, mit jelölnek a nemlogikai jelek:
+  - **név** → $U$ egy eleme: $\varrho(\text{Péter}) = \text{lakó1}$
+  - **függvényjel** → függvény $U$-n: $\varrho(\text{édesanyja})$: lakó1 ↦ lakó3, …
+  - **predikátum** → $U$ elemeinek (vagy elem-$n$-eseinek) halmaza, amelyekre igaz: $\varrho(\text{tanul}) = \{\text{lakó1}, \text{lakó2}\}$
+  - **állításkonstans** → 0 vagy 1
+
+<Valasztas valaszok={["egy elemet", "egy halmazt: azokat, akik özvegyek", "egy igazságértéket"]} helyes={1} miert={["Az a név lenne.", "", "Az az állításkonstans lenne. Predikátumnak csak kitöltve van igazságértéke."]}>
+Mit rendel a $\varrho$ egy egyargumentumú predikátumhoz, például az özvegy( )-hez?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Termek értéke">
+Egy term értéke $U$ egy **eleme**. Belülről kifelé számolunk:
+
+- név: $|a| = \varrho(a)$
+- függvény: $|f(t_1, \dots, t_n)| = \varrho(f)(|t_1|, \dots, |t_n|)$
+
+Az előadás példája: $U$ = a város lakói; $\varrho(\text{Péter}) = \text{lakó1}$, $\varrho(\text{Mari néni}) = \text{lakó4}$, $\varrho(\text{édesanyja})$: lakó2 ↦ lakó4, lakó1 ↦ lakó3; $\varrho(\text{tanul}) = \{\text{lakó1}, \text{lakó2}\}$; $\varrho(\text{munkatársak}) = \{(\text{lakó2}, \text{lakó5}), (\text{lakó5}, \text{lakó2}), (\text{lakó3}, \text{lakó4}), (\text{lakó4}, \text{lakó3})\}$.
+
+<Valasztas valaszok={["lakó1", "lakó3", "lakó4"]} helyes={1} miert={["Ez maga Péter.", "", "Ez a lakó2 anyja."]}>
+Mi az édesanyja(Péter) értéke?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Atomi formulák értéke">
+Egy atomi formula **igaz**, ha az argumentumok értékeiből álló elem (vagy pár) **benne van** a predikátum $\varrho$-beli halmazában:
+
+$$
+|P(t_1, \dots, t_n)| = 1 \iff (|t_1|, \dots, |t_n|) \in \varrho(P)
+$$
+
+<Valasztas valaszok={["igaz", "hamis"]} helyes={0} miert={["", "Számold ki: édesanyja(Péter) = lakó3, Mari néni = lakó4. Benne van a (lakó3, lakó4) pár a munkatársak halmazában?"]}>
+Ugyanebben az interpretációban: munkatársak(édesanyja(Péter), Mari néni)?
+</Valasztas>
+
+<Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["Az édesanyja(Péter) = lakó3, és lakó3 nincs a tanul halmazában.", ""]}>
+És a tanul(édesanyja(Péter))?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Kvantorok értéke">
+- $|\forall x\, A| = 1$, ha $U$ **minden** $u$ elemére igaz $A$, amikor $x$ helyére $u$-t írunk.
+- $|\exists x\, A| = 1$, ha $U$-nak **van olyan** $u$ eleme, amelyre igaz $A$, amikor $x$ helyére $u$-t írunk.
+
+Véges univerzumon tehát: a $\forall$ egy nagy **és**, az $\exists$ egy nagy **vagy** az elemeken.
+
+- A $\forall$ **cáfolásához** elég **egy** ellenpélda.
+- Az $\exists$ **igazolásához** elég **egy** tanú.
+
+<Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["Elég egy ellenpélda: van olyan lakó, aki nem tanul (pl. lakó3).", ""]}>
+Az előző interpretációban mennyi $\forall x\, \text{tanul}(x)$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Egy kis világ: oszthatóság (5.P.5)">
+$U = \{1, 2, 3, 4\}$, $\varrho(R) = \{(u, v) \mid u \text{ osztja } v\text{-t}\}$. A rajzon $u \to v$ nyíl jelenti, hogy $R(u, v)$; a hurok, hogy $R(u, u)$.
+
+**Tipp:** a kvantorokat **kívülről befelé** olvasd: „van olyan $x$, hogy minden $y$-ra …”. Döntsd el, mi kell hozzá: tanú vagy ellenpélda?
+
+<VilagKerdes vilag="oszto" formulak={["¬∃x ¬R(x, x)", "∀y ∃x R(x, y)", "∃x ∀y R(x, y)", "∃x ∃y (R(x, y) ∧ ¬R(y, x))", "∀x ∀y (R(x, y) ∨ ¬R(y, x))"]} magyarazat="Az (e) azért hamis, mert x = 2, y = 1 esetén R(2, 1) hamis, de R(1, 2) igaz, így ¬R(1, 2) is hamis.">
+Igaz vagy hamis? (Ha tévedsz, nézd meg a „miért?” lépéseit.)
+</VilagKerdes>
+</Kartya>
+
+<Kartya cim="Szeretet-háromszög">
+Most nézzük a „szeret” formulákat egy konkrét világban! $U = \{\text{Anna}, \text{Bea}, \text{Cili}\}$, a nyíl: „szereti”.
+
+<VilagKerdes U={["Anna", "Bea", "Cili"]} rel={{ sz: [["Anna", "Bea"], ["Bea", "Cili"], ["Cili", "Bea"]] }} formulak={["∀x ∃y sz(x, y)", "∃y ∀x sz(x, y)", "∃x ∀y sz(x, y)", "∃y ¬∃x sz(x, y)", "∀x sz(x, x)"]} magyarazat="Az első kettő különbsége a kvantorsorrend: mindenkinek van kit szeretnie, de nincs egyetlen közös szeretett személy (Beát Bea maga nem szereti).">
+Melyik igaz ebben a világban?
+</VilagKerdes>
+</Kartya>
+
+<Kartya cim="Mit jelent ebben az interpretációban? (5.P.1)">
+Ugyanaz a formula más interpretációban mást jelent:
+
+$$
+\forall x\,(P(x, c) \supset \exists y\, Q(f(y), x))
+$$
+
+<Valasztas valaszok={["Minden pozitív valós számnak van négyzetgyöke (előáll valaminek a négyzeteként).", "Minden valós szám négyzete pozitív.", "Van olyan szám, amelynek a négyzete 0."]} helyes={0} miert={["", "Fordítva: a formula az x-ről mond valamit, ha x > 0.", "Ez a ∃y Q(f(y), c) lenne."]} magyarazat="P(x, c): x > 0. Q(f(y), x): y² = x. Tehát: ha x > 0, akkor van y, amelyre y² = x. Ez igaz a valós számokon.">
+**(a)** $U = \mathbb{R}$, $c$ = 0, $f$ = négyzetre emelés, $P$ = „nagyobb”, $Q$ = „egyenlő”. Mit jelent?
+</Valasztas>
+
+<Valasztas valaszok={["Ciliké minden barátja meghívott valakit a rendezvényre.", "Cilikét mindenki meghívta.", "Mindenki barátja Cilikének."]} helyes={0} miert={["", "Nem: az f(y) = x azt jelenti, hogy y-t x hívta meg.", "Ez csak az előtag, nem az egész."]} magyarazat="P(x, c): x és Ciliké barátok. Q(f(y), x): y meghívója x, vagyis x meghívta y-t. Tehát: ha x Ciliké barátja, akkor van, akit x meghívott.">
+**(b)** $U$ = egy rendezvény résztvevői, $c$ = Ciliké, $f(x)$ = aki $x$-et meghívta, $P(x, y)$ = „$x$ és $y$ barátok”, $Q$ = „ugyanaz a személy”. Mit jelent?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- **Interpretáció:** $\langle U, \varrho \rangle$. $U$ nem üres univerzum; $\varrho$: név → elem, függvényjel → függvény, predikátum → halmaz (reláció), állításkonstans → 0/1.
+- **Term** értéke egy elem, **formula** értéke 0 vagy 1.
+- $P(t_1, \dots, t_n)$ igaz ⟺ $(|t_1|, \dots, |t_n|) \in \varrho(P)$.
+- $\forall$ = minden elemre (cáfolni egy ellenpéldával), $\exists$ = van elem (igazolni egy tanúval).
+- Több kvantornál kívülről befelé haladj. A sorrend számít.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

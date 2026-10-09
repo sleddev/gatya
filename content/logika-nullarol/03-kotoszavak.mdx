@@ -1,0 +1,142 @@
+---
+cim: Kötőszavakból logikai jelek
+osszefoglalo: "Ítéletlogikai formalizálás: hogyan lesz a magyar mondatból formula. A „de”, „bár”, „sem”, „csak akkor, ha” és társaik fordítása."
+allapot: lecke
+kulcsszavak: [formalizálás, ítéletlogika, negáció, konjunkció, diszjunkció, implikáció, ekvivalencia, csak akkor ha, feltéve hogy]
+forras: gyak01 (1.4–1.7) · eloadas02
+---
+
+<Lecke>
+
+<Kartya cim="Elemi és összetett állítások">
+Az **elemi állítás** nem bontható tovább kisebb állításokra: „Esik az eső.” Az **összetett állítás** elemi állításokból épül fel **logikai kötőszavakkal**: „Esik az eső, és süt a nap.”
+
+Ebben a tárgyban **extenzionális** logikát tanulunk: az összetett állítás igazsága **csak** a részek igazságától (és a kötőszótól) függ. Az ilyen kötőszó egy **igazságfüggvény**.
+
+<Valasztas valaszok={["és", "mert"]} helyes={0} miert={["", "Nem igazságfüggvény! „A vőlegény aggódott, mert a menyasszony késett”: lehet mindkét rész igaz, és az egész mégis hamis (ha valójában más miatt aggódott). Az egész igazsága tehát nem csak a részek igazságán múlik."]} magyarazat="Az „és” igazságfüggvény: ha tudod, hogy a két rész igaz-e, tudod, hogy az egész igaz-e. A „mert” nem ilyen.">
+Melyik kötőszó igazságfüggvény?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A formalizálás menete">
+Formalizálni azt jelenti, hogy a mondatot formulává írjuk. Mindig ugyanígy csináld:
+
+<Lepesek>
+<Lepes>
+Keresd meg az **elemi állításokat**, és adj mindegyiknek egy betűt. Mindig **állító** (tagadás nélküli) alakban: $p$ = „Péter hazament”, nem „Péter nem ment haza”.
+</Lepes>
+<Lepes>
+Keresd meg a **kötőszavakat**, és cseréld logikai jelekre.
+</Lepes>
+<Lepes>
+**Zárójelezz** a mondat szerkezete szerint: mi tartozik össze?
+</Lepes>
+</Lepesek>
+
+<Valasztas valaszok={["p = „Éva nem szőke”", "p = „Éva szőke”, és a formula ¬p"]} helyes={1} miert={["Így elrejted a tagadást a betű mögé. A tagadás logikai jel, annak a formulában a helye.", ""]}>
+„Éva nem szőke.” Hogyan jelöljük?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Negáció: ¬">
+A tagadás jelei a magyarban: **nem**, **nem igaz, hogy**, **nem áll, hogy**, **sem**.
+
+<FormulaValasz helyes="¬¬p" mod="szerkezet" tipp="Két tagadás van a mondatban: „nem igaz, hogy” és „nem ment”. Mindkettő egy ¬." magyarazat="A ¬¬p ugyanazt jelenti, mint a p, de a feladat a mondat szerkezetének lefordítása, ezért mindkét tagadás kell.">
+**1.4 (c).** $p$: „Péter hazament.” Formalizáld: „**Nem igaz, hogy** Péter **nem** ment haza.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Konjunkció: ∧ (és a sok álruhája)">
+Az **és** jele $\wedge$. De ugyanezt jelenti a magyarban a **de**, **bár**, **pedig**, **viszont**, **mégis**, **azonban**, **mindazonáltal**, **annak ellenére, hogy** is. Ezek érzelmi színezetet adnak (ellentét, meglepetés), de logikailag mindegyik **és**: az egész akkor igaz, ha mindkét rész igaz.
+
+A **sem** = „és nem”: „a szél sem fúj” = „és nem fúj a szél”.
+
+<FormulaValasz helyes="p ∧ ¬q ∧ ¬r" tipp="„de” = ∧, „nincsen” = ¬, „sem” = ∧ ¬">
+**1.5 (c).** $p$: „Esik az eső.” $q$: „Hideg van.” $r$: „Fúj a szél.” Formalizáld: „Esik az eső, de nincsen hideg, és a szél sem fúj.”
+</FormulaValasz>
+
+<FormulaValasz helyes="p ∧ ¬q ∧ r" tipp="„mindazonáltal” és „annak ellenére, hogy” is ∧.">
+**1.5 (a).** $p$: „Éva szőke.” $q$: „Éva tetszik nekem.” $r$: „A szőkéket kedvelem.” Formalizáld: „Éva szőke, mindazonáltal nekem nem tetszik, annak ellenére, hogy a szőkéket kedvelem.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Diszjunkció: ∨">
+A **vagy** jele $\vee$, és **megengedő**: akkor is igaz, ha mindkét rész igaz. „Kávét vagy teát kérsz?” Ha mindkettőt kéred, az is belefér.
+
+Ha a mondat kifejezetten kizárja, hogy mindkettő igaz legyen, azt **külön** ki kell írni.
+
+<FormulaValasz helyes="(a ∨ b) ∧ ¬(a ∧ b)" tipp="Két rész: „Aladár vagy Béla otthon van” és „nincs otthon mind a kettő”. A „de” = ∧. A második rész: nem igaz, hogy (a és b).">
+**1.6 (a).** $a$: „Aladár otthon van.” $b$: „Béla otthon van.” Formalizáld: „Aladár vagy Béla otthon van, de nincs otthon mind a kettő.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Implikáció: ⊃ (itt a legtöbb a hiba)">
+„Ha $A$, akkor $B$” jele $A \supset B$. $A$ az **előtag**, $B$ az **utótag**. Sokféleképpen mondhatjuk:
+
+| magyarul | formula |
+|---|---|
+| ha $A$, akkor $B$ | $A \supset B$ |
+| $B$, ha $A$ | $A \supset B$ |
+| $A$ **csak akkor**, ha $B$ | $A \supset B$ |
+| $B$, feltéve, hogy $A$ / amennyiben $A$ | $A \supset B$ |
+| $A$ elégséges feltétele $B$-nek | $A \supset B$ |
+| $B$ szükséges feltétele $A$-nak | $A \supset B$ |
+
+<Figyelem cim="csak akkor, ha">
+„$A$ **csak akkor**, ha $B$” azt mondja, hogy $B$ nélkül nincs $A$. Tehát ha $A$ van, akkor $B$ is: $A \supset B$. A „ha” után álló rész itt az **utótag**!
+</Figyelem>
+
+<Valasztas valaszok={["s ⊃ n", "n ⊃ s"]} helyes={0} sym miert={["", "Fordítva van! Szivárvány csak akkor van, ha süt a nap: tehát ha van szivárvány, akkor süt a nap. Abból, hogy süt a nap, még nem lesz szivárvány."]}>
+$s$: „Szivárvány van.” $n$: „Süt a nap.” Mi a formulája: „Szivárvány **csak akkor** van, ha süt a nap”?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Implikáció a gyakorlatban">
+<FormulaValasz helyes="s ⊃ n ∧ e ∧ ¬d" tipp="„csak akkor, ha”: a szivárvány az előtag. Az utótag egy háromtagú és-elés.">
+**1.7 (c).** $s$: „Szivárvány van.” $n$: „Süt a nap.” $e$: „Esik az eső.” $d$: „Dél van.” Formalizáld: „Szivárvány csak akkor van, ha a nap is süt, és az eső is esik, és nincsen dél.”
+</FormulaValasz>
+
+<FormulaValasz helyes="p ∧ q ∧ ¬h ⊃ r" tipp="A „feltéve, hogy” is feltételt vezet be: az előtagba kerül, a többi feltétel mellé. Az eredmény: „jó eredményt kapok”." magyarazat="Az (p ∧ q) ⊃ (¬h ⊃ r) alak is helyes: ugyanazt jelenti (ez az áthelyezési törvény, a 14. leckében lesz róla szó).">
+**1.7 (a).** $p$: „Ismerem a szabályt.” $q$: „Tudom, hogyan kell alkalmazni.” $r$: „Jó eredményt kapok.” $h$: „Hibát vétek.” Formalizáld: „Ha ismerem a szabályt, és tudom, hogyan kell alkalmazni, jó eredményt kapok, feltéve, hogy nem vétek hibát.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Ekvivalencia: ≡">
+„$A$ **akkor és csak akkor**, ha $B$” (vagy: „pontosan akkor”) jele $A \equiv B$. Ez két implikáció egyben: „$A$, ha $B$” **és** „$A$ csak akkor, ha $B$”.
+
+<FormulaValasz helyes="v ≡ t" tipp="„pontosan akkor, ha” = ≡">
+$v$: „Vizsgázhatok.” $t$: „Teljesítettem a gyakorlatot.” Formalizáld: „Pontosan akkor vizsgázhatok, ha teljesítettem a gyakorlatot.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Egy hosszú mondat">
+Hosszú mondatnál először **tagold** a mondatot zárójelekkel, csak utána írd át jelekre. Az előadás példája (**1.6 b**):
+
+> Juli elmegy, és Éva itt marad, **vagy** mindketten elmennek, és Juli vissza sem jön, de Éva vagy visszajön, vagy nem.
+
+Tagolva: (Juli elmegy **és** Éva itt marad) **vagy** ((Juli elmegy **és** Éva elmegy) **és** (Juli **nem** jön vissza) **és** (Éva visszajön **vagy** **nem** jön vissza)).
+
+<FormulaValasz helyes="(a ∧ b) ∨ (a ∧ c ∧ ¬d ∧ (e ∨ ¬e))" tipp="Két nagy rész van, köztük „vagy”. A második részben négy dolog van összeéselve.">
+Jelölések: $a$: „Juli elmegy.” $b$: „Éva itt marad.” $c$: „Éva elmegy.” $d$: „Juli visszajön.” $e$: „Éva visszajön.” Írd fel a formulát!
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+| magyarul | jel |
+|---|---|
+| nem, nem igaz, hogy, nem áll, hogy | $\neg$ |
+| és, de, bár, pedig, viszont, mégis, mindazonáltal, annak ellenére, hogy | $\wedge$ |
+| sem | $\wedge \neg$ |
+| vagy (megengedő!) | $\vee$ |
+| ha $A$, akkor $B$; $B$, ha $A$; $B$, feltéve, hogy $A$ | $A \supset B$ |
+| $A$ **csak akkor**, ha $B$ | $A \supset B$ (fordítva, mint gondolnád!) |
+| akkor és csak akkor, pontosan akkor | $\equiv$ |
+
+- Az elemi állításokat **állító** alakban jelöld betűvel, a tagadás a formulába kerül.
+- Hosszú mondatnál előbb tagolj zárójelekkel, aztán fordíts.
+- A „mert” nem igazságfüggvény, nem fordítjuk logikai jellel.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

@@ -1,0 +1,147 @@
+---
+cim: Logikai következmény
+osszefoglalo: "Γ ⊨ A: mikor következik egy formula a premisszákból, hogyan igazoljuk vagy cáfoljuk (ellenpélda keresésével), és hogyan ellenőrzünk szöveges következtetéseket."
+allapot: lecke
+kulcsszavak: [logikai következmény, szemantikai következmény, ellenpélda, modus ponens, modus tollens, láncszabály, következtetés helyessége]
+forras: gyak04 (7.I.17, 7.I.18, 7.I.21, 7.I.23) · gyak01 · eloadas03–04
+---
+
+<Lecke>
+
+<Kartya cim="A definíció">
+<Definicio cim="logikai következmény">
+A $B$ formula **logikai következménye** a $\Gamma$ formulahalmaznak (jele: $\Gamma \models B$), ha $\Gamma$ **minden modellje** $B$-nek is modellje.
+</Definicio>
+
+Ez pontosan a **helyes következtetés** (2. lecke) formális változata: ahol a premisszák mind igazak, ott a konklúzió is igaz. Másképp: **nincs olyan interpretáció**, ahol a premisszák igazak, a konklúzió hamis. Egy ilyen interpretációt **ellenpéldának** hívunk.
+
+<Valasztas valaszok={["Minden interpretációban, ahol A igaz, B is igaz.", "Minden interpretációban, ahol B igaz, A is igaz.", "A és B mindig ugyanakkor igaz."]} helyes={0} miert={["", "Fordítva van.", "Ez az ekvivalencia (14. lecke), ami ennél erősebb."]}>
+Mit jelent $A \models B$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A módszer: keress ellenpéldát">
+Hogy eldöntsd, igaz-e $\Gamma \models B$:
+
+<Lepesek>
+<Lepes>
+Próbálj olyan interpretációt találni, ahol **minden premissza 1**, a **konklúzió 0**. Kezdd a visszafelé számolással (12. lecke) a konklúzióból és az egyértelmű premisszákból.
+</Lepes>
+<Lepes>
+Ha **találtál**: ez ellenpélda, a következmény **nem** áll fenn.
+</Lepes>
+<Lepes>
+Ha **ellentmondásra jutottál**: nincs ellenpélda, a következmény **fennáll**.
+</Lepes>
+</Lepesek>
+
+Ez az előadás tételével is megfogalmazható: $\Gamma \models A$ akkor és csak akkor, ha $\Gamma \cup \{\neg A\}$ **kielégíthetetlen**.
+
+<Valasztas valaszok={["Nem következik", "Következik"]} helyes={0} miert={["", "Keresd az ellenpéldát: X = 0, Y = 1. Ekkor X ⊃ Y = 1 és Y = 1, de X = 0."]} magyarazat="Ez a hibás „ha A akkor B, B, tehát A” séma: X = 0, Y = 1 ellenpélda.">
+$\{X \supset Y,\ Y\} \models X$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Melyik következik? (7.I.17)">
+Premisszák: $X \supset (Y \supset Z)$, $Y$, $\neg Z$.
+
+Először keresd meg a premisszák **modelljeit**: $Y = 1$, $Z = 0$ biztos. Akkor $Y \supset Z = 0$, és az első premissza csak $X = 0$ mellett igaz. Tehát **egyetlen modell** van: $X = 0, Y = 1, Z = 0$. Ami ebben igaz, az következik.
+
+<Valasztas valaszok={["(a) ¬X", "(b) Y ⊃ Z", "(c) X", "(d) X ∧ Y ∧ ¬Z"]} helyes={[0]} sym miert={["", "Az egyetlen modellben Y ⊃ Z = 1 ⊃ 0 = 0.", "Az egyetlen modellben X = 0.", "Az egyetlen modellben X = 0, ezért az ∧ hamis."]}>
+Melyik formula logikai következménye a premisszáknak?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Még egy (7.I.18)">
+Premisszák: $\neg X \supset \neg Y \vee Z$, $Y$, $\neg Z$.
+
+<Valasztas valaszok={["(a) X ∧ Z", "(b) Z ⊃ ¬X", "(c) X ∧ Y", "(d) X ∧ Y ∧ Z"]} helyes={[1, 2]} sym miert={["Az egyetlen modellben Z = 0.", "", "", "Az egyetlen modellben Z = 0."]} magyarazat="Y = 1, Z = 0, így ¬Y ∨ Z = 0. Az első premissza miatt ¬X = 0, tehát X = 1. Az egyetlen modell: X = 1, Y = 1, Z = 0. Ebben Z ⊃ ¬X = 0 ⊃ 0 = 1 és X ∧ Y = 1.">
+Melyek következnek?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Fennáll-e? (7.I.21)">
+Keress ellenpéldát: a premissza(k) legyenek igazak, a konklúzió hamis. Ha nincs ilyen, nyomd meg a „Nincs ilyen interpretáció” gombot: akkor a következmény fennáll.
+
+<ModellKereso igaz={["X ⊃ ¬Y"]} hamis={["X ⊃ (Y ⊃ Z)"]} magyarazat="A konklúzió hamissága X = 1, Y = 1, Z = 0-t kényszerít. De akkor X ⊃ ¬Y = 1 ⊃ 0 = 0, a premissza hamis. Nincs ellenpélda, tehát X ⊃ ¬Y ⊨ X ⊃ (Y ⊃ Z).">
+**(a)** $X \supset \neg Y \models X \supset (Y \supset Z)$?
+</ModellKereso>
+
+<ModellKereso igaz={["¬X ∨ Y", "Z ⊃ ¬Y"]} hamis={["X ⊃ ¬Z"]} magyarazat="A konklúzió hamis: X = 1, Z = 1. Az első premisszából Y = 1. A második: Z ⊃ ¬Y = 1 ⊃ 0 = 0. Ellentmondás, tehát a következmény fennáll.">
+**(b)** $\neg X \vee Y,\ Z \supset \neg Y \models X \supset \neg Z$?
+</ModellKereso>
+</Kartya>
+
+<Kartya cim="Szöveges következtetés (7.I.23)">
+A ZH-n gyakori: egy szöveges következtetésről kell eldönteni, helyes-e. Lépések: **formalizálás** (3. lecke) → **ellenpélda keresése**.
+
+> Ha reggel uszodába megyek, korán kelek. Ha viszont sok dolgozatot kell kijavítanom éjszaka, nem tudok reggel korán kelni. Ma reggel uszodában voltam. Tehát tegnap éjszaka nem kellett sok dolgozatot kijavítanom.
+
+Jelölés: $u$: uszodába megyek, $k$: korán kelek, $d$: sok dolgozatot kell javítanom.
+
+<ModellKereso igaz={["u ⊃ k", "d ⊃ ¬k", "u"]} hamis={["¬d"]} magyarazat="u = 1 → k = 1 → d ⊃ ¬k miatt d = 0. A konklúzió (¬d) tehát igaz minden modellben: a következtetés helyes.">
+**(a)** Van-e ellenpélda?
+</ModellKereso>
+
+<Valasztas valaszok={["Helyes", "Nem helyes"]} helyes={0} miert={["", "Formalizáld: ¬k ⊃ v ∨ t, ¬k, ¬t. Ebből v ∨ t = 1, és t = 0, tehát v = 1."]} magyarazat="k: talál jelmezt a kölcsönzőben, v: varr, t: felveszi a tavalyit. Premisszák: ¬k ⊃ v ∨ t, ¬k, ¬t. Konklúzió: v. Az első kettőből v ∨ t, és mivel ¬t, ezért v.">
+**(c)** „Éva úgy gondolta, hogy ha a kölcsönzőben nem talál megfelelő jelmezt, akkor vagy varr magának egyet, vagy felveszi a tavalyit. Kiderült, hogy a kölcsönzőben nincs Évának tetsző jelmez, a tavalyit pedig nem tudja felvenni, mert szűk. Tehát Éva jelmezt varr magának.” Helyes?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Még két szöveges (1. feladatsor)">
+> Ha a hőmérséklet és a légnyomás változatlan maradt, akkor nem volt eső. A hőmérséklet állandó maradt, és esett az eső. Következik-e, hogy a légnyomás nem maradt változatlan?
+
+$h$: a hőmérséklet változatlan, $l$: a légnyomás változatlan, $e$: esett.
+
+<ModellKereso igaz={["h ∧ l ⊃ ¬e", "h ∧ e"]} hamis={["¬l"]} magyarazat="h = 1, e = 1, és a konklúzió hamissága miatt l = 1. Akkor h ∧ l = 1, ¬e = 0, az első premissza hamis. Nincs ellenpélda: következik.">
+Keress ellenpéldát!
+</ModellKereso>
+
+> A szerződést csak akkor teljesítik, ha az épületet befejezik november 30-ig. Az épületet pontosan akkor fejezik be november 30-ig, ha a villanyszerelést elvégzik november 10-ig. Ha a szerződést nem teljesítik, akkor a bank veszteséget könyvelhet el. Következik-e, hogy ha a bank nem könyvel el veszteséget, akkor a villanyszerelést november 10-ig elvégzik?
+
+$t$: teljesítik, $e$: befejezik, $v$: elvégzik a villanyszerelést, $b$: a bank veszteséget könyvel el.
+
+<ModellKereso igaz={["t ⊃ e", "e ≡ v", "¬t ⊃ b"]} hamis={["¬b ⊃ v"]} magyarazat="A konklúzió hamissága: b = 0, v = 0. Akkor e = 0 (≡), t = 0 (t ⊃ e), és ¬t ⊃ b = 1 ⊃ 0 = 0. Ellentmondás: következik. Figyeld meg, hogy a „csak akkor teljesítik, ha befejezik” t ⊃ e, nem fordítva!">
+Keress ellenpéldát!
+</ModellKereso>
+</Kartya>
+
+<Kartya cim="Nevezetes következtetési sémák">
+| séma | neve | helyes? |
+|---|---|---|
+| $A \supset B,\ A \models B$ | modus ponens | ✓ |
+| $A \supset B,\ \neg B \models \neg A$ | modus tollens | ✓ |
+| $A \supset B,\ B \supset C \models A \supset C$ | láncszabály | ✓ |
+| $A \vee B,\ \neg A \models B$ | diszjunktív szillogizmus | ✓ |
+| $A \supset B,\ B \models A$ | (az utótag állítása) | ✗ |
+| $A \supset B,\ \neg A \models \neg B$ | (az előtag tagadása) | ✗ |
+
+<Valasztas valaszok={["helyes (modus tollens)", "helyes (modus ponens)", "hibás (az előtag tagadása)"]} helyes={2} miert={["Nem: a modus tollens az utótag tagadásából következtet.", "Nem: nem az előtagot állítottuk.", ""]} magyarazat="Ha esik, vizes az út. Nem esik. Ebből nem következik, hogy száraz az út: lehet, hogy locsolóautó járt arra.">
+„Ha esik, vizes az út. Nem esik. Tehát nem vizes az út.”
+</Valasztas>
+</Kartya>
+
+<Kartya cim="⊃ és ⊨: két különböző szint">
+- A $\supset$ **a formulák nyelvének része**: egy formulán **belül** áll.
+- A $\models$ **formulákról beszél** (metanyelv): két formula(halmaz) közötti **viszonyt** fejez ki.
+
+A kettő kapcsolata: $\Gamma \models A \supset B$ ⟺ $\Gamma \cup \{A\} \models B$. Ha a $\models$ bal oldala **üres**: $\models A$ azt jelenti, hogy $A$ minden interpretációban igaz, azaz **logikai törvény**.
+
+<Valasztas valaszok={["A ⊃ B logikai törvény", "A ⊃ B kielégíthető", "A és B ekvivalens"]} helyes={0} miert={["", "Ennél többet mond.", "Az csak az egyik irány."]}>
+$A \models B$ pontosan akkor igaz, ha …
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $\Gamma \models B$: $\Gamma$ minden modellje $B$-nek is modellje. = helyes következtetés.
+- **Ellenpélda:** interpretáció, ahol minden premissza 1, a konklúzió 0. Ha van, nem következik; ha nincs, következik.
+- $\Gamma \models A$ ⟺ $\Gamma \cup \{\neg A\}$ kielégíthetetlen.
+- Ha a premisszáknak egyetlen modellje van, azt keresd meg, és nézd meg, mi igaz benne.
+- Szöveges feladat: formalizálás, aztán ellenpélda keresése. Figyelj a „csak akkor, ha” irányára!
+- Helyes: modus ponens, modus tollens, láncszabály, diszjunktív szillogizmus. **Hibás:** az utótag állítása, az előtag tagadása.
+- $\Gamma \models A \supset B$ ⟺ $\Gamma \cup \{A\} \models B$. $\models A$ ⟺ $A$ logikai törvény.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

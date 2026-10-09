@@ -1,0 +1,107 @@
+---
+cim: Kvantoros törvények és prenex alak
+osszefoglalo: "A kvantorok tagadása, mikor osztható szét egy kvantor ∧-en vagy ∨-on, hogyan hozható ki a kvantor a formula elejére, és hogyan készül a prenex alak."
+allapot: lecke
+kulcsszavak: [kvantoros törvények, kvantor tagadása, prenex alak, kvantorkiemelés, változóiban tiszta]
+forras: a tárgy tematikája · eloadas04
+---
+
+<Lecke>
+
+<Kartya cim="Kvantor tagadása">
+„Nem igaz, hogy mindenki eljött” = „van, aki nem jött el”. „Nem igaz, hogy van, aki eljött” = „mindenki távol maradt”.
+
+$$
+\neg\forall x\, A \Leftrightarrow \exists x\, \neg A \qquad\qquad \neg\exists x\, A \Leftrightarrow \forall x\, \neg A
+$$
+
+A tagadás „átmegy” a kvantoron, és közben **megfordítja** azt ($\forall \leftrightarrow \exists$). Olyan, mint a De Morgan: a $\forall$ egy nagy $\wedge$, az $\exists$ egy nagy $\vee$.
+
+<Valasztas valaszok={["∀x ∀y ¬sz(x, y)", "∃x ∃y ¬sz(x, y)", "∃x ∀y ¬sz(x, y)"]} helyes={1} sym miert={["Ez azt mondja, hogy senki senkit nem szeret. Sokkal erősebb.", "", "A tagadás mindkét kvantoron átmegy, és mindkettőt megfordítja."]}>
+„Nem igaz, hogy mindenki mindenkit szeret”: $\neg\forall x \forall y\, sz(x, y) \Leftrightarrow$ ?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Vidd be a tagadást!">
+<FormulaValasz helyes="∃x (E(x) ∧ ¬S(x))" elsorendu mod="prenex" kezdo="¬∀x (E(x) ⊃ S(x))" tipp="¬∀x A ⇔ ∃x ¬A, és ¬(A ⊃ B) ⇔ A ∧ ¬B.">
+Vidd be a tagadást, hogy a kvantor kerüljön előre: $\neg\forall x\,(E(x) \supset S(x))$. (Mit jelent? „Nem minden egyetemista sportol”.)
+</FormulaValasz>
+
+<FormulaValasz helyes="∀x ∃y ¬sz(x, y)" elsorendu mod="prenex" kezdo="¬∃x ∀y sz(x, y)">
+„Senki sem szeret mindenkit”: vidd be a tagadást! $\neg\exists x \forall y\, sz(x, y)$
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Kvantor és ∧, ∨">
+Mikor lehet egy kvantort „szétosztani”?
+
+| | |
+|---|---|
+| $\forall x\,(A \wedge B) \Leftrightarrow \forall x\, A \wedge \forall x\, B$ | ✓ |
+| $\exists x\,(A \vee B) \Leftrightarrow \exists x\, A \vee \exists x\, B$ | ✓ |
+| $\forall x\,(A \vee B)$ és $\forall x\, A \vee \forall x\, B$ | ✗ nem ekvivalens |
+| $\exists x\,(A \wedge B)$ és $\exists x\, A \wedge \exists x\, B$ | ✗ nem ekvivalens |
+
+<Valasztas valaszok={["Igen, ugyanazt jelentik", "Nem: az első igaz, a második hamis"]} helyes={1} miert={["Gondolj a természetes számokra: P(x) = páros, Q(x) = páratlan.", ""]} magyarazat="Minden szám páros vagy páratlan: igaz. De nem igaz, hogy minden szám páros, és az sem, hogy minden szám páratlan.">
+A természetes számokon $P(x)$: „$x$ páros”, $Q(x)$: „$x$ páratlan”. Ugyanazt jelenti-e $\forall x\,(P(x) \vee Q(x))$ és $\forall x\, P(x) \vee \forall x\, Q(x)$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Kvantor kiemelése">
+Ha $x$ **nem fordul elő szabadon** $B$-ben, a kvantor kihozható (vagy bevihető):
+
+| | |
+|---|---|
+| $\forall x\, A \wedge B \Leftrightarrow \forall x\,(A \wedge B)$ | ugyanígy $\vee$-ra és $\exists$-re |
+| $B \supset \forall x\, A \Leftrightarrow \forall x\,(B \supset A)$ | utótagból: marad |
+| $B \supset \exists x\, A \Leftrightarrow \exists x\,(B \supset A)$ | utótagból: marad |
+| $\forall x\, A \supset B \Leftrightarrow \exists x\,(A \supset B)$ | **előtagból: megfordul!** |
+| $\exists x\, A \supset B \Leftrightarrow \forall x\,(A \supset B)$ | **előtagból: megfordul!** |
+
+Miért fordul meg? Mert $A \supset B \Leftrightarrow \neg A \vee B$, és a tagadás átfordítja a kvantort.
+
+<Valasztas valaszok={["∀x (P(x) ⊃ q)", "∃x (P(x) ⊃ q)"]} helyes={1} sym miert={["Az előtagból kihozott kvantor megfordul.", ""]}>
+$\forall x\, P(x) \supset q \Leftrightarrow$ ?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Prenex alak">
+Egy formula **prenex alakú**, ha az összes kvantor a **legelején** áll, utána pedig már kvantor nélküli rész jön: $Q_1 x_1 \dots Q_n x_n\, B$.
+
+<Lepesek>
+<Lepes>
+Tedd a formulát **változóiban tisztává** (9. lecke): nevezd át a kötött változókat, hogy minden kvantornak saját változója legyen.
+</Lepes>
+<Lepes>
+Fejezd ki a $\equiv$ jelet, és ha egyszerűbb, a $\supset$-t is.
+</Lepes>
+<Lepes>
+Hozd ki a kvantorokat egyenként a fenti szabályokkal, figyelve az előtagbeli megfordulásra.
+</Lepes>
+</Lepesek>
+
+<FormulaValasz helyes="∃x ∃y (P(x) ⊃ Q(y))" elsorendu mod="prenex" kezdo="∀x P(x) ⊃ ∃y Q(y)" tipp="Az előtagbeli ∀x kihozva ∃x lesz, az utótagbeli ∃y marad ∃y." magyarazat="A ∃y ∃x (P(x) ⊃ Q(y)) is jó: két egyforma kvantor sorrendje felcserélhető.">
+Hozd prenex alakra: $\forall x\, P(x) \supset \exists y\, Q(y)$
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Prenex: átnevezéssel">
+<FormulaValasz helyes="∀x ∃y (P(x) ∧ Q(y))" elsorendu mod="prenex" kezdo="∀x P(x) ∧ ∃x Q(x)" tipp="A két kvantor ugyanazt a változót köti. Előbb nevezd át az egyiket (pl. ∃x Q(x) → ∃y Q(y)), csak utána hozd ki őket.">
+Hozd prenex alakra: $\forall x\, P(x) \wedge \exists x\, Q(x)$
+</FormulaValasz>
+
+<FormulaValasz helyes="∀x ∃y (P(x, z) ∨ ¬Q(y))" elsorendu mod="prenex" kezdo="∀x P(x, z) ∨ ¬∀y Q(y)" tipp="Először a ¬∀y-t fordítsd ∃y¬-ra, aztán hozd ki mindkét kvantort. A z szabad, azt ne bántsd!">
+Hozd prenex alakra: $\forall x\, P(x, z) \vee \neg\forall y\, Q(y)$
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $\neg\forall x\, A \Leftrightarrow \exists x\, \neg A$, $\ \neg\exists x\, A \Leftrightarrow \forall x\, \neg A$.
+- $\forall$ szétosztható $\wedge$-n, $\exists$ szétosztható $\vee$-on. Fordítva **nem**.
+- Ha $x$ nem szabad $B$-ben: a kvantor kihozható $\wedge$-ből, $\vee$-ból és a $\supset$ **utótagjából** változatlanul, a $\supset$ **előtagjából** **megfordulva**.
+- **Prenex alak:** minden kvantor elöl. Lépések: változóiban tisztává tétel, $\equiv$ (és $\supset$) kifejezése, kvantorok kihozása.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

@@ -46,3 +46,8 @@ test('errors point at the problem', () => {
   assert.throws(() => P('(p | q'), /záró/);
   assert.throws(() => P('∀x p'), /elsőrendű/);
 });
+
+test('quantifier glued to the formula, as in the textbook', () => {
+  assert.equal(show(F('∀xP(x) ⊃ ∃yQ(x,y)')), '(∀x P(x) ⊃ ∃y Q(x, y))');
+  assert.equal(show(F('∃z∀xP(x,z)')), '∃z ∀x P(x, z)');
+});

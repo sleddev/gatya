@@ -1,0 +1,133 @@
+---
+cim: ZH-gyakorló
+osszefoglalo: Végtelen, véletlen feladatok a rutinfeladatokhoz, egy ellenőrző lista a ZH előtti estére, és vegyes, ZH-szerű feladatok megoldással.
+allapot: lecke
+kulcsszavak: [ZH, zárthelyi, gyakorlás, vegyes feladatok, ellenőrző lista]
+forras: gyakorlati feladatsorok 1–4 · a tárgy tematikája
+---
+
+## Végtelen gyakorló
+
+A rutinfeladatokat addig érdemes gyakorolni, amíg **gondolkodás nélkül** mennek: így a ZH-n a nehezebb részekre marad időd. Válassz típust, és csináld, amíg 10-es sorozatot nem érsz el!
+
+<Gyakorlo />
+
+## Ellenőrző lista a ZH előtt
+
+Menj végig a listán. Ahol bizonytalan vagy, nyisd meg újra a leckét (a végén lévő **Röviden** doboz általában elég).
+
+| tudom… | lecke |
+|---|---|
+| mikor helyes egy következtetés, és mi az elhallgatott premissza | [2](/logika-nullarol/helyes-kovetkeztetes) |
+| a „csak akkor, ha” irányát, és hogy a „de”, „bár” = $\wedge$ | [3](/logika-nullarol/kotoszavak) |
+| az öt művelet igazságtábláját fejből (főleg: $\supset$ csak 1 0 → 0) | [4](/logika-nullarol/igazsagtablak) |
+| mi a term és mi a formula, $\mathcal{F}(n)$ és $\mathcal{P}(n)$ | [5](/logika-nullarol/formalis-nyelv) |
+| a precedenciát: $\forall\exists$ > $\neg$ > $\wedge$ > $\vee$ > $\supset$ > $\equiv$, és hogy a $\supset$ jobbról csoportosít | [6](/logika-nullarol/zarojelek) |
+| szerkezeti fát rajzolni, részformulát felismerni | [7](/logika-nullarol/szerkezeti-fa) |
+| ∀ mellé ⊃, ∃ mellé ∧; a kvantorok sorrendje számít | [8](/logika-nullarol/elsorendu-formalizalas) |
+| szabad/kötött előfordulást, paramétert, változóiban tiszta formulát | [9](/logika-nullarol/szabad-kotott) |
+| formula értékét kiszámolni adott interpretációban, rövidzárakkal | [10](/logika-nullarol/igazsagertek), [11](/logika-nullarol/elsorendu-interpretacio) |
+| érvényes / kielégíthető / kielégíthetetlen, és a **visszafelé számolást** | [12](/logika-nullarol/kielegithetoseg) |
+| $\Gamma \models A$ eldöntését ellenpélda keresésével | [13](/logika-nullarol/kovetkezmeny) |
+| a nevezetes ekvivalenciákat, és átalakítani velük | [14](/logika-nullarol/ekvivalencia) |
+| KNF-et és DNF-et készíteni | [15](/logika-nullarol/normalformak) |
+| a kvantorok tagadását és a prenex alakot | [16](/logika-nullarol/kvantoros-torvenyek) |
+
+## Vegyes feladatok
+
+Ezek a feladatsorok mintájára készültek. Először papíron oldd meg, csak utána nyisd ki a megoldást!
+
+<Feladat cim="1. formalizálás">
+Formalizáld ítéletlogikában: „Ha Péter nem jön el, akkor csak akkor megyünk moziba, ha Anna is ráér.” ($p$: Péter eljön, $m$: moziba megyünk, $a$: Anna ráér)
+
+<Megoldas>
+$\neg p \supset (m \supset a)$. A „csak akkor, ha” miatt a mozi az előtag, Anna ráérése az utótag.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="2. zárójelek és fa">
+Zárójelezd teljesen, add meg a fő logikai jelét, és sorold fel a részformuláit: $\neg X \wedge Y \supset X \vee \neg Y \equiv Z$
+
+<Megoldas>
+Teljesen zárójelezve: $(((\neg X \wedge Y) \supset (X \vee \neg Y)) \equiv Z)$. A fő logikai jel a $\equiv$.
+
+Részformulák: maga a formula, $(\neg X \wedge Y) \supset (X \vee \neg Y)$, $Z$, $\neg X \wedge Y$, $X \vee \neg Y$, $\neg X$, $Y$, $X$, $\neg Y$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3. szabad és kötött változók">
+Melyik előfordulás szabad, melyik kötött? Mi a paraméterek halmaza? Zárt-e? $\forall x\,(P(x, y) \supset \exists y\, Q(y, z)) \wedge R(x)$
+
+<Megoldas>
+- $P(x, y)$: $x$ kötött ($\forall x$), $y$ **szabad** (az $\exists y$ hatásköre csak $Q(y, z)$).
+- $Q(y, z)$: $y$ kötött ($\exists y$), $z$ **szabad**.
+- $R(x)$: $x$ **szabad** (a $\forall x$ hatásköre a zárójeles rész, az $R(x)$ már kívül van).
+
+Paraméterek: $\{x, y, z\}$. A formula nyitott. (Változóiban sem tiszta: $x$ és $y$ szabadon és kötötten is előfordul.)
+</Megoldas>
+</Feladat>
+
+<Feladat cim="4. igazságérték">
+$\mathcal{I}(X) = 1$, $\mathcal{I}(Y) = 0$, $\mathcal{I}(Z) = 0$. Mennyi $\neg(X \supset Y) \supset Z \vee \neg X$?
+
+<Megoldas>
+$X \supset Y = 1 \supset 0 = 0$, így $\neg(X \supset Y) = 1$. $Z \vee \neg X = 0 \vee 0 = 0$. Végül $1 \supset 0 = 0$. A formula **hamis**.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="5. logikai törvény?">
+Logikai törvény-e: $(X \supset Y) \supset (\neg X \supset \neg Y)$? Indokolj!
+
+<Megoldas>
+**Nem.** Visszafelé: a fő $\supset$ hamis, ha $X \supset Y = 1$ és $\neg X \supset \neg Y = 0$. Az utóbbiból $\neg X = 1$, $\neg Y = 0$, tehát $X = 0$, $Y = 1$. Ekkor $X \supset Y = 0 \supset 1 = 1$. Az $X = 0, Y = 1$ interpretációban tehát hamis, így nem törvény. (Ez az „előtag tagadása” hiba.)
+</Megoldas>
+</Feladat>
+
+<Feladat cim="6. következmény">
+Fennáll-e: $\{X \vee Y,\ X \supset Z,\ Y \supset Z\} \models Z$?
+
+<Megoldas>
+**Igen.** Ellenpéldát keresünk: $Z = 0$. Akkor $X \supset Z$ miatt $X = 0$, $Y \supset Z$ miatt $Y = 0$. De akkor $X \vee Y = 0$, a premissza hamis. Ellentmondás, nincs ellenpélda. (Ez az esetszétválasztás.)
+</Megoldas>
+</Feladat>
+
+<Feladat cim="7. elsőrendű formalizálás">
+$D(x)$: „$x$ diák”, $T(x, y)$: „$x$ tanítja $y$-t”. Formalizáld: „Van olyan tanár, aki minden diákot tanít.” (Tanár: aki tanít valakit.)
+
+<Megoldas>
+$\exists x\,(\exists z\, T(x, z) \wedge \forall y\,(D(y) \supset T(x, y)))$. Ha a „tanár” egyszerűen „valaki”, a rövidebb $\exists x \forall y\,(D(y) \supset T(x, y))$ is elfogadható.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="8. véges interpretáció">
+$U = \{1, 2, 3\}$, $\varrho(R) = \{(1, 2), (2, 3), (3, 1)\}$. Igaz-e: $\forall x \exists y\, R(x, y)$, illetve $\exists y \forall x\, R(x, y)$?
+
+<Megoldas>
+- $\forall x \exists y\, R(x, y)$: **igaz**. $x = 1$-hez $y = 2$, $x = 2$-höz $y = 3$, $x = 3$-hoz $y = 1$.
+- $\exists y \forall x\, R(x, y)$: **hamis**. Minden $y$-ba csak egy nyíl fut be, tehát nincs olyan $y$, amelybe mindenhonnan fut nyíl.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="9. ekvivalens átalakítás">
+Igazold átalakításokkal: $X \supset (Y \supset Z) \Leftrightarrow Y \supset (X \supset Z)$
+
+<Megoldas>
+$X \supset (Y \supset Z) \Leftrightarrow \neg X \vee (\neg Y \vee Z) \Leftrightarrow \neg Y \vee (\neg X \vee Z) \Leftrightarrow Y \supset (X \supset Z)$
+
+(implikáció kifejezése, asszociativitás és kommutativitás, implikáció kifejezése visszafelé)
+</Megoldas>
+</Feladat>
+
+<Feladat cim="10. KNF és DNF">
+Add meg a $\neg(X \wedge Y \supset Z)$ formula KNF-jét és DNF-jét!
+
+<Megoldas>
+$\neg(X \wedge Y \supset Z) \Leftrightarrow \neg(\neg(X \wedge Y) \vee Z) \Leftrightarrow \neg\neg(X \wedge Y) \wedge \neg Z \Leftrightarrow X \wedge Y \wedge \neg Z$.
+
+Ez egyszerre KNF (három egy-literálos elemi diszjunkció és-elése) és DNF (egyetlen elemi konjunkció).
+</Megoldas>
+</Feladat>
+
+## Ami még hátravan
+
+A tematika utolsó témája egy **logikai kalkulus**: levezetések, a kalkulus helyessége és teljessége. Ez eddig nem szerepelt a gyakorlati feladatsorokban, és a tárgyban használt kalkulus fajtája sem derül ki az eddigi anyagból. Amint megvan az erről szóló feladatsor, ide kerül egy lecke.

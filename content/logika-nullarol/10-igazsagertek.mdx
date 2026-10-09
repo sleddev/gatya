@@ -1,0 +1,94 @@
+---
+cim: Igazságérték egy interpretációban
+osszefoglalo: "Ítéletlogikai interpretáció: kiszámoljuk egy formula értékét adott 𝓘 mellett, gyorsan és hibátlanul, és megnézzük, mit lehet mondani, ha csak részben ismerjük az értékeket."
+allapot: lecke
+kulcsszavak: [interpretáció, igazságérték, kiértékelés, szemantikai szabályok, részleges információ]
+forras: gyak03 (5.I.6, 5.I.8, 5.I.9, 5.I.10)
+---
+
+<Lecke>
+
+<Kartya cim="Mi az interpretáció?">
+Az ítéletlogikában egy **interpretáció** ($\mathcal{I}$) minden állításkonstanshoz (betűhöz) hozzárendel egy igazságértéket: $\mathcal{I}(X) = 1$ vagy $0$. Ebből a szemantikai szabályok (a 4. lecke táblázata) kiszámolják **bármelyik formula** értékét. Ezt így jelöljük: $|A|_{\mathcal{I}}$.
+
+Egy interpretáció tehát **az igazságtábla egyetlen sora**.
+
+<Valasztas valaszok={["2", "3", "8"]} helyes={2} miert={["Minden betűnek két lehetséges értéke van, és három betű van.", "Ez a betűk száma.", ""]}>
+Hány különböző interpretáció van, ha a formulában $X, Y, Z$ szerepel?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Kiértékelés belülről kifelé">
+A módszer mindig ugyanaz: írd fel a **részformulákat belülről kifelé**, és mindegyiknek számold ki az értékét az előzőekből. Ehhez előbb a **zárójelezést** kell látnod: a $X \vee \neg Y \supset Z$ jelentése $((X \vee \neg Y) \supset Z)$.
+
+<TablaKitolto formula="X ∨ ¬Y ⊃ Z" sor="X=1, Y=1, Z=0" magyarazat="¬Y = 0, X ∨ ¬Y = 1 ∨ 0 = 1, és 1 ⊃ 0 = 0.">
+**5.I.6 (a)** Mennyi $X \vee \neg Y \supset Z$ értéke, ha $\mathcal{I}(X) = 1$, $\mathcal{I}(Y) = 1$, $\mathcal{I}(Z) = 0$?
+</TablaKitolto>
+
+<TablaKitolto formula="X ∨ ¬Y ⊃ Z" sor="X=0, Y=0, Z=1">
+**5.I.6 (b)** És ha $\mathcal{I}(X) = 0$, $\mathcal{I}(Y) = 0$, $\mathcal{I}(Z) = 1$?
+</TablaKitolto>
+</Kartya>
+
+<Kartya cim="Rövidzárak: amikor nem kell mindent kiszámolni">
+Bizonyos esetekben az egyik tag értékéből **már tudjuk** az eredményt:
+
+| ha tudod, hogy | akkor |
+|---|---|
+| az **előtag 0** | $A \supset B$ = 1 |
+| az **utótag 1** | $A \supset B$ = 1 |
+| az egyik tag 0 | $A \wedge B$ = 0 |
+| az egyik tag 1 | $A \vee B$ = 1 |
+
+Ezzel sok időt spórolsz, és kevesebbet hibázol.
+
+<Valasztas valaszok={["1", "0"]} helyes={0} miert={["", "Nézd a fő jelet: ⊃. Az előtag X = 0. Hamis előtag mellett az implikáció igaz, a jobb oldalt meg sem kell nézni."]}>
+**5.I.8 (a)** $\mathcal{I}(X) = 0$, $\mathcal{I}(Y) = 1$. Mennyi $X \supset (Y \supset X)$?
+</Valasztas>
+
+<Valasztas valaszok={["1", "0"]} helyes={1} miert={["Számold ki a jobb oldali tagot: X ∨ ¬Y = 0 ∨ 0.", ""]} magyarazat="Az ∧ jobb tagja X ∨ ¬Y = 0 ∨ 0 = 0, tehát az egész 0. A bal tagot nem is kellett kiszámolni.">
+**5.I.8 (b)** Ugyanitt: $\neg(Y \supset X) \wedge (X \vee \neg Y)$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Hosszabb formula">
+<TablaKitolto formula="¬(¬Y ∨ ¬X ⊃ ¬X ∧ Y)" sor="X=0, Y=1">
+**5.I.8 (c)** $\mathcal{I}(X) = 0$, $\mathcal{I}(Y) = 1$. Számold ki lépésenként: $\neg(\neg Y \vee \neg X \supset \neg X \wedge Y)$
+</TablaKitolto>
+
+<Valasztas valaszok={["1", "0"]} helyes={0} miert={["", "Figyelj a zárójelekre: ((¬X ⊃ Y) ⊃ X) ⊃ ¬Y. Számold ki belülről: ¬X ⊃ Y = 1 ⊃ 1 = 1; ez ⊃ X = 1 ⊃ 0 = 0; a fő implikáció előtagja tehát 0."]}>
+**5.I.8 (d)** Ugyanitt: $((\neg X \supset Y) \supset X) \supset \neg Y$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Ha csak részben ismerjük az értékeket">
+Néha csak egy-két betű értékét ismerjük. Ilyenkor előfordulhat, hogy **ebből is** kiderül a formula értéke, a rövidzárak miatt.
+
+**Módszer:** keresd meg a fő jelet, és nézd meg, eldönti-e az ismert érték. Ha nem, nézd végig az összes lehetőséget az ismeretlen betűkre.
+
+<Valasztas valaszok={["igaz", "hamis", "nem dönthető el"]} helyes={0} miert={["", "Nézd a fő jelet és az utótagját.", "Dehogynem: a fő jel ⊃, az utótag (¬Y ∧ X) ∨ Z, ami Z = 1 miatt biztosan 1."]} magyarazat="Az utótag egy ∨, aminek egyik tagja 1, ezért 1. Az igaz utótagú implikáció pedig igaz.">
+**5.I.9** Mit tudunk a $\neg X \supset (\neg Y \wedge X) \vee Z$ értékéről, ha csak annyit tudunk, hogy $|Z|_{\mathcal{I}} = 1$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Részleges információ: még kettő">
+<Valasztas valaszok={["igaz", "hamis", "nem dönthető el"]} helyes={0} miert={["", "Nézd a jobb oldali implikációt: ¬Y ⊃ ¬X, ahol ¬Y = 0.", "Eldönthető: a jobb oldali ¬Y ⊃ ¬X előtagja 0, tehát az 1, és akkor a fő implikáció utótagja is 1."]}>
+**5.I.10 (a)** $(X \supset Y) \supset (\neg Y \supset \neg X)$, ha $|Y|_{\mathcal{I}} = 1$?
+</Valasztas>
+
+<Valasztas valaszok={["igaz", "hamis", "nem dönthető el"]} helyes={0} miert={["", "Nézd végig azt a három esetet, ahol X ⊃ Y igaz: XY = 00, 01, 11.", "Nézd végig azt a három esetet, ahol X ⊃ Y igaz: XY = 00, 01, 11. Mindháromban ugyanaz jön ki."]} magyarazat="Ha X ⊃ Y igaz, akkor XY = 00, 01 vagy 11. 00 és 11 esetén ¬X ∧ Y = 0, tehát az implikáció 1. 01 esetén X ∨ Y = 1, tehát szintén 1. (Valójában ez a formula logikai törvény, a feltétel nélkül is mindig igaz.)">
+**5.I.10 (b)** $\neg X \wedge Y \supset X \vee Y$, ha $|X \supset Y|_{\mathcal{I}} = 1$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- **Interpretáció** (ítéletlogikában): minden betűnek 0 vagy 1. Ez az igazságtábla egy sora. $n$ betűnél $2^n$ interpretáció van.
+- $|A|_{\mathcal{I}}$: az $A$ formula értéke az $\mathcal{I}$ interpretációban.
+- Kiértékelés: zárójelezz, aztán **belülről kifelé** számolj, részformulánként.
+- **Rövidzárak:** hamis előtag vagy igaz utótag → $\supset$ = 1; egy 0 → $\wedge$ = 0; egy 1 → $\vee$ = 1.
+- Részleges információnál: a fő jelből indulj; ha nem dől el, vedd sorra az ismeretlenek összes lehetséges értékét.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

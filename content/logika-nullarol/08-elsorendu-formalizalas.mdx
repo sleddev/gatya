@@ -1,0 +1,160 @@
+---
+cim: Formalizálás kvantorokkal
+osszefoglalo: "Predikátumok és kvantorok: „minden”, „van”, „senki”, „mindenki szeret valakit”. A két aranyszabály és a kvantorok sorrendje."
+allapot: lecke
+kulcsszavak: [elsőrendű formalizálás, kvantor, univerzális kvantor, egzisztenciális kvantor, predikátum, mindenki szeret valakit, kvantorok sorrendje]
+forras: gyak03 (2.P.7, 2.P.8) · gyak04 (2.P.6)
+---
+
+<Lecke>
+
+<Kartya cim="Ahol az ítéletlogika elakad">
+„Minden ember halandó. Szókratész ember. Tehát Szókratész halandó.”
+
+Ítéletlogikában ez három különálló betű: $p, q, r$. Abból, hogy $p$ és $q$, semmi sem következik $r$-re. Pedig a következtetés nyilvánvalóan helyes! Az ok: a helyessége a mondatok **belsejétől** függ (ember, halandó, minden). Ehhez kellenek a **predikátumok** és a **kvantorok**.
+
+<Valasztas valaszok={["Nem helyes következtetés", "Helyes, de ítéletlogikában nem látszik, miért"]} helyes={1} miert={["Dehogynem, ez a legklasszikusabb helyes következtetés.", ""]}>
+Mit mondhatunk erről a következtetésről?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Predikátum és név">
+A **predikátum** egy tulajdonság vagy kapcsolat: $E(x)$: „$x$ egyetemi hallgató”, $S(x)$: „$x$ sportol”. Ha a helyére egy **nevet** írunk, állítást kapunk: $E(\text{veronika})$: „Veronika egyetemi hallgató”.
+
+A begépelős feladatokban a nevek: **veronika**, **akos** (csupa kisbetű). Az $x, y, z, v, w$ betűk változók, ezért nevet ne jelölj velük.
+
+<FormulaValasz helyes="E(veronika)" elsorendu>
+**2.P.8 (a)** „Veronika egyetemi hallgató.”
+</FormulaValasz>
+
+<FormulaValasz helyes="E(veronika) ⊃ E(akos)" elsorendu>
+**2.P.8 (b)** „Ha Veronika egyetemi hallgató, akkor Ákos is az.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="A két kvantor">
+- $\forall x\, A$: „**minden** $x$-re igaz, hogy $A$” (mindenki, mindegyik, bármely, akármelyik)
+- $\exists x\, A$: „**van olyan** $x$, amelyre $A$” (valaki, néhány, bizonyos, létezik, vannak)
+
+<FormulaValasz helyes="∃x E(x)" elsorendu tipp="Kvantor után a változó, aztán a formula: exists x E(x)">
+**2.P.8 (c)** „Vannak egyetemi hallgatók.”
+</FormulaValasz>
+
+<FormulaValasz helyes="¬∀x E(x)" elsorendu magyarazat="A ∃x ¬E(x) („van, aki nem egyetemi hallgató”) is jó: ugyanazt jelenti.">
+**2.P.8 (d)** „Nem mindenki egyetemi hallgató.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Az első aranyszabály: minden → ⊃">
+„**Minden** egyetemi hallgató sportol.” Ez **nem** azt mondja, hogy mindenki egyetemista és sportol! Azt mondja: **ha** valaki egyetemista, **akkor** sportol.
+
+$$
+\textbf{Minden A B:}\qquad \forall x\,(A(x) \supset B(x))
+$$
+
+<Valasztas valaszok={["∀x (E(x) ∧ S(x))", "∀x (E(x) ⊃ S(x))"]} helyes={1} sym miert={["Ez azt mondja, hogy MINDENKI egyetemista és sportol: a nagymamád is, a kutyád is. Túl erős.", ""]}>
+„Minden egyetemi hallgató sportol.”
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A második aranyszabály: van → ∧">
+„**Van olyan** egyetemi hallgató, aki sportol.” Ez azt mondja: van valaki, aki egyetemista **és** sportol.
+
+$$
+\textbf{Van A, ami B:}\qquad \exists x\,(A(x) \wedge B(x))
+$$
+
+<Valasztas valaszok={["∃x (E(x) ∧ S(x))", "∃x (E(x) ⊃ S(x))"]} helyes={0} sym miert={["", "Ez szinte mindig igaz: elég, ha van valaki, aki nem egyetemista, mert hamis előtag mellett az implikáció igaz. Ez nem az, amit mondani akartunk."]}>
+„Bizonyos egyetemi hallgatók sportolnak.” (**2.P.8 f**)
+</Valasztas>
+
+<Tipp cim="egy mondatban">
+**∀ mellé ⊃, ∃ mellé ∧.** Ha a ZH-n ∀x(… ∧ …) vagy ∃x(… ⊃ …) alakot írsz, gyanakodj!
+</Tipp>
+</Kartya>
+
+<Kartya cim="Tagadások: senki, nincs, egyik sem">
+- „**Nincs olyan** A, ami B” = „nem igaz, hogy van A, ami B”: $\neg\exists x\,(A(x) \wedge B(x))$
+- Ugyanez másképp: „egyik A sem B” = „minden A nem B”: $\forall x\,(A(x) \supset \neg B(x))$
+
+<FormulaValasz helyes="¬∃x (E(x) ∧ ¬S(x))" elsorendu tipp="„Nincs olyan …” = ¬∃x(… ∧ …). A belső rész: egyetemi hallgató, aki nem sportol." magyarazat="A ∀x(E(x) ⊃ S(x)) is elfogadható: ugyanazt jelenti („minden egyetemista sportol”).">
+**2.P.8 (g)** „Nincs olyan egyetemi hallgató, aki nem sportol.”
+</FormulaValasz>
+
+<FormulaValasz helyes="∀x (T(x) ⊃ ¬G(x))" elsorendu>
+$T(x)$: „$x$ trák harcos”, $G(x)$: „$x$ gyáva”. „Egyetlen trák harcos sem gyáva.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Két kvantor: mindenki szeret valakit">
+$sz(x, y)$: „$x$ szereti $y$-t”. Vigyázz a sorrendre: az **első** argumentum a szerető, a második a szeretett.
+
+**Módszer:** olvasd a mondatot balról jobbra. Minden „mindenki”-ből $\forall$, minden „valaki”, „van, aki”-ből $\exists$ lesz, **abban a sorrendben**, ahogy a mondatban jönnek. Aztán döntsd el, melyik változó a szerető.
+
+<FormulaValasz helyes="∀x ∃y sz(x, y)" elsorendu tipp="Mindenki (∀x) szeret (x a szerető) valakit (∃y, y a szeretett).">
+**2.P.6 (a)** „Mindenki szeret valakit.”
+</FormulaValasz>
+
+<FormulaValasz helyes="∀y ∃x sz(x, y)" elsorendu tipp="Itt a „mindenkit” a szeretett: ∀y. Valaki (∃x) szereti őt: sz(x, y).">
+**2.P.6 (b)** „Mindenkit szeret valaki.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="A sorrend számít!">
+$\forall x \exists y\, sz(x,y)$: mindenkinek van **valakije** (lehet mindenkinek más).
+
+$\exists y \forall x\, sz(x,y)$: van **egy** ember, akit mindenki szeret (ugyanaz az egy).
+
+<Valasztas valaszok={["∀x ∃y sz(x, y)", "∃y ∀x sz(x, y)"]} helyes={1} sym miert={["Ez csak azt mondja, hogy mindenkinek van valakije, de lehet mindenkinek más. Itt egyetlen közös személyről van szó.", ""]}>
+**2.P.6 (f)** „Van, akit mindenki szeret.”
+</Valasztas>
+
+<FormulaValasz helyes="∃x ∀y sz(x, y)" elsorendu>
+**2.P.6 (e)** „Van, aki mindenkit szeret.”
+</FormulaValasz>
+
+<FormulaValasz helyes="∀x sz(x, x)" elsorendu>
+**2.P.6 (d)** „Mindenki szereti önmagát.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Senki és szeret">
+A „**senki sem**” = „nincs olyan, aki”: $\neg\exists$.
+
+<FormulaValasz helyes="¬∃x ∀y sz(x, y)" elsorendu tipp="„Senki sem …” = ¬∃x. Mit nem csinál senki? Szeret mindenkit: ∀y sz(x, y).">
+**2.P.6 (h)** „Senki sem szeret mindenkit.”
+</FormulaValasz>
+
+<FormulaValasz helyes="∃x ¬∃y sz(x, y)" elsorendu tipp="Van (∃x), aki senkit sem szeret (¬∃y sz(x, y)).">
+**2.P.6 (j)** „Van, aki senkit sem szeret.”
+</FormulaValasz>
+
+<FormulaValasz helyes="∃y ¬∃x sz(x, y)" elsorendu tipp="Itt a szeretett van kiemelve: ∃y. Senki sem szereti: ¬∃x sz(x, y).">
+**2.P.6 (k)** „Van, akit senki sem szeret.”
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Visszafelé: olvasd fel!">
+**2.P.7** Az univerzum a természetes számok, $f(x) = x + 1$, $P(x)$: „$x$ páros”, $Q(x, y)$: „$x \le y$”.
+
+<Valasztas valaszok={["Minden szám páros, vagy minden szám rákövetkezője páros.", "Minden számra igaz, hogy ő maga vagy a rákövetkezője páros.", "Van olyan szám, ami páros."]} helyes={1} miert={["Nem: a ∀x az egész zárójeles részre vonatkozik, ugyanarról az x-ről szól mindkét tag.", "", "Ez ∃x P(x) lenne."]} magyarazat="Ez ráadásul igaz a természetes számokon: két egymást követő szám közül az egyik páros.">
+Mit jelent: $\forall x\,(P(x) \vee P(f(x)))$?
+</Valasztas>
+
+<Valasztas valaszok={["Minden szám kisebb vagy egyenlő a rákövetkezőjénél.", "Van szám, ami nagyobb a rákövetkezőjénél.", "Nincs olyan szám, ami kisebb a rákövetkezőjénél."]} helyes={0} miert={["", "Ez a ∃x ¬Q(x, f(x)) lenne, a formula pont ennek a tagadása.", "A ¬Q(x, f(x)) azt jelenti, hogy x NEM kisebb-egyenlő x+1-nél."]} magyarazat="¬∃x ¬Q(…) = „nincs olyan, amire nem igaz” = „mindegyikre igaz”.">
+Mit jelent: $\neg\exists x\, \neg Q(x, f(x))$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Predikátum: tulajdonság/kapcsolat; névvel kitöltve állítás. Változók: $x, y, z$.
+- **Minden A B:** $\forall x\,(A(x) \supset B(x))$. **Van A, ami B:** $\exists x\,(A(x) \wedge B(x))$. **∀ mellé ⊃, ∃ mellé ∧.**
+- **Nincs A, ami B:** $\neg\exists x\,(A(x) \wedge B(x))$ = $\forall x\,(A(x) \supset \neg B(x))$.
+- **Senki sem** = $\neg\exists$. **Nem mindenki** = $\neg\forall$ = van, aki nem.
+- Több kvantornál a mondat sorrendjében írd a kvantorokat. **A sorrend számít:** $\forall x \exists y$ ≠ $\exists y \forall x$.
+- Kétargumentumú predikátumnál mindig tisztázd, melyik hely kié (ki szeret kit).
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

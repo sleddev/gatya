@@ -1,0 +1,109 @@
+---
+cim: Kezdd itt
+osszefoglalo: Mi lesz a ZH-ban, hogyan működnek a leckék, és miért nem kell félni a logikától.
+allapot: lecke
+kulcsszavak: [zárthelyi, ZH, követelmények, tematika, hogyan tanulj]
+forras: eloadas01-2026.pdf (követelmények, tematika) · gyakorlati feladatsorok 1–4.
+---
+
+<Lecke>
+
+<Kartya cim="Miről szól ez a kurzus?">
+Ez egy **gyakorló kurzus** a zárthelyikhez. Nem kell hozzá semmilyen előismeret: az első leckétől kezdve mindent felépítünk.
+
+A leckék kártyákból állnak. Minden kártyán **egy** gondolat van, utána általában egy rövid feladat. A **Tovább** gomb csak akkor aktív, ha megoldottad a kártya feladatát. Ha elakadsz, egy rossz próbálkozás után megnézheted a megoldást.
+
+<Valasztas valaszok={["Elolvasom az egészet, aztán majd gyakorlok", "Minden kártyánál rögtön megoldom a feladatot, még ha hibázom is"]} helyes={1} miert={["Olvasás közben minden érthetőnek tűnik, de a ZH-n neked kell megoldanod. A hibázás itt ingyen van, a ZH-n nem.", ""]} magyarazat="A kutatások szerint az a legjobb, ha minden új gondolat után azonnal előhívod és használod. A kurzus erre épül.">
+Szerinted mi a leghatékonyabb módja, hogy ez megmaradjon?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Hogyan kérik számon?">
+Az 1. előadás szerint:
+
+- **Két zárthelyi (ZH)** lesz, egy a félév közepén, egy a végén. **Az egész évfolyam egyszerre írja, mindenkinek ugyanaz a feladatsor.** Tehát nem számít, ki a gyakorlatvezetőd: ugyanazt kell tudnod.
+- A ZH-pontokat **viheted a vizsgára**, és **jegymegajánlást** is kaphatsz.
+- A félév végén írásbeli vizsga van.
+- Gyakorlatról legfeljebb 3-szor hiányozhatsz, különben nincs aláírás.
+
+<Valasztas valaszok={["Csak a saját gyakorlatvezetőm feladatait kell gyakorolnom", "Az évfolyam közös feladatsorát írom, ezért a hivatalos tematika és a feladatsorok számítanak"]} helyes={1} miert={["Nem: a ZH közös, az egész évfolyam ugyanazt írja.", ""]}>
+Mi következik ebből a felkészülésre nézve?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Mit kell tudni? A térkép">
+A ZH-feladatok szinte mind ezekből a típusokból kerülnek ki. A kurzus ebben a sorrendben halad:
+
+| # | téma | tipikus ZH-feladat |
+|---|---|---|
+| 2 | helyes következtetés | elhallgatott premissza, ugyanazt állítják-e |
+| 3–4 | kötőszavak, igazságtábla | magyar mondat → formula |
+| 5–7 | formális nyelv, zárójelek, szerkezeti fa | formula-e? zárójelezés, fő jel, fa, részformulák |
+| 8 | elsőrendű formalizálás | „Mindenki szeret valakit” → formula |
+| 9 | szabad és kötött változók | előfordulások, paraméterek |
+| 10–11 | interpretáció | igazságérték kiszámítása |
+| 12 | kielégíthetőség | érvényes? kielégíthető? ellentmondás? |
+| 13 | logikai következmény | következik-e? ellenpélda |
+| 14–15 | ekvivalencia, normálformák | átalakítás törvényekkel, KNF, DNF |
+| 16 | kvantoros törvények | prenex alak |
+| 17 | ZH-gyakorló | vegyes, végtelen feladatok |
+
+<Valasztas valaszok={["Mindegy, ugorjak oda, ami érdekel", "Sorban, mert minden lecke az előzőre épít"]} helyes={1} miert={["Ismétlésnél jó ötlet, de elsőre nem: a 10. lecke például feltételezi, hogy a 4. lecke igazságtábláit már álmodból tudod.", ""]}>
+Milyen sorrendben érdemes haladni?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A legfontosabb jelek">
+Ezeket a jeleket fogjuk használni. A gyakorlaton és az előadáson is pontosan ezek szerepelnek, ezért ne cseréld le őket a középiskolás változatra:
+
+| jel | neve | olvasd így |
+|---|---|---|
+| $\neg$ | negáció | nem |
+| $\wedge$ | konjunkció | és |
+| $\vee$ | diszjunkció | vagy |
+| $\supset$ | implikáció (kondicionális) | ha … akkor |
+| $\equiv$ | ekvivalencia | akkor és csak akkor |
+| $\forall$ | univerzális kvantor | minden |
+| $\exists$ | egzisztenciális kvantor | van olyan |
+
+<Figyelem cim="nem nyíl!">
+Az implikáció jele ebben a tárgyban $\supset$ (patkó), nem $\to$. A begépelős feladatoknál a `->` is működik, de a ZH-n a patkót írd.
+</Figyelem>
+
+<Valasztas valaszok={["⊃", "≡", "∨"]} helyes={0} sym>
+Melyik jel jelenti azt, hogy „ha … akkor”?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Hogyan írj be formulát?">
+Sok feladatnál formulát kell beírnod. Használhatod a gombokat, vagy gépelhetsz is:
+
+| gépeld | ebből lesz |
+|---|---|
+| `~` vagy `!` | $\neg$ |
+| `&` | $\wedge$ |
+| `\|` | $\vee$ |
+| `->` | $\supset$ |
+| `<->` | $\equiv$ |
+| `forall x`, `exists x` | $\forall x$, $\exists x$ |
+
+Próbáld ki! Írd be: „nem p, vagy q”.
+
+<FormulaValasz helyes="¬p ∨ q" tipp="Gépeld be így: ~p | q">
+Írd be a $\neg p \vee q$ formulát!
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Készen állsz">
+Ennyi az eligazítás. Néhány tanács még:
+
+- **Napi 20 perc** többet ér, mint egy éjszakai roham a ZH előtt.
+- Ahol a feladat sorszáma (pl. **7.I.17**) szerepel, az a gyakorlati feladatsor ugyanilyen számú feladata. Ezeket a gyakorlaton is vettétek.
+- Minden lecke végén van egy **Röviden** összefoglaló. A ZH előtti napon elég ezeket átolvasni.
+
+<Valasztas valaszok={["Indulhat!"]} helyes={0} magyarazat="Lépj a következő leckére: Állítások és helyes következtetés.">
+Kezdhetjük?
+</Valasztas>
+</Kartya>
+
+</Lecke>

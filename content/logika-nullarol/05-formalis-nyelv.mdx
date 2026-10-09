@@ -1,0 +1,126 @@
+---
+cim: A logika nyelve
+osszefoglalo: "Az elsőrendű nyelv: L⁽¹⁾ = ⟨LC, Var, Con, Term, Form⟩. Mi a különbség név (term) és állítás (formula) között, és hogyan döntjük el, hogy valami formula-e."
+allapot: lecke
+kulcsszavak: [elsőrendű nyelv, logikai konstans, nemlogikai konstans, változó, term, formula, függvényjel, predikátum, atomi formula, szintaxis]
+forras: gyak02 · gyak03 · eloadas02–03 (1.I.3)
+---
+
+<Lecke>
+
+<Kartya cim="Miért kell külön nyelv?">
+A magyar nyelv **többértelmű**. „Láttam a lányt a távcsővel.” Kinél volt a távcső? A logikában olyan nyelvet használunk, ahol **minden jelsorozatnak pontosan egy szerkezete van**. Ennek a nyelvnek két oldala van:
+
+- **szintaxis** (nyelvtan): mi számít helyes jelsorozatnak (formulának)?
+- **szemantika** (jelentés): mit jelent, mikor igaz?
+
+Ebben a leckében a szintaxis jön.
+
+<Valasztas valaszok={["szintaxis", "szemantika"]} helyes={0} miert={["", "A szemantika a jelentésről szól. Hogy a jelsorozat egyáltalán formula-e, az nyelvtani kérdés."]}>
+„Formula-e a $(p \wedge \neg q$ jelsorozat?” Ez szintaktikai vagy szemantikai kérdés?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Az elsőrendű nyelv öt része">
+A klasszikus elsőrendű nyelv:
+
+$$
+L^{(1)} = \langle LC,\ Var,\ Con,\ Term,\ Form \rangle
+$$
+
+| rész | mi ez | példa |
+|---|---|---|
+| $LC$ | **logikai** konstansok (jelek) | $\neg, \supset, \wedge, \vee, \equiv, \forall, \exists$, zárójelek |
+| $Var$ | **változók** | $x_1, x_2, x_3, \dots$ (nálunk $x, y, z$) |
+| $Con$ | **nemlogikai** konstansok: nevek, függvények, predikátumok | Péter, édesanyja( ), özvegy( ) |
+| $Term$ | **termek**: összetett nevek | édesanyja(Péter) |
+| $Form$ | **formulák**: összetett állítások | özvegy(édesanyja(Péter)) |
+
+Az $LC$ **véges** (ez a 7 jel és a zárójelek), a többi megszámlálhatóan végtelen. $LC \cap Con = \emptyset$, és $Con \neq \emptyset$.
+
+<Valasztas valaszok={["∧", "Péter", "x", "∃", "özvegy( )"]} helyes={[0, 3]} miert={["", "Ez név, tehát nemlogikai konstans (Con).", "Ez változó (Var).", "", "Ez predikátum, tehát nemlogikai konstans (Con)."]}>
+Melyek tartoznak az $LC$ halmazba?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A nemlogikai konstansok fajtái">
+A $Con$ elemeit aszerint osztjuk fel, hogy **nevet** vagy **állítást** adnak, és hány **argumentumuk** (üres helyük) van:
+
+| jelölés | neve | mit ad | példa |
+|---|---|---|---|
+| $\mathcal{F}(0)$ | névkonstans | nevet | Péter, én, $u$, $c$ |
+| $\mathcal{F}(n)$ | $n$ argumentumú függvényjel | nevet, ha kitöltöd | édesanyja( ), $f(\,)$ |
+| $\mathcal{P}(0)$ | állításkonstans | állítást | havazik, $p$, $q$ |
+| $\mathcal{P}(n)$ | $n$ argumentumú predikátumjel | állítást, ha kitöltöd | özvegy( ), munkatársak( , ) |
+
+Gondolj a függvényjelre és a predikátumra úgy, mint **félkész** névre és **félkész** állításra: „\_\_\_ édesanyja” még nem név, „\_\_\_ özvegy” még nem állítás. Ha kitöltöd a helyet, kész lesz.
+
+<Valasztas valaszok={["𝓕(0)", "𝓕(1)", "𝓟(1)", "𝓟(2)"]} helyes={3} miert={["Nem név: kitöltve állítást ad.", "Nem függvény: kitöltve nem nevet, hanem állítást kapsz.", "Két üres helye van.", ""]}>
+Hova tartozik a „munkatársak( , )” jel? („$x$ és $y$ munkatársak”)
+</Valasztas>
+
+<Valasztas valaszok={["𝓕(0)", "𝓕(1)", "𝓟(0)", "𝓟(1)"]} helyes={1} miert={["Van üres helye.", "", "Kitöltve nem állítás, hanem név: „Péter édesanyja” valakit megnevez, nem állít semmit.", "Kitöltve nem állítást kapsz, hanem egy embert."]}>
+Hova tartozik az „édesanyja( )” jel?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Termek: nevek építése">
+A termeket ez a két szabály adja (ez egy **induktív definíció**):
+
+1. Minden **változó** és minden **névkonstans** term. ($Var \cup \mathcal{F}(0) \subseteq Term$)
+2. Ha $f \in \mathcal{F}(n)$ és $t_1, \dots, t_n$ termek, akkor $f(t_1, \dots, t_n)$ is term.
+
+Tehát „Péter anyai nagyanyja”: édesanyja(édesanyja(Péter)). Ez **név**: valakit megnevez, de nem állít semmit.
+
+<Valasztas valaszok={["igaz vagy hamis", "egy embert nevez meg, nincs igazságértéke"]} helyes={1} miert={["Egy névnek nincs igazságértéke. „Péter anyai nagyanyja”: ez nem kijelentés, hanem egy személy.", ""]}>
+Mi az édesanyja(édesanyja(Péter)) jelentése?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Formulák: állítások építése">
+1. **Atomi formula:** minden állításkonstans ($\mathcal{P}(0)$), és ha $P \in \mathcal{P}(n)$, $t_1, \dots, t_n$ termek, akkor $P(t_1, \dots, t_n)$.
+2. Ha $A$ és $B$ formulák: $\neg A$, $(A \wedge B)$, $(A \vee B)$, $(A \supset B)$, $(A \equiv B)$ is formulák.
+3. Ha $A$ formula, $x$ változó: $\forall x\, A$ és $\exists x\, A$ is formulák.
+
+A predikátum argumentumába **term** kerül, és a logikai jelek **formulákat** kötnek össze.
+
+<FormulaValasz helyes="özvegy(édesanyja(édesanyja(péter)))" elsorendu tipp="Kívül a predikátum (özvegy), belül a term: Péter anyjának az anyja.">
+Írd fel: „Péter anyai nagyanyja özvegy.” Jelek: péter (név), édesanyja( ) (függvény), özvegy( ) (predikátum).
+</FormulaValasz>
+
+<FormulaValasz helyes="munkatársak(édesanyja(péter), én)" elsorendu>
+Írd fel: „Péter édesanyja a munkatársam.” Jelek: péter, én (nevek), édesanyja( ), munkatársak( , ).
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Term, formula, vagy egyik sem?">
+A leggyakoribb hiba, hogy valaki **formulát tesz term helyére**. Egy predikátum argumentuma mindig név (term), nem állítás.
+
+<Valasztas valaszok={["édesanyja(én)", "özvegy(én)", "özvegy(özvegy(én))", "édesanyja(özvegy(én))", "¬özvegy(édesanyja(x))"]} helyes={[1, 4]} miert={["Ez term (név), nem formula.", "", "Nem jó: az özvegy(én) állítás, nem név, így nem kerülhet predikátum argumentumába.", "Nem jó: függvény argumentuma is csak term lehet.", ""]} magyarazat="A formulák: özvegy(én) és ¬özvegy(édesanyja(x)). Az édesanyja(én) term, a másik kettő pedig egyik sem.">
+Melyek **formulák**?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Formula-e? (1.I.3)">
+Legyen $Con = \{X, Y, Z, \dots\}$ állításkonstansok. A ZH-n ilyenkor azt kell eldönteni, hogy a jelsorozat a szabályokkal felépíthető-e.
+
+- A **zárójeleket a precedencia szerint elhagyhatjuk** (a következő leckében jön), ezért a $Z \vee X \wedge \neg Y$ is formulának számít: $(Z \vee (X \wedge \neg Y))$ rövidítése.
+- A **fölösleges** zárójel, mint a $(\neg X)$, nem tesz tönkre semmit.
+- A **hiányzó** zárójelpár, vagy két formula jel nélkül egymás mellett viszont hiba.
+
+<Valasztas valaszok={["(X ∧ Y)¬Z", "((X ∧ Y) ⊃ Z)", "(Z ∨ X ∧ ¬Y)", "(((¬X) ⊃ Y) ⊃ ¬(X ∨ Z))", "¬(X ∨ Y ⊃ ¬¬Z)", "¬(X ∨ Y ∧ ¬Z"]} helyes={[1, 2, 3, 4]} sym miert={["Az (X ∧ Y) és a ¬Z között nincs kétargumentumú jel: két formula nem állhat csak úgy egymás mellett.", "", "", "", "", "Hiányzik a záró zárójel: a nyitó és záró zárójelek száma nem egyezik."]}>
+Melyek formulák?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $L^{(1)} = \langle LC, Var, Con, Term, Form \rangle$: logikai jelek, változók, nemlogikai jelek, termek, formulák.
+- $\mathcal{F}(0)$ név, $\mathcal{F}(n)$ függvényjel (kitöltve **név**), $\mathcal{P}(0)$ állításkonstans, $\mathcal{P}(n)$ predikátum (kitöltve **állítás**).
+- **Term** = név (nincs igazságértéke). **Formula** = állítás (igaz vagy hamis).
+- Predikátum és függvény argumentumába csak **term** kerülhet. Logikai jelek csak **formulákat** köthetnek össze.
+- Formula-e? Hiányzó zárójel vagy két formula jel nélkül egymás mellett: nem. Fölösleges, illetve a precedencia szerint elhagyott zárójel: rendben.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

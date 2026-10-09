@@ -1,0 +1,153 @@
+---
+cim: Érvényes, kielégíthető, ellentmondás
+osszefoglalo: Modell, kielégíthető, cáfolható, kielégíthetetlen (ellentmondás) és érvényes (logikai törvény) formulák és formulahalmazok. A visszafelé számolás módszere.
+allapot: lecke
+kulcsszavak: [modell, kielégíthető, kielégíthetetlen, ellentmondás, logikai törvény, érvényes, tautológia, cáfolható, formulahalmaz, visszafelé számolás]
+forras: gyak03 (7.I.1, 7.I.3, 7.I.7, 7.I.11, 7.I.13) · eloadas03–04
+---
+
+<Lecke>
+
+<Kartya cim="Modell">
+Ha egy interpretációban a formula **igaz**, akkor ez az interpretáció a formula egy **modellje**. Egy formulahalmaz modellje olyan interpretáció, amelyben a halmaz **minden** formulája igaz.
+
+<Valasztas valaszok={["X = 1, Y = 0", "X = 1, Y = 1", "X = 0, Y = 0"]} helyes={1} miert={["Ebben X ∧ Y = 0.", "", "Ebben X ∧ Y = 0."]}>
+Melyik interpretáció modellje az $X \wedge Y$ formulának?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Négy fogalom">
+Attól függően, hány modellje van, egy formula:
+
+| fogalom | jelentése | másik neve |
+|---|---|---|
+| **kielégíthető** | **van** modellje (legalább egy sorban 1) | |
+| **kielégíthetetlen** | **nincs** modellje (minden sorban 0) | ellentmondás |
+| **érvényes** | **minden** interpretáció modellje (minden sorban 1) | logikai törvény, tautológia |
+| **cáfolható** | **van**, ahol hamis (legalább egy sorban 0) | |
+
+Képzeld el az összes formula halmazát két részre vágva: bal oldalt a kielégíthetők, jobb oldalt a kielégíthetetlenek. A kielégíthetők **belsejében** egy kisebb kör: az érvényesek. A cáfolhatók: minden, ami **nem** érvényes.
+
+<KielegithetosegAbra formula="p ⊃ q" />
+
+<Valasztas valaszok={["érvényes", "kielégíthető és cáfolható", "kielégíthetetlen"]} helyes={0} miert={["", "Nincs olyan sor, ahol hamis lenne.", "Épp ellenkezőleg."]}>
+Milyen a $p \vee \neg p$?
+</Valasztas>
+
+<Valasztas valaszok={["érvényes", "kielégíthető és cáfolható", "kielégíthetetlen"]} helyes={2} miert={["Épp ellenkezőleg.", "Nincs olyan sor, ahol igaz lenne.", ""]}>
+Milyen a $p \wedge \neg p$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Mi következik miből? (7.I.1, első rész)">
+Gondold végig az ábrát. Az érvényesek a kielégíthetők **részhalmaza**: ami érvényes, az kielégíthető is, de fordítva nem.
+
+<Figyelem cim="„csak akkor” megint">
+„$A$ csak akkor, ha $B$” = ha $A$, akkor $B$. Tehát „Egy formula csak akkor kielégíthető, ha logikai törvény” azt jelenti: ha kielégíthető, akkor törvény. Ez hamis!
+</Figyelem>
+
+<Valasztas valaszok={["(a) Egy formula akkor és csak akkor kielégíthető, ha logikai törvény.", "(b) Egy formula csak akkor kielégíthető, ha logikai törvény.", "(c) Egy formula csak akkor logikai törvény, ha kielégíthető.", "(d) Egy formula pontosan akkor nem lesz kielégíthető, ha ellentmondásos.", "(e) Ha egy formula logikai törvény, akkor kielégíthető."]} helyes={[2, 3, 4]} miert={["Hamis: a p ⊃ q kielégíthető, de nem törvény.", "Hamis: ez azt mondja, hogy ha kielégíthető, akkor törvény. A p ⊃ q ellenpélda.", "", "", ""]}>
+Melyik állítás **igaz**?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Tagadás és osztályok (7.I.1, második rész)">
+A tagadás **megfordítja** a táblázat utolsó oszlopát. Ezért:
+
+- $A$ érvényes ⟺ $\neg A$ kielégíthetetlen
+- $A$ kielégíthetetlen ⟺ $\neg A$ érvényes
+- $A$ kielégíthető és cáfolható ⟺ $\neg A$ is az
+
+<Valasztas valaszok={["(f) Ha egy formula nem ellentmondás, akkor nem logikai törvény.", "(g) Ha egy formula kielégíthető, akkor a negáltja is kielégíthető.", "(h) Ha egy formula logikai törvény, akkor a negáltja nem elégíthető ki.", "(i) Ha egy formula negáltja kielégíthető, akkor a formula logikai törvény."]} helyes={[2]} miert={["Hamis: a p ∨ ¬p nem ellentmondás, mégis törvény.", "Hamis: a p ∨ ¬p kielégíthető, de a negáltja, ¬(p ∨ ¬p) nem.", "", "Hamis: a p negáltja kielégíthető, de a p nem törvény. (Valójában épp fordítva: ha ¬A kielégíthető, akkor A cáfolható.)"]}>
+Melyik állítás **igaz**?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Kielégíthető? Mutass egy modellt!">
+Hogy egy formula **kielégíthető**, azt egyetlen **modell** megmutatásával bizonyítjuk. Nem kell az egész igazságtábla!
+
+<ModellKereso igaz={["(X ⊃ Y) ⊃ (Y ⊃ X)"]} nincs={false} magyarazat="Például X = 1, Y = 1. De az X = 0, Y = 0 is jó: bármelyik modell elég.">
+**7.I.3 (b)** Adj meg egy modellt: $(X \supset Y) \supset (Y \supset X)$
+</ModellKereso>
+
+<ModellKereso igaz={["¬(X ⊃ ¬X)"]} nincs={false}>
+**7.I.3 (a)** $\neg(X \supset \neg X)$
+</ModellKereso>
+</Kartya>
+
+<Kartya cim="A visszafelé számolás módszere">
+Ez a ZH legfontosabb technikája. Ha azt akarod, hogy egy formula **adott értékű** legyen, ne találgass: indulj a **fő jeltől**, és nézd meg, mi **kell** hozzá.
+
+- $A \supset B$ legyen **0** → kell: $A = 1$ és $B = 0$. (Csak így lehet!)
+- $A \wedge B$ legyen **1** → kell: $A = 1$ és $B = 1$.
+- $A \vee B$ legyen **0** → kell: $A = 0$ és $B = 0$.
+- $\neg A$ legyen 1 → kell: $A = 0$.
+
+Ezek az **egyértelmű** esetek, mindig ezekkel kezdd. Ha ellentmondásra jutsz (egy betűnek 0-nak és 1-nek is kellene lennie), akkor **nincs ilyen interpretáció**.
+
+<ModellKereso igaz={["(X ⊃ Y ∧ Z) ∧ ¬(X ∨ Z ⊃ Y)"]} nincs={false} magyarazat="Az ∧ miatt mindkét tag 1. A ¬(X ∨ Z ⊃ Y) = 1 miatt X ∨ Z ⊃ Y = 0, tehát X ∨ Z = 1 és Y = 0. Akkor Y ∧ Z = 0, és X ⊃ Y ∧ Z = 1 miatt X = 0. Végül X ∨ Z = 1 miatt Z = 1.">
+**7.I.3 (c)** Számolj visszafelé: $(X \supset Y \wedge Z) \wedge \neg(X \vee Z \supset Y)$
+</ModellKereso>
+</Kartya>
+
+<Kartya cim="Nem logikai törvény? Mutass ellenpéldát!">
+Hogy egy formula **nem** logikai törvény, azt egy olyan interpretációval bizonyítjuk, amelyben **hamis**. Hogy **törvény**, azt úgy, hogy megmutatjuk: **nem lehet** hamis (a visszafelé számolás ellentmondásra vezet).
+
+<ModellKereso hamis={["(X ⊃ Z) ⊃ ((X ⊃ Y) ⊃ (Y ⊃ Z))"]} magyarazat="A fő ⊃ legyen 0: X ⊃ Z = 1 és (X ⊃ Y) ⊃ (Y ⊃ Z) = 0. Az utóbbiból X ⊃ Y = 1 és Y ⊃ Z = 0, tehát Y = 1, Z = 0. Akkor X ⊃ Z = 1 miatt X = 0. Ellenőrizd: X ⊃ Y = 0 ⊃ 1 = 1. Tehát nem törvény.">
+**7.I.7 (e)** Tedd hamissá: $(X \supset Z) \supset ((X \supset Y) \supset (Y \supset Z))$. Ha nem lehet, nyomd meg a „Nincs ilyen interpretáció” gombot.
+</ModellKereso>
+
+<ModellKereso hamis={["¬(X ⊃ Y) ⊃ ¬Y"]} magyarazat="A fő ⊃ legyen 0: ¬(X ⊃ Y) = 1, tehát X ⊃ Y = 0, azaz X = 1, Y = 0. De akkor ¬Y = 1, pedig 0-nak kellene lennie. Ellentmondás: a formula sosem hamis, tehát logikai törvény.">
+**7.I.7 (a)** Tedd hamissá: $\neg(X \supset Y) \supset \neg Y$
+</ModellKereso>
+</Kartya>
+
+<Kartya cim="Melyek nem törvények? (7.I.7)">
+<Valasztas valaszok={["(a) ¬(X ⊃ Y) ⊃ ¬Y", "(b) ¬(X ⊃ Y) ⊃ X", "(c) X ⊃ ¬(X ⊃ Y)", "(d) ¬X ⊃ (X ⊃ Y)", "(e) (X ⊃ Z) ⊃ ((X ⊃ Y) ⊃ (Y ⊃ Z))", "(f) ¬X ∧ (Y ⊃ Z) ∧ X ⊃ ¬Y ∨ X"]} helyes={[2, 4]} sym miert={["Törvény, láttuk az előző kártyán.", "Törvény: a hamissághoz X = 1, Y = 0 kellene (előtag), de akkor az utótag X = 1.", "", "Törvény: a hamissághoz X = 0 kellene, de akkor X ⊃ Y = 1.", "", "Törvény: az előtagban ¬X és X is szerepel és-elve, így az előtag mindig 0."]} magyarazat="(c) X = 1, Y = 1 esetén hamis. (e) X = 0, Y = 1, Z = 0 esetén hamis.">
+Melyek **nem** logikai törvények?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Formulahalmazok (7.I.11)">
+Egy formulahalmaz **kielégíthető**, ha van **közös** modellje: egy interpretáció, amelyben **mind** igaz. Nem elég, ha mindegyik külön-külön kielégíthető!
+
+<ModellKereso igaz={["¬X", "X ⊃ Y", "X ∨ ¬Y"]}>
+**7.I.11 (a)** Kielégíthető-e $\{\neg X,\ X \supset Y,\ X \vee \neg Y\}$? Ha igen, adj modellt.
+</ModellKereso>
+
+<ModellKereso igaz={["X ⊃ Y", "X", "¬Y"]} magyarazat="X = 1 kell, és akkor X ⊃ Y miatt Y = 1, de ¬Y miatt Y = 0. Ellentmondás. (Mindhárom formula külön-külön kielégíthető, együtt mégsem.)">
+**7.I.11 (b)** És $\{X \supset Y,\ X,\ \neg Y\}$?
+</ModellKereso>
+</Kartya>
+
+<Kartya cim="Részhalmazok és bővítések (7.I.13)">
+Két tétel az előadásról:
+
+- Kielégíthető halmaz minden **részhalmaza** kielégíthető. (Ugyanaz a modell jó.) *Az ellentmondásmentesség szűkítéssel nem rontható el.*
+- Kielégíthetetlen halmaz minden **bővítése** kielégíthetetlen. *Az ellentmondás bővítéssel nem szüntethető meg.*
+
+<Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["Nem: a {p ∧ ¬p} kielégíthetetlen, és egyetlen nem üres része saját maga.", ""]}>
+**(a)** Minden kielégíthetetlen formulahalmaznak van kielégíthető (nem üres) része?
+</Valasztas>
+
+<Valasztas valaszok={["igaz", "hamis"]} helyes={0} miert={["", "Mindig van: vegyük hozzá például a p ∧ ¬p ellentmondást."]}>
+**(b)** Minden kielégíthető formulahalmaznak van kielégíthetetlen bővítése?
+</Valasztas>
+
+<Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["Nem: a {X, ¬X} kielégíthetetlen, de a része, az {X} kielégíthető.", ""]}>
+**(c)** Egy kielégíthetetlen formulahalmaz minden részhalmaza kielégíthetetlen?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- **Modell:** interpretáció, amelyben a formula (a halmaz minden formulája) igaz.
+- **Kielégíthető:** van modell. **Kielégíthetetlen (ellentmondás):** nincs. **Érvényes (logikai törvény):** minden interpretáció modell. **Cáfolható:** van, ahol hamis.
+- Érvényes ⊂ kielégíthető. $A$ érvényes ⟺ $\neg A$ kielégíthetetlen.
+- **Bizonyítás:** kielégíthető → mutass egy modellt. Nem törvény → mutass egy interpretációt, ahol hamis. Törvény / ellentmondás → mutasd meg, hogy a másik eset lehetetlen.
+- **Visszafelé számolás:** a fő jeltől indulva az egyértelmű esetekkel ($\supset$ = 0, $\wedge$ = 1, $\vee$ = 0). Ellentmondás → nincs ilyen interpretáció.
+- Kielégíthető halmaz részhalmaza kielégíthető; kielégíthetetlen halmaz bővítése kielégíthetetlen.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

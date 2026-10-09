@@ -1,0 +1,110 @@
+---
+cim: Szabad és kötött változók
+osszefoglalo: A kvantor hatásköre, a változók szabad és kötött előfordulásai, nyílt és zárt formulák, paraméterek, a kötött változók átnevezése és a változóiban tiszta formula.
+allapot: lecke
+kulcsszavak: [szabad változó, kötött változó, hatáskör, nyílt formula, zárt formula, paraméter, változóiban tiszta, átnevezés, variáns]
+forras: gyak02 (3.P.2) · eloadas02–03
+---
+
+<Lecke>
+
+<Kartya cim="A kvantor hatásköre">
+A $\forall x\, A$ és $\exists x\, A$ formulában az $A$ a kvantor **hatásköre**: ez az a rész, amelyről a kvantor beszél. A precedencia miatt a hatáskör csak a **közvetlenül utána álló** részformula.
+
+$$
+\exists x\, P(x) \wedge P(x) \quad = \quad (\exists x\, P(x)) \wedge P(x)
+$$
+
+Itt az $\exists x$ hatásköre csak az első $P(x)$. A második $P(x)$ már **kívül** esik rajta.
+
+<Valasztas valaszok={["csak R(x, y)", "R(x, y) ⊃ Q(x)", "az egész formula"]} helyes={1} miert={["Nem: a ∀x után zárójel áll, az egész zárójeles rész a hatásköre.", "", "A ∧ Q(x) már kívül esik a zárójelen."]}>
+Mi a $\forall x$ hatásköre ebben a formulában: $\forall x\,(R(x,y) \supset Q(x)) \wedge Q(x)$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Szabad és kötött előfordulás">
+<Definicio>
+Az $x$ változó egy előfordulása **kötött**, ha egy $\forall x$ vagy $\exists x$ kvantor hatáskörébe esik (ugyanazzal a változóval!). Különben **szabad**.
+</Definicio>
+
+Egy változónak **előfordulásai** vannak, és ugyanaz a változó lehet az egyik helyen szabad, a másikon kötött! A kvantor mellett álló változót (a $\forall x$-beli $x$-et) nem számoljuk előfordulásnak.
+
+<SzabadKotott formula="∃x P(x) ∧ P(x)">
+**3.P.2 (a)** Jelöld az előfordulásokat!
+</SzabadKotott>
+</Kartya>
+
+<Kartya cim="Csak az azonos nevű változót köti">
+A $\forall x$ csak az $x$-et köti. Az $y$-ra a hatáskörén belül sincs hatással.
+
+<SzabadKotott formula="∀x Q(x, y) ⊃ ∀y Q(x, y)">
+**3.P.2 (b)** Jelöld az előfordulásokat!
+</SzabadKotott>
+</Kartya>
+
+<Kartya cim="Gyakorlás">
+<SzabadKotott formula="∀x (∀y R(x, y, z) ⊃ Q(x, y))">
+**3.P.2 (e)**
+</SzabadKotott>
+
+<SzabadKotott formula="∀y ∃z (R(x, g(x, y), z) ⊃ ∃x Q(z, x))" magyarazat="A függvényjel argumentumában álló változó ugyanúgy előfordulás: a g(x, y)-ban az x szabad, az y kötött.">
+**3.P.2 (f)**
+</SzabadKotott>
+</Kartya>
+
+<Kartya cim="Nyílt és zárt formula, paraméterek">
+- **Nyílt** a formula, ha **legalább egy** változó **legalább egy** helyen szabadon fordul elő.
+- **Zárt** a formula, ha minden változó minden előfordulása kötött.
+- A formula **paraméterei** a szabadon előforduló változók.
+
+Miért fontos? Egy **zárt** formula igaz vagy hamis (ha tudjuk, miről szól). Egy **nyílt** formula értéke attól is függ, mit jelölnek a szabad változói: a „$P(x)$” olyan, mint „ő páros”. Nem tudjuk, igaz-e, amíg nem mondjuk meg, ki az „ő”.
+
+<Valasztas valaszok={["{x}", "{c}", "∅, a formula zárt", "{x, y}"]} helyes={2} miert={["Az x minden előfordulása a ∀x hatáskörében van.", "A c névkonstans, nem változó.", "", "Az y-t az ∃y köti."]}>
+**3.P.2 (d)** Mi a paraméterek halmaza: $\forall x\,(Q(x,c) \supset \exists y\, Q(x,y))$?
+</Valasztas>
+
+<Valasztas valaszok={["{z}", "{x, y, z}", "∅"]} helyes={0} miert={["", "Az x-et és az y-t a zárójel előtti kvantorok kötik.", "A z-t semmi sem köti."]}>
+**3.P.2 (c)** És itt: $\exists x \exists y\,(Q(x,y) \wedge P(z))$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Kötött változók átnevezése">
+Egy kötött változót **átnevezhetünk**, ha a kvantorban és az általa kötött összes előfordulásban kicseréljük egy **új**, a formulában még nem szereplő változóra. A jelentés nem változik: $\exists x\, P(x)$ és $\exists z\, P(z)$ ugyanazt mondja. Az így kapott formulák egymás **variánsai**.
+
+**Szabad** változót viszont **nem szabad** átnevezni: a $P(x)$ és a $P(z)$ mást jelent (más „ő”-ről beszél).
+
+<Valasztas valaszok={["∃z P(z) ∧ P(x)", "∃z P(z) ∧ P(z)", "∃x P(x) ∧ P(z)"]} helyes={0} miert={["", "A második P(x)-beli x szabad volt, azt nem szabad átnevezni.", "Itt a szabad x-et nevezted át, ami megváltoztatja a jelentést."]}>
+Melyik az $\exists x\, P(x) \wedge P(x)$ helyes variánsa?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Változóiban tiszta formula">
+<Definicio cim="változóiban tiszta formula">
+Egy formula **változóiban tiszta**, ha
+1. egyetlen változó sem fordul elő benne **szabadon és kötötten is**, és
+2. **nincs két kvantor**, amely ugyanazt a változót köti.
+</Definicio>
+
+Minden formula átnevezéssel változóiban tisztává tehető: a kötött változókat kell új nevekre cserélni.
+
+<FormulaValasz helyes="∀z Q(z, y) ⊃ ∀v Q(x, v)" mod="tiszta" elsorendu kezdo="∀x Q(x, y) ⊃ ∀y Q(x, y)" tipp="Az x és az y is előfordul szabadon és kötötten is. Nevezd át a két kvantort és az általuk kötött előfordulásokat új betűre (z, v). A szabad x-hez és y-hoz ne nyúlj!">
+Tedd változóiban tisztává: $\forall x\, Q(x,y) \supset \forall y\, Q(x,y)$
+</FormulaValasz>
+
+<FormulaValasz helyes="∃x ∀y (P(x) ∨ Q(x, f(y)) ⊃ ∀z Q(x, z))" mod="tiszta" elsorendu kezdo="∃x ∀y (P(x) ∨ Q(x, f(y)) ⊃ ∀y Q(x, y))" tipp="Két kvantor is az y-t köti. A belsőt (∀y Q(x, y)) nevezd át.">
+**3.P.2 (g)** Tedd változóiban tisztává: $\exists x \forall y\,(P(x) \vee Q(x, f(y)) \supset \forall y\, Q(x, y))$
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- **Hatáskör:** a kvantor után közvetlenül álló részformula (zárójeles rész, vagy egyetlen atom).
+- **Kötött** előfordulás: egy azonos nevű változót kötő kvantor hatáskörében van. **Szabad:** nincs ilyen kvantor fölötte.
+- Ugyanaz a változó lehet egyszerre szabad (egyik helyen) és kötött (másik helyen).
+- **Zárt:** nincs szabad előfordulás. **Nyílt:** van. **Paraméterek:** a szabad változók halmaza.
+- **Átnevezés:** kötött változót (a kvantorral és minden általa kötött előfordulással együtt) új betűre cserélhetsz; szabadot soha.
+- **Változóiban tiszta:** nincs szabad-és-kötött változó, és nincs két kvantor ugyanarra a változóra.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>
