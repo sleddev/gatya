@@ -1,0 +1,98 @@
+---
+cim: Szerkezeti fa és részformulák
+osszefoglalo: Hogyan rajzoljuk meg egy formula szerkezeti fáját a fő logikai jelekből kiindulva, és hogyan döntjük el, hogy valami részformula-e.
+allapot: lecke
+kulcsszavak: [szerkezeti fa, részformula, közvetlen részformula, fő logikai jel, atomi formula]
+forras: gyak02 (1.I.15, 1.P.10, 1.P.8) · eloadas03
+---
+
+<Lecke>
+
+<Kartya cim="Mi a szerkezeti fa?">
+A szerkezeti fa megmutatja, **hogyan épül fel** a formula. A szabály egyszerű:
+
+1. A **gyökér** az egész formula, a fő logikai jelével címkézve.
+2. Egy csúcs **gyerekei** a közvetlen részformulák: $\neg A$-nak egy gyereke van ($A$), $A \wedge B$-nek kettő ($A$ és $B$), $\forall x A$-nak egy ($A$).
+3. A **levelek** az atomi formulák.
+
+Tehát a fát mindig **felülről lefelé** rajzolod: megkeresed a fő jelet, kettévágod a formulát, és mindkét darabbal megismétled.
+
+<Valasztas valaszok={["a fő logikai jel", "a bal oldali első betű", "a legerősebben kötő jel"]} helyes={0} miert={["", "A betűk (atomok) a levelek, nem a gyökér.", "Fordítva: a legerősebben kötő jelek kerülnek legalulra, a gyökérbe a leggyengébb (a fő jel)."]}>
+Mi kerül a fa gyökerébe?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Építsd meg a fát!">
+Most te bontod szét: koppints a **kiemelt rész** fő jelére. Az a rész ekkor kettéválik (vagy negációnál egy ágra), és a következő bontandó részt emeljük ki. Addig folytasd, amíg csak atomok maradnak.
+
+<FoJel formula="¬¬¬(X ⊃ Y)" fa>
+**1.I.15 (a)** $\neg\neg\neg(X \supset Y)$
+</FoJel>
+</Kartya>
+
+<Kartya cim="Fa: két ág">
+<FoJel formula="(X ⊃ Y) ∨ (X ⊃ Y ∧ Z)" fa>
+**1.I.15 (b)** $(X \supset Y) \vee (X \supset Y \wedge Z)$
+</FoJel>
+</Kartya>
+
+<Kartya cim="Fa: nagyobb formula">
+<FoJel formula="X ∨ Y ⊃ ¬Z ∧ ¬(X ⊃ ¬Z)" fa>
+**1.I.15 (c)** $X \vee Y \supset \neg Z \wedge \neg(X \supset \neg Z)$
+</FoJel>
+
+<FoJel formula="¬(X ∨ Z ⊃ ¬Y) ⊃ ¬X ∨ (¬Y ∧ Z)" fa>
+**1.I.15 (f)** $\neg(X \vee Z \supset \neg Y) \supset \neg X \vee (\neg Y \wedge Z)$
+</FoJel>
+</Kartya>
+
+<Kartya cim="Elsőrendű formula fája">
+Kvantornál a csúcs címkéje a kvantor a változóval ($\forall y$, $\exists x$), és egy gyereke van. Az atomi formulák, mint a $P(f(x))$, egyben levelek: a termeket nem bontjuk tovább.
+
+Az előadás két példája, amelyek csak egy zárójelben különböznek:
+
+<FoJel formula="∀y ¬∃x (P(f(x)) ∨ Q(x, y))" elsorendu fa>
+$\forall y\, \neg \exists x\,(P(f(x)) \vee Q(x, y))$
+</FoJel>
+
+<FoJel formula="∀y (¬∃x P(f(x)) ∨ Q(x, y))" elsorendu fa magyarazat="Itt az ∃x csak a P(f(x))-re vonatkozik, a Q(x, y) már kívül esik a hatáskörén. A 9. leckében ez nagyon fontos lesz.">
+$\forall y\,(\neg \exists x\, P(f(x)) \vee Q(x, y))$
+</FoJel>
+</Kartya>
+
+<Kartya cim="Részformulák">
+Egy formula **részformulái** pontosan a szerkezeti fa **csúcsaiban** álló formulák: maga a formula, a közvetlen részformulái, azok közvetlen részformulái, és így tovább, le az atomokig.
+
+<Figyelem cim="nem minden összefüggő darab részformula!">
+A $p \wedge q \vee r$-ben a $q \vee r$ **nem** részformula, pedig ott áll egymás mellett. A szerkezet $(p \wedge q) \vee r$, és a fában nincs olyan csúcs, ahol $q \vee r$ állna. Mindig a fából dolgozz, ne a szövegből!
+</Figyelem>
+
+<Valasztas valaszok={["p ∧ q", "q ∨ r", "r", "p ∧ q ∨ r"]} helyes={[0, 2, 3]} sym miert={["", "Csapda: ez nem csúcs a fában.", "", ""]}>
+Melyek részformulái a $p \wedge q \vee r$ formulának?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Részformulák (1.P.10)">
+Előbb gondold végig a formula szerkezetét (vagy építsd meg a fáját):
+
+$$
+\exists z\,(\forall x P(x,z) \supset \exists z \forall x P(x,z) \vee \exists z P(x,z))
+$$
+
+A $\supset$ gyengébb a $\vee$-nél, ezért a zárójelen belül a fő jel a $\supset$, és a jobb oldala az egész diszjunkció.
+
+<Valasztas valaszok={["∀xP(x,z)", "∀xP(x,z) ⊃ ∃z∀xP(x,z)", "∃z∀xP(x,z) ∨ ∃zP(x,z)", "∃zP(x,z)", "∀xP(x,z) ⊃ ∃zP(x,z)", "P(x,z) ∨ ∃zP(x,z)", "P(x,z) ⊃ ∃z∀xP(x,z) ∨ ∃zP(x,z)"]} helyes={[0, 2, 3]} sym miert={["", "Nem: a ⊃ jobb oldala az egész diszjunkció, nem csak az első tagja.", "", "", "Ilyen implikáció nincs a fában.", "A P(x,z) a ∀x alatt áll, nem állhat egy ∨ tagjaként.", "A ⊃ bal oldala ∀xP(x,z), nem P(x,z)."]}>
+**1.P.10** Melyek részformulák?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- **Szerkezeti fa:** gyökér = fő logikai jel; gyerekek = közvetlen részformulák; levelek = atomi formulák.
+- Felülről lefelé építsd: fő jel → kettévágás → ismétlés.
+- $\neg$ és kvantor: **egy** gyerek. $\wedge, \vee, \supset, \equiv$: **két** gyerek.
+- **Részformula** = a fa valamelyik csúcsában álló formula. Ami csak egymás mellett áll a szövegben, az még nem részformula.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

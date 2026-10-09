@@ -1,0 +1,161 @@
+---
+cim: Zárójelek és precedencia
+osszefoglalo: Melyik jel köt erősebben, hogyan zárójelezünk teljesen, hogyan hagyjuk el a lehető legtöbb zárójelet, és mi a fő logikai jel.
+allapot: lecke
+kulcsszavak: [precedencia, zárójelezés, zárójelek elhagyása, fő logikai jel, kötési erősség]
+forras: gyak02 (1.I.5, 1.P.8) · eloadas03
+---
+
+<Lecke>
+
+<Kartya cim="Ugyanaz a jelsorozat, két jelentés">
+Mit jelent $p \supset q \equiv \neg p \supset \neg q$? Lehet így is:
+
+$$
+((p \supset q) \equiv (\neg p \supset \neg q))
+$$
+
+és így is:
+
+$$
+(p \supset (q \equiv \neg(p \supset \neg q)))
+$$
+
+Ez két teljesen különböző formula! A matematikában ugyanez a helyzet: $a + b \cdot c$-t $a + (b \cdot c)$-nek olvassuk, mert megállapodtunk, hogy a szorzás **erősebben köt**. A logikában is van ilyen megállapodás: ez a **precedencia**.
+
+<Valasztas valaszok={["(a + b) · c", "a + (b · c)"]} helyes={1} sym>
+Ismétlés: hogyan olvassuk az $a + b \cdot c$ kifejezést?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A kötési sorrend">
+Erősebbtől a gyengébbig:
+
+$$
+\forall,\ \exists \quad>\quad \neg \quad>\quad \wedge \quad>\quad \vee \quad>\quad \supset \quad>\quad \equiv
+$$
+
+<Tipp cim="így jegyezd meg">
+- Az **egyargumentumúak** ($\forall x$, $\exists x$, $\neg$) a legerősebbek: csak a **közvetlenül utánuk álló** részre vonatkoznak.
+- A $\wedge$ olyan, mint a szorzás, a $\vee$ olyan, mint az összeadás: a $\wedge$ köt erősebben.
+- A „nyilak” a leggyengébbek: előbb $\supset$, végül $\equiv$. A ZH-n ezt a sort írd fel a lap tetejére!
+</Tipp>
+
+<Valasztas valaszok={["¬", "∧", "⊃", "≡"]} helyes={3} sym>
+Melyik jel köt a **leggyengébben**?
+</Valasztas>
+
+<Valasztas valaszok={["(¬p) ∧ q", "¬(p ∧ q)"]} helyes={0} sym miert={["", "Nem: a ¬ csak a közvetlenül utána álló p-re vonatkozik. Ha az egészet akarod tagadni, zárójel kell: ¬(p ∧ q)."]}>
+Mit jelent $\neg p \wedge q$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Azonos jelek egymás után">
+Mi van, ha ugyanaz a jel ismétlődik?
+
+- $p \vee q \vee r$ és $p \wedge q \wedge r$: **mindegy**, hogyan csoportosítunk, ugyanazt jelenti (asszociativitás).
+- $p \supset q \supset r$: itt **nem** mindegy! Megállapodás szerint **jobbról** csoportosítunk:
+
+$$
+p \supset q \supset r \quad = \quad p \supset (q \supset r)
+$$
+
+<Valasztas valaszok={["(p ⊃ q) ⊃ r", "p ⊃ (q ⊃ r)"]} helyes={1} sym miert={["Nem: a ⊃ jobbról csoportosít.", ""]}>
+Hogyan olvassuk a $p \supset q \supset r$ formulát?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Teljes zárójelezés">
+A **hivatalos** (a definíció szerinti) alakban **minden kétargumentumú jel** ($\wedge, \vee, \supset, \equiv$) köré tartozik egy zárópár, **a legkülsőre is**. A $\neg$ és a kvantorok köré nem kell.
+
+A módszer: a precedencia szerint haladva, **a legerősebb jeltől kezdve** zárójelezd a jeleket a két szomszédjukkal. Itt lépésenként megnézheted:
+
+<Zarojelezo formula="X ∨ ¬Y ⊃ Z ∧ X" />
+
+<FormulaValasz helyes="((X ∨ Y) ⊃ ¬Z)" mod="teljes" kezdo="X ∨ Y ⊃ ¬Z" tipp="Két kétargumentumú jel van (∨ és ⊃), tehát két zárópár kell. Az ∨ köt erősebben.">
+Zárójelezd teljesen: $X \vee Y \supset \neg Z$
+</FormulaValasz>
+
+<FormulaValasz helyes="((¬X ∨ (Y ∧ Z)) ≡ X)" mod="teljes" kezdo="¬X ∨ Y ∧ Z ≡ X" tipp="Három kétargumentumú jel, három pár. Sorrend: ∧, aztán ∨, végül ≡.">
+Zárójelezd teljesen: $\neg X \vee Y \wedge Z \equiv X$
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="A fő logikai jel">
+A **fő logikai jel** az, amelyik **utoljára** „hajtódik végre”: teljes zárójelezés után ez áll a legkülső zárópáron belül, de minden más zárópáron kívül. Ez határozza meg, milyen fajta a formula: implikáció, konjunkció, negáció…
+
+**Gyors módszer:** a zárójeleken **kívül** álló jelek közül a **leggyengébb**. (Ha ilyenből több $\supset$ van, a bal oldali, hiszen jobbról csoportosítunk.)
+
+<FoJel formula="p ∨ q ∧ r ⊃ s">
+Melyik a fő logikai jel?
+</FoJel>
+
+<FoJel formula="¬(p ∧ q) ∨ r">
+És itt?
+</FoJel>
+
+<FoJel formula="¬(p ⊃ q ∨ r)" magyarazat="A ¬ az egész zárójeles részre vonatkozik, ezért az egész formula egy tagadás.">
+És itt?
+</FoJel>
+</Kartya>
+
+<Kartya cim="Zárójelek elhagyása (1.I.5)">
+Fordított feladat: a teljesen zárójelezett formulából hagyd el a **lehető legtöbb** zárópárt úgy, hogy **ne változzon a jelentése**. Egy zárópár akkor hagyható el, ha a precedencia úgyis ugyanígy csoportosítana.
+
+<Tipp cim="mikor marad a zárójel?">
+- Ha a belső jel **gyengébb**, mint a külső: $(X \vee Y) \wedge Z$, itt marad.
+- A $\neg$ vagy kvantor után álló **összetett** rész körül: $\neg(X \vee Y)$, itt marad.
+- A $\supset$ **bal** oldalán álló $\supset$ körül: $(X \supset Y) \supset Z$, itt marad.
+</Tipp>
+
+<FormulaValasz helyes="((X ∨ Y) ⊃ Z)" mod="minimalis" kezdo="((X ∨ Y) ⊃ Z)">
+**(a)** Hagyd el a lehető legtöbb zárójelet: $((X \vee Y) \supset Z)$
+</FormulaValasz>
+
+<FormulaValasz helyes="(¬(X ∨ Y) ⊃ Z)" mod="minimalis" kezdo="(¬(X ∨ Y) ⊃ Z)" tipp="A ¬ utáni zárójel marad, különben csak az X-et tagadná.">
+**(b)** $(\neg(X \vee Y) \supset Z)$
+</FormulaValasz>
+
+<FormulaValasz helyes="(((X ⊃ Y) ∧ (Y ⊃ Z)) ⊃ (¬X ∨ Z))" mod="minimalis" kezdo="(((X ⊃ Y) ∧ (Y ⊃ Z)) ⊃ (¬X ∨ Z))" tipp="Az ∧ két tagja implikáció, ami gyengébb az ∧-nél: azok zárójele marad.">
+**(e)** $(((X \supset Y) \wedge (Y \supset Z)) \supset (\neg X \vee Z))$
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Zárójelek elhagyása: a nehezebbek">
+<FormulaValasz helyes="¬(((X ⊃ Y) ⊃ (Y ∨ Z)) ⊃ (¬X ∨ Z))" mod="minimalis" kezdo="¬(((X ⊃ Y) ⊃ (Y ∨ Z)) ⊃ (¬X ∨ Z))" tipp="Két csapda: a ⊃ bal oldalán álló ⊃ köré zárójel kell, és a legkülső ¬ utáni zárójel is marad.">
+**(f)** $\neg(((X \supset Y) \supset (Y \vee Z)) \supset (\neg X \vee Z))$
+</FormulaValasz>
+
+<FormulaValasz helyes="(((X ∨ Y) ⊃ ¬Z) ≡ (X ∧ ¬Z))" mod="minimalis" kezdo="(((X ∨ Y) ⊃ ¬Z) ≡ (X ∧ ¬Z))">
+**(h)** $(((X \vee Y) \supset \neg Z) \equiv (X \wedge \neg Z))$
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Elsőrendű formulák zárójelei (1.P.8)">
+A kvantor ugyanúgy viselkedik, mint a $\neg$: **csak a közvetlenül utána álló** részre vonatkozik. Ha az összetett, a zárójel marad: $\forall x\,(P(x) \vee Q(x))$. A predikátumok argumentumait körülvevő zárójelek **nem** csoportosító zárójelek, azokat soha nem hagyjuk el.
+
+<Valasztas valaszok={["∀x (P(x) ∨ Q(x))", "(∀x P(x)) ∨ Q(x)"]} helyes={1} sym miert={["Nem: a kvantor csak a közvetlenül utána álló P(x)-re vonatkozik.", ""]}>
+Mit jelent a $\forall x\, P(x) \vee Q(x)$?
+</Valasztas>
+
+<FormulaValasz helyes="¬(∀xP(x) ⊃ (∃xQ(x,y) ∧ R(x,x)))" elsorendu mod="minimalis" kezdo="¬(∀xP(x) ⊃ (∃xQ(x,y) ∧ R(x,x)))">
+**1.P.8 (a)** Hagyd el a lehető legtöbb zárójelet: $\neg(\forall x P(x) \supset (\exists x Q(x,y) \wedge R(x,x)))$
+</FormulaValasz>
+
+<FormulaValasz helyes="(∀xQ(x,y) ⊃ (∀x(Q(x,y) ⊃ R(x)) ∧ Q(x,y)))" elsorendu mod="minimalis" kezdo="(∀xQ(x,y) ⊃ (∀x(Q(x,y) ⊃ R(x)) ∧ Q(x,y)))" tipp="A ∀x utáni (Q(x,y) ⊃ R(x)) zárójele marad: az a kvantor hatásköre.">
+**1.P.8 (c)** $(\forall x Q(x,y) \supset (\forall x(Q(x,y) \supset R(x)) \wedge Q(x,y)))$
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Kötési sorrend: $\forall, \exists$ > $\neg$ > $\wedge$ > $\vee$ > $\supset$ > $\equiv$.
+- A $\neg$ és a kvantor csak a **közvetlenül utána álló** részre vonatkozik.
+- $\wedge$-láncnál és $\vee$-láncnál mindegy a csoportosítás. A $\supset$ **jobbról** csoportosít: $p \supset q \supset r = p \supset (q \supset r)$.
+- **Teljes zárójelezés:** minden kétargumentumú jel köré egy pár, a legkülsőre is.
+- **Elhagyás:** a pár elhagyható, ha a precedencia úgyis így csoportosítana. Marad: gyengébb jel erősebb alatt, $\neg$/kvantor utáni összetett rész, $\supset$ bal oldalán álló $\supset$.
+- **Fő logikai jel:** a zárójeleken kívüli jelek közül a leggyengébb.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

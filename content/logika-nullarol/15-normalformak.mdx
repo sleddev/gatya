@@ -1,0 +1,96 @@
+---
+cim: Normálformák (KNF, DNF)
+osszefoglalo: Literál, elemi konjunkció és diszjunkció, konjunktív és diszjunktív normálforma. Előállításuk átalakításokkal és igazságtáblából.
+allapot: lecke
+kulcsszavak: [normálforma, konjunktív normálforma, diszjunktív normálforma, KNF, DNF, literál, elemi konjunkció, elemi diszjunkció, klóz]
+forras: a tárgy tematikája · eloadas04 (nevezetes ekvivalenciák)
+---
+
+<Lecke>
+
+<Kartya cim="Építőkockák">
+- **Literál:** egy betű vagy egy betű tagadása: $p$, $\neg q$.
+- **Elemi konjunkció:** literálok és-elése: $p \wedge \neg q \wedge r$.
+- **Elemi diszjunkció:** literálok vagyolása: $\neg p \vee q$.
+
+<Valasztas valaszok={["p", "¬q", "¬¬p", "¬(p ∧ q)", "p ∧ q"]} helyes={[0, 1]} sym miert={["", "", "Két tagadás: nem literál (egyszerűsítsd p-re).", "A tagadás nem betűn, hanem összetett formulán áll.", "Ez már elemi konjunkció, nem egyetlen literál."]}>
+Melyek literálok?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="KNF és DNF">
+- **Diszjunktív normálforma (DNF):** elemi **konjunkciók** **diszjunkciója**. „Vagyok, és-ekből”: $(p \wedge q) \vee (\neg p \wedge r)$.
+- **Konjunktív normálforma (KNF):** elemi **diszjunkciók** **konjunkciója**. „És-ek, vagyokból”: $(p \vee q) \wedge (\neg p \vee r)$.
+
+<Tipp cim="így jegyezd meg">
+A név a **külső** jelet mondja meg: **K**NF = kívül **K**onjunkció ($\wedge$), **D**NF = kívül **D**iszjunkció ($\vee$). Más jel ($\supset$, $\equiv$) nem lehet benne, és tagadás csak betűn állhat.
+</Tipp>
+
+<Valasztas valaszok={["(p ∨ q) ∧ ¬r", "(p ∧ q) ∨ ¬r", "p ⊃ q", "¬(p ∨ q)", "p ∨ ¬q"]} helyes={[0, 4]} sym miert={["", "Ez DNF: kívül ∨, belül ∧.", "⊃ nem lehet normálformában.", "A tagadás összetett formulán áll.", ""]} magyarazat="A p ∨ ¬q egyetlen elemi diszjunkció: egy tagú KNF (és egyben DNF is, két egy-literálos konjunkcióval).">
+Melyek vannak **KNF**-ben?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Az átalakítás három lépése">
+Minden formula átalakítható KNF-re és DNF-re is:
+
+<Lepesek>
+<Lepes>
+**Nyilak eltüntetése:** $A \supset B \Leftrightarrow \neg A \vee B$, és $A \equiv B \Leftrightarrow (\neg A \vee B) \wedge (\neg B \vee A)$.
+</Lepes>
+<Lepes>
+**Tagadások bevitele** a betűkig: De Morgan, kettős tagadás.
+</Lepes>
+<Lepes>
+**Disztributivitás:** KNF-hez a $\vee$-t visszük a $\wedge$ alá, DNF-hez a $\wedge$-t a $\vee$ alá.
+</Lepes>
+</Lepesek>
+
+<Atalakitas kiindulo="p ⊃ q ∧ r" cel="knf">
+Hozd KNF-re: $p \supset q \wedge r$
+</Atalakitas>
+</Kartya>
+
+<Kartya cim="Mindkét normálforma">
+<Atalakitas kiindulo="(p ∨ q) ⊃ r" cel="knf">
+Hozd **KNF**-re: $(p \vee q) \supset r$
+</Atalakitas>
+
+<Atalakitas kiindulo="(p ∨ q) ⊃ r" cel="dnf">
+És most **DNF**-re ugyanezt!
+</Atalakitas>
+</Kartya>
+
+<Kartya cim="Tagadással kezdve">
+<Atalakitas kiindulo="¬(p ⊃ q) ∨ ¬(r ∨ p)" cel="dnf">
+Hozd DNF-re: $\neg(p \supset q) \vee \neg(r \vee p)$
+</Atalakitas>
+</Kartya>
+
+<Kartya cim="DNF igazságtáblából">
+Van egy másik módszer is, ha megvan az igazságtábla:
+
+- **DNF:** minden olyan sorhoz, ahol a formula **1**, írj egy elemi konjunkciót: az 1-es betű simán, a 0-s tagadva szerepel. Ezeket vagyold össze.
+- **KNF:** minden olyan sorhoz, ahol a formula **0**, írj egy elemi diszjunkciót: a 0-s betű simán, az 1-es tagadva. Ezeket és-eld össze.
+
+Például ha a formula csak a $p = 1, q = 0$ sorban igaz, a DNF: $p \wedge \neg q$.
+
+<FormulaValasz helyes="(p ∧ q) ∨ (¬p ∧ ¬q)" mod="dnf" tipp="A p ≡ q a 00 és az 11 sorban igaz. A 00 sorból ¬p ∧ ¬q lesz, az 11-ből p ∧ q.">
+Írd fel a $p \equiv q$ formula DNF-jét az igazságtáblából!
+</FormulaValasz>
+
+<FormulaValasz helyes="(p ∨ ¬q) ∧ (¬p ∨ q)" mod="knf" tipp="A p ≡ q a 01 és a 10 sorban hamis. A 01 sorból: p ∨ ¬q. A 10 sorból: ¬p ∨ q.">
+És a KNF-jét!
+</FormulaValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- **Literál:** betű vagy tagadott betű. **Elemi konjunkció/diszjunkció:** literálok $\wedge$-je / $\vee$-a.
+- **KNF:** elemi diszjunkciók $\wedge$-je (kívül $\wedge$). **DNF:** elemi konjunkciók $\vee$-a (kívül $\vee$).
+- Átalakítás: (1) $\supset$, $\equiv$ kifejezése; (2) tagadások bevitele (De Morgan, kettős tagadás); (3) disztributivitás.
+- Igazságtáblából: **DNF** az 1-es sorokból (1 → betű, 0 → ¬betű, $\wedge$, aztán $\vee$). **KNF** a 0-s sorokból (0 → betű, 1 → ¬betű, $\vee$, aztán $\wedge$).
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

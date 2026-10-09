@@ -1,0 +1,116 @@
+---
+cim: Ekvivalencia és átalakítások
+osszefoglalo: Mikor ekvivalens két formula, a nevezetes ekvivalenciák (De Morgan, disztributivitás, kontrapozíció, …), és hogyan igazolunk velük ekvivalenciát vagy logikai törvényt.
+allapot: lecke
+kulcsszavak: [logikai ekvivalencia, ekvivalens átalakítás, De Morgan, disztributivitás, kontrapozíció, elnyelés, kettős tagadás, áthelyezés, esetszétválasztás]
+forras: gyak04 (8.I.4, 8.I.6) · eloadas04
+---
+
+<Lecke>
+
+<Kartya cim="Mikor ekvivalens két formula?">
+<Definicio cim="logikai ekvivalencia">
+$A$ és $B$ **logikailag ekvivalens** ($A \Leftrightarrow B$), ha **minden** interpretációban ugyanaz az értékük: $|A| = |B|$.
+</Definicio>
+
+Ugyanez másképp: $A \models B$ és $B \models A$ is fennáll. Vagy: az $A \equiv B$ formula **logikai törvény**.
+
+<Figyelem cim="≡ és ⇔">
+A $\equiv$ egy **jel a formulán belül**: $p \equiv q$ egy formula, ami valamikor igaz, valamikor hamis. A $\Leftrightarrow$ **két formuláról állít** valamit: hogy mindig ugyanaz az értékük. (Ugyanaz a viszony, mint a $\supset$ és a $\models$ között.)
+</Figyelem>
+
+<Valasztas valaszok={["Igen", "Nem"]} helyes={1} miert={["Próbáld ki p = 0, q = 1-gyel.", ""]} magyarazat="p = 0, q = 1 esetén p ⊃ q = 1, de q ⊃ p = 0. Az implikáció megfordítása (konverze) nem ekvivalens vele.">
+$p \supset q \Leftrightarrow q \supset p$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Ellenőrzés igazságtáblával">
+A legbiztosabb módszer: írd fel mindkét formula igazságtábláját, és nézd meg, **minden sorban** egyezik-e az utolsó oszlop. Itt kipróbálhatod:
+
+<EkvivalenciaTeszt a="¬X ⊃ Y ∧ ¬Z" b="(¬Y ⊃ X) ∧ (Z ⊃ X)" />
+
+<Valasztas valaszok={["Igen, minden sorban egyezik", "Nem"]} helyes={0}>
+**8.I.4** Ekvivalens-e $\neg X \supset Y \wedge \neg Z$ és $(\neg Y \supset X) \wedge (Z \supset X)$? (Nézd meg a fenti táblát.)
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A nevezetes ekvivalenciák">
+Ezeket **tudni kell**. A ZH-n ezekkel kell átalakítani:
+
+| név | ekvivalencia |
+|---|---|
+| kettős tagadás | $\neg\neg A \Leftrightarrow A$ |
+| kommutativitás | $A \wedge B \Leftrightarrow B \wedge A$, $\ A \vee B \Leftrightarrow B \vee A$ |
+| asszociativitás | $A \wedge (B \wedge C) \Leftrightarrow (A \wedge B) \wedge C$, ugyanígy $\vee$ |
+| idempotencia | $A \wedge A \Leftrightarrow A$, $\ A \vee A \Leftrightarrow A$ |
+| **disztributivitás** | $A \vee (B \wedge C) \Leftrightarrow (A \vee B) \wedge (A \vee C)$ |
+| | $A \wedge (B \vee C) \Leftrightarrow (A \wedge B) \vee (A \wedge C)$ |
+| elnyelés | $A \wedge (B \vee A) \Leftrightarrow A$, $\ A \vee (B \wedge A) \Leftrightarrow A$ |
+| **De Morgan** | $\neg(A \wedge B) \Leftrightarrow \neg A \vee \neg B$, $\ \neg(A \vee B) \Leftrightarrow \neg A \wedge \neg B$ |
+| **kontrapozíció** | $A \supset B \Leftrightarrow \neg B \supset \neg A$ |
+| áthelyezés | $(A \wedge B) \supset C \Leftrightarrow A \supset (B \supset C)$ |
+| esetszétválasztás | $(A \vee B) \supset C \Leftrightarrow (A \supset C) \wedge (B \supset C)$ |
+| **⊃ kifejezése** | $A \supset B \Leftrightarrow \neg A \vee B \Leftrightarrow \neg(A \wedge \neg B)$ |
+| ≡ kifejezése | $A \equiv B \Leftrightarrow (A \supset B) \wedge (B \supset A)$ |
+
+A gyakorlaton kiemelt három: **$A \supset B \Leftrightarrow \neg A \vee B$**, **disztributivitás**, **De Morgan**.
+
+<Valasztas valaszok={["¬p ∧ ¬q", "¬p ∨ ¬q", "p ∨ q"]} helyes={1} sym miert={["Ez a ¬(p ∨ q) párja. De Morganál a tagadás bevitelekor a jel is megfordul: ∧ → ∨.", "", "A tagadás nem tűnhet el."]}>
+$\neg(p \wedge q) \Leftrightarrow$ ?
+</Valasztas>
+
+<Valasztas valaszok={["¬p ∨ q", "p ∨ ¬q", "¬p ∧ q"]} helyes={0} sym>
+$p \supset q \Leftrightarrow$ ?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Az első átalakításod">
+Az átalakításnál **soronként** haladsz: minden új sor az előzőből **egy** törvény alkalmazásával jön, és ekvivalens vele. Itt minden sort ellenőrzünk.
+
+Cél: a $\neg(p \supset q)$ tagadását bevinni, amíg csak betűkön áll tagadás.
+
+<Atalakitas kiindulo="¬(p ⊃ q)" cel="p ∧ ¬q" megoldas={["¬(¬p ∨ q)", "¬¬p ∧ ¬q", "p ∧ ¬q"]} magyarazat="¬(p ⊃ q) ⇔ p ∧ ¬q. Ezt érdemes megjegyezni: az implikáció tagadása „az előtag igaz, az utótag hamis”.">
+Alakítsd át: $\neg(p \supset q)$. Lépések: $\supset$ kifejezése, De Morgan, kettős tagadás.
+</Atalakitas>
+</Kartya>
+
+<Kartya cim="Logikai törvény igazolása átalakítással (8.I.6)">
+Hogy $A$ logikai törvény, azt úgy is igazolhatod, hogy ekvivalens átalakításokkal olyan alakra hozod, ami **nyilvánvalóan** mindig igaz: egy diszjunkció, amelynek tagjai között szerepel valami és a tagadása ($\dots \vee X \vee \dots \vee \neg X \vee \dots$).
+
+<Atalakitas kiindulo="¬(X ⊃ Y) ⊃ X" cel="torveny" megoldas={["¬¬(X ⊃ Y) ∨ X", "(X ⊃ Y) ∨ X", "¬X ∨ Y ∨ X"]}>
+**(a)** $\neg(X \supset Y) \supset X$. Tipp: kezdd a fő $\supset$ kifejezésével: $A \supset B \Leftrightarrow \neg A \vee B$.
+</Atalakitas>
+
+<Atalakitas kiindulo="(X ∧ Y) ⊃ (X ⊃ Y)" cel="torveny" megoldas={["¬(X ∧ Y) ∨ (X ⊃ Y)", "¬X ∨ ¬Y ∨ (X ⊃ Y)", "¬X ∨ ¬Y ∨ ¬X ∨ Y"]}>
+**(b)** $(X \wedge Y) \supset (X \supset Y)$
+</Atalakitas>
+</Kartya>
+
+<Kartya cim="Egy nehezebb (8.I.6 c)">
+Itt az **elnyelés** törvényére is szükség lesz: $A \wedge (B \vee A) \Leftrightarrow A$.
+
+<Atalakitas kiindulo="((X ⊃ Y) ⊃ X) ⊃ (X ∨ Y)" cel="torveny" megoldas={["¬((X ⊃ Y) ⊃ X) ∨ X ∨ Y", "¬(¬(X ⊃ Y) ∨ X) ∨ X ∨ Y", "(¬¬(X ⊃ Y) ∧ ¬X) ∨ X ∨ Y", "((¬X ∨ Y) ∧ ¬X) ∨ X ∨ Y", "¬X ∨ X ∨ Y"]}>
+**(c)** $((X \supset Y) \supset X) \supset (X \vee Y)$
+</Atalakitas>
+</Kartya>
+
+<Kartya cim="Ekvivalencia igazolása átalakítással (8.I.4)">
+Most a bal oldalt kell átalakítani a jobb oldalra. Gondolkodj **mindkét végéről**: a cél $(\neg Y \supset X) \wedge (Z \supset X)$ is átírható $\vee$-os alakra: $(Y \vee X) \wedge (\neg Z \vee X)$. Ha a kiindulót is idáig hozod, csak vissza kell írnod.
+
+<Atalakitas kiindulo="¬X ⊃ Y ∧ ¬Z" cel="(¬Y ⊃ X) ∧ (Z ⊃ X)" megoldas={["¬¬X ∨ (Y ∧ ¬Z)", "X ∨ (Y ∧ ¬Z)", "(X ∨ Y) ∧ (X ∨ ¬Z)", "(¬Y ⊃ X) ∧ (Z ⊃ X)"]}>
+Alakítsd át $\neg X \supset Y \wedge \neg Z$-t $(\neg Y \supset X) \wedge (Z \supset X)$-re!
+</Atalakitas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $A \Leftrightarrow B$: minden interpretációban azonos az értékük ⟺ $A \models B$ és $B \models A$ ⟺ $\models A \equiv B$.
+- $\equiv$: jel a formulán belül. $\Leftrightarrow$: állítás két formuláról.
+- **A három legfontosabb:** $A \supset B \Leftrightarrow \neg A \vee B$; De Morgan; disztributivitás. Továbbá: kettős tagadás, elnyelés, kontrapozíció, áthelyezés, esetszétválasztás.
+- $\neg(A \supset B) \Leftrightarrow A \wedge \neg B$.
+- Törvény igazolása: alakítsd $\dots \vee C \vee \dots \vee \neg C$ alakra. Ekvivalencia igazolása: alakítsd egyiket a másikra (vagy mindkettőt egy közös alakra).
+- Minden lépésben **egy** törvényt alkalmazz, és írd mellé a nevét.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

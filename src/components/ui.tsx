@@ -71,7 +71,7 @@ export function Card({ children, style, accent }: { children: ReactNode; style?:
 
 export function StatusPill({ status }: { status: TopicStatus }) {
   const c = usePalette();
-  const color = status === 'kimaradt' ? c.bad : status === 'talan' ? c.warn : status === 'kovetkezo' ? c.brand : c.textSecondary;
+  const color = status === 'kimaradt' ? c.bad : status === 'talan' ? c.warn : status === 'kovetkezo' || status === 'lecke' ? c.brand : c.textSecondary;
   return (
     <View style={[styles.pill, { borderColor: color }]}>
       <Text style={[text.label, { color, fontSize: 10 }]}>{STATUS_LABEL[status]}</Text>

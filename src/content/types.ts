@@ -1,4 +1,4 @@
-export type TopicStatus = 'kimaradt' | 'ismetles' | 'talan' | 'kovetkezo';
+export type TopicStatus = 'kimaradt' | 'ismetles' | 'talan' | 'kovetkezo' | 'lecke';
 
 export interface Heading {
   id: string;
@@ -48,4 +48,5 @@ export const STATUS_LABEL: Record<TopicStatus, string> = {
   ismetles: 'ismétlés',
   talan: 'talán kimaradt',
   kovetkezo: 'következik',
+  lecke: 'lecke',
 };

@@ -1,0 +1,141 @@
+---
+cim: Állítások és helyes következtetés
+osszefoglalo: Mi az állítás, mi a premissza és a konklúzió, mikor helyes egy következtetés, és hogyan találjuk meg az elhallgatott premisszát.
+allapot: lecke
+kulcsszavak: [állítás, premissza, konklúzió, helyes következtetés, elhallgatott premissza, logikai forma]
+forras: gyak01 (1.1, 2.2) · eloadas01–02
+---
+
+<Lecke>
+
+<Kartya cim="Mi az az állítás?">
+A logika **állításokkal** dolgozik. Állítás az a kijelentő mondat, amelyről értelmes megkérdezni, hogy **igaz-e vagy hamis**. Nem kell tudnunk, melyik: elég, hogy a kettő közül pontosan az egyik.
+
+<Valasztas valaszok={["Esik az eső.", "Csukd be az ajtót!", "Hány óra van?", "2 + 2 = 5.", "Bárcsak péntek lenne!"]} helyes={[0, 3]} miert={["", "Felszólítás: nem igaz és nem is hamis, legfeljebb teljesíted vagy nem.", "Kérdés: nincs igazságértéke.", "", "Óhajtás: nincs igazságértéke."]} magyarazat="A „2 + 2 = 5” is állítás, csak hamis. Állításnak lenni nem azt jelenti, hogy igaz.">
+Melyik mondat állítás?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Premisszák és konklúzió">
+Egy **következtetés** néhány állításból (ezek a **premisszák**, a kiinduló feltevések) egy újabb állításra jut (ez a **konklúzió**).
+
+> Esik az eső. Ha esik az eső, sáros az út. **Tehát** sáros az út.
+
+Itt két premissza van: „Esik az eső.” és „Ha esik az eső, sáros az út.” A konklúzió: „Sáros az út.” A „tehát”, „ezért”, „így”, „következésképpen” szavak általában a konklúzió előtt állnak.
+
+<Valasztas valaszok={["Minden ember halandó.", "Szókratész ember.", "Szókratész halandó."]} helyes={2}>
+„Minden ember halandó, és Szókratész ember, ezért Szókratész halandó.” Mi a konklúzió?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Mikor helyes egy következtetés?">
+Ez a tárgy egyik legfontosabb mondata, tanuld meg szó szerint:
+
+<Definicio cim="helyes következtetés">
+Egy következtetés **helyes**, ha a premisszák igazsága **szükségszerűen** maga után vonja a konklúzió igazságát. Másképp: **lehetetlen**, hogy a premisszák igazak legyenek, a konklúzió pedig hamis.
+</Definicio>
+
+Figyeld meg: a definíció **nem** mondja, hogy a premisszák ténylegesen igazak. Csak azt, hogy **ha** igazak lennének, a konklúzió sem lehetne hamis.
+
+<Valasztas valaszok={["Helyes", "Nem helyes"]} helyes={0} miert={["", "Az első premissza hamis, de ez nem számít! Kérdezd meg: ha minden macska repülne, és Garfield macska lenne, lehetne, hogy Garfield nem repül? Nem lehetne. Tehát a következtetés helyes."]} magyarazat="A premissza hamis, de a következtetés helyes: ha a premisszák igazak lennének, a konklúzió nem lehetne hamis. A helyesség a formán múlik, nem a tényeken.">
+„Minden macska repül. Garfield macska. Tehát Garfield repül.” Helyes-e ez a következtetés?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A forma számít, nem a tartalom">
+Nézd meg ezt a hármat:
+
+1. Esik az eső. Ha esik az eső, sáros az út. Tehát sáros az út.
+2. Dolgozom. Ha dolgozom, elfáradok. Tehát elfáradok.
+3. Három lábon gyábokorsz. Ha három lábon gyábokorsz, a Kálán Púgra nem tudsz menni. Tehát a Kálán Púgra nem tudsz menni.
+
+A harmadikat nem is értjük, mégis látjuk, hogy helyes! Mindhárom ugyanarra a **sémára** épül:
+
+$$
+\text{Premisszák: } A,\quad \text{ha } A \text{, akkor } B. \qquad \text{Konklúzió: } B.
+$$
+
+Ennek a neve **modus ponens**. Egy következtetés helyessége csak a **logikai szavak** (ha … akkor, és, vagy, nem, minden, van) jelentésétől és a mondatok **szerkezetétől** függ, nem attól, miről szólnak.
+
+<Valasztas valaszok={["Ha fúj a szél, hideg van. Hideg van. Tehát fúj a szél.", "Ha kedd van, van logika óra. Kedd van. Tehát van logika óra.", "Ha kedd van, van logika óra. Nincs logika óra. Tehát nem kedd van."]} helyes={1} miert={["Ez a „ha A, akkor B; B; tehát A” séma, ami nem a modus ponens (és nem is helyes, lásd a következő kártyát).", "", "Ez is helyes, de másik séma: „ha A, akkor B; nem B; tehát nem A” (modus tollens)."]}>
+Melyik követi pontosan ugyanazt a sémát, mint a fenti három?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A leggyakoribb csapda">
+Ez a séma **nem** helyes: „Ha $A$, akkor $B$. $B$. Tehát $A$.” Egy példa a gyakorlatról:
+
+> Ha ebben a parkolóban parkolok, akkor az én autóm a legszebb a parkolóban. Ha az én autóm a legszebb a parkolóban, akkor a feleségem máshol parkol. A feleségem máshol parkol. → Tehát ebben a parkolóban parkolok.
+
+Lehetséges, hogy a premisszák igazak, a konklúzió mégis hamis? Igen: lehet, hogy egyikünk sem ebben a parkolóban áll, és a feleségem egyszerűen máshol parkol. A premisszák ekkor mind igazak.
+
+<Valasztas valaszok={["Helyes, hiszen minden állítás igaz benne", "Nem helyes"]} helyes={1} miert={["Csapda! Hogy az állítások ténylegesen igazak, az nem számít. Ugyanez a séma igaz premisszákból hamis konklúzióra is vezethet (lásd a parkolót).", ""]} magyarazat="Ugyanaz a hibás séma, mint a parkolónál. Az, hogy a konklúzió történetesen igaz, nem teszi helyessé a következtetést.">
+**7.I.23 (b).** „Ha a 2 prímszám, akkor a 2 a legkisebb prímszám. Ha a 2 a legkisebb prímszám, akkor az 1 nem prímszám. Az 1 nem prímszám. Tehát a 2 prímszám.” Helyes-e ez a következtetés?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Elhallgatott premissza">
+A hétköznapi érvelésben gyakran nem mondunk ki mindent, ami kell. Például:
+
+> Amália anyja Bellának. Bella anyja Csillának. Tehát Amália anyai nagyanyja Csillának.
+
+A logika szerint ez **hiányos**: kell még egy premissza, amit mindenki tud, de senki sem mond ki. Ez az **elhallgatott premissza**:
+
+> Bármi legyen is $x$, $y$ és $z$: ha $x$ anyja $y$-nak, $y$ pedig $z$-nek, akkor $x$ anyai nagyanyja $z$-nek.
+
+Ezzel kiegészítve a következtetés már helyes.
+
+<Valasztas valaszok={["Az édestestvéreknek ugyanaz az anyjuk.", "A tanítónő pedagógus.", "András is tanító.", "Bálint idősebb Andrásnál."]} helyes={[0, 1]} miert={["", "", "Erre nincs szükség: András foglalkozásáról nem szól a konklúzió.", "Ez nem segít: a kor nem számít."]} magyarazat="Két dolog hiányzik: hogy András anyja ugyanaz, mint Bálinté (mert édestestvérek), és hogy aki tanítónő, az pedagógus.">
+**1.1 (a).** „András és Bálint édestestvérek. Bálint anyja tanítónő. Tehát András anyja pedagógus.” Mely elhallgatott premisszák kellenek, hogy helyes legyen?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Elhallgatott premissza: még kettő">
+<Valasztas valaszok={["Csaba nem hazudik a koráról.", "10 és 15 között (a végpontok nélkül) a 12 az egyetlen páros és 3-mal osztható szám.", "Csaba páros számú évet élt."]} helyes={1} miert={["Ez nem a logikai helyességhez kell: a premisszákat igaznak tekintjük.", "", "Ez maga a premissza egy része, nem hiányzik."]} magyarazat="A 11, 12, 13, 14 közül csak a 12 páros és osztható 3-mal. Ez számtani tény, de a következtetéshez ki kell mondani.">
+**1.1 (b).** „Csaba éveinek száma páros és osztható 3-mal. Csaba elmúlt 10 éves, de még nincs 15 éves. Tehát Csaba 12 éves.” Mi az elhallgatott premissza?
+</Valasztas>
+
+<Valasztas valaszok={["Minden szakállas trák harcos.", "Van (legalább egy) trák harcos.", "Aki nem gyáva, az szakállas."]} helyes={1} miert={["Ez nem kell, és nem is következik semmiből.", "", "Nem kell: a konklúzió csak egyetlen szakállas, nem gyáva valakit kér."]} magyarazat="Ha egyáltalán nincs trák harcos, a két premissza (üresen) igaz, de nincs, aki a konklúziót igazzá tegye. Ez nagyon fontos: a „minden” és a „nincs olyan” típusú állítások NEM állítják, hogy létezik ilyen dolog. A 8. leckében még visszatérünk rá.">
+**1.1 (c).** „Egyetlen trák harcos sem gyáva. Nincs olyan trák harcos, aki nem szakállas. Tehát van olyan szakállas, aki nem gyáva.” Mi hiányzik?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Ugyanazt állítják?">
+Két mondat **ugyanazt az állítást** fejezi ki, ha **nem lehet**, hogy az egyik igaz, a másik hamis. A **2.2** feladat mondatai:
+
+- (d) Ha soha nem indulsz el, nem jutsz el sehová.
+- (e) Ha eljutsz valahová, akkor valamikor elindulsz.
+- (f) Ha nem jutsz el sehová, akkor el sem indulsz.
+
+Jelöld $A$-val, hogy elindulsz, $B$-vel, hogy eljutsz valahová. Ekkor (d) = „ha nem $A$, akkor nem $B$”, (e) = „ha $B$, akkor $A$”, (f) = „ha nem $B$, akkor nem $A$”.
+
+<Valasztas valaszok={["(d) és (e)", "(d) és (f)", "(e) és (f)", "mindhárom"]} helyes={0} miert={["", "Nem: ha elindulsz, de nem érsz el sehova, (d) igaz, (f) viszont hamis (nem jutottál el, mégis elindultál).", "Nem: ugyanaz a helyzet (elindulsz, nem jutsz el) (e)-t igazzá, (f)-et hamissá teszi.", "Az (f) kilóg: az a megfordítás, nem ugyanaz."]} magyarazat="„Ha nem A, akkor nem B” ugyanaz, mint „ha B, akkor A”: ez a kontrapozíció. A megfordítás („ha nem B, akkor nem A”) már mást mond.">
+Melyik kettő mondja ugyanazt?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Ugyanazt állítják? Második kör">
+A 2.2 első három mondata:
+
+- (a) Senki nem ment el, aki Alinak hiányzott volna.
+- (b) Aki Alinak hiányzott, nem ment el.
+- (c) Aki elment, Alinak nem hiányzott.
+
+<Valasztas valaszok={["Mind a három ugyanazt mondja", "Csak (a) és (b)", "Csak (b) és (c)", "Mind különböző"]} helyes={0} miert={["", "A (c) is ugyanaz: „ha elment, nem hiányzott” a kontrapozíciója annak, hogy „ha hiányzott, nem ment el”.", "Az (a) is ugyanaz: nincs olyan ember, aki hiányzott ÉS elment.", ""]} magyarazat="Mindhárom azt tiltja, hogy valaki egyszerre hiányozzon Alinak és elmenjen. A (b) és a (c) egymás kontrapozíciója.">
+Melyek fejezik ki ugyanazt?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- **Állítás:** kijelentő mondat, ami igaz vagy hamis.
+- **Helyes következtetés:** lehetetlen, hogy a premisszák igazak, a konklúzió hamis. Nem számít, hogy a premisszák ténylegesen igazak-e.
+- A helyesség csak a **logikai formától** függ (ha–akkor, és, vagy, nem, minden, van), a tartalomtól nem.
+- Helyes: $A$, ha $A$ akkor $B$ ⊢ $B$ (**modus ponens**); nem $B$, ha $A$ akkor $B$ ⊢ nem $A$ (**modus tollens**).
+- **Hibás:** ha $A$ akkor $B$, $B$ ⊢ $A$. Ez a leggyakoribb csapda.
+- **Elhallgatott premissza:** az a kimondatlan feltevés, ami nélkül a következtetés nem helyes. Figyelj a „van legalább egy” típusú hiányokra!
+- Két mondat **ugyanazt állítja**, ha nem lehet, hogy az egyik igaz, a másik hamis. „Ha $A$, akkor $B$” = „ha nem $B$, akkor nem $A$” (kontrapozíció), de ≠ „ha $B$, akkor $A$”.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

@@ -34,7 +34,7 @@ const OUT = path.join(ROOT, 'src', 'content', 'generated');
 
 // Shortcuts available in $...$ math: \N \Z \Q \R \C for the number sets.
 const KATEX_MACROS = { '\\N': '\\mathbb{N}', '\\Z': '\\mathbb{Z}', '\\Q': '\\mathbb{Q}', '\\R': '\\mathbb{R}', '\\C': '\\mathbb{C}' };
-const STATUSES = ['kimaradt', 'ismetles', 'talan', 'kovetkezo'];
+const STATUSES = ['kimaradt', 'ismetles', 'talan', 'kovetkezo', 'lecke'];
 const SUBJECT_FILE = '_tantargy.yml';
 const FILE_RE = /^(\d+)-([a-z0-9-]+)\.mdx$/;
 

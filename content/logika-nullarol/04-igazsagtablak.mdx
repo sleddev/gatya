@@ -1,0 +1,128 @@
+---
+cim: Igazságtáblák
+osszefoglalo: Az öt logikai művelet igazságtáblája, miért éppen így működik az implikáció, és hogyan számolunk ki egy összetett formulát soronként.
+allapot: lecke
+kulcsszavak: [igazságtábla, igazságfüggvény, negáció, konjunkció, diszjunkció, implikáció, ekvivalencia, kondicionális]
+forras: eloadas02–03 (szemantikai szabályok) · gyak03
+---
+
+<Lecke>
+
+<Kartya cim="Az igazságértékek: 1 és 0">
+Minden állítás vagy **igaz** (jele **1**), vagy **hamis** (jele **0**). Egy kötőszó igazságfüggvény: megmondja, hogy a részek értékéből mi lesz az egész értéke. Ezt egy **igazságtábla** írja le.
+
+A legegyszerűbb a **negáció**: megfordítja az értéket.
+
+<TablaKitolto formula="¬p">
+Töltsd ki a $\neg p$ oszlopát! (Koppints a cellákra.)
+</TablaKitolto>
+</Kartya>
+
+<Kartya cim="Konjunkció: ∧">
+Az $A \wedge B$ **csak akkor igaz, ha mindkét tag igaz**. Minden más esetben hamis.
+
+<TablaKitolto formula="p ∧ q">
+Töltsd ki!
+</TablaKitolto>
+</Kartya>
+
+<Kartya cim="Diszjunkció: ∨">
+Az $A \vee B$ **csak akkor hamis, ha mindkét tag hamis**. Ha legalább az egyik igaz, igaz. (Emlékszel: megengedő vagy.)
+
+<TablaKitolto formula="p ∨ q">
+Töltsd ki!
+</TablaKitolto>
+</Kartya>
+
+<Kartya cim="Implikáció: egy ígéret">
+A barátod azt mondja: „**Ha** átmész a ZH-n, **akkor** meghívlak egy pizzára.” Mikor hazudott?
+
+<Valasztas valaszok={["Átmentél, és meghívott.", "Átmentél, és nem hívott meg.", "Nem mentél át, és meghívott.", "Nem mentél át, és nem hívott meg."]} helyes={1} miert={["Betartotta az ígéretét.", "", "Nem hazudott: arról, mi van, ha nem mész át, nem ígért semmit. Lehet, hogy vigasztalásból hívott meg.", "Nem hazudott: az ígéret csak arra az esetre szólt, ha átmész."]} magyarazat="Az ígéretet csak egyféleképpen lehet megszegni: a feltétel teljesül, a vállalás mégsem. Ezért az A ⊃ B csak akkor hamis, ha A igaz és B hamis.">
+Melyik esetben szegte meg az ígéretét?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Az implikáció igazságtáblája">
+Az előadáson az implikációt így definiáltuk: „ha $A$, akkor $B$” **nem lehet igaz, ha $A$ igaz és $B$ mégis hamis**. Képletben:
+
+$$
+(A \supset B) \;\Leftrightarrow\; \neg(A \wedge \neg B)
+$$
+
+Vagyis az $A \supset B$ **csak egy esetben hamis**: ha az előtag 1, az utótag 0. Hamis előtagból bármi következik: ilyenkor az implikáció igaz.
+
+<TablaKitolto formula="p ⊃ q">
+Töltsd ki!
+</TablaKitolto>
+</Kartya>
+
+<Kartya cim="Ekvivalencia: ≡">
+Az $A \equiv B$ **akkor igaz, ha a két tag értéke ugyanaz** (mindkettő 1, vagy mindkettő 0).
+
+<TablaKitolto formula="p ≡ q">
+Töltsd ki!
+</TablaKitolto>
+</Kartya>
+
+<Kartya cim="Egy táblázatban: ezt tudd fejből">
+Ezt a táblázatot tanuld meg úgy, hogy álmodból felébresztve is tudd. Minden más erre épül.
+
+| $A$ | $B$ | $\neg A$ | $A \wedge B$ | $A \vee B$ | $A \supset B$ | $A \equiv B$ |
+|---|---|---|---|---|---|---|
+| 0 | 0 | 1 | 0 | 0 | **1** | 1 |
+| 0 | 1 | 1 | 0 | 1 | **1** | 0 |
+| 1 | 0 | 0 | 0 | 1 | **0** | 0 |
+| 1 | 1 | 0 | 1 | 1 | **1** | 1 |
+
+<Tipp cim="emlékeztető">
+- $\wedge$: csak **1 1** → 1
+- $\vee$: csak **0 0** → 0
+- $\supset$: csak **1 0** → 0
+- $\equiv$: egyformák → 1
+</Tipp>
+
+<Valasztas valaszok={["1", "0"]} helyes={0} miert={["", "Nézd az előtagot: hamis. Hamis előtag mellett az implikáció mindig igaz."]}>
+Mennyi $0 \supset 0$?
+</Valasztas>
+
+<Valasztas valaszok={["1", "0"]} helyes={1} miert={["Az ∨ csak akkor 0, ha mindkét tag 0, és most ez a helyzet.", ""]}>
+Mennyi $0 \vee 0$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Hány sor kell?">
+Minden betű (elemi állítás) 0 vagy 1 lehet. $n$ különböző betűnél $2^n$ lehetséges kombináció, tehát $2^n$ **sor** van. A sorokat úgy írjuk, mint a kettes számrendszerbeli számokat: 000, 001, 010, 011, …
+
+<Valasztas valaszok={["3", "6", "8", "9"]} helyes={2} miert={["Ez a betűk száma, nem a soroké.", "Nem 2·3, hanem 2³.", "", "Nem 3², hanem 2³."]}>
+Hány sora van a $(X \vee Y) \supset \neg Z$ formula igazságtáblájának?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Összetett formula, lépésenként">
+Összetett formulánál **belülről kifelé** haladunk: előbb a legbelső részformulák oszlopát töltjük ki, aztán az ezekből épülőkét. Soha ne próbáld egyszerre fejben kiszámolni az egészet!
+
+<TablaKitolto formula="(p ⊃ q) ∧ ¬q" magyarazat="A formula csak egyetlen sorban igaz: ha p = 0 és q = 0.">
+Töltsd ki a $(p \supset q) \wedge \neg q$ táblázatát! Előbb $p \supset q$, aztán $\neg q$, végül az és-elésük.
+</TablaKitolto>
+</Kartya>
+
+<Kartya cim="Három betűvel">
+<TablaKitolto formula="(p ∨ q) ⊃ r">
+Most nyolc sor van. Töltsd ki!
+</TablaKitolto>
+
+<Valasztas valaszok={["1", "2", "3", "5"]} helyes={2} miert={["Számold meg a 0-kat az utolsó oszlopban.", "Számold meg a 0-kat az utolsó oszlopban.", "", "Ennyiben igaz, nem hamis."]} magyarazat="Az implikáció csak ott hamis, ahol p ∨ q = 1 és r = 0: a 010, a 100 és a 110 sorban.">
+Hány sorban **hamis** a formula?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $\neg$ megfordít. $\wedge$: csak 1 1 → 1. $\vee$: csak 0 0 → 0. $\supset$: **csak 1 0 → 0**. $\equiv$: egyformák → 1.
+- $A \supset B \Leftrightarrow \neg(A \wedge \neg B)$: az implikáció csak azt tiltja, hogy az előtag igaz, az utótag hamis legyen. Hamis előtag mellett mindig igaz.
+- $n$ betű → $2^n$ sor, 000-tól 111-ig.
+- Összetett formulánál belülről kifelé, részformulánként számolj, mindegyiknek külön oszloppal.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

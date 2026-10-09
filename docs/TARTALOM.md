@@ -55,6 +55,7 @@ Az `allapot` jelentése:
 | `ismetles` | ismétlés | már volt, ismétlésnek |
 | `talan` | talán kimaradt | nem biztos |
 | `kovetkezo` | következik | előre néző oldal |
+| `lecke` | lecke | lépésenkénti lecke (lásd lent: Leckék) |
 
 ## Szöveg
 
@@ -187,6 +188,46 @@ Változók: `x y z v w` (számmal is), a többi kisbetűs szó név.
 | `<PolinomVizsgalo />` | gyökök, szélsőértékek, érintő | `fok` (2–4), `egyutthatok` (`[a, b, c, …]`) |
 | `<VektorLabor />` | síkvektorok | `mod` (`pontok`, `osszeg`, `skalar`, `szorzat`), `modok` |
 | `<VegyesSzorzat />` | vektoriális és vegyes szorzat | `a`, `b`, `c` (`[x, y, z]`) |
+
+## Leckék (lépésenként, mint a Brilliant)
+
+A `content/logika-nullarol/` tárgy oldalai **kártyákból** állnak: egyszerre egy kártya látszik, és a
+**Tovább** gomb csak akkor aktív, ha a kártya minden feladata megoldva (vagy a megoldás meg lett
+mutatva). A haladást eszközönként megjegyzi.
+
+```mdx
+<Lecke>
+
+<Kartya cim="A kártya címe">
+Rövid magyarázat, Markdown és képletek.
+
+<Valasztas valaszok={["igaz", "hamis"]} helyes={0} miert={["", "Miért nem jó ez."]}>
+A kérdés (itt működik a $képlet$).
+</Valasztas>
+</Kartya>
+
+</Lecke>
+```
+
+Ne használj `##` címsort leckén belül; a kártya címe a `cim`.
+
+| komponens | mit csinál | propok |
+|---|---|---|
+| `<Lecke>` | a kártyák egymás után, haladásjelzővel | – |
+| `<Kartya>` | egy lépés | `cim` |
+| `<Valasztas>` | feleletválasztás; a kérdés a tartalom | `valaszok`, `helyes` (index vagy indexek listája: több jó válasz), `miert` (magyarázat opciónként), `magyarazat`, `sym` (képlet-betűtípus) |
+| `<FormulaValasz>` | formula beírása | `helyes`, `mod` (`ekv`: ekvivalens is jó, alapértelmezés; `szerkezet`; `teljes`: teljes zárójelezés; `minimalis`: legkevesebb zárójel; `tiszta`: változóiban tiszta; `prenex`; `knf`; `dnf`), `elsorendu`, `kezdo`, `tipp`, `magyarazat` |
+| `<TablaKitolto>` | igazságtábla kitöltése (részformulánként) | `formula`, `sor` (pl. `"X=1, Y=0"`: csak egy interpretáció), `reszek` |
+| `<FoJel>` | a fő logikai jel megkeresése; `fa`-val az egész szerkezeti fa felépítése | `formula`, `fa`, `elsorendu` |
+| `<SzabadKotott>` | változó-előfordulások jelölése szabadnak/kötöttnek | `formula` |
+| `<ModellKereso>` | interpretáció keresése: `igaz` formulák igazak, `hamis` formulák hamisak legyenek; „Nincs ilyen” gomb, ha lehetetlen | `igaz`, `hamis` (listák), `nincs` |
+| `<VilagKerdes>` | véges elsőrendű interpretáció rajzzal; formulák igaz/hamis | `vilag` (`oszto`) vagy `U`, `rel` (`{R: [["a","b"], …]}` vagy egyargumentumúnál elemlista), `nevek`, `fv`, `formulak` |
+| `<Atalakitas>` | ekvivalens átalakítás soronként, minden sort ellenőriz | `kiindulo`, `cel` (`knf`, `dnf`, `torveny` vagy egy formula), `megoldas` (lépések listája) |
+| `<Gyakorlo>` | végtelen véletlen feladatok | `tipusok` (`fojel`, `ertek`, `osztaly`, `kovetkezik`, `zarojel`) |
+
+Elsőrendű begépelésnél a nevek kisbetűs szavak (`veronika`), a változók `x y z v w`.
+A begépelt választ a program tartalom szerint ellenőrzi: ítéletlogikában igazságtáblával,
+elsőrendűben sok kis véletlen modellen.
 
 ## Ellenőrzés
 

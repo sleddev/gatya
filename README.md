@@ -2,12 +2,13 @@
 
 Study notes with interactive exercises for the first semester of the
 *programtervező informatikus BSc* at the University of Debrecen (Faculty of
-Informatics). The content is in Hungarian and covers three subjects:
+Informatics). The content is in Hungarian and covers three subjects, plus a step-by-step logic course:
 
 | subject | topics |
 |---|---|
 | **Diszkrét matematika** | sets, functions, induction, divisibility, Euclid, Diophantine equations, primes, congruences, complex numbers |
 | **Az informatika logikai alapjai** | first-order language, structure trees, free/bound variables, interpretation, satisfiability, consequence, named laws, quantifier laws |
+| **Logika a nulláról** | a step-by-step course for the logic ZHs (Brilliant-style cards with auto-checked exercises), built on the official syllabus and lab problem sets 1–4 |
 | **Számítógépes matematika és vizualizáció** | relations, polynomial fitting, roots/extrema/tangents, vectors, dot/cross/triple product, GeoGebra commands |
 
 One codebase runs as:
