@@ -1,0 +1,135 @@
+---
+cim: Skaláris szorzat és szög
+osszefoglalo: A skaláris szorzat koordinátákkal, két vektor szöge a koszinuszon keresztül, a merőlegesség feltétele, az előjel jelentése és a vetület.
+allapot: lecke
+kulcsszavak: [skaláris szorzat, belső szorzat, szög, koszinusz, merőleges, hegyesszög, tompaszög, vetület, Dot, Angle]
+forras: vector operations.pdf
+---
+
+<Lecke>
+
+<Kartya cim="Két vektorból egy szám">
+A **skaláris szorzat**: a megfelelő koordináták szorzatainak összege.
+
+$$
+\mathbf{u} \cdot \mathbf{v} = u_x v_x + u_y v_y
+$$
+
+(térben még $+\, u_z v_z$).
+
+Az eredmény egy **szám** (skalár), nem vektor! GeoGebra: `u * v` vagy `Dot(u, v)`.
+
+<SzamValasz helyes="23" hibak={{"15": "Mindkét koordinátapárt össze kell szorozni és összeadni: 3 · 5 + 4 · 2."}}>
+**A gyakorlatról.** $\mathbf{u} = (3, 4)$, $\mathbf{v} = (5, 2)$. Mennyi $\mathbf{u} \cdot \mathbf{v}$?
+</SzamValasz>
+
+<SzamValasz helyes="-4">
+$(1, -2, 3) \cdot (2, 0, -2) = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Mit mér a skaláris szorzat?">
+$$
+\mathbf{u} \cdot \mathbf{v} = \|\mathbf{u}\|\,\|\mathbf{v}\| \cos\alpha,
+$$
+
+ahol $\alpha$ a két vektor szöge. Szemléletesen: „mennyi $\mathbf{u}$-ból mutat $\mathbf{v}$ irányába”, szorozva $\mathbf{v}$ hosszával.
+
+Ha önmagával szorzod: $\mathbf{u} \cdot \mathbf{u} = \|\mathbf{u}\|^2$ (mert $\cos 0 = 1$).
+
+<SzamValasz helyes="25" magyarazat="9 + 16 = 25 = 5².">
+Mennyi $(3, 4) \cdot (3, 4)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A szög kiszámolása">
+Átrendezve:
+
+$$
+\cos\alpha = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|\,\|\mathbf{v}\|}.
+$$
+
+<SzamValasz helyes="45" egyseg="°" tipp="(1, 1) · (1, 0) = 1, a hosszak √2 és 1." magyarazat="cos α = 1/√2 = √2/2, tehát α = 45°.">
+Mekkora szöget zár be $(1, 1)$ és $(1, 0)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A gyakorlat példája">
+$\mathbf{u} = (3, 4)$, $\mathbf{v} = (5, 2)$: $\mathbf{u} \cdot \mathbf{v} = 23$, $\|\mathbf{u}\| = 5$, $\|\mathbf{v}\| = \sqrt{29}$.
+
+<SzamValasz helyes="23/(5√29)" tures={0.001} gombok={["√"]} magyarazat="23 / (5 · 5,385) ≈ 0,8542.">
+Mennyi $\cos\alpha$? (Pontos alakban vagy négy tizedesre.)
+</SzamValasz>
+
+<SzamValasz helyes="31.33" tures={0.0004} egyseg="°" hibak={{"31.79": "Ez akkor jön ki, ha a koszinuszt előbb 0,85-re kerekíted. Csak a végén kerekíts!"}} magyarazat="arccos(0,8542) ≈ 31,33°. GeoGebra: Angle(u, v).">
+Mennyi $\alpha$ fokban, két tizedesre?
+</SzamValasz>
+
+<Figyelem cim="kerekítés">
+A laborjegyzet a koszinuszt 0,85-re kerekíti, és így $31{,}79°$-ot kap. A pontos érték $\approx 31{,}33°$. Az arkuszkoszinusz érzékeny a kis eltérésekre: **mindig csak a végén kerekíts**.
+</Figyelem>
+</Kartya>
+
+<Kartya cim="Merőlegesség">
+$\cos 90° = 0$, tehát két (nem nulla) vektor pontosan akkor **merőleges**, ha
+
+$$
+\mathbf{u} \cdot \mathbf{v} = 0.
+$$
+
+<Besorolo
+  cim="Merőlegesek-e?"
+  opciok={["merőlegesek", "nem merőlegesek"]}
+  elemek={[
+    { kerdes: "(2, −1) és (1, 2)", helyes: 0, miert: "2 − 2 = 0." },
+    { kerdes: "(3, 4) és (4, 3)", helyes: 1, miert: "12 + 12 = 24 ≠ 0." },
+    { kerdes: "(1, 2, 3) és (3, 0, −1)", helyes: 0, miert: "3 + 0 − 3 = 0." },
+    { kerdes: "(5, 0) és (0, −7)", helyes: 0, miert: "Az egyik az x tengelyen, a másik az y tengelyen fekszik: 0 + 0 = 0." }
+  ]}
+/>
+
+<SzamValasz helyes="6" mezok={["k ="]} magyarazat="2k − 12 = 0, tehát k = 6.">
+Melyik $k$-ra merőleges $(k, 3)$ a $(2, -4)$ vektorra?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az előjel mindent elárul">
+A hosszak pozitívak, tehát a skaláris szorzat előjele a $\cos\alpha$ előjele:
+
+- $\mathbf{u} \cdot \mathbf{v} > 0$: **hegyesszög**;
+- $\mathbf{u} \cdot \mathbf{v} = 0$: **derékszög**;
+- $\mathbf{u} \cdot \mathbf{v} < 0$: **tompaszög**.
+
+<Valasztas valaszok={["hegyesszög", "derékszög", "tompaszög"]} helyes={2} miert={["A skaláris szorzat negatív.", "Nem 0.", ""]} magyarazat="(2, 1) · (−3, 1) = −6 + 1 = −5 < 0.">
+Milyen szöget zár be $(2, 1)$ és $(-3, 1)$?
+</Valasztas>
+
+<VektorLabor mod="szorzat" modok={["szorzat"]} />
+</Kartya>
+
+<Kartya cim="Vetület">
+Az $\mathbf{u}$ merőleges vetületének (előjeles) hossza a $\mathbf{v}$ egyenesén:
+
+$$
+\frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|}.
+$$
+
+<SzamValasz helyes="3" magyarazat="(3, 4) · (1, 0) / 1 = 3: az x tengelyre vetítve a (3, 4) árnyéka 3 hosszú.">
+Milyen hosszú a $(3, 4)$ vetülete az $x$ tengely irányú $(1, 0)$ vektorra?
+</SzamValasz>
+
+<SzamValasz helyes="2" tipp="(5, 2) · (0, 1) = ?, és a (0, 1) hossza 1." magyarazat="(5, 2) · (0, 1) / 1 = 2: az y tengelyre vetítve éppen az y koordináta marad.">
+Mennyi a $(5, 2)$ vetületének hossza a $(0, 1)$ irányra?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $\mathbf{u} \cdot \mathbf{v} = u_x v_x + u_y v_y (+ u_z v_z)$, egy szám. GeoGebra: `u * v`, `Dot(u, v)`.
+- $\cos\alpha = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|\|\mathbf{v}\|}$; csak a végén kerekíts. GeoGebra: `Angle(u, v)`.
+- Merőleges $\iff \mathbf{u} \cdot \mathbf{v} = 0$. Pozitív: hegyesszög, negatív: tompaszög.
+- Vetület hossza: $\frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|}$.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

@@ -1,0 +1,11 @@
+cim: SzMV a nulláról
+rovid: SzMV 0→ZH
+szin: '#A0306E'
+szin_sotet: '#EE7DB8'
+oktato: önálló gyakorló kurzus · a laborjegyzetek alapján
+sorrend: 3.5
+leiras: >-
+  Lépésenként felépített kurzus a Számítógépes matematika és vizualizáció számonkéréseire, a laborok
+  anyaga (relations.pdf, functions.pdf, vector operations.pdf) alapján: relációk, polinomok illesztése,
+  gyökök, szélsőértékek és érintők, végül vektorműveletek síkban és térben. Mindent kézzel is kiszámolunk,
+  és mindenhez megmutatjuk a GeoGebra-parancsot. Egy kártya, egy gondolat, utána rögtön egy feladat.

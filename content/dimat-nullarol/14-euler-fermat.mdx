@@ -1,0 +1,160 @@
+---
+cim: Az Euler-féle φ és az Euler–Fermat-tétel
+osszefoglalo: Redukált maradékosztályok, a φ-függvény kiszámolása a kanonikus alakból, az Euler–Fermat- és a kis Fermat-tétel, és a recept nagy hatványok maradékára.
+allapot: lecke
+kulcsszavak: [Euler-féle phi, φ-függvény, redukált maradékosztály, relatív prím, Euler–Fermat-tétel, kis Fermat-tétel, hatvány maradéka, nagy kitevő]
+forras: DiMat_ea.pdf 34–35. dia · Feladatsor 3.26
+---
+
+<Lecke>
+
+<Kartya cim="Redukált maradékosztályok">
+Egy maradékosztály **redukált**, ha elemei **relatív prímek** a modulushoz. A számuk az **Euler-féle φ-függvény**:
+
+**$\varphi(m)$ = azoknak az $a \in \{1, \dots, m\}$ számoknak a száma, amelyekre $(a, m) = 1$.**
+
+Például mod 10: az $1, 3, 7, 9$ relatív prím 10-hez, tehát $\varphi(10) = 4$.
+
+<MaradekOra m={12} mod="redukalt" modok={["redukalt"]} />
+
+<SzamValasz helyes="1, 5, 7, 11" forma="halmaz">
+Melyek a redukált maradékok mod 12 (1 és 12 között)?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Prímre egyszerű">
+Ha $p$ prím, akkor $1, 2, \dots, p - 1$ mind relatív prím hozzá:
+
+$$
+\varphi(p) = p - 1.
+$$
+
+<SzamValasz helyes="28">
+Mennyi $\varphi(29)$?
+</SzamValasz>
+
+<SzamValasz helyes="6" magyarazat="9 = 3²: a 3, 6, 9 esik ki a 9 számból, marad 6. (Prímhatványnál pontosan a p többszörösei esnek ki: φ(pᵏ) = pᵏ − pᵏ⁻¹.)">
+Mennyi $\varphi(9)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A képlet">
+Ha $m = p_1^{\alpha_1} \cdots p_r^{\alpha_r}$, akkor
+
+$$
+\varphi(m) = m \cdot \left(1 - \frac{1}{p_1}\right) \cdots \left(1 - \frac{1}{p_r}\right).
+$$
+
+Szemléletesen: a számok $\frac{1}{p}$ része osztható $p$-vel, ezeket minden prímre kidobjuk.
+
+<SzamValasz helyes="8" tipp="24 = 2³ · 3, tehát 24 · (1/2) · (2/3)." magyarazat="24 · 1/2 · 2/3 = 8. Valóban: 1, 5, 7, 11, 13, 17, 19, 23.">
+Mennyi $\varphi(24)$?
+</SzamValasz>
+
+<SzamValasz helyes="8" magyarazat="15 = 3 · 5: 15 · 2/3 · 4/5 = 8.">
+Mennyi $\varphi(15)$?
+</SzamValasz>
+
+<SzamValasz helyes="40" hibak={{"50": "A 2-t és az 5-öt is ki kell dobni: 100 · 1/2 · 4/5."}}>
+Mennyi $\varphi(100)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az Euler–Fermat-tétel">
+Ha $(a, m) = 1$, akkor
+
+$$
+a^{\varphi(m)} \equiv 1 \pmod m.
+$$
+
+Prím modulusra ez a **kis Fermat-tétel**: ha $p \nmid a$, akkor $a^{p-1} \equiv 1 \pmod p$.
+
+<SzamValasz helyes="1" magyarazat="(3, 10) = 1, φ(10) = 4, tehát 3⁴ = 81 ≡ 1 (mod 10). ✓">
+Ellenőrizd: mennyi $3^4$ maradéka 10-zel osztva?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Miért igaz?">
+Szorozzuk meg a redukált maradékokat $a$-val. Mod 10, $a = 3$-mal:
+
+$$
+\{1, 3, 7, 9\} \cdot 3 = \{3, 9, 21, 27\} \equiv \{3, 9, 1, 7\}.
+$$
+
+**Ugyanazok** jöttek ki, csak más sorrendben! (Mert $(a, m) = 1$, különböző maradékok különbözőkbe mennek.) A két halmaz elemeinek szorzata tehát egyenlő:
+
+$$
+3^4 \cdot (1 \cdot 3 \cdot 7 \cdot 9) \equiv 1 \cdot 3 \cdot 7 \cdot 9 \pmod{10},
+$$
+
+és a zárójellel (ami relatív prím 10-hez) egyszerűsíthetünk: $3^4 \equiv 1$.
+
+<Valasztas valaszok={["Mert a zárójeles szorzat relatív prím 10-hez", "Mert minden kongruenciát lehet egyszerűsíteni"]} helyes={0} miert={["", "Nem: csak a modulushoz relatív prím számmal szabad."]}>
+Miért szabad a végén egyszerűsíteni?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A recept">
+Nagy kitevőnél a kitevőt $\varphi(m)$ szerinti **maradékára** cseréljük: ha $k = q \cdot \varphi(m) + r$, akkor
+
+$$
+a^k = \left(a^{\varphi(m)}\right)^q \cdot a^r \equiv 1^q \cdot a^r = a^r \pmod m.
+$$
+
+<Lepesek>
+<Lepes>
+Ellenőrizd: $(a, m) = 1$?
+</Lepes>
+<Lepes>
+Számold ki $\varphi(m)$-et.
+</Lepes>
+<Lepes>
+Oszd el a kitevőt maradékosan: $k = q \cdot \varphi(m) + r$.
+</Lepes>
+<Lepes>
+$a^k \equiv a^r$; a kis $a^r$-t számold ki, és közben bármikor csökkenthetsz mod $m$.
+</Lepes>
+</Lepesek>
+</Kartya>
+
+<Kartya cim="Az előadás példája: 2²⁰²⁶ mod 15">
+$(2, 15) = 1$ és $\varphi(15) = 8$.
+
+<SzamValasz helyes={["253", "2"]} mezok={["q =", "r ="]}>
+$2026 = 8 \cdot q + r$
+</SzamValasz>
+
+<SzamValasz helyes="4" magyarazat="2²⁰²⁶ = (2⁸)²⁵³ · 2² ≡ 1 · 4 = 4 (mod 15).">
+Mennyi tehát $2^{2026}$ maradéka 15-tel osztva?
+</SzamValasz>
+
+<ModularisHatvany a={2} k={2026} m={15} />
+</Kartya>
+
+<Kartya cim="Most egyedül: 3.26 (a)">
+<SzamValasz helyes="23" tipp="29 prím, tehát φ(29) = 28. 928 = 28 · 33 + 4." hibak={{"81": "Ez 3⁴, de még csökkenteni kell mod 29: 81 − 2 · 29 = 23."}} magyarazat="3⁹²⁸ ≡ 3⁴ = 81 ≡ 23 (mod 29).">
+Mennyi maradékot ad $3^{928}$, ha 29-cel osztjuk?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="3.26 (b)">
+<SzamValasz helyes="1" tipp="(17, 25) = 1, φ(25) = 25 · 4/5 = 20." magyarazat="40 = 2 · 20, tehát 17⁴⁰ = (17²⁰)² ≡ 1 (mod 25).">
+Mennyi maradékot ad $17^{40}$, ha 25-tel osztjuk?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Ha nem relatív prím">
+<Valasztas valaszok={["Igen, φ(12) = 4, tehát 2⁴ ≡ 1", "Nem: (2, 12) ≠ 1, a tétel nem alkalmazható"]} helyes={1} miert={["2⁴ = 16 ≡ 4 (mod 12), nem 1. A tétel feltétele nem teljesül.", ""]} magyarazat="Ilyenkor kézzel keresd meg a hatványok körét: 2, 4, 8, 4, 8, … (mod 12). Sosem ér vissza az 1-hez.">
+Használható-e az Euler–Fermat-tétel $2^{100}$ mod 12 kiszámolására?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $\varphi(m)$: az $1, \dots, m$ közül a $m$-hez relatív prímek száma. $\varphi(p) = p - 1$; $\varphi(m) = m \prod (1 - \frac{1}{p_i})$.
+- **Euler–Fermat:** $(a, m) = 1 \Rightarrow a^{\varphi(m)} \equiv 1 \pmod m$. **Kis Fermat:** $p \nmid a \Rightarrow a^{p-1} \equiv 1 \pmod p$.
+- Recept: kitevő mod $\varphi(m)$, aztán a kis hatvány. Mindig ellenőrizd a relatív prímséget!
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

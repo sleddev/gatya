@@ -9,6 +9,7 @@ import { DiofantikusRacs } from './DiofantikusRacs';
 import { EkvivalenciaTeszt } from './EkvivalenciaTeszt';
 import { ElsorenduVizsgalo } from './ElsorenduVizsgalo';
 import { EuklideszAlgoritmus } from './EuklideszAlgoritmus';
+import { EuklideszKitolto } from './EuklideszKitolto';
 import { EuklideszTeglalap } from './EuklideszTeglalap';
 import { Feladat } from './Feladat';
 import { Figyelem } from './Figyelem';
@@ -38,19 +39,23 @@ import { LinearisKongruencia } from './LinearisKongruencia';
 import { LogikaTerkep } from './LogikaTerkep';
 import { MaradekOra } from './MaradekOra';
 import { MaradekosOsztas } from './MaradekosOsztas';
+import { MatekGyakorlo } from './MatekGyakorlo';
 import { Megjegyzes } from './Megjegyzes';
 import { Megoldas } from './Megoldas';
 import { ModellKereso } from './ModellKereso';
 import { ModularisHatvany } from './ModularisHatvany';
 import { NormalformaTabla } from './NormalformaTabla';
 import { Osszefoglalo } from './Osszefoglalo';
+import { ParKijelolo } from './ParKijelolo';
 import { Pelda } from './Pelda';
 import { PolinomIllesztes } from './PolinomIllesztes';
 import { PolinomVizsgalo } from './PolinomVizsgalo';
+import { PontRako } from './PontRako';
 import { Primtenyezok } from './Primtenyezok';
 import { RelacioFelfedezo } from './RelacioFelfedezo';
 import { Reszleges } from './Reszleges';
 import { SzabadKotott } from './SzabadKotott';
+import { SzamValasz } from './SzamValasz';
 import { TablaKitolto } from './TablaKitolto';
 import { TermFa } from './TermFa';
 import { Tetel } from './Tetel';
@@ -59,6 +64,7 @@ import { Valasztas } from './Valasztas';
 import { VegyesSzorzat } from './VegyesSzorzat';
 import { VektorLabor } from './VektorLabor';
 import { VennDiagram } from './VennDiagram';
+import { VennSzinezo } from './VennSzinezo';
 import { VilagKerdes } from './VilagKerdes';
 import { Vilagok } from './Vilagok';
 import { Zarojelezo } from './Zarojelezo';
@@ -72,6 +78,7 @@ export const mdxComponents = {
   EkvivalenciaTeszt,
   ElsorenduVizsgalo,
   EuklideszAlgoritmus,
+  EuklideszKitolto,
   EuklideszTeglalap,
   Feladat,
   Figyelem,
@@ -101,19 +108,23 @@ export const mdxComponents = {
   LogikaTerkep,
   MaradekOra,
   MaradekosOsztas,
+  MatekGyakorlo,
   Megjegyzes,
   Megoldas,
   ModellKereso,
   ModularisHatvany,
   NormalformaTabla,
   Osszefoglalo,
+  ParKijelolo,
   Pelda,
   PolinomIllesztes,
   PolinomVizsgalo,
+  PontRako,
   Primtenyezok,
   RelacioFelfedezo,
   Reszleges,
   SzabadKotott,
+  SzamValasz,
   TablaKitolto,
   TermFa,
   Tetel,
@@ -122,6 +133,7 @@ export const mdxComponents = {
   VegyesSzorzat,
   VektorLabor,
   VennDiagram,
+  VennSzinezo,
   VilagKerdes,
   Vilagok,
   Zarojelezo,

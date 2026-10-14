@@ -1,0 +1,129 @@
+---
+cim: Lineáris kongruenciák
+osszefoglalo: Az ax ≡ b (mod m) kongruencia megoldása. Mikor oldható meg, az inverz megkeresése, osztás a lnko-val, és hány megoldás van az eredeti modulus szerint.
+allapot: lecke
+kulcsszavak: [lineáris kongruencia, inverz, moduláris inverz, megoldhatóság, lnko, megoldások száma, maradékosztály, diofantikus egyenlet]
+forras: DiMat_ea.pdf 36–37. dia · Feladatsor 3.25
+---
+
+<Lecke>
+
+<Kartya cim="A feladat">
+Keressük azokat az egész $x$-eket, amelyekre
+
+$$
+ax \equiv b \pmod m.
+$$
+
+Kis modulusnál próbálgatással is megy: $3x \equiv 5 \pmod 7$. Számold ki $3x$ maradékát $x = 0, 1, \dots, 6$-ra: $0, 3, 6, 2, 5, 1, 4$.
+
+<SzamValasz helyes="4" mezok={["x ≡"]} modulo={7} magyarazat="3 · 4 = 12 ≡ 5 (mod 7). ✓ Minden x ≡ 4 (mod 7) megoldás: …, −3, 4, 11, 18, …">
+Melyik $x$ jó?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az inverz">
+A valós számoknál $3x = 5$-öt úgy oldjuk meg, hogy szorzunk $\frac{1}{3}$-dal. Mod $m$ is ezt csináljuk, csak $\frac13$ helyett a 3 **inverzével**: azzal a számmal, amivel 3-at szorozva **1**-et kapunk.
+
+<SzamValasz helyes="5" modulo={7} tipp="3 · ? ≡ 1 (mod 7). Próbáld végig: 3·1, 3·2, …" magyarazat="3 · 5 = 15 = 14 + 1 ≡ 1. Tehát a 3 inverze mod 7 az 5.">
+Mi a 3 inverze mod 7?
+</SzamValasz>
+
+Szorozzuk meg a $3x \equiv 5$ mindkét oldalát 5-tel: $15x \equiv 25$, azaz $x \equiv 25 \equiv 4 \pmod 7$. Ugyanaz jött ki. ✓
+</Kartya>
+
+<Kartya cim="Gyakorold: 3.25 (d)">
+<SzamValasz helyes="9" modulo={11} mezok={["5⁻¹ ≡"]} magyarazat="5 · 9 = 45 = 44 + 1 ≡ 1 (mod 11).">
+Mi az 5 inverze mod 11?
+</SzamValasz>
+
+<SzamValasz helyes="3" modulo={11} mezok={["x ≡"]} magyarazat="x ≡ 9 · 4 = 36 ≡ 3 (mod 11). Ellenőrzés: 5 · 3 = 15 ≡ 4. ✓">
+Oldd meg: $5x \equiv 4 \pmod{11}$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Mikor van megoldás?">
+$ax \equiv b \pmod m$ azt jelenti, hogy $ax - b = my$ valamilyen egész $y$-ra, vagyis $ax - my = b$. Ez egy **diofantikus egyenlet**!
+
+**Az $ax \equiv b \pmod m$ pontosan akkor oldható meg, ha $(a, m) \mid b$.**
+
+<Besorolo
+  cim="Van-e megoldás?"
+  opciok={["van", "nincs"]}
+  elemek={[
+    { kerdes: "6x ≡ 5 (mod 9)", helyes: 1, miert: "(6, 9) = 3 ∤ 5. A 6x maradéka mod 9 mindig 0, 3 vagy 6." },
+    { kerdes: "12x ≡ 8 (mod 16)", helyes: 0, miert: "(12, 16) = 4 | 8." },
+    { kerdes: "4x ≡ 2 (mod 6)", helyes: 0, miert: "(4, 6) = 2 | 2." },
+    { kerdes: "10x ≡ 3 (mod 15)", helyes: 1, miert: "(10, 15) = 5 ∤ 3." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Ha (a, m) > 1: ossz el mindent">
+Az előadás példája: $12x \equiv 8 \pmod{16}$. $d = (12, 16) = 4$, és $4 \mid 8$.
+
+**Ossz el mindent $d$-vel** (a modulust is!):
+
+$$
+3x \equiv 2 \pmod 4.
+$$
+
+<SzamValasz helyes="2" modulo={4} mezok={["x ≡"]} tipp="A jobb oldalhoz adj 4-et: 3x ≡ 6 (mod 4), és (3, 4) = 1, tehát egyszerűsíthetsz 3-mal." magyarazat="x ≡ 2 (mod 4). Ellenőrzés: 3 · 2 = 6 ≡ 2. ✓">
+Oldd meg: $3x \equiv 2 \pmod 4$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Hány megoldás van mod 16?">
+$x \equiv 2 \pmod 4$ azt jelenti: $x = \dots, -2, 2, 6, 10, 14, 18, \dots$ Az eredeti modulus, a 16 szerint ez **négy** különböző maradékosztály.
+
+Általában: az eredeti modulus szerint **$d$ darab** megoldás van:
+
+$$
+x_0,\quad x_0 + \tfrac{m}{d},\quad x_0 + 2\tfrac{m}{d},\quad \dots,\quad x_0 + (d-1)\tfrac{m}{d}.
+$$
+
+<SzamValasz helyes="2, 6, 10, 14" forma="halmaz" hibak={{"2": "Ez csak mod 4 egyértelmű. Mod 16 ennek 4 különböző osztály felel meg."}}>
+Sorold fel a $12x \equiv 8 \pmod{16}$ összes megoldását 0 és 15 között!
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Próbáld ki">
+<LinearisKongruencia a={12} b={8} m={16} />
+
+<Valasztas valaszok={["1", "3", "9"]} helyes={1} miert={["Az lnko (9, 12) = 3, tehát mod 12 három megoldás van.", "", "Nem: legfeljebb annyi, amennyi az lnko."]}>
+Hány megoldása van mod 12 a $9x \equiv 15 \pmod{12}$ kongruenciának?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Egyben: 3.25 (c)">
+$9x \equiv 15 \pmod{12}$. $d = 3$, osztva: $3x \equiv 5 \equiv 1 \pmod 4$.
+
+<SzamValasz helyes="3, 7, 11" forma="halmaz" tipp="A 3 inverze mod 4 önmaga (3 · 3 = 9 ≡ 1), tehát x ≡ 3 (mod 4)." magyarazat="x ≡ 3 (mod 4), mod 12: 3, 7, 11. Ellenőrzés: 9 · 3 = 27 ≡ 3 ≡ 15 (mod 12). ✓">
+Sorold fel a megoldásokat 0 és 11 között!
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Egy nagyobb: 3.25 (h)">
+$30x \equiv 48 \pmod{58}$.
+
+<SzamValasz helyes="2" mezok={["d ="]}>
+Mennyi $d = (30, 58)$?
+</SzamValasz>
+
+Osztva: $15x \equiv 24 \pmod{29}$. A 15 inverze mod 29: $15 \cdot 2 = 30 \equiv 1$, tehát 2.
+
+<SzamValasz helyes="19, 48" forma="halmaz" magyarazat="x ≡ 2 · 24 = 48 ≡ 19 (mod 29). Mod 58: 19 és 19 + 29 = 48. Ellenőrzés: 30 · 19 − 48 = 522 = 9 · 58. ✓">
+Sorold fel a megoldásokat 0 és 57 között!
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $ax \equiv b \pmod m$ megoldható $\iff d = (a, m) \mid b$.
+- Ha $d > 1$: ossz el **mindent** (a modulust is) $d$-vel.
+- $(a', m') = 1$ esetén szorozz $a'$ inverzével (amivel szorozva 1 a maradék), vagy adj a jobb oldalhoz $m'$-t, amíg osztható nem lesz.
+- Mod $m$ összesen $d$ megoldás van, $\frac{m}{d}$-nként.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

@@ -1,0 +1,129 @@
+---
+cim: Indukció oszthatóságra és egyenlőtlenségre
+osszefoglalo: Oszthatósági állítások indukcióval (a feltevés előcsalogatása), egyenlőtlenségek nem 1-től induló kezdőlépéssel, és a tipikus hibák.
+allapot: lecke
+kulcsszavak: [teljes indukció, oszthatóság, egyenlőtlenség, kezdőlépés, faktoriális, hozzáadunk és levonunk, tipikus hibák]
+forras: DiMat_ea.pdf 16–18. dia · Feladatsor 2.11–2.19
+---
+
+<Lecke>
+
+<Kartya cim="Oszthatóság: mit kell keresni?">
+Állítás: $6 \mid n^3 - n$ minden $n$-re. (Az $a \mid b$ jelentése: $a$ osztója $b$-nek.)
+
+A lépésben bontsuk ki a $k+1$-es kifejezést, és **keressük meg benne a feltevést**, a $k^3 - k$-t:
+
+$$
+(k+1)^3 - (k+1) = k^3 + 3k^2 + 3k + 1 - k - 1 = (k^3 - k) + \ ?
+$$
+
+<SzamValasz helyes="3k^2 + 3k" valtozok={["k"]} magyarazat="Ami a k³ − k után marad: 3k² + 3k = 3k(k + 1).">
+Mi marad a kérdőjel helyén?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Miért osztható a maradék is?">
+$(k^3 - k) + 3k(k+1)$:
+
+- az első tag a **feltevés** miatt osztható 6-tal;
+- $k(k+1)$ két **egymás utáni** szám szorzata, tehát **páros**, így $3k(k+1)$ osztható $3 \cdot 2 = 6$-tal;
+- két 6-tal osztható szám összege is osztható 6-tal. ✓
+
+<Valasztas valaszok={["Mert k(k+1) mindig páros", "Mert k(k+1) mindig osztható 3-mal"]} helyes={0} miert={["", "Nem mindig: 1 · 2 = 2 nem osztható 3-mal. A 3-as tényező a 3k(k+1)-ben külön ott van."]}>
+Miért osztható $3k(k+1)$ 6-tal?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A trükk: hozzáadunk és levonunk">
+**2.13.** $5 \mid 2^{4n+1} + 3$.
+
+Kezdőlépés: $n = 1$-re $2^5 + 3 = 35 = 5 \cdot 7$. ✓
+
+Lépés: $2^{4(k+1)+1} = 2^{4k+1} \cdot 2^4 = 16 \cdot 2^{4k+1}$. A feltevés $2^{4k+1} + 3$, ezért **csináljunk** belőle egyet: adjunk hozzá és vonjunk le:
+
+$$
+16 \cdot 2^{4k+1} + 3 = 16\,(2^{4k+1} + 3) - 48 + 3.
+$$
+
+<SzamValasz helyes="-45" magyarazat="−48 + 3 = −45 = −9 · 5. Az első tag a feltevés miatt osztható 5-tel, a −45 is, tehát az összeg is. ✓">
+Mennyi $-48 + 3$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Gyakorold: 2.12">
+$6 \mid n^3 + 5n$.
+
+$$
+(k+1)^3 + 5(k+1) = (k^3 + 5k) + 3k^2 + 3k + 6.
+$$
+
+<Valasztas valaszok={["3k(k+1) + 6, és mindkét tag osztható 6-tal", "3k² + 3k + 6, ami mindig páratlan"]} helyes={0} miert={["", "Nem: k = 1-re 3 + 3 + 6 = 12."]}>
+Hogyan fejezed be?
+</Valasztas>
+
+<SzamValasz helyes="6" magyarazat="1 + 5 = 6, és 6 | 6. ✓">
+És a kezdőlépés: mennyi $n^3 + 5n$, ha $n = 1$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Nem mindig 1-től">
+**2.18.** $(n+1)! > 2^{n+3}$, ha $n \ge 5$. Itt a kezdőlépés $n = 5$.
+
+<SzamValasz helyes={["720", "256"]} mezok={["6! =", "2⁸ ="]} magyarazat="720 > 256. ✓">
+Számold ki a két oldalt $n = 5$-re!
+</SzamValasz>
+
+**Lépés** ($k \ge 5$): $(k+2)! = (k+2)(k+1)! > (k+2) \cdot 2^{k+3} \ge 2 \cdot 2^{k+3} = 2^{k+4}$.
+
+<Valasztas valaszok={["Mert k ≥ 5, így k + 2 ≥ 2", "Mert k + 2 mindig 2"]} helyes={0} miert={["", "Nem: k + 2 ≥ 7. Csak annyi kell, hogy legalább 2."]}>
+Miért igaz, hogy $(k+2) \cdot 2^{k+3} \ge 2 \cdot 2^{k+3}$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Hol romlik el?">
+Az indukció bármely kezdőértékről indulhat. Ha a kezdőlépés $n_0$, akkor az állítás **$n_0$-tól kezdve** igaz.
+
+<SzamValasz helyes="5" tipp="Próbáld ki n = 1, 2, 3, 4, 5-re: (n+1)! és 2^(n+3)." magyarazat="n = 4: 5! = 120 < 2⁷ = 128, tehát ott még nem igaz. n = 5-től igaz.">
+Mi a legkisebb $n$, amire $(n+1)! > 2^{n+3}$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="1. hiba: a kezdőlépés kihagyása">
+„Minden $n$-re $n^2 + n$ páratlan.” A lépés **működik**: ha $k^2 + k$ páratlan, akkor
+
+$$
+(k+1)^2 + (k+1) = (k^2 + k) + 2(k+1)
+$$
+
+páratlan + páros = páratlan.
+
+<Valasztas valaszok={["Igaz, hiszen a lépés működik", "Hamis: n = 1-re 1 + 1 = 2 páros"]} helyes={1} miert={["A lépés csak azt mondja, hogy minden dominó eldönti a következőt. Ha az első nem dől el, semmi sem dől el.", ""]} magyarazat="Valójában n² + n = n(n+1) mindig páros. A kezdőlépés nélkül hamis állítást is be lehet „bizonyítani”.">
+Igaz-e az állítás?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="2. hiba: valós számokra">
+<Valasztas valaszok={["Igen, kezdjük x = 1-gyel", "Nem: valós számokra az indukció nem működik"]} helyes={1} miert={["Az indukció csak azokat a számokat éri el, ahova az 1-ből egyesével lépkedve eljutsz. Az x = 1,5-öt például soha.", ""]} magyarazat="Az állítás igaz (x + 1/x ≥ 2 ⇔ (x − 1)² ≥ 0), de nem indukcióval bizonyítjuk.">
+Bizonyítható-e indukcióval: $x + \frac{1}{x} \ge 2$ minden valós $x > 0$-ra?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="3. hiba: nem használod a feltevést">
+Ha az indukciós lépésben **sehol** nem használtad a $T(k)$-ra vonatkozó feltevést, akkor vagy nem is kellett indukció, vagy valami hibás. Az indukció lényege, hogy a $k+1$-es esetet visszavezeted a $k$-asra.
+
+<Valasztas valaszok={["Megkeresni benne a k-ra vonatkozó kifejezést (a feltevést)", "Behelyettesíteni n = 1-et"]} helyes={0} miert={["", "Az a kezdőlépés, nem a lépés."]}>
+Mi az első dolog, amit a $k+1$-es kifejezéssel csinálsz?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Oszthatóságnál bontsd ki a $k+1$-es kifejezést, és keresd meg benne a feltevést; a maradékról külön mutasd meg, hogy osztható.
+- Hatványoknál: **adj hozzá és vonj le**, hogy előálljon a feltevés: $16 \cdot 2^{4k+1} + 3 = 16(2^{4k+1} + 3) - 45$.
+- $k(k+1)$ mindig páros. Két $d$-vel osztható szám összege $d$-vel osztható.
+- A kezdőlépés lehet $n_0 \ne 1$; ekkor az állítás $n_0$-tól igaz. Kezdőlépés nélkül nincs bizonyítás.
+- Indukció csak természetes számokra.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

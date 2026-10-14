@@ -1,0 +1,83 @@
+---
+cim: Értelmezési tartomány, értékkészlet, inverz
+osszefoglalo: Egy reláció értelmezési tartománya és értékkészlete, az inverz reláció, és mikor függvény egy reláció.
+allapot: lecke
+kulcsszavak: [értelmezési tartomány, értékkészlet, inverz reláció, függvény, reláció, rendezett pár, egyértelmű]
+forras: relations.pdf
+---
+
+<Lecke>
+
+<Kartya cim="Értelmezési tartomány">
+Legyen $R \subseteq A \times B$. Az **értelmezési tartomány** $D_R$: a párok **első** koordinátái.
+
+A gyakorlat példája: $R = \{(2,4), (2,6), (4,7), (6,9), (7,7)\}$.
+
+<SzamValasz helyes="2, 4, 6, 7" forma="halmaz" magyarazat="A 2 kétszer is szerepel első helyen, de a halmazban csak egyszer.">
+$D_R = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Értékkészlet">
+Az **értékkészlet** $R_R$: a párok **második** koordinátái.
+
+<SzamValasz helyes="4, 6, 7, 9" forma="halmaz" hibak={{"2, 4, 6, 7": "Ez az értelmezési tartomány (első koordináták). Most a második koordináták kellenek."}}>
+Ugyanezzel az $R$-rel: $R_R = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az inverz reláció">
+Az **inverz** $R^{-1}$: minden párt **megfordítunk**.
+
+$$
+R^{-1} = \{(b, a) \mid (a, b) \in R\}.
+$$
+
+<ParKijelolo A={[4, 6, 7, 9]} B={[2, 4, 6, 7]} helyes={[[4, 2], [6, 2], [7, 4], [9, 6], [7, 7]]} magyarazat="(2,4) → (4,2), (2,6) → (6,2), (4,7) → (7,4), (6,9) → (9,6), és a (7,7) megfordítva önmaga.">
+$R = \{(2,4), (2,6), (4,7), (6,9), (7,7)\}$. Jelöld ki $R^{-1}$ párjait!
+</ParKijelolo>
+
+<Valasztas valaszok={["D(R⁻¹) = R_R és R(R⁻¹) = D_R", "D(R⁻¹) = D_R"]} helyes={0} miert={["", "A megfordítás felcseréli az első és második koordinátákat, így a két halmaz is helyet cserél."]}>
+Mi a kapcsolat $R$ és $R^{-1}$ értelmezési tartománya és értékkészlete között?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Mikor függvény egy reláció?">
+Egy $R \subseteq A \times B$ reláció **függvény** $A$-ból $B$-be, ha $A$ **minden** eleme **pontosan egy** párban szerepel első tagként. Vagyis minden $a$-hoz pontosan egy $b$ tartozik.
+
+<Valasztas valaszok={["igen", "nem"]} helyes={1} miert={["Nézd meg a 2-t!", ""]} magyarazat="A 2-höz két érték is tartozik, a 4 és a 6: a hozzárendelés nem egyértelmű.">
+Függvény-e az $R = \{(2,4), (2,6), (4,7), (6,9), (7,7)\}$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Függvény vagy nem?">
+<Besorolo
+  cim="A = {1, 2, 3}, B = {a, b, c}. Függvény-e A-ból B-be?"
+  opciok={["függvény", "nem függvény"]}
+  elemek={[
+    { kerdes: "{(1, a), (2, b), (3, c)}", helyes: 0, miert: "Minden elemnek pontosan egy párja van." },
+    { kerdes: "{(1, a), (2, a), (3, a)}", helyes: 0, miert: "Az nem baj, hogy mind ugyanoda megy: ez a konstans függvény." },
+    { kerdes: "{(1, a), (2, b)}", helyes: 1, miert: "A 3-hoz nem tartozik semmi." },
+    { kerdes: "{(1, a), (1, b), (2, c), (3, c)}", helyes: 1, miert: "Az 1-hez két érték tartozik." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Az inverz is függvény?">
+Ha $f$ függvény, az inverz relációja nem feltétlenül az. Például $\{(1, a), (2, a), (3, a)\}$ függvény, de az inverze, $\{(a, 1), (a, 2), (a, 3)\}$, nem: az $a$-hoz három érték tartozik.
+
+<Valasztas valaszok={["Ha különböző elemek különböző helyre mennek (injektív), és mindent eltalál (szürjektív)", "Mindig"]} helyes={0} miert={["", "Láttuk, hogy nem mindig."]} magyarazat="Ez a bijektív függvény; csak ennek az inverze függvény. (Részletesen: Diszkrét matematika, injektív és szürjektív függvények.)">
+Mikor függvény az inverz $B$-ből $A$-ba?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $D_R$: az első koordináták; $R_R$: a második koordináták.
+- $R^{-1}$: minden pár megfordítva; $D_{R^{-1}} = R_R$, $R_{R^{-1}} = D_R$.
+- $R$ függvény $A \to B$, ha minden $a \in A$ pontosan egy párban első.
+- Az inverz pontosan akkor függvény, ha az eredeti bijektív.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

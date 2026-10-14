@@ -1,0 +1,181 @@
+---
+cim: Halmazműveletek
+osszefoglalo: Unió, metszet, különbség, szimmetrikus differencia és komplementer felsorolással és Venn-diagramon, a De Morgan-azonosságok, a szitaformula és a Descartes-szorzat.
+allapot: lecke
+kulcsszavak: [unió, metszet, különbség, szimmetrikus differencia, komplementer, Venn-diagram, De Morgan, szitaformula, Descartes-szorzat, rendezett pár]
+forras: DiMat_ea.pdf 5–7. dia · Feladatsor 1.1, 1.4–1.8
+---
+
+<Lecke>
+
+<Kartya cim="Unió és metszet">
+Legyen $A = \{0, 1, 2, 3, 4\}$ és $B = \{2, 4, 6, 8, 10\}$ (az előadás példája).
+
+- **Unió** $A \cup B$: ami **legalább az egyikben** benne van. (Öntsd össze a két zsákot.)
+- **Metszet** $A \cap B$: ami **mindkettőben** benne van.
+
+<SzamValasz helyes="2, 4" forma="halmaz">
+$A \cap B = ?$
+</SzamValasz>
+
+<SzamValasz helyes="0, 1, 2, 3, 4, 6, 8, 10" forma="halmaz" magyarazat="A 2 és a 4 mindkettőben benne van, de az unióban csak egyszer számít.">
+$A \cup B = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Különbség és szimmetrikus differencia">
+- **Különbség** $A \setminus B$: ami $A$-ban benne van, de $B$-ben **nincs**. (Vedd ki $A$-ból, ami $B$-ben is van.)
+- **Szimmetrikus differencia** $A \triangle B$: ami **pontosan az egyikben** van benne. Ez az unió a közös rész nélkül:
+
+$$
+A \triangle B = (A \cup B) \setminus (A \cap B) = (A \setminus B) \cup (B \setminus A).
+$$
+
+Ugyanazzal az $A = \{0, 1, 2, 3, 4\}$, $B = \{2, 4, 6, 8, 10\}$ párral:
+
+<SzamValasz helyes="0, 1, 3" forma="halmaz">
+$A \setminus B = ?$
+</SzamValasz>
+
+<SzamValasz helyes="6, 8, 10" forma="halmaz" hibak={{"0, 1, 3": "Ez A \\ B. Most fordítva: ami B-ben van, de A-ban nincs."}}>
+$B \setminus A = ?$
+</SzamValasz>
+
+<SzamValasz helyes="0, 1, 3, 6, 8, 10" forma="halmaz">
+$A \triangle B = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Komplementer">
+A **komplementerhez** kell egy **alaphalmaz** $H$: minden, amiről éppen beszélünk. $\overline{A}$ azok a $H$-beli elemek, amelyek **nincsenek** $A$-ban.
+
+<SzamValasz helyes="2, 4, 6" forma="halmaz">
+$H = \{1, 2, 3, 4, 5, 6\}$, $A = \{1, 3, 5\}$. $\overline{A} = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Venn-diagram">
+A Venn-diagramon a téglalap az alaphalmaz $H$, a körök a halmazok. Két halmaznál a diagram négy tartományra esik: csak $A$, csak $B$, mindkettő, egyik sem.
+
+<VennSzinezo cel="A \ B">
+Színezd ki: $A \setminus B$
+</VennSzinezo>
+
+<VennSzinezo cel="A △ B">
+Színezd ki: $A \triangle B$
+</VennSzinezo>
+
+<VennSzinezo cel="A'">
+Színezd ki: $\overline{A}$ (minden, ami nincs $A$-ban, a téglalapon belül)
+</VennSzinezo>
+</Kartya>
+
+<Kartya cim="De Morgan">
+Mit jelent $\overline{A \cup B}$? Ami **nincs benne az unióban**, vagyis se $A$-ban, se $B$-ben nincs.
+
+<VennSzinezo cel="(A ∪ B)'">
+Színezd ki: $\overline{A \cup B}$
+</VennSzinezo>
+
+Ez pontosan az, ami $\overline{A}$-ban **és** $\overline{B}$-ben is benne van. Ez az első **De Morgan-azonosság**:
+
+$$
+\overline{A \cup B} = \overline{A} \cap \overline{B}, \qquad \overline{A \cap B} = \overline{A} \cup \overline{B}.
+$$
+
+A komplementer „átfordítja” az uniót metszetté és fordítva. (Szavakkal: „nem igaz, hogy esik vagy fúj” = „nem esik és nem fúj”.)
+
+<Valasztas valaszok={["A̅ ∩ B̅", "A̅ ∪ B̅", "A ∪ B"]} helyes={1} miert={["Ez a ‾(A ∪ B)-vel egyenlő, nem a ‾(A ∩ B)-vel.", "", "Nem: a komplementer nem tűnik el."]} sym>
+Mivel egyenlő $\overline{A \cap B}$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Három halmaz">
+Három halmaznál nyolc tartomány van. A műveletek ugyanúgy működnek; dolgozz **belülről kifelé**: előbb a zárójelben lévőt képzeld el.
+
+<VennSzinezo cel="(A ∪ B) \ C">
+Színezd ki: $(A \cup B) \setminus C$
+</VennSzinezo>
+
+<VennSzinezo cel="A ∩ (B ∪ C)">
+Színezd ki: $A \cap (B \cup C)$
+</VennSzinezo>
+</Kartya>
+
+<Kartya cim="Végtelen halmazokkal: 1.1">
+A műveletek végtelen halmazokra is működnek; ilyenkor írd ki az első néhány elemet.
+
+$A = \{x \in \N \mid x \text{ páros}\} = \{2, 4, 6, \dots\}$, $B = \{x \in \N \mid x > 4\} = \{5, 6, 7, \dots\}$, $C = \{x \in \N \mid x < 6\} = \{1, 2, 3, 4, 5\}$.
+
+<SzamValasz helyes="5" forma="halmaz">
+$B \cap C = ?$
+</SzamValasz>
+
+<Valasztas valaszok={["{6, 8, 10, …}", "{2, 4, 6, …} = A", "{2, 4}"]} helyes={1} miert={["Ez A \\ C lenne.", "", "Csak az 5-öt kell kivenni A-ból, ami amúgy sincs benne."]}>
+Mivel egyenlő $A \setminus (B \cap C)$?
+</Valasztas>
+
+<Valasztas valaszok={["{6, 8, 10, …}", "{1, 3, 5, …}", "{6, 7, 8, …}"]} helyes={0} miert={["", "Ezek nincsenek A-ban.", "Ez B \\ C, de A-ban csak a párosak vannak."]}>
+Mivel egyenlő $A \setminus C$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Szitaformula">
+Hány elemű az unió? Ha egyszerűen összeadod $|A| + |B|$-t, a közös elemeket **kétszer** számoltad. Ezért egyszer le kell vonni őket:
+
+$$
+|A \cup B| = |A| + |B| - |A \cap B|.
+$$
+
+<SzamValasz helyes="46" hibak={{"38": "Ennyien beszélnek legalább egy nyelvet. A 8 ember, aki egyiket sem, szintén a társaság tagja.", "50": "A 12 kétnyelvűt kétszer számoltad.", "62": "Le kell vonni a közös részt."}} magyarazat="Legalább egy nyelvet beszél 27 + 23 − 12 = 38 ember. Plusz 8, aki egyiket sem: 46.">
+**1.8.** Egy társaságban 27-en beszélnek angolul, 23-an németül, 12-en mindkét nyelvet, 8-an egyiket sem. Hány tagú a társaság?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Descartes-szorzat">
+$A \times B$ az összes **rendezett pár**, amelynek első tagja $A$-ból, második tagja $B$-ből való:
+
+$$
+A \times B = \{(a, b) \mid a \in A,\ b \in B\}.
+$$
+
+Rendezett párban **számít a sorrend**: $(1, 2) \ne (2, 1)$. A párokat táblázatba rendezheted: a sorok $A$ elemei, az oszlopok $B$ elemei. Innen látszik:
+
+$$
+|A \times B| = |A| \cdot |B|.
+$$
+
+<SzamValasz helyes="6">
+$A = \{0, 1, 2\}$, $B = \{1, 2\}$. Hány eleme van $A \times B$-nek?
+</SzamValasz>
+
+<Valasztas valaszok={["igen", "nem"]} helyes={1} miert={["Vigyázz a sorrendre! B × A párjainak első tagja B-ből jön, és 0 ∉ B.", ""]}>
+Ugyanezekkel: igaz-e, hogy $(0, 1) \in B \times A$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Legalább, legfeljebb: 1.7">
+$|A| = 5$, $|B| = 3$. Hány eleme lehet az uniónak? Ez attól függ, mennyi a közös rész.
+
+- **Legkevesebb**, ha $B \subset A$: ekkor az unió maga $A$.
+- **Legtöbb**, ha nincs közös elemük (diszjunktak): ekkor $5 + 3$.
+
+<SzamValasz helyes={["5", "8"]} mezok={["legalább", "legfeljebb"]}>
+Legalább és legfeljebb hány eleme lehet $A \cup B$-nek?
+</SzamValasz>
+
+<SzamValasz helyes={["0", "3"]} mezok={["legalább", "legfeljebb"]} magyarazat="Ha diszjunktak, a metszet üres; ha B ⊂ A, a metszet maga B, 3 elemmel.">
+És $A \cap B$-nek?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $A \cup B$: legalább az egyikben. $A \cap B$: mindkettőben. $A \setminus B$: $A$-ban igen, $B$-ben nem. $A \triangle B$: pontosan az egyikben. $\overline{A}$: $H$-ban igen, $A$-ban nem.
+- De Morgan: $\overline{A \cup B} = \overline{A} \cap \overline{B}$ és $\overline{A \cap B} = \overline{A} \cup \overline{B}$.
+- Szitaformula: $|A \cup B| = |A| + |B| - |A \cap B|$.
+- $A \times B$ a rendezett párok halmaza, $|A \times B| = |A| \cdot |B|$, és a sorrend számít.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

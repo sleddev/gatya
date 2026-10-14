@@ -1,0 +1,159 @@
+---
+cim: Prímek és prímtényezős felbontás
+osszefoglalo: Prímek és összetett számok, a számelmélet alaptétele, lnko és lkkt a kanonikus alakból, az osztók száma, a legkisebb szám adott számú osztóval, és miért van végtelen sok prím.
+allapot: lecke
+kulcsszavak: [prímszám, összetett szám, számelmélet alaptétele, kanonikus alak, prímtényezős felbontás, lnko, lkkt, osztók száma, végtelen sok prím, faktoriális nullái]
+forras: DiMat_ea.pdf 29–31. dia · Feladatsor 3.4, 3.15–3.21
+---
+
+<Lecke>
+
+<Kartya cim="Prím, összetett, és az 1">
+- **Prím**: 1-nél nagyobb szám, amelynek csak két pozitív osztója van, az 1 és önmaga. ($2, 3, 5, 7, 11, \dots$)
+- **Összetett**: 1-nél nagyobb, és van más osztója is. ($4, 6, 8, 9, \dots$)
+- Az **1 se nem prím, se nem összetett.**
+
+<Besorolo
+  cim="Prím vagy nem?"
+  opciok={["prím", "nem prím"]}
+  elemek={[
+    { kerdes: "1", helyes: 1, miert: "Az 1 nem prím: definíció szerint a prím 1-nél nagyobb." },
+    { kerdes: "2", helyes: 0, miert: "Az egyetlen páros prím." },
+    { kerdes: "51", helyes: 1, miert: "51 = 3 · 17 (számjegyösszeg 6, osztható 3-mal)." },
+    { kerdes: "97", helyes: 0, miert: "Nem osztható 2, 3, 5, 7-tel, és 11² = 121 > 97, tehát prím." },
+    { kerdes: "91", helyes: 1, miert: "91 = 7 · 13." }
+  ]}
+/>
+
+<Tipp>
+Egy $n$ szám prím-e? Elég a $\sqrt{n}$-ig terjedő prímekkel próbálkozni: ha $n = a \cdot b$, az egyik tényező legfeljebb $\sqrt n$.
+</Tipp>
+</Kartya>
+
+<Kartya cim="A prím nem tud szétoszlani">
+A prímek legfontosabb tulajdonsága:
+
+$$
+p \mid ab \implies p \mid a \text{ vagy } p \mid b.
+$$
+
+Összetett számra ez nem igaz: $6 \mid 4 \cdot 9 = 36$, de $6 \nmid 4$ és $6 \nmid 9$. A 6 „szétoszlik”: $2 \mid 4$, $3 \mid 9$.
+
+<Valasztas valaszok={["7 | a vagy 7 | b biztosan", "Semmi nem következik"]} helyes={0} miert={["", "A 7 prím, tehát következik."]}>
+Ha $7 \mid ab$, mi következik?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A számelmélet alaptétele">
+Minden 1-nél nagyobb természetes szám felbontható prímek szorzatára, és ez a felbontás (a sorrendtől eltekintve) **egyértelmű**. Ez a **kanonikus alak**:
+
+$$
+n = p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r}.
+$$
+
+Lépésenként, a legkisebb prímmel kezdve: $1260 = 2 \cdot 630 = 2^2 \cdot 315 = 2^2 \cdot 3^2 \cdot 35 = 2^2 \cdot 3^2 \cdot 5 \cdot 7$.
+
+<SzamValasz helyes={["3", "1", "2"]} mezok={["2 kitevője:", "3 kitevője:", "5 kitevője:"]} magyarazat="600 = 2³ · 3 · 5².">
+Bontsd fel: $600 = 2^{?} \cdot 3^{?} \cdot 5^{?}$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="lnko és lkkt a felbontásból">
+- **lnko**: a **közös** prímek, a **kisebb** kitevőn.
+- **lkkt**: **az összes** prím, a **nagyobb** kitevőn.
+
+Az előadás példája: $1260 = 2^2 \cdot 3^2 \cdot 5 \cdot 7$ és $14850 = 2 \cdot 3^3 \cdot 5^2 \cdot 11$.
+
+<SzamValasz helyes="90" tipp="Közös prímek: 2, 3, 5. Mindegyiknél a kisebb kitevő." magyarazat="2¹ · 3² · 5¹ = 90. A 7 és a 11 nem közös.">
+Mennyi $(1260, 14850)$?
+</SzamValasz>
+
+<SzamValasz helyes="207900" magyarazat="2² · 3³ · 5² · 7 · 11 = 207 900.">
+Mennyi $[1260, 14850]$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Hány osztója van?">
+$12 = 2^2 \cdot 3$. Egy osztóban a 2 kitevője 0, 1 vagy 2 lehet (3 lehetőség), a 3-é 0 vagy 1 (2 lehetőség). Összesen $3 \cdot 2 = 6$ osztó: $1, 2, 3, 4, 6, 12$.
+
+Általában: ha $n = p_1^{\alpha_1} \cdots p_r^{\alpha_r}$, akkor
+
+$$
+d(n) = (\alpha_1 + 1)(\alpha_2 + 1) \cdots (\alpha_r + 1).
+$$
+
+<SzamValasz helyes="18" hibak={{"12": "Minden kitevőhöz 1-et kell adni, mielőtt összeszorzod: (2+1)(2+1)(1+1)."}} magyarazat="252 = 2² · 3² · 7, d = 3 · 3 · 2 = 18.">
+**3.18.** Hány pozitív osztója van 252-nek?
+</SzamValasz>
+
+<SzamValasz helyes="24" magyarazat="600 = 2³ · 3 · 5², d = 4 · 2 · 3 = 24.">
+És 600-nak?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Visszafelé: 3.19">
+Melyik a legkisebb szám, amelynek **pontosan 12** osztója van?
+
+A kitevők $+1$-einek szorzata 12: $12$, $6 \cdot 2$, $4 \cdot 3$, $3 \cdot 2 \cdot 2$. Mindegyikhez a legkisebb szám: a **legnagyobb kitevő a legkisebb prímre**.
+
+| felbontás | szám |
+|---|---|
+| $12$ | $2^{11} = 2048$ |
+| $6 \cdot 2$ | $2^5 \cdot 3 = 96$ |
+| $4 \cdot 3$ | $2^3 \cdot 3^2 = 72$ |
+| $3 \cdot 2 \cdot 2$ | $2^2 \cdot 3 \cdot 5 = ?$ |
+
+<SzamValasz helyes="60" magyarazat="2² · 3 · 5 = 60, és ez a legkisebb a négy közül.">
+Mi a legkisebb ilyen szám?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Végtelen sok prím van">
+Euklidesz bizonyítása **indirekt**: tegyük fel, hogy csak véges sok prím van, $p_1, \dots, p_k$. Legyen
+
+$$
+b = p_1 p_2 \cdots p_k + 1.
+$$
+
+$b$-nek van prímosztója, valamelyik $p_i$. De $p_i \mid p_1 \cdots p_k$ is, tehát a különbségüknek, $1$-nek is osztója. Ellentmondás.
+
+<Valasztas valaszok={["Igen, mindig prím", "Nem feltétlenül, csak van egy listán kívüli prímosztója"]} helyes={1} miert={["Nem: 2 · 3 · 5 · 7 · 11 · 13 + 1 = 30031 = 59 · 509.", ""]}>
+A $b = p_1 \cdots p_k + 1$ szám mindig prím?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Hány nullára végződik 100!?">
+**3.4.** Minden végső nulla egy $10 = 2 \cdot 5$ tényező. Kettes bőven van, az **ötösöket** kell számolni:
+
+- az 5 többszörösei 100-ig: $\lfloor 100/5 \rfloor = 20$, mindegyik ad egy 5-öst;
+- a 25 többszörösei még egyet-egyet: $\lfloor 100/25 \rfloor = 4$.
+
+<SzamValasz helyes="24" hibak={{"20": "A 25, 50, 75, 100 két ötöst is tartalmaz (25 = 5²)."}}>
+Hány nullára végződik $100!$?
+</SzamValasz>
+
+<SzamValasz helyes="12" tipp="⌊50/5⌋ + ⌊50/25⌋" magyarazat="10 + 2 = 12.">
+És $50!$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Próbáld ki">
+<Primtenyezok n={1455300} m={185130} />
+
+<SzamValasz helyes="216" magyarazat="1 455 300 = 2² · 3³ · 5² · 7² · 11, d = 3 · 4 · 3 · 3 · 2 = 216.">
+Az eszköz segítségével: hány osztója van $1\,455\,300$-nak?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Prím: 1-nél nagyobb, csak 1 és önmaga osztja. Az 1 nem prím. $p \mid ab \Rightarrow p \mid a$ vagy $p \mid b$.
+- A kanonikus alak egyértelmű.
+- lnko: közös prímek, kisebb kitevő. lkkt: minden prím, nagyobb kitevő.
+- $d(n) = (\alpha_1 + 1) \cdots (\alpha_r + 1)$.
+- Végtelen sok prím van (indirekt, $p_1 \cdots p_k + 1$).
+- $n!$ végén a nullák száma $= \lfloor n/5 \rfloor + \lfloor n/25 \rfloor + \dots$
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

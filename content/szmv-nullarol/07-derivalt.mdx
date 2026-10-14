@@ -1,0 +1,105 @@
+---
+cim: A derivált mint meredekség
+osszefoglalo: Mit mutat a derivált (az érintő meredekségét), mikor nő és mikor csökken a függvény, és polinomok deriválása tagonként az (xⁿ)′ = n·xⁿ⁻¹ szabállyal.
+allapot: lecke
+kulcsszavak: [derivált, meredekség, érintő, növekedés, csökkenés, polinom, deriválási szabály, Derivative, f'(x)]
+forras: functions.pdf
+---
+
+<Lecke>
+
+<Kartya cim="Milyen meredek egy görbe?">
+Egy egyenesnek mindenhol ugyanaz a meredeksége. Egy görbe viszont hol meredekebb, hol laposabb. Egy adott $x_0$ pontban a görbe meredeksége az ott húzott **érintő** egyenes meredeksége.
+
+Ezt hívjuk **deriváltnak**: $f'(x_0)$.
+
+- $f'(x_0) > 0$: ott a függvény **nő**;
+- $f'(x_0) < 0$: ott **csökken**;
+- $f'(x_0) = 0$: vízszintes az érintő.
+
+<Valasztas valaszok={["nő", "csökken", "vízszintes az érintő"]} helyes={1} miert={["Pozitív deriváltnál nőne.", "", "Ahhoz 0 kellene."]}>
+$f'(2) = -3$. Mit csinál a függvény a 2 körül?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A deriválási szabály">
+Polinomokat **tagonként** deriválunk:
+
+$$
+(x^n)' = n \cdot x^{n-1}, \qquad (c \cdot g)' = c \cdot g', \qquad (\text{konstans})' = 0.
+$$
+
+Vagyis: a kitevő **lejön szorzónak**, és a kitevő **eggyel csökken**.
+
+<SzamValasz helyes="5x^4" valtozok={["x"]} mezok={["(x⁵)′ ="]}>
+Mennyi $(x^5)'$?
+</SzamValasz>
+
+<SzamValasz helyes="12x^2" valtozok={["x"]} mezok={["(4x³)′ ="]} magyarazat="4 · 3x² = 12x².">
+Mennyi $(4x^3)'$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az egyszerű esetek">
+- $(x)' = 1$ (mert $x = x^1$, és $1 \cdot x^0 = 1$);
+- $(7x)' = 7$: egy egyenes deriváltja a meredeksége;
+- $(5)' = 0$: a konstans nem változik.
+
+<SzamValasz helyes="2x - 3" valtozok={["x"]} mezok={["f′(x) ="]} magyarazat="(x²)′ = 2x, (−3x)′ = −3, (2)′ = 0.">
+$f(x) = x^2 - 3x + 2$. Mennyi $f'(x)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az előadás függvénye">
+$f(x) = x^3 - 3x + 1$.
+
+<SzamValasz helyes="3x^2 - 3" valtozok={["x"]} mezok={["f′(x) ="]}>
+Mennyi $f'(x)$?
+</SzamValasz>
+
+<SzamValasz helyes="9" magyarazat="f′(2) = 3 · 4 − 3 = 9. A 2-ben a függvény meredeken nő.">
+Mennyi $f'(2)$, vagyis mennyi az érintő meredeksége az $x = 2$ pontban?
+</SzamValasz>
+
+<SzamValasz helyes="-3" magyarazat="f′(0) = −3: a 0-ban csökken.">
+És $f'(0)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Hol nő, hol csökken?">
+$f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)$. Ez a $-1$-ben és az $1$-ben nulla, közöttük negatív, kívül pozitív.
+
+<Valasztas valaszok={["−1 és 1 között csökken, máshol nő", "−1 és 1 között nő, máshol csökken"]} helyes={0} miert={["", "Nézd meg f′(0) előjelét: −3, tehát a 0 körül csökken."]}>
+Hol nő és hol csökken $f(x) = x^3 - 3x + 1$?
+</Valasztas>
+
+<PolinomVizsgalo fok={3} egyutthatok={[1, 0, -3, 1]} />
+</Kartya>
+
+<Kartya cim="Gyakorold">
+<SzamValasz helyes="-8x^3 + 6x - 5" valtozok={["x"]} mezok={["f′(x) ="]}>
+$f(x) = -2x^4 + 3x^2 - 5x + 7$. Mennyi $f'(x)$?
+</SzamValasz>
+
+<SzamValasz helyes="x^2 - 1" valtozok={["x"]} mezok={["f′(x) ="]} tipp="(x³/3)′ = 3x²/3." magyarazat="(1/3 · x³)′ = 1/3 · 3x² = x².">
+$f(x) = \frac{1}{3}x^3 - x$. Mennyi $f'(x)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="GeoGebrában">
+`Derivative(f)` vagy egyszerűen `f'(x)`: a GeoGebra rajzolja a derivált függvényt. Az értéke egy pontban: `f'(2)`.
+
+<Valasztas valaszok={["f'(3)", "Derivative(3)", "f(3)'"]} helyes={0} miert={["", "A Derivative egy függvényt vár, nem egy számot.", "Így nem működik."]} sym>
+Melyik bemenet adja a derivált értékét az $x = 3$ pontban?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $f'(x_0)$ az $x_0$-beli érintő meredeksége: pozitív → nő, negatív → csökken, 0 → vízszintes érintő.
+- $(x^n)' = n x^{n-1}$, a konstans szorzó marad, a konstans tag deriváltja 0; polinomot tagonként.
+- GeoGebra: `Derivative(f)` vagy `f'(x)`.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

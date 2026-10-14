@@ -1,0 +1,172 @@
+---
+cim: Trigonometrikus alak és Moivre-képlet
+osszefoglalo: Szinusz és koszinusz az egységkörön, abszolútérték és irányszög, átváltás a két alak között a síknegyed figyelésével, szorzás és osztás trigonometrikus alakban, és a Moivre-képlet nagy hatványokra.
+allapot: lecke
+kulcsszavak: [trigonometrikus alak, irányszög, argumentum, szinusz, koszinusz, egységkör, síknegyed, Moivre-képlet, hatványozás, szorzás, osztás, forgatás]
+forras: DiMat_ea.pdf 41–51. dia · Feladatsor 4.4–4.6
+---
+
+<Lecke>
+
+<Kartya cim="Az egységkör">
+Forgasd el az $(1, 0)$ pontot az origó körül $\alpha$ szöggel, az óramutatóval **ellentétesen**. A kapott pont koordinátái: $(\cos \alpha, \sin \alpha)$.
+
+A szögeket radiánban mérjük: $180° = \pi$, $90° = \frac{\pi}{2}$, $60° = \frac{\pi}{3}$, $45° = \frac{\pi}{4}$, $30° = \frac{\pi}{6}$.
+
+| $\alpha$ | $0$ | $\pi/6$ | $\pi/4$ | $\pi/3$ | $\pi/2$ | $\pi$ |
+|---|---|---|---|---|---|---|
+| $\cos \alpha$ | $1$ | $\sqrt{3}/2$ | $\sqrt{2}/2$ | $1/2$ | $0$ | $-1$ |
+| $\sin \alpha$ | $0$ | $1/2$ | $\sqrt{2}/2$ | $\sqrt{3}/2$ | $1$ | $0$ |
+
+<SzamValasz helyes="1/2">
+Mennyi $\cos \frac{\pi}{3}$?
+</SzamValasz>
+
+<SzamValasz helyes="-√2/2" gombok={["√"]} tipp="3π/4 a II. negyedben van: ott a koszinusz negatív." magyarazat="3π/4 = π − π/4, tehát cos(3π/4) = −cos(π/4) = −√2/2.">
+Mennyi $\cos \frac{3\pi}{4}$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Hossz és irány">
+A $z = a + bi$ pontot az is meghatározza, **milyen messze** van az origótól és **milyen irányban**:
+
+- $|z| = \sqrt{a^2 + b^2}$, az abszolútérték;
+- $\varphi$, az **irányszög**: a valós tengely pozitív felétől pozitív irányba mért szög, $\varphi \in [0, 2\pi)$.
+
+Ekkor $a = |z|\cos\varphi$, $b = |z|\sin\varphi$, és
+
+$$
+z = |z|\,(\cos\varphi + i \sin\varphi).
+$$
+
+Ez a **trigonometrikus alak**.
+
+<SzamValasz helyes={["3", "π/2"]} mezok={["|z| =", "φ ="]} gombok={["π"]}>
+Mi a $3i$ abszolútértéke és irányszöge?
+</SzamValasz>
+
+<SzamValasz helyes={["5", "π"]} mezok={["|z| =", "φ ="]} gombok={["π"]}>
+És a $-5$-é?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Algebraiból trigonometrikusba">
+A tengelyen kívüli számoknál az előadás módszere:
+
+<Lepesek>
+<Lepes>
+$|z|$, és **melyik síknegyed**: a valós rész és a képzetes rész előjele szerint.
+</Lepes>
+<Lepes>
+A hegyesszög: $\cos\varphi_0 = \frac{|a|}{|z|}$, $0 < \varphi_0 < \frac{\pi}{2}$.
+</Lepes>
+<Lepes>
+Igazítsd a negyedhez: I. $\varphi_0$; II. $\pi - \varphi_0$; III. $\pi + \varphi_0$; IV. $2\pi - \varphi_0$.
+</Lepes>
+</Lepesek>
+
+<SzamValasz helyes={["2", "π/3"]} mezok={["|z| =", "φ ="]} gombok={["π", "√"]} tipp="|z| = √(1 + 3) = 2. I. negyed, cos φ₀ = 1/2." >
+$z = 1 + \sqrt{3}\,i$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A síknegyed számít">
+<SzamValasz helyes={["√8", "3π/4"]} mezok={["|z| =", "φ ="]} gombok={["π", "√"]} hibak={{"√8;π/4": "Ez a hegyesszög. De −2 + 2i a II. negyedben van: φ = π − π/4.", "√8;-π/4": "A tan φ = −1 két negyedben is igaz! Rajzold le: −2 + 2i balra fent van, a II. negyedben."}} magyarazat="|z| = √8 = 2√2, II. negyed, cos φ₀ = 2/√8 = √2/2, φ₀ = π/4, φ = 3π/4.">
+$z = -2 + 2i$
+</SzamValasz>
+
+<SzamValasz helyes={["2", "7π/6"]} mezok={["|z| =", "φ ="]} gombok={["π", "√"]} hibak={{"2;π/6": "A III. negyedben vagyunk (mindkét rész negatív): φ = π + π/6."}} magyarazat="|z| = 2, III. negyed, cos φ₀ = √3/2, φ₀ = π/6, φ = 7π/6.">
+$z = -\sqrt{3} - i$
+</SzamValasz>
+
+<SzamValasz helyes={["√2", "7π/4"]} mezok={["|z| =", "φ ="]} gombok={["π", "√"]} hibak={{"√2;-π/4": "Jó irány, de φ-t [0, 2π)-ben adjuk meg: −π/4 + 2π = 7π/4."}}>
+$z = 1 - i$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Trigonometrikusból algebraiba">
+Csak ki kell számolni a $\cos$ és $\sin$ értékét, és beszorozni.
+
+<SzamValasz helyes="3√2/2 + 3√2/2 i" gombok={["√", "i"]} magyarazat="3(√2/2 + i·√2/2) = 3√2/2 + (3√2/2)i.">
+$z = 3\left(\cos\frac{\pi}{4} + i \sin\frac{\pi}{4}\right)$ algebrai alakja?
+</SzamValasz>
+
+<SzamValasz helyes="-1+√3 i" gombok={["√", "i"]} magyarazat="2(cos 2π/3 + i sin 2π/3) = 2(−1/2 + i√3/2) = −1 + √3 i.">
+$z = 2\left(\cos\frac{2\pi}{3} + i \sin\frac{2\pi}{3}\right)$ algebrai alakja?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Szorzás: hosszak szorzódnak, szögek összeadódnak">
+$$
+z_1 z_2 = |z_1||z_2|\big(\cos(\varphi_1 + \varphi_2) + i\sin(\varphi_1 + \varphi_2)\big)
+$$
+
+Osztásnál: a hosszak osztódnak, a szögek kivonódnak.
+
+Egy komplex számmal szorozni tehát **nyújtás és forgatás**. Az $i$ abszolútértéke 1, irányszöge $\frac{\pi}{2}$: $i$-vel szorozni = **forgatás 90°-kal**.
+
+<PontRako cel={[-1, 3]} komplex pontok={[{p: [3, 1], cimke: "z"}]} hibak={{"1;-3": "Ez −90° (óramutató járásával egyező irány). Az i-vel szorzás pozitív irányba forgat."}} magyarazat="i(3 + i) = 3i + i² = −1 + 3i. Valóban 90°-kal elforgatott.">
+Hol van $i \cdot z$, ha $z = 3 + i$?
+</PontRako>
+</Kartya>
+
+<Kartya cim="Az előadás példája">
+$z_1 = 3\left(\cos\frac{\pi}{5} + i\sin\frac{\pi}{5}\right)$, $z_2 = 2\left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right)$.
+
+<SzamValasz helyes={["6", "8π/15"]} mezok={["|z₁z₂| =", "φ ="]} gombok={["π"]} magyarazat="3 · 2 = 6, π/5 + π/3 = (3π + 5π)/15 = 8π/15.">
+$z_1 z_2$ trigonometrikus alakja?
+</SzamValasz>
+
+<SzamValasz helyes={["3/2", "28π/15"]} mezok={["|z₁/z₂| =", "φ ="]} gombok={["π"]} hibak={{"3/2;-2π/15": "A szög negatív lett: adj hozzá 2π-t, hogy [0, 2π)-be essen."}} magyarazat="π/5 − π/3 = −2π/15, és −2π/15 + 2π = 28π/15.">
+$\dfrac{z_1}{z_2}$ trigonometrikus alakja?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Moivre-képlet">
+Ha $n$-szer szorzod $z$-t önmagával, a hossz $n$-edik hatványra emelkedik, a szög $n$-szeresére nő:
+
+$$
+z^n = |z|^n\big(\cos(n\varphi) + i\sin(n\varphi)\big).
+$$
+
+<SzamValasz helyes={["81", "4π/5"]} mezok={["|z₁⁴| =", "φ ="]} gombok={["π"]}>
+$z_1 = 3\left(\cos\frac{\pi}{5} + i\sin\frac{\pi}{5}\right)$. Mi $z_1^4$ trigonometrikus alakja?
+</SzamValasz>
+
+<KomplexSik mod="hatvany" modok={["szorzas", "hatvany"]} z={[1, 1]} w={[0, 1]} n={4} />
+</Kartya>
+
+<Kartya cim="Nagy hatvány: (1 − i)⁶⁰">
+Algebrai alakban reménytelen, Moivre-ral egy sor. $1 - i = \sqrt{2}\left(\cos\frac{7\pi}{4} + i\sin\frac{7\pi}{4}\right)$.
+
+$$
+(1 - i)^{60} = (\sqrt{2})^{60}\left(\cos\frac{420\pi}{4} + i\sin\frac{420\pi}{4}\right) = 2^{30}\,(\cos 105\pi + i\sin 105\pi).
+$$
+
+A $105\pi$ ugyanoda mutat, mint a $\pi$ (páratlan sok fél fordulat).
+
+<SzamValasz helyes="-2^30" magyarazat="cos 105π = −1, sin 105π = 0, tehát (1 − i)⁶⁰ = −2³⁰.">
+Mennyi $(1 - i)^{60}$? (Hatványt így írj: `2^30`.)
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Gyakorold: 4.4">
+<SzamValasz helyes={["6", "4π/3"]} mezok={["|z| =", "φ ="]} gombok={["π", "√"]} tipp="|z| = √(9 + 27) = 6. Melyik negyed? cos φ₀ = 3/6." magyarazat="III. negyed, φ₀ = π/3, φ = π + π/3 = 4π/3.">
+**4.4 (g).** $z = -3 - 3\sqrt{3}\,i$
+</SzamValasz>
+
+<SzamValasz helyes={["1", "2π/3"]} mezok={["|z| =", "φ ="]} gombok={["π", "√"]}>
+**4.4 (f).** $z = -\frac{1}{2} + \frac{\sqrt{3}}{2}i$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $z = |z|(\cos\varphi + i\sin\varphi)$, $\varphi \in [0, 2\pi)$.
+- Átváltás: $|z|$, síknegyed, hegyesszög $\cos\varphi_0 = |a|/|z|$, igazítás (II. $\pi - \varphi_0$, III. $\pi + \varphi_0$, IV. $2\pi - \varphi_0$). A $\tan$-nal könnyű rossz negyedbe kerülni!
+- Szorzás: hosszak szorzódnak, szögek összeadódnak. Osztás: osztódnak, kivonódnak. $i$-vel szorzás: 90°-os forgatás.
+- Moivre: $z^n = |z|^n(\cos n\varphi + i\sin n\varphi)$.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

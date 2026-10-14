@@ -1,0 +1,110 @@
+---
+cim: Injektív, szürjektív, bijektív
+osszefoglalo: Mit jelent, hogy egy függvény injektív, szürjektív vagy bijektív, hogyan látszik ez a nyíldiagramon, és hogyan döntjük el számolással valós függvényeknél.
+allapot: lecke
+kulcsszavak: [injektív, szürjektív, bijektív, kölcsönösen egyértelmű, értékkészlet, képtér, inverz függvény, nyíldiagram, ellenpélda]
+forras: DiMat_ea.pdf 11. dia · Feladatsor 1.12
+---
+
+<Lecke>
+
+<Kartya cim="Injektív: nincs ütközés">
+Az $f : D \to R$ **injektív**, ha **különböző elemekhez különböző értékeket** rendel:
+
+$$
+f(a) = f(b) \implies a = b.
+$$
+
+Nyíldiagramon: $R$ minden elemébe **legfeljebb egy** nyíl fut.
+
+<Valasztas valaszok={["injektív", "nem injektív"]} helyes={1} miert={["Keress két különböző számot ugyanazzal a négyzettel!", ""]} magyarazat="f(−2) = f(2) = 4: két különböző bemenet, ugyanaz a kimenet.">
+$f : \R \to \R$, $x \mapsto x^2$. Injektív?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Szürjektív: mindent eltalál">
+Az $f : D \to R$ **szürjektív**, ha a képtér **minden** elemét eltalálja: minden $y \in R$-hez van $x$, amelyre $f(x) = y$. Másképp: **értékkészlet = képtér**.
+
+Nyíldiagramon: $R$ minden elemébe **legalább egy** nyíl fut.
+
+<Valasztas valaszok={["szürjektív", "nem szürjektív"]} helyes={1} miert={["Melyik y-t nem találja el? Próbáld y = −1-gyel!", ""]} magyarazat="x² = −1-nek nincs valós megoldása: a negatív számokat sosem veszi fel.">
+$f : \R \to \R$, $x \mapsto x^2$. Szürjektív?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Bijektív: tökéletes párosítás">
+**Bijektív** (kölcsönösen egyértelmű) = injektív **és** szürjektív. Nyíldiagramon: $R$ minden elemébe **pontosan egy** nyíl fut, az elemek párba állnak. Csak a bijektív függvénynek van **inverze**.
+
+<Lekepezes kezdo="bijektiv" />
+
+<Valasztas valaszok={["igen", "nem"]} helyes={0} miert={["", "Bijektívnél minden elemnek pontosan egy párja van, tehát a két halmaz egyforma nagy."]}>
+Véges halmazok között: ha van bijekció $A$ és $B$ között, akkor $|A| = |B|$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A képtér számít!">
+Ugyanaz a képlet más halmazokkal más tulajdonságú. A szürjektivitás a **képtértől** függ, az injektivitás az **értelmezési tartománytól**.
+
+<Besorolo
+  cim="x ↦ x² különböző halmazokon"
+  opciok={["csak injektív", "csak szürjektív", "bijektív", "egyik sem"]}
+  elemek={[
+    { kerdes: "ℝ → ℝ", helyes: 3, miert: "f(−1) = f(1), és negatív értéket nem vesz fel." },
+    { kerdes: "ℝ → [0, ∞)", helyes: 1, miert: "Most minden nemnegatív számot eltalál, de −1 és 1 még mindig ütközik." },
+    { kerdes: "[0, ∞) → ℝ", helyes: 0, miert: "Nemnegatív számok négyzetei különbözők, de negatív értéket nem vesz fel." },
+    { kerdes: "[0, ∞) → [0, ∞)", helyes: 2, miert: "Mindkét problémát megoldja a leszűkítés: az inverze a √." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Számolással: injektív?">
+Valós függvénynél a nyilakat nem lehet lerajzolni. A recept:
+
+**Injektív?** Tegyük fel, hogy $f(a) = f(b)$, és próbáljuk kihozni, hogy $a = b$. Ha nem megy, keress **ellenpéldát**: két különböző számot ugyanazzal a képpel.
+
+Példa: $f(x) = 3x - 5$. Ha $3a - 5 = 3b - 5$, akkor $3a = 3b$, tehát $a = b$. Injektív. ✓
+
+<Valasztas valaszok={["f(2) = f(4) = 1, tehát nem injektív", "injektív, mert polinom"]} helyes={0} miert={["", "A polinomok közül csak némelyik injektív; az x² például nem."]} magyarazat="(x − 3)² = 1-nek két megoldása van: x = 2 és x = 4.">
+**1.12 (a).** $f(x) = x^2 - 6x + 9 = (x - 3)^2$, $\R \to \R$. Injektív?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Számolással: szürjektív?">
+**Szürjektív?** Vegyél egy tetszőleges $y \in R$-et, és oldd meg az $f(x) = y$ egyenletet $x$-re. Ha minden $y$-ra van megoldás, szürjektív.
+
+Példa: $3x - 5 = y \implies x = \frac{y + 5}{3}$. Ez minden valós $y$-ra valós szám, tehát szürjektív. Így $f$ bijektív, és az **inverze** éppen ez: $f^{-1}(y) = \frac{y + 5}{3}$.
+
+<SzamValasz helyes="(y - 1)/2" valtozok={["y"]} mezok={["x ="]} magyarazat="2x + 1 = y ⇒ 2x = y − 1 ⇒ x = (y − 1)/2. Minden y-ra van megoldás, tehát szürjektív, sőt bijektív.">
+$f(x) = 2x + 1$. Oldd meg $x$-re az $f(x) = y$ egyenletet!
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Tipp: vízszintes egyenesek">
+Grafikonon is látszik: húzz **vízszintes egyeneseket**.
+
+- **Injektív**, ha egyik sem metszi a grafikont egynél többször.
+- **Szürjektív**, ha a képtér minden magasságában húzott egyenes metszi legalább egyszer.
+
+<Besorolo
+  cim="Sorold be (ℝ → ℝ, ha nincs más írva)"
+  opciok={["csak injektív", "csak szürjektív", "bijektív", "egyik sem"]}
+  elemek={[
+    { kerdes: "x ↦ x³", helyes: 2, miert: "Szigorúan nő, és minden valós értéket felvesz." },
+    { kerdes: "x ↦ x³ − x", helyes: 1, miert: "A 0-t háromszor veszi fel (x = −1, 0, 1), de minden értéket elér." },
+    { kerdes: "x ↦ 2ˣ", helyes: 0, miert: "Szigorúan nő, de csak pozitív értékeket vesz fel." },
+    { kerdes: "x ↦ sin x", helyes: 3, miert: "Periodikus, és csak [−1, 1]-beli értékeket vesz fel." },
+    { kerdes: "[−π/2, π/2] → [−1, 1], x ↦ sin x", helyes: 2, miert: "Ezen az intervallumon szigorúan nő, és minden [−1, 1]-beli értéket felvesz." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- **Injektív:** $f(a) = f(b) \implies a = b$; legfeljebb egy nyíl fut minden elembe. Cáfolat: két különböző szám ugyanazzal a képpel.
+- **Szürjektív:** minden $y \in R$-hez van $x$; legalább egy nyíl. Bizonyítás: oldd meg $f(x) = y$-t. Cáfolat: egy $y$, amire nincs megoldás.
+- **Bijektív:** mindkettő; csak ennek van inverze.
+- A szürjektivitás a képtértől függ: $x^2$ nem szürjektív $\R \to \R$, de igen $\R \to [0, \infty)$.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

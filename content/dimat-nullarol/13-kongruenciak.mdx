@@ -1,0 +1,133 @@
+---
+cim: Kongruenciák
+osszefoglalo: Mit jelent, hogy két szám kongruens modulo m, maradékosztályok és reprezentánsrendszer, számolás kongruenciákkal (nagy számok maradéka, utolsó jegy), és mikor szabad osztani.
+allapot: lecke
+kulcsszavak: [kongruencia, modulus, maradékosztály, reprezentáns, teljes maradékrendszer, maradék, utolsó számjegy, hatványok ciklusa, egyszerűsítés]
+forras: DiMat_ea.pdf 32–33. dia · Feladatsor 3.1, 3.26
+---
+
+<Lecke>
+
+<Kartya cim="Az óra">
+Délután 14 óra és hajnali 2 óra ugyanott áll az órán. Azt mondjuk: $14 \equiv 2 \pmod{12}$.
+
+$a \equiv b \pmod m$ (**$a$ kongruens $b$-vel modulo $m$**), ha $m \mid a - b$. Ugyanez: $a$ és $b$ **ugyanazt a maradékot adja** $m$-mel osztva.
+
+<MaradekOra m={12} a={14} modok={["osztalyok"]} />
+
+<Besorolo
+  cim="Igaz vagy hamis?"
+  opciok={["igaz", "hamis"]}
+  elemek={[
+    { kerdes: "3 ≡ 11 (mod 4)", helyes: 0, miert: "11 − 3 = 8, és 4 | 8. Mindkettő maradéka 3." },
+    { kerdes: "25 ≡ 4 (mod 7)", helyes: 0, miert: "25 − 4 = 21 = 3 · 7." },
+    { kerdes: "10 ≡ 3 (mod 6)", helyes: 1, miert: "10 − 3 = 7, nem osztható 6-tal. (Maradékok: 4 és 3.)" },
+    { kerdes: "−1 ≡ 3 (mod 4)", helyes: 0, miert: "3 − (−1) = 4. A −1 maradéka 4-gyel osztva 3." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Negatív szám maradéka">
+Negatív számnál **visszafelé tekerünk** az órán. A maradék mindig $0$ és $m - 1$ közé esik.
+
+<SzamValasz helyes="3" hibak={{"-2": "A maradék nem lehet negatív: −17 = 5 · (−4) + 3.", "2": "Ez a 17 maradéka. A −17 a másik irányba esik az órán."}}>
+Mennyi a $-17$ maradéka 5-tel osztva?
+</SzamValasz>
+
+<SzamValasz helyes="5" magyarazat="−1 a 6-os órán közvetlenül a 0 előtt van, az 5-ön.">
+Mennyi a $-1$ maradéka 6-tal osztva?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Maradékosztályok">
+A mod $m$ kongruencia $\Z$-t $m$ darab **maradékosztályra** bontja: egy osztályban azok vannak, amik az órán ugyanoda esnek. Mod 4:
+
+| osztály | elemei |
+|---|---|
+| $\bar 0$ | $\dots, -8, -4, 0, 4, 8, \dots$ |
+| $\bar 1$ | $\dots, -7, -3, 1, 5, 9, \dots$ |
+| $\bar 2$ | $\dots, -6, -2, 2, 6, 10, \dots$ |
+| $\bar 3$ | $\dots, -5, -1, 3, 7, 11, \dots$ |
+
+Egy **teljes reprezentánsrendszer** $m$ darab szám, minden osztályból pontosan egy. Például mod 5: $5, 6, 12, 28, -6$ (maradékaik $0, 1, 2, 3, 4$).
+
+<Valasztas valaszok={["0, 1, 2, 3", "4, 8, 12, 16", "−1, 0, 1, 2", "1, 5, 6, 7", "8, 5, 10, 3"]} helyes={[0, 2, 4]} miert={["", "Mind a 0-s osztályban van: a többi osztályból egy sincs.", "", "Az 1 és az 5 is az 1-es osztályban van, a 0-sból pedig egy sincs.", ""]} magyarazat="A maradékokat kell nézni: mindegyik osztályból pontosan egy kell. −1, 0, 1, 2 maradékai 3, 0, 1, 2; a 8, 5, 10, 3 maradékai 0, 1, 2, 3.">
+Melyik teljes reprezentánsrendszer mod 4?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Számolás: cseréld le a maradékra">
+Ha $a \equiv b$ és $c \equiv d \pmod m$, akkor
+
+$$
+a \pm c \equiv b \pm d, \qquad ac \equiv bd, \qquad a^k \equiv b^k \pmod m.
+$$
+
+Vagyis számolás közben **bármikor lecserélhetsz egy számot a maradékára**. Nagy számokból így kis számok lesznek.
+
+<SzamValasz helyes="2" tipp="Mod 5 elég az utolsó jegy: 1001 ≡ 1 és 2027 ≡ 2." magyarazat="1001 ≡ 1, 2027 ≡ 2 (mod 5), tehát a szorzat ≡ 1 · 2 = 2.">
+Mennyi $1001 \cdot 2027$ maradéka 5-tel osztva?
+</SzamValasz>
+
+<SzamValasz helyes="0" magyarazat="10 ≡ 1 (mod 9), így 10¹⁹ ≡ 1¹⁹ = 1. 53 ≡ 8. Összesen 1 + 8 = 9 ≡ 0: osztható 9-cel (3.1 (a)).">
+Mennyi $10^{19} + 53$ maradéka 9-cel osztva?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az utolsó jegy">
+Az utolsó jegy = a maradék mod 10. Mi a $7^{100}$ utolsó jegye? Számoljuk a hatványokat mod 10:
+
+$$
+7^1 \equiv 7, \quad 7^2 = 49 \equiv 9, \quad 7^3 \equiv 9 \cdot 7 = 63 \equiv 3, \quad 7^4 \equiv 3 \cdot 7 = 21 \equiv 1.
+$$
+
+Visszaértünk az 1-hez! Innen a hatványok **4-esével ismétlődnek**.
+
+<MaradekOra m={10} a={7} mod="hatvany" modok={["hatvany"]} />
+
+<SzamValasz helyes="1" magyarazat="100 = 4 · 25, tehát 7¹⁰⁰ = (7⁴)²⁵ ≡ 1²⁵ = 1.">
+Mi a $7^{100}$ utolsó jegye?
+</SzamValasz>
+
+<SzamValasz helyes="3" tipp="103 = 4 · 25 + 3." magyarazat="7¹⁰³ = (7⁴)²⁵ · 7³ ≡ 7³ ≡ 3.">
+És a $7^{103}$-é?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Egy másik ciklus">
+A ciklus hossza függ a számtól és a modulustól. Mod 13: $3^1 \equiv 3$, $3^2 \equiv 9$, $3^3 = 27 \equiv\ ?$
+
+<SzamValasz helyes="1" magyarazat="27 = 2 · 13 + 1. Már a harmadik hatvány 1, tehát a ciklus 3 hosszú.">
+Mennyi $3^3$ maradéka 13-mal osztva?
+</SzamValasz>
+
+<SzamValasz helyes="3" tipp="100 = 3 · 33 + 1." magyarazat="3¹⁰⁰ = (3³)³³ · 3 ≡ 1 · 3 = 3 (mod 13).">
+Mennyi $3^{100}$ maradéka 13-mal osztva?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Osztani csak óvatosan">
+Kongruenciát szabad szorozni, de **osztani nem mindig**:
+
+$$
+ac \equiv bc \pmod m \implies a \equiv b \pmod m \quad \text{csak ha } (c, m) = 1.
+$$
+
+Ellenpélda: $2 \cdot 1 \equiv 2 \cdot 3 \pmod 4$ (mert $2 \equiv 6$), de $1 \not\equiv 3 \pmod 4$.
+
+<Valasztas valaszok={["Igen, mert (3, 7) = 1", "Nem, mert 3 nem osztója 7-nek"]} helyes={0} miert={["", "Nem ez a feltétel: az kell, hogy (c, m) = 1."]} magyarazat="(3, 7) = 1, tehát szabad. Például 3 · 5 = 15 ≡ 1 és 3 · 12 = 36 ≡ 1 (mod 7), és valóban 5 ≡ 12 (mod 7).">
+Ha $3a \equiv 3b \pmod 7$, szabad-e 3-mal egyszerűsíteni?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $a \equiv b \pmod m \iff m \mid a - b \iff$ ugyanaz a maradékuk.
+- A maradék mindig $0, \dots, m - 1$; negatív számnál visszafelé tekerünk.
+- Összeadásnál, kivonásnál, szorzásnál, hatványozásnál bármikor cserélhetsz maradékra.
+- A hatványok mod $m$ körbe érnek; ha $a^k \equiv 1$, a kitevőt $k$ szerinti maradékára cserélheted.
+- Osztani csak a modulushoz relatív prím számmal szabad.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

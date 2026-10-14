@@ -1,0 +1,118 @@
+---
+cim: Függvénytranszformációk
+osszefoglalo: Eltolás, nyújtás, összenyomás és tükrözés; miért hat „fordítva” minden, ami a zárójelen belül van, és milyen sorrendben érdemes egy összetett transzformációt elvégezni.
+allapot: lecke
+kulcsszavak: [transzformáció, eltolás, nyújtás, összenyomás, tükrözés, grafikon, f(x − c), c·f(x), f(cx), parabola csúcsa]
+forras: DiMat_ea.pdf 10–11. dia · Feladatsor 1.11
+---
+
+<Lecke>
+
+<Kartya cim="Kívül: ahogy várnád">
+Ha a függvény **értékéhez** nyúlunk (kívül), az a grafikon **függőleges** irányában hat, és pont úgy, ahogy várnád:
+
+- $f(x) + 3$: minden pont 3-mal **feljebb** kerül;
+- $2 \cdot f(x)$: minden pont kétszer olyan **magasra** kerül (függőleges nyújtás);
+- $-f(x)$: tükrözés az $x$ tengelyre.
+
+<PontRako cel={[0, 3]} meret={5} pontok={[{p: [0, 0], cimke: "x² csúcsa"}]} magyarazat="A +3 mindent 3-mal feljebb tol, a csúcsot is: (0; 0) → (0; 3).">
+Hova kerül az $x^2$ parabola csúcsa, ha a függvény $x^2 + 3$? Koppints oda!
+</PontRako>
+</Kartya>
+
+<Kartya cim="Belül: fordítva!">
+Ha az $x$-hez nyúlunk (a **zárójelen belül**), az **vízszintesen** hat, és **fordítva**:
+
+- $f(x - 2)$: a grafikon 2-vel **jobbra** tolódik (pedig mínusz van!);
+- $f(x + 2)$: 2-vel **balra**.
+
+Miért? $g(x) = f(x - 2)$ ott veszi fel azt az értéket, amit $f$ a 0-ban, ahol $x - 2 = 0$, vagyis $x = 2$-ben. Minden pont 2-vel jobbra kerül.
+
+<PontRako cel={[2, 0]} meret={5} pontok={[{p: [0, 0], cimke: "x² csúcsa"}]} hibak={{"-2;0": "Ez a gyakori hiba! A zárójelen belül minden fordítva hat: x − 2 jobbra tol. Ott lesz a csúcs, ahol x − 2 = 0."}}>
+Hova kerül a csúcs: $(x - 2)^2$?
+</PontRako>
+</Kartya>
+
+<Kartya cim="Összenyomás és tükrözés belül">
+Ugyanez a „fordítottság” a szorzásnál:
+
+- $f(2x)$: a grafikon a **felére nyomódik** vízszintesen (nem kétszeresére nyúlik!). Az $x = 1$-ben azt veszi fel, amit $f$ a 2-ben.
+- $f(-x)$: tükrözés az $y$ tengelyre.
+
+<Valasztas valaszok={["vízszintesen 3-szorosára nyúlik", "vízszintesen a harmadára nyomódik", "függőlegesen 3-szorosára nyúlik"]} helyes={1} miert={["Belül minden fordítva: a 3-mal szorzás összenyom.", "", "Az a 3 · f(x) lenne (kívül)."]}>
+Mi történik a grafikonnal, ha $f(x)$ helyett $f(3x)$-et nézünk?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Próbáld ki">
+Az $a \cdot f\big(b\,(x - c)\big) + d$ alakban a csúszkák pontosan ezt a négy számot állítják. A kiemelt pont mutatja, hova kerül a jellegzetes pont (például a csúcs).
+
+<FuggvenyTranszformacio />
+
+<Valasztas valaszok={["az y tengelyre", "az x tengelyre"]} helyes={1} miert={["Az y tengelyre az f(−x) tükröz (belül).", ""]}>
+A $-f(x)$ melyik tengelyre tükröz?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A sorrend">
+Összetett transzformációnál írd át a képletet $a \cdot f\big(b\,(x - c)\big) + d$ alakra, aztán ebben a sorrendben haladj:
+
+<Lepesek>
+<Lepes>
+**belül, $b$:** vízszintes összenyomás/nyújtás (ha $b < 0$, tükrözés az $y$ tengelyre is);
+</Lepes>
+<Lepes>
+**belül, $c$:** vízszintes eltolás, $c > 0$ esetén jobbra;
+</Lepes>
+<Lepes>
+**kívül, $a$:** függőleges nyújtás (ha $a < 0$, tükrözés az $x$ tengelyre is);
+</Lepes>
+<Lepes>
+**kívül, $d$:** függőleges eltolás.
+</Lepes>
+</Lepesek>
+
+<PontRako cel={[3, 1]} meret={5} pontok={[{p: [0, 0], cimke: "x² csúcsa"}]} hibak={{"-3;1": "A belső eltolás fordítva hat: x − 3 jobbra tol.", "3;2": "A kétszeres nyújtás a 0 magasságú csúcsot nem mozdítja; csak a +1 emeli."}} magyarazat="A 2-szeres nyújtás a csúcsot (0 magasságban) helyben hagyja, a −3 belül jobbra tol 3-mal, a +1 feljebb 1-gyel.">
+Hova kerül a csúcs: $2(x - 3)^2 + 1$?
+</PontRako>
+</Kartya>
+
+<Kartya cim="A csapda: emeld ki b-t!">
+$f(2x - 4)$: sokan mondják, hogy „összenyomás 2-vel, eltolás 4-gyel jobbra”. **Rossz!** Előbb emeld ki a 2-t:
+
+$$
+f(2x - 4) = f\big(2(x - 2)\big),
+$$
+
+tehát összenyomás a felére, aztán eltolás **2**-vel jobbra.
+
+<SzamValasz helyes="2" mezok={["jobbra"]} hibak={{"4": "Ki kell emelni a 2-t: 2x − 4 = 2(x − 2)."}} magyarazat="Ellenőrizd: a csúcs ott van, ahol 2x − 4 = 0, vagyis x = 2.">
+Mennyivel tolódik jobbra az $x^2$ csúcsa, ha a függvény $(2x - 4)^2$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Egy teljes példa">
+$3f(-x) - 4$: tükrözés az $y$ tengelyre, nyújtás 3-szorosára függőlegesen, végül 4-gyel le.
+
+<PontRako cel={[-2, 2]} meret={6} pontok={[{p: [2, 2], cimke: "P"}]} hibak={{"2;2": "Az f(−x) tükröz az y tengelyre: az x koordináta előjelet vált.", "-2;6": "Ne felejtsd el a −4-et a végén.", "2;-2": "Nem az x tengelyre, hanem az y tengelyre kell tükrözni, és utána jön még a nyújtás és az eltolás."}} magyarazat="P = (2; 2). Tükrözés az y tengelyre: (−2; 2). Nyújtás 3-szorosára: (−2; 6). Le 4-gyel: (−2; 2).">
+Az $f$ grafikonjának egy pontja $P = (2; 2)$. Hova kerül ez a pont a $3f(-x) - 4$ grafikonján?
+</PontRako>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+| képlet | hatás |
+|---|---|
+| $f(x) + c$ | fel $c$-vel |
+| $f(x - c)$ | **jobbra** $c$-vel |
+| $c \cdot f(x)$ | függőleges nyújtás $c$-szeresére |
+| $f(cx)$ | vízszintes **összenyomás** a $c$-ed részére |
+| $-f(x)$ | tükrözés az $x$ tengelyre |
+| $f(-x)$ | tükrözés az $y$ tengelyre |
+
+- Kívül: függőlegesen, ahogy várnád. Belül: vízszintesen, fordítva.
+- $f(2x - 4) = f(2(x - 2))$: mindig emeld ki a belső szorzót.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

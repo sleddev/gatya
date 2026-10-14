@@ -1,0 +1,94 @@
+---
+cim: ZH-gyakorló
+osszefoglalo: Végtelen, véletlen feladatok a számolós rutinfeladatokhoz (vektorok, deriválás, érintő), egy ellenőrző lista a számonkérés előtti estére, és vegyes feladatok megoldással.
+allapot: lecke
+kulcsszavak: [ZH, zárthelyi, gyakorlás, vegyes feladatok, ellenőrző lista, vektor, derivált, érintő, GeoGebra]
+forras: relations.pdf · functions.pdf · vector operations.pdf
+---
+
+## Végtelen gyakorló: függvények
+
+A számolós feladatokat addig érdemes gyakorolni, amíg **gondolkodás nélkül** mennek. Válassz típust, és csináld, amíg 10-es sorozatot nem érsz el!
+
+<MatekGyakorlo tipusok={["egyenes", "derivalt", "erinto", "csucs"]} />
+
+## Végtelen gyakorló: vektorok
+
+<MatekGyakorlo tipusok={["vektor", "skalaris", "meroleges", "kereszt", "vegyes"]} />
+
+## Ellenőrző lista
+
+Ahol bizonytalan vagy, nyisd meg újra a leckét (a végén lévő **Röviden** doboz általában elég).
+
+| tudom… | lecke |
+|---|---|
+| a Descartes-szorzatot és az elemszámát; hogy $A \times B \ne B \times A$ | [2](/szmv-nullarol/descartes-szorzat) |
+| relációt kiválogatni feltétel alapján | [3](/szmv-nullarol/relaciok) |
+| az értelmezési tartományt, értékkészletet, inverzet; mikor függvény egy reláció | [4](/szmv-nullarol/inverz-es-fuggveny) |
+| egyenest illeszteni két pontra, és ellenőrizni | [5](/szmv-nullarol/egyenes-ket-ponton) |
+| parabolát illeszteni három pontra egyenletrendszerrel | [6](/szmv-nullarol/polinom-illesztes) |
+| polinomot deriválni, és a derivált előjeléből a monotonitást | [7](/szmv-nullarol/derivalt) |
+| gyököt és szélsőértéket keresni; az $x^3$-csapdát | [8](/szmv-nullarol/gyokok-szelsoertekek) |
+| az érintő egyenletét felírni | [9](/szmv-nullarol/erinto) |
+| a pontok távolságát és az $\overrightarrow{AB}$ vektort (vég mínusz kezdet) | [10](/szmv-nullarol/pontok-es-vektorok) |
+| vektorokat összeadni, szorozni, a hosszukat és az egységvektort | [11](/szmv-nullarol/vektormuveletek) |
+| skaláris szorzatot, szöget, merőlegességet | [12](/szmv-nullarol/skalaris-szorzat) |
+| vektoriális szorzatot és a paralelogramma területét | [13](/szmv-nullarol/vektorialis-szorzat) |
+| vegyes szorzatot, térfogatot, komplanaritást | [14](/szmv-nullarol/vegyes-szorzat) |
+| melyik feladathoz melyik GeoGebra-parancs kell | [15](/szmv-nullarol/geogebra-parancsok) |
+
+## Vegyes feladatok
+
+Előbb papíron oldd meg (és ha van időd, GeoGebrában is), csak utána nyisd ki a megoldást!
+
+<Feladat cim="1. reláció">
+$A = \{1, 2, 3, 4\}$, $B = \{2, 3, 5\}$, $R = \{(a, b) \mid a + b \text{ páros}\}$. Sorold fel $R$-et, add meg $D_R$-t, $R_R$-t és $R^{-1}$-et! Függvény-e $R$?
+
+<Megoldas>
+$a + b$ páros, ha azonos paritásúak: $R = \{(1, 3), (1, 5), (2, 2), (3, 3), (3, 5), (4, 2)\}$. $D_R = \{1, 2, 3, 4\}$, $R_R = \{2, 3, 5\}$. $R^{-1} = \{(3, 1), (5, 1), (2, 2), (3, 3), (5, 3), (2, 4)\}$. Nem függvény, mert az 1-hez két érték (3 és 5) tartozik.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="2. polinom illesztése">
+Melyik parabola megy át a $(0, -2)$, $(1, 0)$, $(2, 4)$ pontokon? Mi a GeoGebra-parancs?
+
+<Megoldas>
+$c = -2$. $a + b - 2 = 0$ és $4a + 2b - 2 = 4$, azaz $a + b = 2$ és $2a + b = 3$. Kivonva: $a = 1$, $b = 1$. Tehát $f(x) = x^2 + x - 2$. Ellenőrzés: $f(2) = 4 + 2 - 2 = 4$. ✓ GeoGebra: `FitPoly({A, B, C}, 2)`.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3. szélsőérték és érintő">
+$f(x) = x^3 - 6x^2 + 9x + 1$. Hol vannak a szélsőértékei, és mi az érintő az $x_0 = 0$ pontban?
+
+<Megoldas>
+$f'(x) = 3x^2 - 12x + 9 = 3(x - 1)(x - 3)$, nulla az 1-ben és a 3-ban. $f''(x) = 6x - 12$: $f''(1) = -6 < 0$, **maximum**, $f(1) = 5$; $f''(3) = 6 > 0$, **minimum**, $f(3) = 1$.
+
+Érintő a 0-ban: $f(0) = 1$, $f'(0) = 9$, tehát $y = 9x + 1$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="4. vektorok a síkon">
+$A(1, -2)$, $B(4, 2)$, $C(-3, 1)$. Mennyi $\overrightarrow{AB}$, $|AB|$, és merőleges-e $\overrightarrow{AB}$ az $\overrightarrow{AC}$-re?
+
+<Megoldas>
+$\overrightarrow{AB} = (3, 4)$, $|AB| = 5$. $\overrightarrow{AC} = (-4, 3)$. $\overrightarrow{AB} \cdot \overrightarrow{AC} = -12 + 12 = 0$, tehát **merőlegesek**: az $A$ csúcsnál derékszög van.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="5. szög">
+Mekkora szöget zár be $\mathbf{u} = (1, 2)$ és $\mathbf{v} = (3, 1)$?
+
+<Megoldas>
+$\mathbf{u} \cdot \mathbf{v} = 3 + 2 = 5$, $\|\mathbf{u}\| = \sqrt 5$, $\|\mathbf{v}\| = \sqrt{10}$. $\cos\alpha = \frac{5}{\sqrt{50}} = \frac{1}{\sqrt 2}$, tehát $\alpha = 45°$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="6. térbeli vektorok">
+$\mathbf{a} = (1, 0, 2)$, $\mathbf{b} = (2, 1, 0)$, $\mathbf{c} = (0, 1, 1)$. Számold ki $\mathbf{b} \times \mathbf{c}$-t, a $\mathbf{b}$ és $\mathbf{c}$ által kifeszített paralelogramma területét, és a három vektor által kifeszített paralelepipedon térfogatát!
+
+<Megoldas>
+$\mathbf{b} \times \mathbf{c} = (1 \cdot 1 - 0 \cdot 1,\ 0 \cdot 0 - 2 \cdot 1,\ 2 \cdot 1 - 1 \cdot 0) = (1, -2, 2)$. Ellenőrzés: $(1, -2, 2) \cdot (2, 1, 0) = 0$ ✓, $(1, -2, 2) \cdot (0, 1, 1) = 0$ ✓.
+
+Terület: $\|(1, -2, 2)\| = \sqrt{1 + 4 + 4} = 3$. Térfogat: $|\mathbf{a} \cdot (1, -2, 2)| = |1 + 0 + 4| = 5$.
+</Megoldas>
+</Feladat>

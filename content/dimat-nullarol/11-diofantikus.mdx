@@ -1,0 +1,158 @@
+---
+cim: Lineáris diofantikus egyenletek
+osszefoglalo: Mikor van egész megoldása az ax + by = c egyenletnek, hogyan találunk egyet visszafelé az euklideszi algoritmuson (Bézout), hogyan írjuk fel az összeset, és hogyan oldunk meg szöveges feladatot.
+allapot: lecke
+kulcsszavak: [diofantikus egyenlet, Bézout-azonosság, kiterjesztett euklideszi algoritmus, általános megoldás, rácspont, nemnegatív megoldás, szöveges feladat]
+forras: DiMat_ea.pdf 28. dia · Feladatsor 3.22–3.24
+---
+
+<Lecke>
+
+<Kartya cim="Gombóc Artúr csokit vesz">
+**3.23.** Gombóc Artúrnak 1420 Ft-ja van, és mindet csokira akarja költeni. A lyukas csoki 35 Ft, a kerek 40 Ft. Hányat vehet az egyesekből?
+
+Ha $x$ lyukasat és $y$ kereket vesz: $35x + 40y = 1420$. Ennek **egész** megoldásai kellenek (fél csokit nem lehet venni). Az ilyen egyenlet a **lineáris diofantikus egyenlet**: $ax + by = c$, egész együtthatókkal és egész ismeretlenekkel.
+
+<SzamValasz helyes="32" magyarazat="35 · 4 = 140, 1420 − 140 = 1280 = 40 · 32.">
+Ha Artúr 4 lyukas csokit vesz, hány kereket vehet még?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Mikor van megoldás?">
+**Az $ax + by = c$ pontosan akkor oldható meg, ha $(a, b) \mid c$.**
+
+Az egyik irány egyszerű: $d = (a, b)$ osztja $a$-t és $b$-t, tehát $ax + by$-t is, **bármilyen** $x, y$-ra. Ha $d \nmid c$, a bal oldal sosem lehet $c$.
+
+<Besorolo
+  cim="Van-e egész megoldás?"
+  opciok={["van", "nincs"]}
+  elemek={[
+    { kerdes: "12x − 15y = 26", helyes: 1, miert: "(12, 15) = 3, de 3 ∤ 26. A bal oldal mindig osztható 3-mal." },
+    { kerdes: "14x − 18y = 6", helyes: 0, miert: "(14, 18) = 2 | 6." },
+    { kerdes: "6x + 9y = 20", helyes: 1, miert: "(6, 9) = 3 ∤ 20." },
+    { kerdes: "7x + 8y = 284", helyes: 0, miert: "(7, 8) = 1, és az 1 mindennek osztója." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Egyszerűsíts először">
+Ha $d = (a, b) \mid c$, ossz el mindent $d$-vel. Ugyanazok a megoldások, de kisebbek a számok, és az új együtthatók relatív prímek.
+
+<SzamValasz helyes={["7", "8", "284"]} mezok={["a =", "b =", "c ="]} magyarazat="(35, 40) = 5, és 5 | 1420. Osztva: 7x + 8y = 284.">
+Egyszerűsítsd a $35x + 40y = 1420$ egyenletet!
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Bézout: visszafelé az algoritmuson">
+Az euklideszi algoritmus lépéseit **visszafelé** olvasva az lnko felírható $a s + b t$ alakban (**Bézout-azonosság**). Az előadás példája, $147x + 69y = 3$:
+
+$$
+147 = 69 \cdot 2 + 9, \quad 69 = 9 \cdot 7 + 6, \quad 9 = 6 \cdot 1 + 3, \quad 6 = 3 \cdot 2.
+$$
+
+Az utolsó nem nulla maradékkal kezdünk, és **mindig a legutóbbi maradékot** helyettesítjük be:
+
+$$
+3 = 9 - 6 = 9 - (69 - 9 \cdot 7) = 8 \cdot 9 - 69.
+$$
+
+Most a $9$-et cseréljük: $9 = 147 - 69 \cdot 2$.
+
+<SzamValasz helyes={["8", "-17"]} mezok={["3 = 147 ·", "+ 69 ·"]} tipp="8 · (147 − 2 · 69) − 69 = 8 · 147 − 16 · 69 − 69." magyarazat="3 = 8 · 147 − 17 · 69. Ellenőrzés: 1176 − 1173 = 3. ✓ Tehát x₀ = 8, y₀ = −17.">
+Írd fel: $3 = 147 \cdot s + 69 \cdot t$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Gyakorold: 7x + 8y = 1">
+Kis számoknál gyors: $8 = 7 \cdot 1 + 1$, tehát $1 = 8 - 7$.
+
+<SzamValasz helyes={["-1", "1"]} mezok={["x =", "y ="]} magyarazat="7 · (−1) + 8 · 1 = 1. ✓">
+Adj meg egy megoldást: $7x + 8y = 1$
+</SzamValasz>
+
+Szorozd meg 284-gyel, és máris van egy megoldás a $7x + 8y = 284$ egyenletre:
+
+<SzamValasz helyes={["-284", "284"]} mezok={["x₀ =", "y₀ ="]}>
+Mi lesz így $x_0$ és $y_0$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az összes megoldás">
+Ha $(x_0, y_0)$ egy megoldás, és $d = (a, b)$, akkor **az összes** megoldás:
+
+$$
+x = x_0 + t \cdot \frac{b}{d}, \qquad y = y_0 - t \cdot \frac{a}{d}, \qquad t \in \Z.
+$$
+
+Miért? Ha $x$-et $\frac{b}{d}$-vel növeled, $ax$ éppen annyival nő ($\frac{ab}{d}$), amennyivel $by$ csökken, ha $y$-t $\frac{a}{d}$-vel csökkented. Az összeg nem változik.
+
+<SzamValasz helyes={["8", "7"]} mezok={["x lépése:", "y lépése:"]} magyarazat="x = −284 + 8t, y = 284 − 7t: x 8-asával nő, y 7-esével csökken.">
+$7x + 8y = 284$ esetén mennyivel változik $x$ és $y$, ha $t$ eggyel nő? (A csökkenést pozitív számmal add meg.)
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Rácspontok egy egyenesen">
+Geometriailag az $ax + by = c$ egy egyenes, az egész megoldások a **rácspontjai**. Egyenlő közönként követik egymást. A zöld pontok a nemnegatív megoldások.
+
+<DiofantikusRacs a={7} b={8} c={284} />
+
+<Valasztas valaszok={["Az egyenes egyetlen rácsponton sem megy át", "Az egyenes nem metszi a tengelyeket"]} helyes={0} miert={["", "Metszheti, ennek nincs köze a megoldhatósághoz."]}>
+Mit látsz a rajzon, ha nincs megoldás?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Szöveges feladat: nemnegatív megoldások">
+Csokiból nem lehet negatív darabot venni: $x \ge 0$ és $y \ge 0$.
+
+$x = -284 + 8t \ge 0 \iff t \ge 35{,}5$, tehát $t \ge 36$.
+$y = 284 - 7t \ge 0 \iff t \le 40{,}57$, tehát $t \le 40$.
+
+<SzamValasz helyes="5" magyarazat="t = 36, 37, 38, 39, 40: öt lehetőség.">
+Hány lehetősége van Artúrnak?
+</SzamValasz>
+
+<SzamValasz helyes={["4", "32"]} mezok={["x =", "y ="]}>
+Mi a $t = 36$-hoz tartozó megoldás?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A teljes recept, egyben: 3.22 (f)">
+<Lepesek>
+<Lepes>
+$d = (a, b)$. Ha $d \nmid c$: nincs megoldás.
+</Lepes>
+<Lepes>
+Ossz el mindent $d$-vel.
+</Lepes>
+<Lepes>
+Euklideszi algoritmus, aztán visszafelé: $1 = a'u + b'v$.
+</Lepes>
+<Lepes>
+Szorozz $c'$-vel: $x_0 = uc'$, $y_0 = vc'$. **Ellenőrizd!**
+</Lepes>
+<Lepes>
+Általános megoldás: $x = x_0 + b't$, $y = y_0 - a't$.
+</Lepes>
+</Lepesek>
+
+$18x + 28y = 10$, osztva 2-vel: $9x + 14y = 5$. Az algoritmus: $14 = 9 + 5$, $9 = 5 + 4$, $5 = 4 + 1$. Visszafelé: $1 = 2 \cdot 14 - 3 \cdot 9$.
+
+<SzamValasz helyes={["-15", "10"]} mezok={["x₀ =", "y₀ ="]} magyarazat="Szorozva 5-tel: 5 = 10 · 14 − 15 · 9, tehát x₀ = −15, y₀ = 10. Ellenőrzés: 18 · (−15) + 28 · 10 = −270 + 280 = 10. ✓">
+Mi az ebből adódó megoldás?
+</SzamValasz>
+
+<SzamValasz helyes={["13", "-8"]} mezok={["x =", "y ="]} tipp="x = −15 + 14t, y = 10 − 9t. Melyik t ad 0 és 13 közötti x-et?" magyarazat="t = 2: x = 13, y = −8. Ellenőrzés: 234 − 224 = 10. ✓">
+Melyik az a megoldás, amelyben $x$ a legkisebb nemnegatív szám?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $ax + by = c$ megoldható $\iff (a, b) \mid c$.
+- Egyszerűsíts $d$-vel, aztán euklideszi algoritmus visszafelé (mindig a legutóbbi maradékot helyettesítsd): $1 = a'u + b'v$, és szorozz $c'$-vel.
+- Összes megoldás: $x = x_0 + \frac{b}{d}t$, $y = y_0 - \frac{a}{d}t$, $t \in \Z$.
+- Szöveges feladatnál írd fel a feltételeket $t$-re, és sorold fel a megengedett $t$-ket.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

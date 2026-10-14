@@ -191,7 +191,7 @@ Változók: `x y z v w` (számmal is), a többi kisbetűs szó név.
 
 ## Leckék (lépésenként, mint a Brilliant)
 
-A `content/logika-nullarol/` tárgy oldalai **kártyákból** állnak: egyszerre egy kártya látszik, és a
+A „nulláról” tárgyak (`content/logika-nullarol/`, `content/dimat-nullarol/`, `content/szmv-nullarol/`) oldalai **kártyákból** állnak: egyszerre egy kártya látszik, és a
 **Tovább** gomb csak akkor aktív, ha a kártya minden feladata megoldva (vagy a megoldás meg lett
 mutatva). A haladást eszközönként megjegyzi.
 
@@ -232,6 +232,19 @@ Ne használj `##` címsort leckén belül; a kártya címe a `cim`.
 Elsőrendű begépelésnél a nevek kisbetűs szavak (`veronika`), a változók `x y z v w`.
 A begépelt választ a program tartalom szerint ellenőrzi: ítéletlogikában igazságtáblával,
 elsőrendűben sok kis véletlen modellen.
+
+### Számolós feladatok (DiMat, SzMV)
+
+| komponens | mit csinál | propok |
+|---|---|---|
+| `<SzamValasz>` | szám, képlet vagy halmaz beírása; érték szerint ellenőriz (`7/3`, `0,8`, `√29`, `3-2i`, `2^30` mind működik) | `helyes` (szöveg, több mezőnél lista), `mezok` (címke mezőnként, pl. `["q =", "r ="]`), `forma` (`mezok`, `vektor`: zárójelben, pontosvesszővel; `halmaz`: vesszős lista, a sorrend nem számít, üres: ∅), `valtozok` (pl. `["x"]`: a válasz képlet, függvényként hasonlítja össze), `tures` (relatív hibahatár kerekített tizedes törthöz), `modulo` (minden vele kongruens szám jó), `hibak` (tipikus rossz válasz → magyarázat; több mezőnél `"a;b"`), `tipp`, `magyarazat`, `gombok` (pl. `["i", "√", "π"]`), `egyseg` |
+| `<PontRako>` | rácspont kijelölése a síkon; `komplex`-szel a Gauss-síkon, `kezdo`-val nyílként (vektor) | `cel` (`[x, y]`), `meret` (a rács −meret…meret), `komplex`, `kezdo`, `pontok` (`[{p: [x, y], cimke}]`), `nyilak` (`[{a, b, cimke}]`), `hibak` (`"x;y"` → magyarázat), `magyarazat` |
+| `<ParKijelolo>` | reláció párjainak kijelölése az A × B táblázatban | `A`, `B` (listák), `helyes` (`[[a, b], …]`, lehet üres), `magyarazat` |
+| `<VennSzinezo>` | halmazkifejezés kiszínezése Venn-diagramon (2 vagy 3 halmaz) | `cel` (pl. `"(A ∪ B) \ C"`, `"A △ B"`, komplementer: `"(A ∪ B)'"`; ∩ erősebben köt), `halmazok`, `magyarazat` |
+| `<EuklideszKitolto>` | euklideszi algoritmus kézzel: soronként hányados és maradék, a végén az lnko | `a`, `b`, `magyarazat` |
+| `<MatekGyakorlo>` | végtelen véletlen számolós feladatok | `tipusok` (`lnko`, `maradek`, `osztoszam`, `phi`, `hatvanymod`, `linkong`, `komplex`, `ihatvany`, `trig`, `vektor`, `skalaris`, `meroleges`, `kereszt`, `vegyes`, `derivalt`, `erinto`, `egyenes`, `csucs`) |
+
+A `SzamValasz` attribútumaiban (a `hibak` szövegeiben is) nem működik a `$...$`; ott Unicode-ot használj.
 
 Kártyán belül, nem kötelező feladatként használható szemléltetők (a `Tovább` gombot nem tartják vissza):
 `<Aramkor mod="es|vagy">` (∧ és ∨ kapcsolókkal), `<Reszleges formula ismert="Z=1">` (kiértékelés

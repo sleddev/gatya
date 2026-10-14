@@ -1,0 +1,108 @@
+---
+cim: GeoGebra-parancsok
+osszefoglalo: A laborokon használt GeoGebra-parancsok egy helyen, és gyakorlás arra, melyik feladathoz melyik parancs kell, és mit ad vissza.
+allapot: lecke
+kulcsszavak: [GeoGebra, parancs, FitPoly, Root, Extremum, Derivative, Tangent, Vector, Translate, Length, Distance, Dot, Angle, Cross, Line]
+forras: functions.pdf · vector operations.pdf · .ggb fájlok
+---
+
+<Lecke>
+
+<Kartya cim="A parancsok egy táblázatban">
+| parancs | mit csinál |
+|---|---|
+| `FitPoly({A, B, C}, 2)` | polinom a pontokon át, adott fokszámmal |
+| `Root(f)` | zérushelyek |
+| `Extremum(f)` | helyi szélsőértékek |
+| `Derivative(f)` vagy `f'(x)` | derivált |
+| `Tangent(x0, f)` | érintő az $x_0$ helyen |
+| `Line(P, Q)` | egyenes két ponton át |
+| `Vector(A, B)` | $A$-ból $B$-be mutató vektor |
+| `Translate(v, A)` | $\mathbf{v}$ másolata $A$-ból indítva |
+| `Length(u)` | vektor hossza |
+| `Distance(A, B)` | pontok távolsága |
+| `u + v`, `k * u` | összeg, skalárszoros |
+| `u * v` vagy `Dot(u, v)` | skaláris szorzat |
+| `Angle(u, v)` | két vektor szöge |
+| `Cross(b, c)` | vektoriális szorzat |
+
+<Valasztas valaszok={["Megtanultam, mehetünk"]} helyes={0}>
+Nézd át a táblázatot, aztán gyakoroljunk.
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Függvények">
+<Besorolo
+  cim="Melyik parancs kell?"
+  opciok={["FitPoly", "Root", "Extremum", "Tangent"]}
+  elemek={[
+    { kerdes: "Hol metszi f az x tengelyt?", helyes: 1, miert: "A zérushelyek: Root(f)." },
+    { kerdes: "Melyik parabola megy át A-n, B-n és C-n?", helyes: 0, miert: "FitPoly({A, B, C}, 2)." },
+    { kerdes: "Hol van f-nek helyi maximuma?", helyes: 2, miert: "Extremum(f)." },
+    { kerdes: "Mi f érintője az x = 2 helyen?", helyes: 3, miert: "Tangent(2, f)." },
+    { kerdes: "Melyik egyenes megy át a (2, 3) és (8, 5) ponton?", helyes: 0, miert: "FitPoly(A, B): két pontra elsőfokú polinom, azaz egyenes. (A Line(A, B) is jó.)" }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Vektorok">
+<Besorolo
+  cim="Melyik parancs kell?"
+  opciok={["Vector", "Length / Distance", "Dot", "Angle", "Cross"]}
+  elemek={[
+    { kerdes: "Az A-ból B-be mutató vektor", helyes: 0, miert: "Vector(A, B)." },
+    { kerdes: "Merőleges-e u és v?", helyes: 2, miert: "Dot(u, v) = 0 pontosan akkor, ha merőlegesek." },
+    { kerdes: "Milyen messze van A a B-től?", helyes: 1, miert: "Distance(A, B), vagy Length(Vector(A, B))." },
+    { kerdes: "Egy vektor, ami merőleges b-re és c-re is", helyes: 4, miert: "Cross(b, c)." },
+    { kerdes: "Hány fokos szöget zár be u és v?", helyes: 3, miert: "Angle(u, v)." },
+    { kerdes: "Egy síkban van-e a, b, c?", helyes: 4, miert: "Előbb Cross(b, c), aztán a skaláris szorzat a-val: a * Cross(b, c) = 0?" }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Mi lesz az eredmény?">
+Jó szokás fejben megbecsülni, mit kell adnia a parancsnak, mielőtt beírod. Ha mást ad, elírtál valamit.
+
+<SzamValasz helyes={["3", "4"]} forma="vektor">
+`A = (2, 3)`, `B = (5, 7)`. Mit ad a `Vector(A, B)`?
+</SzamValasz>
+
+<SzamValasz helyes="23">
+`u = (3, 4)`, `v = (5, 2)`. Mit ad az `u * v`?
+</SzamValasz>
+
+<SzamValasz helyes={["-3", "6", "-3"]} forma="vektor">
+`b = (4, 5, 6)`, `c = (7, 8, 9)`. Mit ad a `Cross(b, c)`?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Pont vagy vektor?">
+Emlékezz: a GeoGebra a név kezdőbetűjéből dönti el, mit hozol létre.
+
+<Valasztas valaszok={["Két pont összegét, ami értelmetlen", "Egy vektort, mert u és v kisbetűs"]} helyes={1} miert={["Kisbetűs névvel vektorok lettek, nem pontok.", ""]}>
+`u = (3, 4)`, `v = (5, 2)`, `w = u + v`. Mi lesz `w`?
+</Valasztas>
+
+<Valasztas valaszok={["skaláris szorzat", "koordinátánkénti szorzás"]} helyes={0} miert={["", "Nem: két vektor között a * a skaláris szorzat."]}>
+Mit jelent a `*` két vektor között?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A második érintő-módszer">
+Ha a `Tangent` parancsot nem használhatod, építsd fel kézzel: a $P = (x_0, f(x_0))$ pontból egyet jobbra, $m = f'(x_0)$-at fel.
+
+<Valasztas valaszok={["Q = (x0 + 1, f(x0) + f'(x0))", "Q = (x0 + f'(x0), f(x0) + 1)"]} helyes={0} miert={["", "Fordítva: jobbra 1-et, fel a meredekséget."]} sym>
+Melyik pontot add meg, hogy a `Line(P, Q)` az érintő legyen?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Függvények: `FitPoly`, `Root`, `Extremum`, `Derivative`/`f'(x)`, `Tangent`, `Line`.
+- Vektorok: `Vector`, `Translate`, `Length`, `Distance`, `+`, `k * u`, `u * v`/`Dot`, `Angle`, `Cross`.
+- Nagybetű: pont. Kisbetű: vektor. A `*` vektorok közt skaláris szorzat.
+- Mindig becsüld meg fejben az eredményt.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

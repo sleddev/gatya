@@ -1,0 +1,128 @@
+---
+cim: ZH-gyakorló
+osszefoglalo: Végtelen, véletlen feladatok a számolós rutinfeladatokhoz, egy ellenőrző lista a ZH előtti estére, és vegyes, ZH-szerű feladatok megoldással.
+allapot: lecke
+kulcsszavak: [ZH, zárthelyi, gyakorlás, vegyes feladatok, ellenőrző lista, lnko, kongruencia, komplex számok]
+forras: Feladatsor_2026 1–4. fejezet · DiMat_ea.pdf
+---
+
+## Végtelen gyakorló: számelmélet
+
+A számolós feladatoknál a ZH-n a gyorsaság is számít. Gyakorold őket addig, amíg **gondolkodás nélkül** mennek: válassz típust, és csináld, amíg 10-es sorozatot nem érsz el!
+
+<MatekGyakorlo tipusok={["lnko", "maradek", "osztoszam", "phi", "hatvanymod", "linkong"]} />
+
+## Végtelen gyakorló: komplex számok
+
+<MatekGyakorlo tipusok={["komplex", "ihatvany", "trig"]} />
+
+## Ellenőrző lista a ZH előtt
+
+Menj végig a listán. Ahol bizonytalan vagy, nyisd meg újra a leckét (a végén lévő **Röviden** doboz általában elég).
+
+| tudom… | lecke |
+|---|---|
+| a halmazműveleteket felsorolással és Venn-diagramon, a De Morgan-azonosságokat | [3](/dimat-nullarol/halmazmuveletek) |
+| hogy $\lvert\mathcal{P}(A)\rvert = 2^n$, és a szitaformulát | [2](/dimat-nullarol/halmazok), [3](/dimat-nullarol/halmazmuveletek) |
+| eldönteni, hogy egy hozzárendelés függvény-e; egyenest felírni két pontból | [4](/dimat-nullarol/fuggvenyek) |
+| a transzformációkat, főleg hogy a zárójelen belül minden fordítva hat | [5](/dimat-nullarol/transzformaciok) |
+| injektivitást és szürjektivitást bizonyítani vagy ellenpéldával cáfolni | [6](/dimat-nullarol/injektiv-szurjektiv) |
+| az indukció három lépését, összegképletre és oszthatóságra | [7](/dimat-nullarol/teljes-indukcio), [8](/dimat-nullarol/indukcio-oszthatosag) |
+| az oszthatósági szabályokat, és hogy összetett osztót relatív prímekre bontunk | [9](/dimat-nullarol/oszthatosag) |
+| a maradékos osztást negatív számra, és az euklideszi algoritmust | [10](/dimat-nullarol/euklideszi-algoritmus) |
+| diofantikus egyenletet megoldani (Bézout visszafelé, általános megoldás) | [11](/dimat-nullarol/diofantikus) |
+| a kanonikus alakból lnko-t, lkkt-t és az osztók számát | [12](/dimat-nullarol/primek) |
+| kongruenciákkal számolni, utolsó jegyet kiszámolni | [13](/dimat-nullarol/kongruenciak) |
+| $\varphi(m)$-et és az Euler–Fermat-tételt nagy hatványokra | [14](/dimat-nullarol/euler-fermat) |
+| lineáris kongruenciát megoldani, és tudom, hány megoldása van | [15](/dimat-nullarol/linearis-kongruenciak) |
+| komplex számokkal számolni algebrai alakban, osztani a konjugálttal | [16](/dimat-nullarol/komplex-szamok) |
+| a trigonometrikus alakot (síknegyed!) és a Moivre-képletet | [17](/dimat-nullarol/trigonometrikus-alak) |
+| az $n$-edik gyököket és az egységgyököket | [18](/dimat-nullarol/gyokvonas) |
+
+## Vegyes feladatok
+
+Ezek a feladatsor mintájára készültek. Előbb papíron oldd meg, csak utána nyisd ki a megoldást!
+
+<Feladat cim="1. halmazok">
+$H = \{1, 2, \dots, 10\}$, $A = \{1, 2, 3, 4, 5\}$, $B = \{2, 4, 6, 8, 10\}$. Add meg: $\overline{A \cup B}$, $A \triangle B$, $|\mathcal{P}(A \cap B)|$.
+
+<Megoldas>
+$A \cup B = \{1, 2, 3, 4, 5, 6, 8, 10\}$, így $\overline{A \cup B} = \{7, 9\}$. $A \triangle B = \{1, 3, 5, 6, 8, 10\}$. $A \cap B = \{2, 4\}$, tehát $|\mathcal{P}(A \cap B)| = 2^2 = 4$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="2. függvény">
+Injektív, szürjektív, bijektív-e $f : \R \to \R$, $f(x) = 5 - 2x$? Ha bijektív, add meg az inverzét!
+
+<Megoldas>
+$5 - 2a = 5 - 2b \Rightarrow a = b$: injektív. $5 - 2x = y \Rightarrow x = \frac{5 - y}{2}$, minden $y$-ra van megoldás: szürjektív. Tehát bijektív, $f^{-1}(y) = \frac{5 - y}{2}$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="3. indukció">
+Bizonyítsd be teljes indukcióval: $3 \mid 4^n - 1$ minden $n \in \N$-re.
+
+<Megoldas>
+$n = 1$: $4 - 1 = 3$. ✓ Lépés: $4^{k+1} - 1 = 4 \cdot 4^k - 1 = 4(4^k - 1) + 3$. Az első tag a feltevés miatt osztható 3-mal, a 3 is, tehát az összeg is. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat cim="4. euklideszi algoritmus">
+Számold ki $(1071, 462)$-t, és írd fel $1071s + 462t$ alakban!
+
+<Megoldas>
+$1071 = 462 \cdot 2 + 147$, $462 = 147 \cdot 3 + 21$, $147 = 21 \cdot 7$. Tehát $(1071, 462) = 21$.
+
+Visszafelé: $21 = 462 - 3 \cdot 147 = 462 - 3(1071 - 2 \cdot 462) = 7 \cdot 462 - 3 \cdot 1071$. Ellenőrzés: $3234 - 3213 = 21$. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat cim="5. diofantikus egyenlet">
+Oldd meg: $21x + 15y = 9$. Melyik megoldásban a legkisebb a nemnegatív $x$?
+
+<Megoldas>
+$(21, 15) = 3 \mid 9$, osztva: $7x + 5y = 3$. $7 = 5 + 2$, $5 = 2 \cdot 2 + 1$, így $1 = 5 - 2 \cdot 2 = 5 - 2(7 - 5) = 3 \cdot 5 - 2 \cdot 7$. Szorozva 3-mal: $x_0 = -6$, $y_0 = 9$. Összes: $x = -6 + 5t$, $y = 9 - 7t$. A legkisebb nemnegatív $x$: $t = 2$, $(x, y) = (4, -5)$. Ellenőrzés: $84 - 75 = 9$. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat cim="6. osztók">
+Hány pozitív osztója van $720$-nak? Mennyi $\varphi(720)$?
+
+<Megoldas>
+$720 = 2^4 \cdot 3^2 \cdot 5$. $d(720) = 5 \cdot 3 \cdot 2 = 30$. $\varphi(720) = 720 \cdot \frac12 \cdot \frac23 \cdot \frac45 = 192$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="7. hatvány maradéka">
+Mennyi maradékot ad $7^{2026}$ 12-vel osztva?
+
+<Megoldas>
+$(7, 12) = 1$, $\varphi(12) = 4$. $2026 = 4 \cdot 506 + 2$, tehát $7^{2026} \equiv 7^2 = 49 \equiv 1 \pmod{12}$. (Valójában már $7^2 \equiv 1$, így minden páros kitevőre 1.)
+</Megoldas>
+</Feladat>
+
+<Feladat cim="8. lineáris kongruencia">
+Oldd meg: $8x \equiv 12 \pmod{20}$.
+
+<Megoldas>
+$(8, 20) = 4 \mid 12$. Osztva: $2x \equiv 3 \pmod 5$. A 2 inverze mod 5 a 3 ($2 \cdot 3 = 6 \equiv 1$), így $x \equiv 9 \equiv 4 \pmod 5$. Mod 20: $x \equiv 4, 9, 14, 19$. Ellenőrzés: $8 \cdot 4 = 32 \equiv 12$. ✓
+</Megoldas>
+</Feladat>
+
+<Feladat cim="9. komplex osztás">
+Számold ki: $\dfrac{3 + 4i}{1 - 2i}$.
+
+<Megoldas>
+$\dfrac{(3 + 4i)(1 + 2i)}{(1 - 2i)(1 + 2i)} = \dfrac{3 + 6i + 4i + 8i^2}{5} = \dfrac{-5 + 10i}{5} = -1 + 2i$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="10. Moivre és gyökvonás">
+Számold ki $(\sqrt{3} + i)^{6}$-t, és add meg $-8i$ köbgyökeit!
+
+<Megoldas>
+$\sqrt 3 + i = 2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)$, így $(\sqrt 3 + i)^6 = 64(\cos\pi + i\sin\pi) = -64$.
+
+$-8i = 8\left(\cos\frac{3\pi}{2} + i\sin\frac{3\pi}{2}\right)$. A köbgyökök hossza 2, szögei $\frac{3\pi/2 + 2k\pi}{3} = \frac{\pi}{2}, \frac{7\pi}{6}, \frac{11\pi}{6}$. Algebrai alakban: $2i$, $-\sqrt 3 - i$, $\sqrt 3 - i$.
+</Megoldas>
+</Feladat>
