@@ -1,0 +1,110 @@
+---
+cim: Függvény, pont, egyenes
+osszefoglalo: Mikor van egy pont a grafikonon, az egyenes meredeksége és tengelymetszete, és az egyenes illesztése két pontra egyenletrendszerrel, ahogy a GeoGebra FitPoly parancsa.
+allapot: lecke
+kulcsszavak: [függvény, grafikon, pont, egyenes, meredekség, tengelymetszet, egyenletrendszer, FitPoly, illesztés]
+forras: functions.pdf
+---
+
+<Lecke>
+
+<Kartya cim="Pont a grafikonon">
+Egy függvény minden $x$-hez **pontosan egy** $y$-t rendel. A grafikon pontjai $(x, f(x))$ alakúak.
+
+Egy $(x_0, y_0)$ pont akkor van a grafikonon, ha $f(x_0) = y_0$.
+
+<Besorolo
+  cim="Rajta van-e az f(x) = x² − 1 grafikonján?"
+  opciok={["rajta van", "nincs rajta"]}
+  elemek={[
+    { kerdes: "(2, 3)", helyes: 0, miert: "f(2) = 4 − 1 = 3. ✓" },
+    { kerdes: "(0, 1)", helyes: 1, miert: "f(0) = −1, nem 1." },
+    { kerdes: "(−3, 8)", helyes: 0, miert: "f(−3) = 9 − 1 = 8. ✓" },
+    { kerdes: "(1, 1)", helyes: 1, miert: "f(1) = 0." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Az egyenes: f(x) = ax + b">
+Az egyenes egyenlete $f(x) = ax + b$:
+
+- $a$ a **meredekség**: ennyit megy fel, ha 1-et lépsz jobbra;
+- $b$ az **$y$-tengelymetszet**: $f(0) = b$.
+
+<SzamValasz helyes={["-2", "5"]} mezok={["a =", "b ="]}>
+Mi a meredeksége és a tengelymetszete az $f(x) = -2x + 5$ egyenesnek?
+</SzamValasz>
+
+<Valasztas valaszok={["nő", "csökken", "vízszintes"]} helyes={1} miert={["A meredekség negatív.", "", "Az a = 0 esetén lenne vízszintes."]}>
+Az $f(x) = -2x + 5$ nő vagy csökken?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Két ponton pontosan egy egyenes">
+A gyakorlat példája: $A(2, 3)$ és $B(8, 5)$. Keressük az $f(x) = ax + b$ egyenest.
+
+Mindkét pontot **behelyettesítjük**: $f(2) = 3$ és $f(8) = 5$, vagyis
+
+$$
+3 = 2a + b, \qquad 5 = 8a + b.
+$$
+
+Két egyenlet, két ismeretlen. Vonjuk ki az elsőt a másodikból: $b$ kiesik.
+
+<SzamValasz helyes="1/3" tipp="5 − 3 = 8a − 2a." magyarazat="2 = 6a, tehát a = 1/3.">
+Mennyi $a$?
+</SzamValasz>
+
+<SzamValasz helyes="7/3" magyarazat="3 = 2 · 1/3 + b, tehát b = 3 − 2/3 = 7/3.">
+Mennyi $b$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Ellenőrizd!">
+Tehát $f(x) = \frac{1}{3}x + \frac{7}{3}$. GeoGebrában ugyanezt adja a `FitPoly(A, B)` parancs (vagy `FitPoly({A, B}, 1)`).
+
+Mindig ellenőrizz a másik ponttal!
+
+<SzamValasz helyes="5" magyarazat="8/3 + 7/3 = 15/3 = 5. ✓ Átmegy B-n.">
+Mennyi $f(8)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Gyorsabban: meredekség képlettel">
+Az egyenletrendszer kivonása mindig ugyanazt adja:
+
+$$
+a = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\text{függőleges változás}}{\text{vízszintes változás}}.
+$$
+
+<SzamValasz helyes="-2" hibak={{"2": "Előjel! Jobbra haladva az egyenes 7-ről 1-re esik.", "-1/2": "Fordítva osztottál: az y-ok különbsége kerül felülre."}}>
+Mennyi a $(1, 7)$ és $(4, 1)$ ponton átmenő egyenes meredeksége?
+</SzamValasz>
+
+<SzamValasz helyes="-2x + 9" valtozok={["x"]} mezok={["f(x) ="]} magyarazat="7 = −2 · 1 + b, tehát b = 9. Ellenőrzés: f(4) = −8 + 9 = 1. ✓">
+Mi az egyenes egyenlete?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Most egyedül">
+<SzamValasz helyes="3/4 x - 1/2" valtozok={["x"]} mezok={["f(x) ="]} tipp="a = (4 − (−2)) / (6 − (−2)) = 6/8." magyarazat="a = 3/4. −2 = 3/4 · (−2) + b, tehát b = −2 + 3/2 = −1/2. Ellenőrzés: f(6) = 9/2 − 1/2 = 4. ✓">
+Melyik egyenes megy át a $(-2, -2)$ és a $(6, 4)$ ponton?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Ha a két x egyforma">
+<Valasztas valaszok={["Egy függőleges egyenes, de az nem függvény", "Egy vízszintes egyenes"]} helyes={0} miert={["", "Vízszintes egyenesnél az y-ok egyeznek, nem az x-ek."]} magyarazat="Az x = 3 egyenes függőleges. Nem függvény, mert a 3-hoz végtelen sok y tartozik. A képletben ilyenkor 0-val kellene osztani.">
+Mi megy át a $(3, 1)$ és a $(3, 5)$ ponton?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $(x_0, y_0)$ a grafikonon van $\iff f(x_0) = y_0$.
+- Egyenes két pontra: helyettesítsd be mindkettőt $y = ax + b$-be, és oldd meg az egyenletrendszert; vagy $a = \frac{y_2 - y_1}{x_2 - x_1}$, utána $b$ egy pontból.
+- Mindig ellenőrizz a másik ponttal. GeoGebra: `FitPoly(A, B)`.
+- Egyforma $x$-ekkel nincs függvény-egyenes.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

@@ -1657,3 +1657,263 @@
   fill: color-mix(in srgb, var(--q4) 45%, var(--surface));
   filter: drop-shadow(0 0 8px var(--q4));
 }
+
+/* typed number answers (SzamValasz, EuklideszKitolto) */
+.gatya-doc .numrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+}
+.gatya-doc .numrow.vec {
+  gap: 6px;
+}
+.gatya-doc .numf {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+.gatya-doc .numl,
+.gatya-doc .paren {
+  font-family: var(--math);
+  font-size: 1.08rem;
+  white-space: nowrap;
+}
+.gatya-doc .paren {
+  font-size: 1.3rem;
+  color: var(--muted);
+}
+.gatya-doc input.numin {
+  font-family: var(--math);
+  font-size: 1.08rem;
+  width: 7.5em;
+  max-width: 100%;
+  background: var(--surface);
+}
+.gatya-doc .numrow.vec input.numin {
+  width: 4.2em;
+}
+.gatya-doc input.numin.small {
+  width: 3.6em;
+}
+.gatya-doc input.numin.wide {
+  width: min(100%, 22em);
+}
+.gatya-doc input.numin.bad {
+  border-color: var(--bad);
+  background: color-mix(in srgb, var(--bad) 8%, var(--surface));
+}
+.gatya-doc .num,
+.gatya-doc .drill-q {
+  font-family: var(--math);
+}
+.gatya-doc .drill-q {
+  font-size: 1.06rem;
+  font-weight: 400;
+}
+.gatya-doc .num-answer {
+  font-size: 1.06rem;
+  overflow-x: auto;
+}
+
+/* Euclidean algorithm by hand */
+.gatya-doc .eu {
+  display: grid;
+  gap: 4px;
+  font-family: var(--math);
+  font-size: 1.08rem;
+  overflow-x: auto;
+}
+.gatya-doc .eu-row {
+  white-space: nowrap;
+}
+.gatya-doc .eu-row b {
+  color: var(--acc);
+}
+.gatya-doc .eu-row b.zero {
+  color: var(--muted);
+}
+.gatya-doc .eu-row b.last {
+  color: var(--good);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.gatya-doc .eu-row.cur {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* lattice point picker (PontRako) */
+.gatya-doc svg.pickgrid {
+  width: 100%;
+  max-width: 340px;
+  justify-self: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+.gatya-doc svg.pickgrid .gl line {
+  stroke: var(--grid);
+  stroke-width: 0.04;
+}
+.gatya-doc svg.pickgrid .ax line {
+  stroke: var(--axis);
+  stroke-width: 0.06;
+}
+.gatya-doc svg.pickgrid text {
+  font: 0.36px var(--font);
+  fill: var(--muted);
+  text-anchor: middle;
+}
+.gatya-doc svg.pickgrid .tick text {
+  font-size: 0.32px;
+}
+.gatya-doc svg.pickgrid .tick text[text-anchor='end'] {
+  text-anchor: end;
+}
+.gatya-doc svg.pickgrid text.axl {
+  font-style: italic;
+  fill: var(--ink);
+}
+.gatya-doc svg.pickgrid text.lbl {
+  font: italic 600 0.44px var(--math);
+  fill: var(--ink);
+  text-anchor: start;
+}
+.gatya-doc svg.pickgrid .given line {
+  stroke: var(--q1);
+  stroke-width: 0.09;
+}
+.gatya-doc svg.pickgrid .given polygon,
+.gatya-doc svg.pickgrid .given circle {
+  fill: var(--q1);
+}
+.gatya-doc svg.pickgrid .mine line {
+  stroke: var(--acc);
+  stroke-width: 0.1;
+}
+.gatya-doc svg.pickgrid .mine polygon {
+  fill: var(--acc);
+}
+.gatya-doc svg.pickgrid .mine.done line {
+  stroke: var(--good);
+}
+.gatya-doc svg.pickgrid .mine.done polygon {
+  fill: var(--good);
+}
+.gatya-doc svg.pickgrid circle.pick {
+  fill: var(--acc);
+  stroke: var(--surface);
+  stroke-width: 0.06;
+}
+.gatya-doc svg.pickgrid circle.pick.done {
+  fill: var(--good);
+}
+
+/* relation grid (ParKijelolo) */
+.gatya-doc .pairgrid-wrap {
+  overflow-x: auto;
+}
+.gatya-doc table.pairgrid {
+  border-collapse: separate;
+  border-spacing: 4px;
+  margin: 0;
+}
+.gatya-doc table.pairgrid th {
+  font-family: var(--math);
+  font-size: 1.02rem;
+  padding: 2px 6px;
+  text-align: center;
+  background: none;
+  border: 0;
+}
+.gatya-doc table.pairgrid td {
+  padding: 0;
+  border: 0;
+}
+.gatya-doc table.pairgrid th.corner {
+  position: relative;
+  min-width: 2.6em;
+  height: 2.2em;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.gatya-doc table.pairgrid th.corner span:first-child {
+  position: absolute;
+  left: 4px;
+  bottom: 2px;
+}
+.gatya-doc table.pairgrid th.corner span:last-child {
+  position: absolute;
+  right: 4px;
+  top: 2px;
+}
+.gatya-doc .paircell {
+  appearance: none;
+  min-width: 3.9em;
+  min-height: 2.3em;
+  border: 1.5px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  font: 0.86rem var(--math);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.gatya-doc .paircell.on {
+  border-color: var(--acc);
+  background: color-mix(in srgb, var(--acc) 18%, var(--surface));
+  color: var(--ink);
+  font-weight: 600;
+}
+.gatya-doc .paircell.right {
+  border-color: var(--good);
+  background: color-mix(in srgb, var(--good) 16%, var(--surface));
+}
+.gatya-doc .paircell.bad {
+  border-color: var(--bad);
+  background: color-mix(in srgb, var(--bad) 12%, var(--surface));
+}
+
+/* Venn shading (VennSzinezo) */
+.gatya-doc svg.venn-pick {
+  width: 100%;
+  max-width: 380px;
+  justify-self: center;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.gatya-doc svg.venn-pick .universe {
+  fill: var(--surface);
+  stroke: var(--axis);
+  stroke-width: 1.2;
+}
+.gatya-doc svg.venn-pick .ring {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.6;
+  pointer-events: none;
+}
+.gatya-doc svg.venn-pick .shaded {
+  fill: color-mix(in srgb, var(--acc) 48%, var(--surface));
+}
+.gatya-doc svg.venn-pick .shaded.bad {
+  fill: color-mix(in srgb, var(--bad) 45%, var(--surface));
+}
+.gatya-doc svg.venn-pick .shaded.done {
+  fill: color-mix(in srgb, var(--good) 45%, var(--surface));
+}
+.gatya-doc svg.venn-pick .setname {
+  font: italic 600 17px var(--math);
+  fill: var(--ink);
+  text-anchor: middle;
+  pointer-events: none;
+}
+.gatya-doc svg.venn-pick .setname.small {
+  font-size: 13px;
+  fill: var(--muted);
+}

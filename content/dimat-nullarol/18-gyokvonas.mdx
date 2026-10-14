@@ -1,0 +1,105 @@
+---
+cim: Gyökvonás és egységgyökök
+osszefoglalo: Miért van egy komplex számnak pontosan n darab n-edik gyöke, a gyökképlet, a gyökök mint szabályos sokszög, és az egységgyökök.
+allapot: lecke
+kulcsszavak: [gyökvonás, n-edik gyök, komplex gyök, egységgyök, szabályos sokszög, négyzetgyök, köbgyök, Moivre-képlet]
+forras: DiMat_ea.pdf 52–54. dia
+---
+
+<Lecke>
+
+<Kartya cim="Hány négyzetgyöke van a −4-nek?">
+A valós számok között egy sem. A komplex számok között viszont kettő:
+
+$$
+(2i)^2 = 4i^2 = -4, \qquad (-2i)^2 = -4.
+$$
+
+<SzamValasz helyes="2i, -2i" forma="halmaz" gombok={["i"]}>
+Melyik számok négyzete $-4$?
+</SzamValasz>
+
+És a $8$ köbgyökei? A valós számok között csak a $2$. Látni fogjuk, hogy $\C$-ben **három** van.
+</Kartya>
+
+<Kartya cim="Visszafelé a Moivre-képleten">
+Keressük $w$-t, hogy $w^n = z$. A Moivre-képlet szerint $w^n$ hossza $|w|^n$, a szöge $n$-szer akkora. Tehát:
+
+- $|w| = \sqrt[n]{|z|}$ (a szokásos valós gyök);
+- $w$ szöge $\frac{\varphi}{n}$… **de nem csak az**! A $\varphi + 2\pi$, $\varphi + 4\pi$, … ugyanaz az irány, mint $\varphi$, és ezeket $n$-nel osztva **más** szöget kapunk.
+
+$$
+w_k = \sqrt[n]{|z|}\left(\cos\frac{\varphi + 2k\pi}{n} + i\sin\frac{\varphi + 2k\pi}{n}\right), \qquad k = 0, 1, \dots, n-1.
+$$
+
+<Valasztas valaszok={["k = 0, 1, …, n − 1: pontosan n darab", "végtelen sok, minden k-ra egy"]} helyes={0} miert={["", "k = n már ugyanazt adja, mint k = 0: a szög pontosan 2π-vel nagyobb."]}>
+Hány különböző $n$-edik gyök van ($z \ne 0$)?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A 2i négyzetgyökei">
+$|2i| = 2$, $\varphi = \frac{\pi}{2}$, $n = 2$.
+
+<SzamValasz helyes={["√2", "π/4", "5π/4"]} mezok={["|w| =", "φ₀ =", "φ₁ ="]} gombok={["π", "√"]} hibak={{"√2;π/4;3π/4": "A 2kπ-t osztás előtt adjuk a szöghöz: (π/2 + 2π)/2 = 5π/4, nem π/4 + π/2."}} magyarazat="|w| = √2; φ₀ = (π/2)/2 = π/4; φ₁ = (π/2 + 2π)/2 = 5π/4.">
+Mi a gyökök hossza és két szöge?
+</SzamValasz>
+
+<SzamValasz helyes="1+i, -1-i" forma="halmaz" gombok={["i"]} magyarazat="√2(cos π/4 + i sin π/4) = 1 + i, és a másik az ellentettje. Ellenőrzés: (1 + i)² = 1 + 2i + i² = 2i. ✓">
+Algebrai alakban?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Szabályos sokszög">
+A gyökök mind ugyanakkora, $\sqrt[n]{|z|}$ sugarú körön vannak, egymástól $\frac{2\pi}{n}$ szögre: **szabályos $n$-szöget** alkotnak. (Két gyök: egymással szemben; három: szabályos háromszög.)
+
+<KomplexSik mod="gyok" modok={["gyok", "egyseg"]} z={[8, 0]} n={3} />
+
+<SzamValasz helyes="2, -1+√3 i, -1-√3 i" forma="halmaz" gombok={["i", "√"]} tipp="|8| = 8, φ = 0, ∛8 = 2. A szögek 0, 2π/3, 4π/3." magyarazat="2(cos 0 + i sin 0) = 2; 2(cos 2π/3 + i sin 2π/3) = −1 + √3 i; 2(cos 4π/3 + i sin 4π/3) = −1 − √3 i.">
+Mik a $8$ köbgyökei?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az i hatodik gyökei">
+$i = \cos\frac{\pi}{2} + i\sin\frac{\pi}{2}$, $n = 6$. A gyökök hossza $\sqrt[6]{1} = 1$, a szögek $\frac{\pi/2 + 2k\pi}{6} = \frac{\pi}{12} + \frac{k\pi}{3}$.
+
+<SzamValasz helyes="π/12, 5π/12, 9π/12, 13π/12, 17π/12, 21π/12" forma="halmaz" gombok={["π"]} magyarazat="π/12-től indulva π/3 = 4π/12-enként. Szabályos hatszög az egységkörön.">
+Sorold fel a hat szöget!
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Egységgyökök">
+Az $1$ $n$-edik gyökei az **$n$-edik egységgyökök**:
+
+$$
+\varepsilon_k = \cos\frac{2k\pi}{n} + i\sin\frac{2k\pi}{n}, \qquad k = 0, \dots, n-1.
+$$
+
+Az egységkörön vannak, és az egyik mindig maga az $1$.
+
+<SzamValasz helyes="1, i, -1, -i" forma="halmaz" gombok={["i"]}>
+Mik a negyedik egységgyökök?
+</SzamValasz>
+
+<SzamValasz helyes="1, -1/2+√3/2 i, -1/2-√3/2 i" forma="halmaz" gombok={["i", "√"]}>
+Mik a harmadik egységgyökök?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Egy gyökből az összes">
+Ha megvan egyetlen $n$-edik gyök, a többit megkapod, ha megszorzod az összes $n$-edik egységgyökkel (ami $\frac{2\pi}{n}$-nel forgat).
+
+<SzamValasz helyes="2i, -2, -2i" forma="halmaz" gombok={["i"]} tipp="Szorozd meg a 2-t i-vel, −1-gyel és −i-vel." magyarazat="A 16 negyedik gyökei: 2, 2i, −2, −2i. Egy négyzet csúcsai a 2 sugarú körön.">
+A $16$ egyik negyedik gyöke $2$. Mi a másik három?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $z \ne 0$-nak pontosan $n$ darab $n$-edik gyöke van: $w_k = \sqrt[n]{|z|}\left(\cos\frac{\varphi + 2k\pi}{n} + i\sin\frac{\varphi + 2k\pi}{n}\right)$, $k = 0, \dots, n-1$.
+- A $2k\pi$-t **osztás előtt** add a szöghöz.
+- A gyökök szabályos $n$-szöget alkotnak a $\sqrt[n]{|z|}$ sugarú körön.
+- Egységgyökök: $\cos\frac{2k\pi}{n} + i\sin\frac{2k\pi}{n}$; egy gyökből az összes = szorzás az egységgyökökkel.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

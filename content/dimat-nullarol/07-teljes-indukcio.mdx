@@ -1,0 +1,152 @@
+---
+cim: Teljes indukció
+osszefoglalo: Miért működik a teljes indukció, a bizonyítás három lépése, és lépésről lépésre kidolgozott összegképletek.
+allapot: lecke
+kulcsszavak: [teljes indukció, kezdőlépés, indukciós feltevés, indukciós lépés, dominó, Peano-axiómák, összegképlet, páratlan számok összege, négyzetösszeg]
+forras: DiMat_ea.pdf 12–16. dia · Feladatsor 2.1–2.7
+---
+
+<Lecke>
+
+<Kartya cim="Végtelen sok állítás egyszerre">
+Nézd meg ezeket:
+
+$$
+1 = 1^2, \qquad 1 + 3 = 2^2, \qquad 1 + 3 + 5 = 3^2, \qquad 1 + 3 + 5 + 7 = 4^2.
+$$
+
+Úgy tűnik, az első $n$ páratlan szám összege mindig $n^2$. De **végtelen sok** $n$ van: nem tudjuk mindet kipróbálni. Erre való a **teljes indukció**.
+
+<SzamValasz helyes="25" magyarazat="1 + 3 + 5 + 7 + 9 = 25 = 5². Eddig stimmel.">
+Mennyi $1 + 3 + 5 + 7 + 9$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A dominóelv">
+Képzelj el végtelen sok dominót egy sorban. Mind eldől, ha:
+
+1. **az első eldől**, és
+2. **bármelyik dominó eldönti a következőt**.
+
+Nem kell egyenként meglökni őket. Az indukció ugyanez állításokkal.
+
+<IndukcioDomino />
+
+<Valasztas valaszok={["Igen, mind eldől.", "Nem, egy sem dől el."]} helyes={1} miert={["Ha az elsőt senki sem löki meg, a láncreakció el sem indul.", ""]}>
+Ha a 2. feltétel igaz (minden dominó eldönti a következőt), de az elsőt **nem** lökjük meg, eldől-e mind?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A recept">
+Legyen $T(n)$ egy állítás, amit minden $n \in \N$-re be akarunk látni.
+
+<Lepesek>
+<Lepes>
+**Kezdőlépés:** igazoljuk $T(1)$-et.
+</Lepes>
+<Lepes>
+**Indukciós feltevés:** feltesszük, hogy $T(k)$ igaz valamilyen $k$-ra.
+</Lepes>
+<Lepes>
+**Indukciós lépés:** ebből, a feltevést **felhasználva**, bebizonyítjuk $T(k+1)$-et.
+</Lepes>
+</Lepesek>
+
+Miért elég? Az igaz $T(n)$-ek halmaza tartalmazza az 1-et, és minden eleme után a következőt is. A Peano-axiómák (P5) szerint $\N$ a **legszűkebb** ilyen halmaz, tehát az összes természetes szám benne van.
+
+<Valasztas valaszok={["Bebizonyítjuk, hogy T(k) igaz", "Feltesszük, hogy T(k) igaz, és ebből bizonyítjuk T(k+1)-et"]} helyes={1} miert={["Nem: T(k)-t nem bizonyítjuk, hanem feltesszük. Ez a lépés csak azt mutatja meg, hogy minden dominó eldönti a következőt.", ""]}>
+Mit csinálunk az indukciós lépésben?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="1. lépés: n = 1">
+Bizonyítsuk be: $1 + 3 + 5 + \dots + (2n - 1) = n^2$.
+
+**Kezdőlépés:** $n = 1$-re a bal oldal csak az első tag, a jobb oldal $1^2$.
+
+<SzamValasz helyes={["1", "1"]} mezok={["bal oldal =", "jobb oldal ="]} magyarazat="Mindkettő 1, tehát T(1) igaz. ✓">
+Mennyi a két oldal $n = 1$-re?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="2–3. lépés: k-ból k+1">
+**Feltesszük:** $1 + 3 + \dots + (2k - 1) = k^2$.
+
+**Cél:** $1 + 3 + \dots + (2k - 1) + \big(2(k+1) - 1\big) = (k+1)^2$.
+
+A cél bal oldalán az első $k$ tag pont a feltevés bal oldala! Cseréld le $k^2$-re:
+
+$$
+\underbrace{1 + 3 + \dots + (2k - 1)}_{k^2} + (2k + 1).
+$$
+
+<SzamValasz helyes="k^2 + 2k + 1" valtozok={["k"]} magyarazat="k² + 2k + 1 = (k + 1)², pontosan a cél jobb oldala. ✓ Tehát az állítás minden n-re igaz.">
+Mivel egyenlő tehát a cél bal oldala, $k$-val kifejezve?
+</SzamValasz>
+
+<Valasztas valaszok={["(k + 1)²", "k² + 1", "2k²"]} helyes={0} miert={["", "Kibontva (k+1)² = k² + 2k + 1, nem k² + 1.", "Nem."]} sym>
+És ez egyenlő ezzel:
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A legfontosabb trükk">
+Az indukciós lépésben **mindig keresd meg a feltevést** a $k+1$-es állításban. Összegképletnél ez könnyű: a $k+1$-es összeg = a $k$-as összeg + **egy új tag**.
+
+<SzamValasz helyes="k+1" valtozok={["k"]} hibak={{"k": "Ez a k-adik tag. Az összeghez a következő, a (k+1)-edik tag adódik hozzá."}}>
+**2.1.** $1 + 2 + \dots + n = \frac{n(n+1)}{2}$. Melyik új tag adódik hozzá, amikor $k$-ról $k+1$-re lépünk?
+</SzamValasz>
+
+<SzamValasz helyes="(k+1)(k+2)/2" valtozok={["k"]} magyarazat="A cél jobb oldala: a képletbe n = k + 1-et írunk: (k+1)(k+2)/2.">
+Mi a cél jobb oldala, vagyis a képlet $n = k + 1$-re?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Fejezd be a 2.1-et">
+A feltevés szerint az első $k$ tag összege $\frac{k(k+1)}{2}$. Ehhez jön a $(k+1)$:
+
+$$
+\frac{k(k+1)}{2} + (k + 1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(\ \ ?\ \ )}{2}.
+$$
+
+<SzamValasz helyes="k+2" valtozok={["k"]} magyarazat="A közös (k+1) tényezőt kiemelve: (k+1)(k + 2)/2. Ez pont a cél. ✓">
+Mi kerül a kérdőjel helyére?
+</SzamValasz>
+
+<Tipp>
+A közös $(k+1)$ tényezőt **minél előbb emeld ki**: a cél képletben is ott van, és így nem kell nagy polinomokat kibontani.
+</Tipp>
+</Kartya>
+
+<Kartya cim="Négyzetösszeg: 2.2">
+$1^2 + 2^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}$.
+
+A lépés: $\frac{k(k+1)(2k+1)}{6} + (k+1)^2$. Emeld ki $\frac{k+1}{6}$-ot:
+
+$$
+\frac{k+1}{6}\big[k(2k+1) + 6(k+1)\big] = \frac{k+1}{6}\,\big(2k^2 + 7k + 6\big).
+$$
+
+<SzamValasz helyes="(k+2)(2k+3)" valtozok={["k"]} tipp="A célban n = k + 1: (k+1)(k+2)(2(k+1)+1)/6. Mi marad a (k+1)/6 után?" magyarazat="2k² + 7k + 6 = (k + 2)(2k + 3), és a cél (k+1)(k+2)(2k+3)/6. ✓">
+Írd fel $2k^2 + 7k + 6$-ot szorzatként! (Segít, ha megnézed, mi a cél.)
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Ellenőrizd számokkal">
+Egy képletet mindig érdemes néhány kis $n$-re kipróbálni, mielőtt bizonyítani kezded. Ha már $n = 3$-ra sem jön ki, kár bizonyítani.
+
+<IndukcioEllenorzo />
+
+<SzamValasz helyes="14" magyarazat="1 + 4 + 9 = 14, és a képlet: 3 · 4 · 7 / 6 = 14. ✓">
+Mennyi $1^2 + 2^2 + 3^2$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- **Kezdőlépés:** $T(1)$. **Feltevés:** $T(k)$. **Lépés:** $T(k) \Rightarrow T(k+1)$, a feltevést **felhasználva**.
+- Összegképletnél: a $k+1$-es összeg = a $k$-as összeg (feltevés) + az új tag.
+- Írd fel előre a célt ($n = k+1$ a képletbe), és emeld ki a közös tényezőt, amilyen korán csak lehet.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

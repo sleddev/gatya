@@ -1,0 +1,89 @@
+---
+cim: Az érintő egyenlete
+osszefoglalo: Az érintő egyenlete a derivált segítségével, a laborjegyzet második módszere (egyet jobbra, m-et fel), és a GeoGebra Tangent parancsa.
+allapot: lecke
+kulcsszavak: [érintő, érintő egyenlete, derivált, meredekség, pont-meredekség alak, Tangent, Line]
+forras: functions.pdf
+---
+
+<Lecke>
+
+<Kartya cim="Mi kell egy egyeneshez?">
+Egy egyenest megad **egy pontja** és a **meredeksége**. Az érintőnél mindkettő megvan:
+
+- a pont: $P = (x_0, f(x_0))$;
+- a meredekség: $m = f'(x_0)$.
+
+Az egyenes, ami átmegy $P$-n és meredeksége $m$:
+
+$$
+y - f(x_0) = f'(x_0)\,(x - x_0).
+$$
+
+<Valasztas valaszok={["f(x₀)", "f′(x₀)", "x₀"]} helyes={1} miert={["Ez a pont magassága, nem a meredekség.", "", "Ez a pont helye."]}>
+Mi az érintő meredeksége az $x_0$ pontban?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Lépésről lépésre">
+A gyakorlat függvénye: $f(x) = x^3 - 3x + 1$, és az érintő az $x_0 = 2$ pontban.
+
+<SzamValasz helyes="3" mezok={["f(2) ="]}>
+1. A pont magassága: mennyi $f(2)$?
+</SzamValasz>
+
+<SzamValasz helyes="9" mezok={["f′(2) ="]} tipp="f′(x) = 3x² − 3.">
+2. A meredekség: mennyi $f'(2)$?
+</SzamValasz>
+
+<SzamValasz helyes="9x - 15" valtozok={["x"]} mezok={["y ="]} tipp="y − 3 = 9(x − 2), rendezd y-ra." magyarazat="y = 9x − 18 + 3 = 9x − 15.">
+3. Az érintő egyenlete?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A második módszer: egyet jobbra, m-et fel">
+A laborjegyzet így is csinálja: a $P$ pontból lépj **1-et jobbra** és **$m$-et fel**. A kapott $Q = (x_0 + 1,\ f(x_0) + m)$ pont is az érintőn van, és a `Line(P, Q)` parancs megrajzolja az egyenest.
+
+<PontRako cel={[3, 12]} meret={13} pontok={[{p: [2, 3], cimke: "P"}]} hibak={{"3;9": "Ez csak a meredekség: P magasságához (3) kell hozzáadni.", "11;3": "Jobbra 1-et kell lépni, fel m-et (9-et)."}} magyarazat="Q = (2 + 1, 3 + 9) = (3, 12). Ellenőrzés: 9 · 3 − 15 = 12. ✓">
+$P = (2, 3)$, $m = 9$. Hol van $Q$?
+</PontRako>
+
+GeoGebrában közvetlenül: `Tangent(2, f)`.
+</Kartya>
+
+<Kartya cim="Most egyedül">
+<SzamValasz helyes="-4x + 1" valtozok={["x"]} mezok={["y ="]} tipp="f(0) = 1, f′(x) = 2x − 4, f′(0) = −4." magyarazat="y − 1 = −4(x − 0), tehát y = −4x + 1.">
+$f(x) = x^2 - 4x + 1$. Mi az érintő egyenlete a $(0, 1)$ pontban?
+</SzamValasz>
+
+<SzamValasz helyes="2x - 1" valtozok={["x"]} mezok={["y ="]}>
+$f(x) = x^2$. Mi az érintő egyenlete az $x_0 = 1$ pontban?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Érintő a szélsőértéknél">
+<SzamValasz helyes="-3" valtozok={["x"]} mezok={["y ="]} magyarazat="f′(2) = 0, tehát az érintő vízszintes: y = f(2) = −3.">
+$f(x) = x^2 - 4x + 1$. Mi az érintő egyenlete az $x_0 = 2$ pontban (ez a minimumhely)?
+</SzamValasz>
+
+<Valasztas valaszok={["vízszintes", "függőleges", "45°-os"]} helyes={0} miert={["", "Függőleges érintő meredeksége nem is szám.", "Ahhoz f′ = 1 kellene."]}>
+Milyen az érintő egy szélsőértékhelyen?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Egy harmadfokú">
+<SzamValasz helyes="-x + 3" valtozok={["x"]} mezok={["y ="]} tipp="f(1) = 2, f′(x) = 3x² − 4x, f′(1) = −1." magyarazat="y − 2 = −1 · (x − 1), tehát y = −x + 3.">
+$f(x) = x^3 - 2x^2 + 3$. Mi az érintő egyenlete az $x_0 = 1$ pontban?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Érintő: $y - f(x_0) = f'(x_0)(x - x_0)$. Kell hozzá $f(x_0)$ és $f'(x_0)$.
+- Második módszer: $Q = (x_0 + 1, f(x_0) + m)$, és `Line(P, Q)`.
+- GeoGebra: `Tangent(x0, f)`.
+- Szélsőértéknél az érintő vízszintes: $y = f(x_0)$.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

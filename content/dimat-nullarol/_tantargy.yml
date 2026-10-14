@@ -1,0 +1,11 @@
+cim: DiMat a nulláról
+rovid: DiMat 0→ZH
+szin: '#1F6FB2'
+szin_sotet: '#6CB2F0'
+oktato: önálló gyakorló kurzus · a Feladatsor_2026 és az előadásdiák alapján
+sorrend: 1.5
+leiras: >-
+  Lépésenként felépített kurzus a Diszkrét matematika zárthelyijeire, az előadásdiák (DiMat_ea.pdf) és
+  a gyakorlati Feladatsor_2026 1–4. fejezete alapján: halmazok, függvények, teljes indukció, számelmélet
+  és komplex számok. Minden lecke rövid kártyákból áll: egy gondolat, utána rögtön egy feladat, és csak
+  akkor lépsz tovább, ha megoldottad. Az eredményeket be kell írnod, a program ellenőrzi.

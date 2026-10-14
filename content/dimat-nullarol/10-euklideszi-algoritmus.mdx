@@ -1,0 +1,129 @@
+---
+cim: Maradékos osztás és az euklideszi algoritmus
+osszefoglalo: A maradékos osztás tétele negatív számokra is, a legnagyobb közös osztó és a legkisebb közös többszörös, és az euklideszi algoritmus kézzel, lépésről lépésre.
+allapot: lecke
+kulcsszavak: [maradékos osztás, hányados, maradék, negatív maradék, legnagyobb közös osztó, lnko, legkisebb közös többszörös, lkkt, relatív prím, euklideszi algoritmus]
+forras: DiMat_ea.pdf 24–27. dia · Feladatsor 3.8
+---
+
+<Lecke>
+
+<Kartya cim="Maradékos osztás">
+Bármely $a$ egészhez és $b \ne 0$-hoz **egyértelműen** van $q$ (hányados) és $r$ (maradék), hogy
+
+$$
+a = b \cdot q + r, \qquad 0 \le r < |b|.
+$$
+
+Szemléletesen: 0-ból $b$ hosszú ugrásokkal megyünk $a$ felé, amíg át nem lépnénk. A maradék a hátralévő darab.
+
+<SzamValasz helyes={["3", "2"]} mezok={["q =", "r ="]}>
+$17 = 5 \cdot q + r$. Mennyi $q$ és $r$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Negatív szám: a maradék sosem negatív">
+$-17$ osztása 5-tel. A kézenfekvő $-17 = 5 \cdot (-3) - 2$ **rossz**, mert a maradék $-2 < 0$. Egy ugrással tovább kell menni balra, és onnan jobbra lépni vissza:
+
+<MaradekosOsztas a={-17} b={5} />
+
+<SzamValasz helyes={["-4", "3"]} mezok={["q =", "r ="]} hibak={{"-3;-2": "A maradék nem lehet negatív! Menj még egyet balra: 5 · (−4) = −20, és onnan −17-ig 3 van."}}>
+$-17 = 5 \cdot q + r$, $0 \le r < 5$. Mennyi $q$ és $r$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Legnagyobb közös osztó">
+$(a, b)$ az $a$ és $b$ **legnagyobb közös osztója**: az a $d \in \N$, ami osztja mindkettőt, és **minden** közös osztó osztója is. (Pozitív számokra ez ugyanaz, mint a legnagyobb közös osztó méret szerint.)
+
+$a$ és $b$ **relatív prímek**, ha $(a, b) = 1$. Például $(8, 15) = 1$, pedig egyik sem prím.
+
+<SzamValasz helyes="1, 2, 3, 4, 6, 12" forma="halmaz">
+Sorold fel 36 és 84 pozitív közös osztóit!
+</SzamValasz>
+
+<SzamValasz helyes="12">
+Tehát mennyi $(84, 36)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az ötlet: (a, b) = (b, r)">
+Nagy számoknál az osztók felsorolása reménytelen. A trükk: ha $a = bq + r$, akkor
+
+$$
+(a, b) = (b, r).
+$$
+
+Miért? $r = a - bq$, tehát ami osztja $a$-t és $b$-t, az osztja $r$-et is (lineáris kombináció). És fordítva: ami osztja $b$-t és $r$-et, az osztja $a = bq + r$-et. A közös osztók **ugyanazok**.
+
+<Valasztas valaszok={["(36, 12)", "(84, 12)", "(48, 36)"]} helyes={0} miert={["", "A nagyobbik, 84 kiesik; a kisebbik és a maradék marad.", "A 48 nem a maradék."]} sym>
+$84 = 36 \cdot 2 + 12$. Melyik párral egyenlő $(84, 36)$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Az algoritmus">
+Ismételjük, amíg a maradék 0 nem lesz:
+
+<Lepesek>
+<Lepes>
+$a = b \cdot q_1 + r_1$.
+</Lepes>
+<Lepes>
+Lépj egyet: az **osztóból osztandó**, a **maradékból osztó** lesz: $b = r_1 \cdot q_2 + r_2$.
+</Lepes>
+<Lepes>
+Ismételd, amíg a maradék 0.
+</Lepes>
+<Lepes>
+Az **utolsó nem nulla maradék** a legnagyobb közös osztó.
+</Lepes>
+</Lepesek>
+
+<EuklideszKitolto a={84} b={36} />
+</Kartya>
+
+<Kartya cim="Szemléletesen: négyzetek">
+Egy $a \times b$-s téglalapból vágj le annyi $b$ oldalú négyzetet, amennyit csak lehet; a maradék csíkkal ugyanígy. Az utolsó négyzet oldala az lnko: ez a **legnagyobb** négyzet, amivel az egész téglalap hézag nélkül lefedhető.
+
+<EuklideszTeglalap a={168} b={64} />
+
+<SzamValasz helyes="8" magyarazat="168 = 64 · 2 + 40, 64 = 40 · 1 + 24, 40 = 24 · 1 + 16, 24 = 16 · 1 + 8, 16 = 8 · 2. Tehát 8.">
+Mennyi $(168, 64)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az előadás példája">
+<EuklideszKitolto a={1227} b={216} magyarazat="Hat sor kellett; minden sorban a maradék kisebb lett, ezért az algoritmus biztosan véget ér." />
+</Kartya>
+
+<Kartya cim="Most egyedül: 3.8">
+<EuklideszKitolto a={672} b={360} />
+
+<SzamValasz helyes="13" tipp="Az előjel nem számít: (455, −312) = (455, 312). Utána euklideszi algoritmus." magyarazat="455 = 312 · 1 + 143, 312 = 143 · 2 + 26, 143 = 26 · 5 + 13, 26 = 13 · 2.">
+Mennyi $(455, -312)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Legkisebb közös többszörös">
+$[a, b]$ a **legkisebb közös többszörös**: a legkisebb pozitív szám, amit $a$ és $b$ is oszt. Pozitív számokra
+
+$$
+(a, b) \cdot [a, b] = a \cdot b,
+$$
+
+így az lnko-ból egy osztással megvan.
+
+<SzamValasz helyes="252" magyarazat="84 · 36 / 12 = 3024 / 12 = 252.">
+$(84, 36) = 12$. Mennyi $[84, 36]$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $a = bq + r$, $0 \le r < |b|$; a maradék **sosem negatív** (negatív $a$-nál lefelé kerekített hányados).
+- $(a, b) = (b, r)$, mert a közös osztók ugyanazok.
+- Euklideszi algoritmus: osztóból osztandó, maradékból osztó, amíg a maradék 0. Az **utolsó nem nulla maradék** az lnko.
+- $(a, b)\,[a, b] = ab$ pozitív számokra.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

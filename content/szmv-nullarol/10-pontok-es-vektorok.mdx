@@ -1,0 +1,100 @@
+---
+cim: Pontok távolsága és a vektor
+osszefoglalo: Két pont távolsága Pitagorasz-tétellel, a vektor mint irány és hossz kezdőpont nélkül, az AB vektor „vég mínusz kezdet” szabállyal, és a GeoGebra Distance, Vector, Translate parancsai.
+allapot: lecke
+kulcsszavak: [pont, távolság, Pitagorasz-tétel, vektor, irányított szakasz, vég mínusz kezdet, ellentett vektor, Distance, Vector, Translate]
+forras: vector operations.pdf · vektorok.ggb
+---
+
+<Lecke>
+
+<Kartya cim="Két pont távolsága">
+A gyakorlat példája: $A(2, 3)$ és $B(5, 7)$. A vízszintes eltérés $5 - 2 = 3$, a függőleges $7 - 3 = 4$. Ez egy derékszögű háromszög két befogója, a távolság az átfogó:
+
+$$
+d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}.
+$$
+
+<SzamValasz helyes="5" gombok={["√"]}>
+Mennyi $A(2, 3)$ és $B(5, 7)$ távolsága?
+</SzamValasz>
+
+GeoGebra: `Distance(A, B)`.
+</Kartya>
+
+<Kartya cim="Gyakorold">
+<SzamValasz helyes="13" gombok={["√"]} tipp="Eltérések: 12 és 5." magyarazat="√(12² + 5²) = √169 = 13.">
+Mennyi $(-4, 1)$ és $(8, 6)$ távolsága?
+</SzamValasz>
+
+<SzamValasz helyes="√10" gombok={["√"]} magyarazat="√(1² + 3²) = √10. Nem kell tizedes tört, a √10 pontos.">
+Mennyi $(1, 1)$ és $(2, 4)$ távolsága?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A vektor: irány és hossz">
+A **vektor** egy irányított szakasz: van **iránya** és **hossza**, de **nincs rögzített kezdőpontja**. Ugyanaz a $(3, 4)$ vektor bárhonnan indulhat: „menj 3-at jobbra és 4-et fel”.
+
+GeoGebrában a `Translate(u, A)` parancs az $\mathbf{u}$ vektor másolatát az $A$ pontból indítja.
+
+<PontRako cel={[2, 3]} kezdo={[-1, -1]} pontok={[{p: [-1, -1], cimke: "A"}]} nyilak={[{a: [0, 0], b: [3, 4], cimke: "u"}]} meret={5} magyarazat="(−1 + 3, −1 + 4) = (2, 3).">
+Indítsd az $\mathbf{u} = (3, 4)$ vektort az $A(-1, -1)$ pontból! Hova mutat a vége?
+</PontRako>
+</Kartya>
+
+<Kartya cim="Az AB vektor: vég mínusz kezdet">
+Az $A$-ból $B$-be mutató vektor:
+
+$$
+\overrightarrow{AB} = (B_x - A_x,\ B_y - A_y).
+$$
+
+**Vég mínusz kezdet.** GeoGebra: `u = Vector(A, B)`.
+
+<SzamValasz helyes={["3", "4"]} forma="vektor">
+$A(2, 3)$, $B(5, 7)$. Mennyi $\overrightarrow{AB}$?
+</SzamValasz>
+
+<SzamValasz helyes={["4", "-3"]} forma="vektor" hibak={{"-4;3": "Fordítva vontál ki: vég mínusz kezdet, vagyis B − A."}}>
+$A(-1, 2)$, $B(3, -1)$. Mennyi $\overrightarrow{AB}$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A távolság a vektor hossza">
+Vedd észre: a két pont távolsága éppen az $\overrightarrow{AB}$ vektor hossza. A $(3, 4)$ vektor hossza $\sqrt{9 + 16} = 5$.
+
+<SzamValasz helyes="5" gombok={["√"]} magyarazat="AB = (4, −3), hossza √(16 + 9) = 5.">
+$A(-1, 2)$, $B(3, -1)$. Mennyi $|AB|$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Fordított irány">
+$\overrightarrow{BA}$ az ellenkező irányba mutat: $\overrightarrow{BA} = -\overrightarrow{AB}$. A hossza ugyanaz.
+
+<SzamValasz helyes={["-3", "-4"]} forma="vektor">
+$A(2, 3)$, $B(5, 7)$. Mennyi $\overrightarrow{BA}$?
+</SzamValasz>
+
+<PontRako cel={[-3, -4]} kezdo={[0, 0]} meret={5} nyilak={[{a: [0, 0], b: [3, 4], cimke: "AB"}]}>
+Rajzold be az origóból a $\overrightarrow{BA}$ vektort: hova mutat a vége?
+</PontRako>
+</Kartya>
+
+<Kartya cim="Visszafelé: hol a végpont?">
+Ha a kezdőpont és a vektor adott, a végpont: **kezdet + vektor**.
+
+<SzamValasz helyes={["7", "-1"]} forma="vektor" mezok={["x", "y"]} magyarazat="B = A + u = (4 + 3, 2 − 3) = (7, −1).">
+$A(4, 2)$, és $\overrightarrow{AB} = (3, -3)$. Hol van $B$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Távolság: $d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$. GeoGebra: `Distance(A, B)`.
+- A vektornak iránya és hossza van, kezdőpontja nincs (`Translate` bárhonnan indítja).
+- $\overrightarrow{AB} = B - A$ (vég mínusz kezdet). GeoGebra: `Vector(A, B)`.
+- $\overrightarrow{BA} = -\overrightarrow{AB}$; a távolság az $\overrightarrow{AB}$ hossza; $B = A + \overrightarrow{AB}$.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

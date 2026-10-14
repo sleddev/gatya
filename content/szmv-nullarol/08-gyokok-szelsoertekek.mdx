@@ -1,0 +1,114 @@
+---
+cim: Gyökök és szélsőértékek
+osszefoglalo: Zérushelyek és többszörös gyökök, a szélsőérték megkeresése a derivált segítségével (f′ = 0 és előjelváltás), maximum vagy minimum a második deriválttal, és a GeoGebra Root és Extremum parancsai.
+allapot: lecke
+kulcsszavak: [gyök, zérushely, többszörös gyök, szélsőérték, maximum, minimum, derivált, második derivált, inflexiós pont, Root, Extremum]
+forras: functions.pdf · root_extremum_examples.zip
+---
+
+<Lecke>
+
+<Kartya cim="Gyök: ahol metszi a tengelyt">
+Az $f$ **gyöke** (zérushelye) az az $x$, ahol $f(x) = 0$: itt metszi vagy érinti a grafikon az $x$ tengelyt. GeoGebra: `Root(f)`.
+
+<SzamValasz helyes="1, 3" forma="halmaz" tipp="Szorzattá bontható: (x − 1)(x − 3)." >
+Mik az $f(x) = x^2 - 4x + 3$ gyökei?
+</SzamValasz>
+
+<SzamValasz helyes="3" mezok={["legfeljebb"]}>
+Legfeljebb hány valós gyöke lehet egy harmadfokú polinomnak?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Többszörös gyök">
+Ha a grafikon csak **érinti** a tengelyt (nem megy át rajta), az **többszörös gyök**. Például $(x - 1)^2$-nek az 1 **kétszeres** gyöke: a parabola csúcsa a tengelyen van.
+
+<Valasztas valaszok={["átmegy a tengelyen", "csak érinti a tengelyt"]} helyes={1} miert={["Az (x − 2)² sosem negatív, tehát nem mehet át a tengely alá.", ""]}>
+Mit csinál az $f(x) = (x - 2)^2$ grafikonja az $x = 2$-ben?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Szélsőérték: ahol az érintő vízszintes">
+A **helyi maximum** egy domb teteje, a **helyi minimum** egy völgy alja. Mindkettőnél **vízszintes** az érintő, tehát
+
+$$
+f'(x) = 0.
+$$
+
+GeoGebra: `Extremum(f)`.
+
+<SzamValasz helyes="2" mezok={["x ="]} magyarazat="f′(x) = 2x − 4 = 0 ⇔ x = 2.">
+$f(x) = x^2 - 4x + 1$. Hol nulla a derivált?
+</SzamValasz>
+
+<SzamValasz helyes="-3" mezok={["f(2) ="]} magyarazat="4 − 8 + 1 = −3. Felfelé nyíló parabola, tehát ez a minimum.">
+Mennyi ott a függvény értéke?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A csapda: x³">
+$f'(x) = 0$ még **nem** jelent szélsőértéket! $f(x) = x^3$-ra $f'(x) = 3x^2$, és $f'(0) = 0$. De a függvény végig nő: a 0-ban csak „megpihen” (**inflexiós pont**).
+
+A szélsőértékhez az kell, hogy $f'$ **előjelet váltson**: maximumnál $+$-ból $-$-ba, minimumnál $-$-ból $+$-ba.
+
+<Valasztas valaszok={["nincs, mert f′ nem vált előjelet", "van, mert f′(0) = 0"]} helyes={0} miert={["", "Ez a csapda: f′(x) = 3x² a 0 két oldalán is pozitív."]}>
+Van-e szélsőértéke $x^3$-nek a 0-ban?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Maximum vagy minimum?">
+A **második derivált** (a derivált deriváltja) eldönti:
+
+- $f''(x_0) < 0$: **maximum** (lefelé görbül, mint egy domb);
+- $f''(x_0) > 0$: **minimum** (felfelé görbül, mint egy völgy).
+
+Az előadás függvénye: $f(x) = x^3 - 3x + 1$, $f'(x) = 3x^2 - 3$, $f''(x) = 6x$.
+
+<SzamValasz helyes="-1, 1" forma="halmaz">
+Hol nulla $f'$?
+</SzamValasz>
+
+<Besorolo
+  cim="Maximum vagy minimum?"
+  opciok={["maximum", "minimum"]}
+  elemek={[
+    { kerdes: "x = −1", helyes: 0, miert: "f″(−1) = −6 < 0." },
+    { kerdes: "x = 1", helyes: 1, miert: "f″(1) = 6 > 0." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="A szélsőértékek értéke">
+<SzamValasz helyes={["3", "-1"]} mezok={["f(−1) =", "f(1) ="]} magyarazat="f(−1) = −1 + 3 + 1 = 3, f(1) = 1 − 3 + 1 = −1.">
+Mennyi a függvény értéke a két szélsőértékhelyen?
+</SzamValasz>
+
+<SzamValasz helyes="3" tipp="A maximum a tengely fölött, a minimum alatta. A függvény −∞-ből jön és +∞-be tart." magyarazat="−∞-ből fel a 3-ig (egy metszés), le −1-ig (kettő), fel +∞-ig (három).">
+Hány valós gyöke van tehát $x^3 - 3x + 1$-nek?
+</SzamValasz>
+
+<PolinomVizsgalo fok={3} egyutthatok={[1, 0, -3, 1]} />
+</Kartya>
+
+<Kartya cim="Hány szélsőérték lehet?">
+Az $n$-edfokú polinom deriváltja $(n-1)$-edfokú, annak legfeljebb $n - 1$ gyöke van. Tehát legfeljebb $n - 1$ szélsőérték lehet.
+
+<SzamValasz helyes="3">
+Legfeljebb hány szélsőértéke lehet egy negyedfokú polinomnak?
+</SzamValasz>
+
+<Valasztas valaszok={["Két gyök eltűnik (két komplex gyök lesz belőlük)", "Semmi nem változik"]} helyes={0} miert={["", "Figyeld meg a vizsgálóban: amikor a minimum a tengely fölé kerül, két metszéspont összeolvad, majd eltűnik."]}>
+A fenti harmadfokú függvényt felfelé tolva mi történik, amikor a minimum áthalad a tengelyen?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Gyök: $f(x) = 0$; érintésnél többszörös gyök. $n$-edfokúnak legfeljebb $n$ valós gyöke van. GeoGebra: `Root(f)`.
+- Szélsőérték: $f'(x) = 0$ **és** $f'$ előjelet vált. $f'' < 0$ maximum, $f'' > 0$ minimum. GeoGebra: `Extremum(f)`.
+- $x^3$: $f'(0) = 0$, de nincs szélsőérték (inflexiós pont).
+- $n$-edfokúnak legfeljebb $n - 1$ szélsőértéke van.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

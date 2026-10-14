@@ -1,0 +1,140 @@
+---
+cim: Oszthatóság
+osszefoglalo: Az oszthatóság definíciója, alaptulajdonságai (lineáris kombináció), az oszthatósági szabályok és hogy miért működnek, összetett osztók (36 = 4 · 9).
+allapot: lecke
+kulcsszavak: [oszthatóság, osztó, többszörös, lineáris kombináció, oszthatósági szabály, számjegyösszeg, váltakozó összeg, relatív prím]
+forras: DiMat_ea.pdf 19–23. dia · Feladatsor 3.1–3.3, 3.6
+---
+
+<Lecke>
+
+<Kartya cim="Mit jelent a | jel?">
+$a \mid b$ (olvasd: „$a$ osztója $b$-nek”), ha van olyan **egész** $c$, amire $b = a \cdot c$.
+
+- $3 \mid 12$, mert $12 = 3 \cdot 4$. És $-3 \mid 12$ is, mert $12 = (-3)(-4)$.
+- $3 \nmid 13$: nincs ilyen egész $c$.
+- $5 \mid 0$, mert $0 = 5 \cdot 0$. **Minden szám osztója a 0-nak.**
+
+<Figyelem>
+Az $a \mid b$ egy **állítás** (igaz vagy hamis), nem egy szám! Ne keverd a $12 / 3 = 4$ osztással.
+</Figyelem>
+
+<Besorolo
+  cim="Igaz vagy hamis?"
+  opciok={["igaz", "hamis"]}
+  elemek={[
+    { kerdes: "7 | 0", helyes: 0, miert: "0 = 7 · 0." },
+    { kerdes: "0 | 7", helyes: 1, miert: "Nincs olyan c, amire 0 · c = 7." },
+    { kerdes: "−4 | 20", helyes: 0, miert: "20 = (−4) · (−5)." },
+    { kerdes: "12 | 4", helyes: 1, miert: "Fordítva igaz: 4 | 12. A 4 = 12 · c-hez c = 1/3 kellene, ami nem egész." },
+    { kerdes: "1 | 2026", helyes: 0, miert: "Az 1 mindennek osztója." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Összeg és lineáris kombináció">
+A legfontosabb tulajdonság: ha $a$ osztja $b_1$-et és $b_2$-t is, akkor osztja
+
+- az összegüket és a különbségüket: $a \mid b_1 \pm b_2$,
+- sőt bármely **lineáris kombinációjukat**: $a \mid b_1 c_1 + b_2 c_2$ (bármely egész $c_1, c_2$-re).
+
+Bizonyítás egy sorban: $b_1 = a x$, $b_2 = a y$, tehát $b_1 c_1 + b_2 c_2 = a(x c_1 + y c_2)$.
+
+<Valasztas valaszok={["igen, mert 7 | 70 és 7 | 3·7", "nem lehet eldönteni"]} helyes={0} miert={["", "Lehet: 70 és 21 is osztható 7-tel, tehát a különbségük is."]}>
+Osztható-e 7-tel $70 - 21 = 49$ anélkül, hogy kiszámolnád?
+</Valasztas>
+
+<Valasztas valaszok={["d | 1, tehát d = 1", "d bármi lehet"]} helyes={0} miert={["", "Ha d | n és d | n + 1, akkor a különbségüknek, 1-nek is osztója."]} magyarazat="Ezért két szomszédos szám mindig relatív prím.">
+Ha $d$ osztója $n$-nek és $n + 1$-nek is ($d > 0$), mi lehet $d$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A szabályok, és miért működnek">
+Minden szám felírható tízes számrendszerben: $A = a_n 10^n + \dots + a_1 \cdot 10 + a_0$.
+
+| osztó | szabály | miért |
+|---|---|---|
+| 2, 5 | utolsó jegy | osztják a 10-et |
+| 4, 25 | utolsó két jegy | osztják a 100-at |
+| 8 | utolsó három jegy | osztja az 1000-et |
+| 3, 9 | számjegyösszeg | osztják a $99\dots9 = 10^k - 1$-et |
+| 11 | váltakozó összeg $a_0 - a_1 + a_2 - \dots$ | $11 \mid 10^k \mp 1$ |
+
+<SzamValasz helyes="21" magyarazat="1 + 2 + 3 + 4 + 5 + 6 = 21: osztható 3-mal, de 9-cel nem. Tehát 123 456 osztható 3-mal, 9-cel nem.">
+Mennyi a $123\,456$ számjegyösszege?
+</SzamValasz>
+
+<SzamValasz helyes="3" magyarazat="Jobbról: 6 − 5 + 4 − 3 + 2 − 1 = 3, nem osztható 11-gyel, tehát a szám sem.">
+Mennyi a váltakozó összege (jobbról, az utolsó jeggyel kezdve)?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Miért a számjegyösszeg?">
+$$
+A = a_n(10^n - 1) + \dots + a_1(10 - 1) + (a_n + \dots + a_1 + a_0).
+$$
+
+Az első rész minden tagja osztható 9-cel (mert $10^k - 1 = 99\dots9$), ezért $A$ pontosan akkor osztható 9-cel, ha a **számjegyösszeg** osztható.
+
+<SzamValasz helyes="9" tipp="Írd ki: 10¹⁹ = 1 után 19 nulla. Ehhez adj 53-at." magyarazat="A szám: 1, aztán 17 nulla, aztán 5 és 3. Számjegyösszeg 1 + 5 + 3 = 9, tehát osztható 9-cel. ✓">
+**3.1 (a).** Mennyi a $10^{19} + 53$ számjegyösszege?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Összetett osztó: bontsd fel">
+Hogy osztható-e 36-tal, azt nem kell 36-tal osztva kiszámolni. $36 = 4 \cdot 9$, és $4$, $9$ **relatív prímek** (nincs közös osztójuk 1-en kívül), ezért:
+
+$$
+36 \mid A \iff 4 \mid A \text{ és } 9 \mid A.
+$$
+
+<Figyelem>
+Csak relatív prím tényezőkre működik! $36 = 6 \cdot 6$ nem jó felbontás: a 12 osztható 6-tal, de 36-tal nem. Ugyanígy $24 = 4 \cdot 6$ rossz, $24 = 8 \cdot 3$ jó.
+</Figyelem>
+
+<Valasztas valaszok={["3 · 4", "2 · 6"]} helyes={0} miert={["", "(2, 6) = 2 ≠ 1. Például 6 osztható 2-vel és 6-tal, de 12-vel nem."]}>
+12-vel való oszthatósághoz melyik felbontás jó?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="3.2 (b): 36 | 762a4b">
+Milyen $a, b$ számjegyekre osztható 36-tal a $\overline{762a4b}$ szám?
+
+**4-gyel:** az utolsó két jegy, $\overline{4b} = 40 + b$, osztható 4-gyel.
+
+<SzamValasz helyes="0, 4, 8" forma="halmaz">
+Mely $b$ számjegyekre osztható 4-gyel $40 + b$?
+</SzamValasz>
+
+**9-cel:** a számjegyösszeg $7 + 6 + 2 + a + 4 + b = 19 + a + b$ osztható 9-cel. Mivel $0 \le a + b \le 18$, a $19 + a + b$ értéke 27 vagy 36 lehet.
+
+<SzamValasz helyes="8, 17" forma="halmaz">
+Mennyi lehet $a + b$?
+</SzamValasz>
+
+<SzamValasz helyes="4" magyarazat="b = 0 → a = 8; b = 4 → a = 4; b = 8 → a = 0 vagy a = 9. Tehát (8, 0), (4, 4), (0, 8), (9, 8): négy megoldás.">
+Összesen hány $(a, b)$ pár jó?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="3.6: négy szomszédos szám">
+Mutassuk meg, hogy négy egymást követő egész szám szorzata osztható 24-gyel. $24 = 8 \cdot 3$, és $(8, 3) = 1$.
+
+- Négy szomszédos szám között van egy **4-gyel osztható**, és még egy **páros**: ez együtt $4 \cdot 2 = 8$.
+- Van köztük **3-mal osztható** is.
+
+<Valasztas valaszok={["mert (8, 3) = 1", "mert 8 + 3 = 11", "mert 8 > 3"]} helyes={0} miert={["", "Az összeg nem számít.", "A méret nem számít."]}>
+Miért következik ebből a 24-gyel való oszthatóság?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $a \mid b \iff b = ac$ valamilyen egész $c$-re. Minden szám osztója a 0-nak; a 0 csak a 0-nak osztója.
+- Ha $a \mid b_1$ és $a \mid b_2$, akkor $a \mid b_1c_1 + b_2c_2$.
+- Szabályok: 2, 5 utolsó jegy; 4, 25 utolsó kettő; 8 utolsó három; 3, 9 számjegyösszeg; 11 váltakozó összeg.
+- Összetett osztót **relatív prím** tényezőkre bonts: $36 = 4 \cdot 9$, $24 = 8 \cdot 3$.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

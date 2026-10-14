@@ -1,0 +1,92 @@
+---
+cim: Kezdd itt
+osszefoglalo: Mi a kurzus, hogyan működnek a leckék és a válaszok beírása, és a GeoGebra alapjai, amelyekre minden labor épül.
+allapot: lecke
+kulcsszavak: [GeoGebra, bevitel, parancs, pont, vektor, elnevezés, csúszka, hogyan tanulj, válasz beírása]
+forras: relations.pdf · functions.pdf · vector operations.pdf · .ggb fájlok
+---
+
+<Lecke>
+
+<Kartya cim="Miről szól ez a kurzus?">
+Ez egy **gyakorló kurzus** a *Számítógépes matematika és vizualizáció* laborjaihoz. A laborokon GeoGebrában dolgoztok, de a gép csak akkor segít, ha érted, mit számol. Ezért itt minden számítást **kézzel is** elvégzünk, és mindegyik mellé odaírjuk a GeoGebra-parancsot.
+
+A leckék kártyákból állnak: egy gondolat, aztán egy feladat. A **Tovább** gomb csak akkor aktív, ha megoldottad.
+
+<Valasztas valaszok={["Elég, ha tudom a GeoGebra-parancsot", "Értenem kell, mit számol a parancs, különben nem tudom ellenőrizni"]} helyes={1} miert={["A parancs csak egy eszköz. Ha nem tudod, mi jön ki, azt sem veszed észre, ha rossz pontot jelöltél ki vagy elírtad a bemenetet.", ""]}>
+Mi a cél?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A térkép">
+| leckék | téma | GeoGebra |
+|---|---|---|
+| 2–4 | Descartes-szorzat, relációk, inverz | — |
+| 5–6 | egyenes és polinom illesztése pontokra | `FitPoly` |
+| 7–9 | derivált, gyökök, szélsőértékek, érintő | `Derivative`, `Root`, `Extremum`, `Tangent` |
+| 10–11 | pontok, vektorok, műveletek | `Vector`, `Length`, `Distance`, `Translate` |
+| 12 | skaláris szorzat, szög | `Dot`, `Angle` |
+| 13–14 | vektoriális és vegyes szorzat | `Cross` |
+| 15–16 | parancsok összefoglalója, ZH-gyakorló | |
+
+<Valasztas valaszok={["Sorban", "Bárhol"]} helyes={0} miert={["", "A vektoros leckék például egymásra épülnek: a vegyes szorzathoz kell a skaláris és a vektoriális is."]}>
+Milyen sorrendben érdemes haladni?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Válasz beírása">
+A számokat be kell írnod; a program **érték szerint** ellenőriz.
+
+| gépeld | jelentése |
+|---|---|
+| `7/3` | $\frac{7}{3}$ |
+| `0,8` vagy `0.8` | $0{,}8$ |
+| `sqrt(29)` vagy `√29` | $\sqrt{29}$ |
+| `3x^2 - 3` | $3x^2 - 3$ (ahol képletet kérünk) |
+
+Vektornál minden koordinátának külön mezője van.
+
+<SzamValasz helyes={["3", "4"]} forma="vektor">
+Írd be a $(3; 4)$ vektort!
+</SzamValasz>
+
+<SzamValasz helyes="2x+1" valtozok={["x"]} mezok={["f(x) ="]} magyarazat="Az x + x + 1 vagy az 1 + 2x is elfogadható: a program a képlet értékét ellenőrzi.">
+Írd be a $2x + 1$ képletet!
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="GeoGebra: a Bevitel sor">
+A GeoGebrában a parancsokat a **Bevitel** (Input) sorba írjuk. Az elnevezés számít:
+
+- **pont**: nagybetűvel, `A = (2, 3)`;
+- **vektor**: kisbetűvel, `u = (3, 4)`;
+- **függvény**: `f(x) = x^2 - 3x + 1`.
+
+Ugyanaz a `(3, 4)` kisbetűs névvel vektor lesz, nagybetűssel pont.
+
+<Valasztas valaszok={["A = (3, 4)", "u = (3, 4)"]} helyes={1} miert={["Nagybetűs névvel a GeoGebra pontot hoz létre.", ""]} sym>
+Melyik bemenet hoz létre **vektort**?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Csúszkák">
+Ha egy képletben olyan betű szerepel, aminek nincs értéke (például `f(x) = a x^2 + b x + c`), a GeoGebra felajánlja, hogy **csúszkát** hoz létre hozzá. A csúszkát húzva az egész ábra élőben változik. A laborok `.ggb` fájljai sok ilyet használnak.
+
+Egy objektum beállításait (szín, név, látható-e) **dupla kattintással** vagy jobb gombbal éred el.
+
+<Valasztas valaszok={["Hibát ad", "Felajánlja, hogy csúszkát hoz létre a-hoz"]} helyes={1} miert={["Nem ad hibát: felajánlja a csúszkát.", ""]}>
+Mit csinál a GeoGebra, ha beírod: `f(x) = a x^2`, és `a`-nak még nincs értéke?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Készen állsz">
+- Minden lecke végén van egy **Röviden** doboz; a számonkérés előtt elég ezeket átfutni.
+- Ahol „a gyakorlatról” szerepel, az a laborjegyzet (relations.pdf, functions.pdf, vector operations.pdf) példája.
+- A számonkérés pontos formáját (GeoGebrában vagy papíron) a laborvezetőd mondja meg; ez a kurzus mindkettőre felkészít.
+
+<Valasztas valaszok={["Indulhat!"]} helyes={0} magyarazat="A következő lecke a Descartes-szorzattal kezdődik.">
+Kezdhetjük?
+</Valasztas>
+</Kartya>
+
+</Lecke>

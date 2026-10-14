@@ -1,0 +1,129 @@
+---
+cim: Halmazok
+osszefoglalo: Mi egy halmaz, hogyan adjuk meg, mikor részhalmaz és mikor egyenlő két halmaz, és miért van egy n elemű halmaznak 2ⁿ részhalmaza.
+allapot: lecke
+kulcsszavak: [halmaz, elem, részhalmaz, egyenlőség, üres halmaz, hatványhalmaz, számosság, felsorolás, tulajdonság]
+forras: DiMat_ea.pdf 3–5. dia · Feladatsor 1.1–1.3
+---
+
+<Lecke>
+
+<Kartya cim="Egy zsák, amiben dolgok vannak">
+A **halmaz** a matematika alapfogalma: nem definiáljuk, csak azt mondjuk meg, mi van benne. Gondolj rá úgy, mint egy zsákra: a benne lévő dolgok az **elemei**.
+
+- $x \in A$: $x$ eleme $A$-nak.
+- $x \notin A$: $x$ nem eleme $A$-nak.
+
+Két dolog **nem számít**: a sorrend, és hogy hányszor írunk le egy elemet. $\{1, 2, 3\}$, $\{3, 1, 2\}$ és $\{1, 1, 2, 3\}$ ugyanaz a halmaz.
+
+<SzamValasz helyes="3" hibak={{"5": "A 2-t és az 1-et többször írtuk le, de egy elem csak egyszer számít."}}>
+Hány eleme van az $\{1, 2, 2, 1, 7\}$ halmaznak?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Felsorolás vagy tulajdonság">
+Halmazt kétféleképpen adhatunk meg:
+
+- **felsorolással**: $\{2, 4, 6\}$;
+- **tulajdonsággal**: egy ismert $H$ halmaz azon elemei, amelyekre igaz valami: $\{x \in H \mid T(x)\}$. A függőleges vonalat úgy olvasd: „amelyekre”.
+
+Például $\{x \in \Z \mid x^2 = 4\}$: azok az egész számok, amelyeknek a négyzete 4.
+
+<SzamValasz helyes="-2, 2" forma="halmaz" magyarazat="(−2)² = 4 és 2² = 4. Mindkettő egész szám.">
+Sorold fel az elemeit: $\{x \in \Z \mid x^2 = 4\}$
+</SzamValasz>
+
+<SzamValasz helyes="1, 2, 3, 4" forma="halmaz" hibak={{"0, 1, 2, 3, 4": "A 0 ebben a tárgyban nem természetes szám."}}>
+Sorold fel: $\{n \in \N \mid n < 5\}$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az üres halmaz">
+Az a halmaz, amelynek **nincs eleme**, az **üres halmaz**: $\emptyset$ vagy $\{\,\}$. Csak egy van belőle.
+
+Vigyázz: $\{\emptyset\}$ már **nem üres**! Ez egy olyan zsák, amiben egy üres zsák van. Egy eleme van.
+
+<Valasztas valaszok={["0", "1"]} helyes={1} miert={["Nem üres: van benne valami, mégpedig az üres halmaz.", ""]}>
+Hány eleme van a $\{\emptyset\}$ halmaznak?
+</Valasztas>
+
+<SzamValasz helyes="" forma="halmaz" magyarazat="Nincs olyan valós szám, amelynek a négyzete −1. Ez az üres halmaz.">
+Sorold fel: $\{x \in \R \mid x^2 = -1\}$ (ha nincs eleme, írd: ∅)
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Részhalmaz">
+$A \subset B$ (**$A$ részhalmaza $B$-nek**), ha $A$ **minden** eleme $B$-nek is eleme.
+
+Két dolog, ami elsőre furcsa, de mindig igaz:
+
+- $A \subset A$: minden halmaz részhalmaza önmagának.
+- $\emptyset \subset A$: az üres halmaz minden halmaznak részhalmaza. (Nincs olyan eleme, ami kilógna.)
+
+<Besorolo
+  cim="Részhalmaza-e a {1, 2, 3} halmaznak?"
+  opciok={["igen", "nem"]}
+  elemek={[
+    { kerdes: "{1, 3}", helyes: 0, miert: "Az 1 és a 3 is benne van." },
+    { kerdes: "{1, 4}", helyes: 1, miert: "A 4 nincs benne {1, 2, 3}-ban." },
+    { kerdes: "{3, 2, 1}", helyes: 0, miert: "Ugyanaz a halmaz, és minden halmaz részhalmaza önmagának." },
+    { kerdes: "∅", helyes: 0, miert: "Az üres halmaz mindennek részhalmaza." },
+    { kerdes: "{{1}}", helyes: 1, miert: "Ennek egyetlen eleme az {1} halmaz, ami nem eleme {1, 2, 3}-nak (az 1 igen, de az {1} nem)." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Mikor egyenlő két halmaz?">
+Két halmaz **egyenlő**, ha ugyanazok az elemeik. Ezt így is írhatjuk:
+
+$$
+A = B \iff A \subset B \text{ és } B \subset A.
+$$
+
+Ez a második alak a **bizonyítás receptje**: halmazegyenlőséget két irányban mutatunk meg. Először, hogy a bal oldal minden eleme benne van a jobb oldalban, aztán fordítva.
+
+<Valasztas valaszok={["igen", "nem"]} helyes={0} miert={["", "Írd ki mindkettőt! A bal oldal: −1 és 1. A jobb oldal: azok az egészek, amelyeknek az abszolútértéke 1, vagyis szintén −1 és 1."]}>
+Igaz-e: $\{x \in \Z \mid x^2 = 1\} = \{x \in \Z \mid |x| = 1\}$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Hány részhalmaza van?">
+Az $A$ halmaz összes részhalmazának halmaza a **hatványhalmaz**: $\mathcal{P}(A)$ vagy $2^A$.
+
+Írjuk fel $A = \{a, b\}$ összes részhalmazát: $\emptyset$, $\{a\}$, $\{b\}$, $\{a, b\}$. Ez **4** darab.
+
+Miért? Egy részhalmaz összeállításakor minden elemről külön döntünk: **benne lesz, vagy nem**. Két elemnél ez $2 \cdot 2 = 4$ lehetőség.
+
+<SzamValasz helyes="8" hibak={{"6": "Ne felejtsd ki az üres halmazt és magát az {a, b, c}-t!", "7": "Valamit kifelejtettél. Az üres halmaz és az egész halmaz is részhalmaz."}} magyarazat="Három elem, mindegyikről igen/nem döntés: 2 · 2 · 2 = 8. Ezek: ∅, {a}, {b}, {c}, {a,b}, {a,c}, {b,c}, {a,b,c}.">
+**1.3.** Hány részhalmaza van az $\{a, b, c\}$ halmaznak?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az általános képlet">
+Ha $|A| = n$, akkor $n$ darab igen/nem döntés van, tehát
+
+$$
+|\mathcal{P}(A)| = 2^n.
+$$
+
+<SzamValasz helyes="16" magyarazat="A {0, 1, 2, 3} halmaznak 4 eleme van (a 0 itt egy elem, nem baj, hogy nem természetes szám), így 2⁴ = 16 részhalmaza.">
+Hány részhalmaza van a $\{0, 1, 2, 3\}$ halmaznak?
+</SzamValasz>
+
+<SzamValasz helyes="1" hibak={{"0": "Az üres halmaz részhalmaza önmagának! Tehát legalább egy részhalmaza van."}} magyarazat="𝒫(∅) = {∅}. Egyezik a képlettel: 2⁰ = 1.">
+Hány eleme van $\mathcal{P}(\emptyset)$-nak?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- A halmazt az elemei határozzák meg; a sorrend és az ismétlés nem számít.
+- $\N = \{1, 2, 3, \dots\}$: a 0 **nem** természetes szám.
+- $\emptyset$ az üres halmaz; $\{\emptyset\}$ egyelemű.
+- $A \subset B$: $A$ minden eleme $B$-ben is benne van. $\emptyset \subset A$ és $A \subset A$ mindig.
+- $A = B \iff A \subset B$ és $B \subset A$ (két irányban bizonyítunk).
+- $|A| = n \implies |\mathcal{P}(A)| = 2^n$, mert minden elemről igen/nem döntünk.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

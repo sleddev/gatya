@@ -1,0 +1,116 @@
+---
+cim: Vektoriális szorzat
+osszefoglalo: A térbeli vektorok vektoriális szorzata koordinátákkal, a ciklikus minta, a jobbkéz-szabály, hogy miért merőleges mindkét tényezőre, és a hossza mint paralelogramma-terület.
+allapot: lecke
+kulcsszavak: [vektoriális szorzat, keresztszorzat, térbeli vektor, jobbkéz-szabály, merőleges, paralelogramma területe, háromszög területe, antikommutatív, Cross]
+forras: vector operations.pdf
+---
+
+<Lecke>
+
+<Kartya cim="Két vektorból egy harmadik">
+A **vektoriális szorzat** csak **térbeli** vektorokra értelmes, és az eredménye egy **vektor** (szemben a skaláris szorzattal, ami szám):
+
+$$
+\mathbf{b} \times \mathbf{c} = \big(b_y c_z - b_z c_y,\ \ b_z c_x - b_x c_z,\ \ b_x c_y - b_y c_x\big).
+$$
+
+GeoGebra: `Cross(b, c)`.
+
+<Valasztas valaszok={["egy szám", "egy vektor"]} helyes={1} miert={["Az a skaláris szorzat.", ""]}>
+Mi a vektoriális szorzat eredménye?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A minta, amit érdemes megjegyezni">
+Az első koordinátában $y, z$; a másodikban $z, x$; a harmadikban $x, y$ szerepel: mindig **a következő kettő** ciklikusan ($x \to y \to z \to x$). Előbb „egyenesen” szorzunk, aztán „fordítva” levonjuk.
+
+| koordináta | képlet |
+|---|---|
+| $x$ | $b_y c_z - b_z c_y$ |
+| $y$ | $b_z c_x - b_x c_z$ |
+| $z$ | $b_x c_y - b_y c_x$ |
+
+<SzamValasz helyes={["0", "0", "1"]} forma="vektor" magyarazat="Az x és y tengely egységvektorának szorzata a z tengely egységvektora.">
+$(1, 0, 0) \times (0, 1, 0) = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A gyakorlat példája">
+$\mathbf{b} = (4, 5, 6)$, $\mathbf{c} = (7, 8, 9)$. Koordinátánként:
+
+<SzamValasz helyes="-3" mezok={["x:"]} tipp="b_y c_z − b_z c_y = 5 · 9 − 6 · 8." magyarazat="45 − 48 = −3.">
+Az első koordináta: $5 \cdot 9 - 6 \cdot 8 = ?$
+</SzamValasz>
+
+<SzamValasz helyes="6" mezok={["y:"]} tipp="b_z c_x − b_x c_z = 6 · 7 − 4 · 9." magyarazat="42 − 36 = 6.">
+A második: $b_z c_x - b_x c_z = ?$
+</SzamValasz>
+
+<SzamValasz helyes="-3" mezok={["z:"]} magyarazat="4 · 8 − 5 · 7 = 32 − 35 = −3. Tehát b × c = (−3, 6, −3).">
+A harmadik: $b_x c_y - b_y c_x = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Merőleges mindkettőre">
+A $\mathbf{b} \times \mathbf{c}$ **merőleges** $\mathbf{b}$-re és $\mathbf{c}$-re is. Ezt a skaláris szorzattal ellenőrizheted: mindkettővel 0-t kell adnia.
+
+<SzamValasz helyes="0" magyarazat="−12 + 30 − 18 = 0. ✓ Merőleges. (Ez jó ellenőrzés a ZH-n is: ha nem 0 jön ki, elszámoltad.)">
+$(-3, 6, -3) \cdot (4, 5, 6) = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A sorrend számít">
+$$
+\mathbf{b} \times \mathbf{c} = -(\mathbf{c} \times \mathbf{b}).
+$$
+
+Felcserélve az ellenkező irányú vektort kapjuk. Az irányt a **jobbkéz-szabály** adja: ha a jobb kezed ujjai $\mathbf{b}$-ből $\mathbf{c}$ felé görbülnek, a hüvelykujjad mutatja $\mathbf{b} \times \mathbf{c}$ irányát.
+
+<SzamValasz helyes={["3", "-6", "3"]} forma="vektor">
+$(7, 8, 9) \times (4, 5, 6) = ?$
+</SzamValasz>
+
+<SzamValasz helyes={["0", "0", "0"]} forma="vektor" magyarazat="Párhuzamos vektorok (és önmagával vett) vektoriális szorzata a nullvektor: nem feszítenek ki paralelogrammát.">
+$(1, 2, 3) \times (2, 4, 6) = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A hossz: paralelogramma területe">
+$\|\mathbf{b} \times \mathbf{c}\|$ a $\mathbf{b}$ és $\mathbf{c}$ által kifeszített **paralelogramma területe**. A két vektor által meghatározott háromszög területe ennek a fele.
+
+<SzamValasz helyes={["0", "0", "6"]} forma="vektor">
+$(2, 0, 0) \times (0, 3, 0) = ?$
+</SzamValasz>
+
+<SzamValasz helyes="6" magyarazat="Egy 2 × 3-as téglalap: területe 6. ✓">
+Mekkora a $(2, 0, 0)$ és $(0, 3, 0)$ által kifeszített paralelogramma területe?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Háromszög területe">
+<SzamValasz helyes={["0", "0", "-5"]} forma="vektor" tipp="A harmadik koordináta: 1 · 1 − 2 · 3.">
+$(1, 2, 0) \times (3, 1, 0) = ?$
+</SzamValasz>
+
+<SzamValasz helyes="5/2" magyarazat="A paralelogramma területe |(0, 0, −5)| = 5, a háromszögé ennek a fele: 2,5.">
+Mekkora a háromszög területe, amelyet ez a két vektor (közös pontból indítva) meghatároz?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Gyakorold">
+<SzamValasz helyes={["-1", "1", "-1"]} forma="vektor" magyarazat="(1 · (−1) − 1 · 0, 1 · 1 − 0 · (−1), 0 · 0 − 1 · 1) = (−1, 1, −1).">
+$(0, 1, 1) \times (1, 0, -1) = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $\mathbf{b} \times \mathbf{c} = (b_y c_z - b_z c_y,\ b_z c_x - b_x c_z,\ b_x c_y - b_y c_x)$; csak térben, és vektor az eredmény. GeoGebra: `Cross(b, c)`.
+- Merőleges $\mathbf{b}$-re és $\mathbf{c}$-re (ellenőrizd skaláris szorzattal!). Iránya: jobbkéz-szabály.
+- $\mathbf{b} \times \mathbf{c} = -(\mathbf{c} \times \mathbf{b})$; párhuzamosaknál nullvektor.
+- Hossza a paralelogramma területe; a háromszögé a fele.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

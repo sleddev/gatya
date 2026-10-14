@@ -1,0 +1,106 @@
+---
+cim: Vegyes szorzat
+osszefoglalo: A vegyes szorzat a · (b × c) kiszámolása, a paralelepipedon térfogata, és hogyan döntjük el vele, hogy három vektor egy síkban van-e.
+allapot: lecke
+kulcsszavak: [vegyes szorzat, paralelepipedon, térfogat, komplanáris, egy síkban, determináns, vektoriális szorzat, skaláris szorzat]
+forras: vector operations.pdf
+---
+
+<Lecke>
+
+<Kartya cim="Előbb kereszt, aztán pont">
+A **vegyes szorzat** három térbeli vektorból egy **számot** ad:
+
+$$
+\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c}).
+$$
+
+Előbb kiszámolod a $\mathbf{b} \times \mathbf{c}$ vektort, aztán ennek a skaláris szorzatát $\mathbf{a}$-val. GeoGebra: `u = Cross(b, c)`, aztán `d = a * u`.
+
+<Valasztas valaszok={["egy szám", "egy vektor"]} helyes={0} miert={["", "A végén skaláris szorzat van, az számot ad."]}>
+Mi a vegyes szorzat eredménye?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A gyakorlat példája">
+$\mathbf{a} = (1, 2, 3)$, $\mathbf{b} = (4, 5, 6)$, $\mathbf{c} = (7, 8, 9)$. Az előző leckéből $\mathbf{b} \times \mathbf{c} = (-3, 6, -3)$.
+
+<SzamValasz helyes="0" magyarazat="1 · (−3) + 2 · 6 + 3 · (−3) = −3 + 12 − 9 = 0.">
+Mennyi $\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c})$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Térfogat">
+A vegyes szorzat **abszolútértéke** az $\mathbf{a}, \mathbf{b}, \mathbf{c}$ által kifeszített **paralelepipedon** (ferde hasáb) térfogata.
+
+Miért? $\|\mathbf{b} \times \mathbf{c}\|$ az alaplap területe, és $\mathbf{b} \times \mathbf{c}$ merőleges az alaplapra. Az $\mathbf{a}$-val vett skaláris szorzat az alapterület szorozva $\mathbf{a}$ merőleges vetületével, vagyis a **magassággal**.
+
+<SzamValasz helyes="1" magyarazat="(0, 1, 0) × (0, 0, 1) = (1, 0, 0), és (1, 0, 0) · (1, 0, 0) = 1: az egységkocka térfogata 1. ✓">
+Az egységkocka élvektorai: $(1, 0, 0)$, $(0, 1, 0)$, $(0, 0, 1)$. Mennyi a vegyes szorzatuk?
+</SzamValasz>
+
+<SzamValasz helyes="24" magyarazat="Egy 2 × 3 × 4-es téglatest: 24.">
+Mennyi a $(2, 0, 0)$, $(0, 3, 0)$, $(0, 0, 4)$ által kifeszített test térfogata?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Ha 0: egy síkban vannak">
+Ha a három vektor **egy síkban** van (**komplanárisak**), a paralelepipedon „lapos”, a térfogata 0:
+
+**$\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c}) = 0$ pontosan akkor, ha $\mathbf{a}, \mathbf{b}, \mathbf{c}$ egy síkban vannak.**
+
+A gyakorlat példájában 0 jött ki: valóban, $(7, 8, 9) = 2 \cdot (4, 5, 6) - (1, 2, 3)$.
+
+<Valasztas valaszok={["igen", "nem"]} helyes={0} miert={["", "Ha az egyik a másik kettő kombinációja, a másik kettő síkjában van."]}>
+Ha $\mathbf{c} = 2\mathbf{a} + 3\mathbf{b}$, egy síkban van-e a három vektor?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Egy síkban vannak-e?">
+$\mathbf{a} = (1, 1, 0)$, $\mathbf{b} = (0, 1, 1)$, $\mathbf{c} = (1, 0, -1)$.
+
+<SzamValasz helyes={["-1", "1", "-1"]} forma="vektor">
+$\mathbf{b} \times \mathbf{c} = ?$
+</SzamValasz>
+
+<SzamValasz helyes="0" magyarazat="−1 + 1 + 0 = 0: egy síkban vannak. Valóban, (1, 1, 0) = (0, 1, 1) + (1, 0, −1).">
+$\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c}) = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Most egy nem lapos">
+$\mathbf{a} = (1, 1, 0)$, $\mathbf{b} = (0, 1, 1)$, $\mathbf{c} = (1, 0, 1)$.
+
+<SzamValasz helyes={["1", "1", "-1"]} forma="vektor">
+$\mathbf{b} \times \mathbf{c} = ?$
+</SzamValasz>
+
+<SzamValasz helyes="2" magyarazat="1 + 1 + 0 = 2. Nem egy síkban vannak, a paralelepipedon térfogata 2.">
+A paralelepipedon térfogata?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Paraméteres feladat">
+<SzamValasz helyes="-1" mezok={["k ="]} tipp="(0, 1, 1) × (1, 1, 0) = (−1, 1, −1). Ennek a skaláris szorzata (1, 0, k)-val legyen 0." magyarazat="−1 + 0 − k = 0, tehát k = −1.">
+Melyik $k$-ra van egy síkban $(1, 0, k)$, $(0, 1, 1)$ és $(1, 1, 0)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Próbáld ki">
+<VegyesSzorzat />
+
+<Valasztas valaszok={["előjelet vált", "nem változik"]} helyes={0} miert={["", "A b × c = −(c × b), és ez öröklődik a vegyes szorzatra."]} magyarazat="A térfogat (abszolútérték) ugyanaz, csak az előjel fordul.">
+Mi történik a vegyes szorzattal, ha $\mathbf{b}$-t és $\mathbf{c}$-t felcseréled?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c})$: előbb kereszt, aztán pont; szám az eredmény.
+- $|\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c})|$ a paralelepipedon térfogata.
+- $= 0 \iff$ a három vektor egy síkban van (komplanárisak).
+- Megegyezik az $\mathbf{a}, \mathbf{b}, \mathbf{c}$ sorokból álló $3 \times 3$-as determinánssal.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

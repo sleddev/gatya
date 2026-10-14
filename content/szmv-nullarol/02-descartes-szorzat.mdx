@@ -1,0 +1,89 @@
+---
+cim: Rendezett párok és a Descartes-szorzat
+osszefoglalo: Mi a rendezett pár, mi a Descartes-szorzat, miért számít a sorrend, és miért |A| · |B| az elemszáma.
+allapot: lecke
+kulcsszavak: [rendezett pár, Descartes-szorzat, sorrend, elemszám, számosság, táblázat, koordináta]
+forras: relations.pdf
+---
+
+<Lecke>
+
+<Kartya cim="Rendezett pár">
+A **rendezett pár** $(a, b)$ két dolog, ahol **számít a sorrend**: $(1, 2) \ne (2, 1)$. Ismerős: a sík pontjait is így adjuk meg, és $(1, 2)$ meg $(2, 1)$ két különböző pont.
+
+Két pár akkor egyenlő, ha az első tagjuk is és a második tagjuk is egyenlő.
+
+<Valasztas valaszok={["igen", "nem"]} helyes={1} miert={["Halmazként {1, 2} = {2, 1}, de rendezett párként nem.", ""]}>
+Igaz-e, hogy $(1, 2) = (2, 1)$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A Descartes-szorzat">
+$A \times B$ az összes olyan rendezett pár, amelynek első tagja $A$-ból, második tagja $B$-ből való:
+
+$$
+A \times B = \{(a, b) \mid a \in A,\ b \in B\}.
+$$
+
+A gyakorlat példája: $A = \{1, 2, 3\}$, $B = \{a, b\}$:
+
+$$
+A \times B = \{(1,a), (2,a), (3,a), (1,b), (2,b), (3,b)\}.
+$$
+
+<Valasztas valaszok={["(1, a)", "(a, 1)", "(3, b)", "(b, 2)"]} helyes={[0, 2]} miert={["", "Az első tagnak A-ból kell jönnie.", "", "Az első tagnak A-ból kell jönnie."]}>
+Melyik eleme $A \times B$-nek?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Táblázatként">
+A Descartes-szorzatot érdemes **táblázatként** elképzelni: a sorok $A$ elemei, az oszlopok $B$ elemei, minden cella egy pár.
+
+| | $a$ | $b$ |
+|---|---|---|
+| $1$ | $(1, a)$ | $(1, b)$ |
+| $2$ | $(2, a)$ | $(2, b)$ |
+| $3$ | $(3, a)$ | $(3, b)$ |
+
+Innen látszik, hogy a párok száma sorok × oszlopok:
+
+$$
+|A \times B| = |A| \cdot |B|.
+$$
+
+<SzamValasz helyes="12">
+$|A| = 4$, $|B| = 3$. Hány eleme van $A \times B$-nek?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A × B ≠ B × A">
+<SzamValasz helyes="6" magyarazat="Az elemszám ugyanaz, |B| · |A| = 2 · 3 = 6, de a párok mások: (a, 1) ∈ B × A, de (a, 1) ∉ A × B.">
+$A = \{1, 2, 3\}$, $B = \{a, b\}$. Hány eleme van $B \times A$-nak?
+</SzamValasz>
+
+<Valasztas valaszok={["igen, mert ugyanannyi elemük van", "nem, mert a párok sorrendje más"]} helyes={1} miert={["Az elemszám egyezik, de a halmazok nem: (1, a) benne van A × B-ben, B × A-ban nincs.", ""]}>
+Igaz-e, hogy $A \times B = B \times A$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Önmagával szorozva">
+$A \times A$ is értelmes: az $A$ elemeiből képzett összes pár, beleértve az $(a, a)$ alakúakat is. Az $\R \times \R = \R^2$ éppen a sík.
+
+<SzamValasz helyes="9" magyarazat="3 · 3 = 9: (0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,0), (2,1), (2,2).">
+$A = \{0, 1, 2\}$. Hány eleme van $A \times A$-nak?
+</SzamValasz>
+
+<SzamValasz helyes="0" magyarazat="Ha az egyik halmaz üres, nincs miből első (vagy második) tagot választani: |A| · 0 = 0.">
+Hány eleme van $A \times \emptyset$-nak?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Rendezett párban számít a sorrend: $(a, b) \ne (b, a)$, ha $a \ne b$.
+- $A \times B = \{(a, b) \mid a \in A, b \in B\}$; táblázat: sorok $A$, oszlopok $B$.
+- $|A \times B| = |A| \cdot |B|$; általában $A \times B \ne B \times A$.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

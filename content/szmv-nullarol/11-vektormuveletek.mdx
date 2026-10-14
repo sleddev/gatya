@@ -1,0 +1,126 @@
+---
+cim: Vektorműveletek
+osszefoglalo: Vektorok összeadása koordinátánként és geometriailag (egymás után fűzve, paralelogramma), skalárral szorzás, a vektor hossza és az egységvektor, GeoGebra-parancsokkal.
+allapot: lecke
+kulcsszavak: [vektor, összeadás, paralelogramma-szabály, skalárszoros, hossz, egységvektor, ellentett, lineáris kombináció, Length]
+forras: vector operations.pdf · vektorok.ggb
+---
+
+<Lecke>
+
+<Kartya cim="Összeadás koordinátánként">
+$$
+\mathbf{u} + \mathbf{v} = (u_x + v_x,\ u_y + v_y).
+$$
+
+GeoGebra: `w = u + v`.
+
+<SzamValasz helyes={["8", "6"]} forma="vektor">
+**A gyakorlatról.** $\mathbf{u} = (3, 4)$, $\mathbf{v} = (5, 2)$. Mennyi $\mathbf{u} + \mathbf{v}$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Összeadás rajzban">
+Geometriailag a két vektort **egymás után fűzzük**: a második eleje az első végére kerül. Az összeg az elsőnek az elejétől a másodiknak a végéig mutat.
+
+<PontRako cel={[4, 2]} kezdo={[0, 0]} meret={5} nyilak={[{a: [0, 0], b: [1, 3], cimke: "u"}, {a: [1, 3], b: [4, 2], cimke: "v"}]} magyarazat="(1, 3) + (3, −1) = (4, 2).">
+$\mathbf{u} = (1, 3)$, és a végéhez fűztük a $\mathbf{v} = (3, -1)$-et. Hova mutat $\mathbf{u} + \mathbf{v}$ az origóból?
+</PontRako>
+
+Ugyanezt kapod, ha a két vektort **közös pontból** indítod, és a kifeszített **paralelogramma átlóját** veszed.
+
+<Valasztas valaszok={["igen, mindig", "csak ha a két vektor merőleges"]} helyes={0} miert={["", "A koordinátánkénti összeadás felcserélhető, bármilyen vektorokra."]}>
+Igaz-e, hogy $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Skalárral szorzás">
+$$
+k \cdot \mathbf{u} = (k\,u_x,\ k\,u_y).
+$$
+
+GeoGebra: `a = k * u`.
+
+<SzamValasz helyes={["15", "20"]} forma="vektor">
+**A gyakorlatról.** $k = 5$, $\mathbf{u} = (3, 4)$. Mennyi $k\mathbf{u}$?
+</SzamValasz>
+
+- $k > 1$: ugyanabba az irányba, hosszabb;
+- $0 < k < 1$: rövidebb;
+- $k < 0$: **ellentétes** irányba.
+
+<PontRako cel={[-4, -2]} kezdo={[0, 0]} meret={5} nyilak={[{a: [0, 0], b: [2, 1], cimke: "u"}]} hibak={{"4;2": "Negatív szorzó: az irány megfordul."}}>
+Rajzold be: $-2\mathbf{u}$, ha $\mathbf{u} = (2, 1)$.
+</PontRako>
+</Kartya>
+
+<Kartya cim="Lineáris kombináció">
+A két műveletet kombinálhatod: előbb szorozz, aztán adj össze.
+
+<SzamValasz helyes={["1", "6"]} forma="vektor" tipp="2u = (6, 8), és ebből kivonod v-t." magyarazat="2u − v = (6 − 5, 8 − 2) = (1, 6).">
+$\mathbf{u} = (3, 4)$, $\mathbf{v} = (5, 2)$. Mennyi $2\mathbf{u} - \mathbf{v}$?
+</SzamValasz>
+
+<SzamValasz helyes={["2", "-1", "7"]} forma="vektor" magyarazat="Térben ugyanígy, harmadik koordinátával: (1 + 1, 2 − 3, 3 + 4) = (2, −1, 7).">
+Térben: $(1, 2, 3) + (1, -3, 4) = ?$
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A vektor hossza">
+$$
+\|\mathbf{u}\| = \sqrt{u_x^2 + u_y^2} \qquad (\text{térben } + u_z^2).
+$$
+
+GeoGebra: `Length(u)`.
+
+<SzamValasz helyes="13" gombok={["√"]}>
+Milyen hosszú a $(5, -12)$ vektor?
+</SzamValasz>
+
+<SzamValasz helyes="3" gombok={["√"]} magyarazat="√(1 + 4 + 4) = √9 = 3.">
+Milyen hosszú a $(1, 2, 2)$ vektor?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A skalárszoros hossza">
+$$
+\|k\mathbf{u}\| = |k| \cdot \|\mathbf{u}\|.
+$$
+
+Az abszolútérték azért kell, mert a hossz sosem negatív: $-3\mathbf{u}$ ugyanúgy háromszor olyan hosszú, mint $\mathbf{u}$, csak ellenkező irányú.
+
+<SzamValasz helyes="15" hibak={{"-15": "A hossz nem lehet negatív: |−3| · 5."}}>
+$\|\mathbf{u}\| = 5$. Milyen hosszú $-3\mathbf{u}$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Egységvektor">
+Az $\mathbf{u}$ irányú, **1 hosszú** vektor: osszd el $\mathbf{u}$-t a saját hosszával:
+
+$$
+\mathbf{e} = \frac{1}{\|\mathbf{u}\|}\,\mathbf{u}.
+$$
+
+<SzamValasz helyes={["0,8", "-0,6"]} forma="vektor" tipp="(4, −3) hossza 5." magyarazat="(4, −3)/5 = (0,8; −0,6). Ellenőrzés: 0,64 + 0,36 = 1. ✓">
+Mi a $(4, -3)$ irányú egységvektor?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Próbáld ki">
+<VektorLabor modok={["osszeg", "skalar"]} />
+
+<Valasztas valaszok={["a nullvektor (0, 0)", "u kétszerese"]} helyes={0} miert={["", "Nem: az ellentett az ellenkező irányba mutat, a kettő kioltja egymást."]}>
+Mennyi $\mathbf{u} + (-\mathbf{u})$?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $\mathbf{u} + \mathbf{v}$ koordinátánként; rajzban egymás után fűzve vagy paralelogramma-átló. GeoGebra: `u + v`.
+- $k\mathbf{u}$ koordinátánként; $k < 0$ megfordítja az irányt. GeoGebra: `k * u`.
+- $\|\mathbf{u}\| = \sqrt{u_x^2 + u_y^2 (+ u_z^2)}$; $\|k\mathbf{u}\| = |k|\,\|\mathbf{u}\|$. GeoGebra: `Length(u)`.
+- Egységvektor: $\mathbf{u} / \|\mathbf{u}\|$.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

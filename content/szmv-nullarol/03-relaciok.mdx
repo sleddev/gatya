@@ -1,0 +1,93 @@
+---
+cim: Relációk
+osszefoglalo: A reláció mint a Descartes-szorzat részhalmaza, megadás feltétellel, a párok kiválogatása a táblázatból, és néhány nevezetes reláció.
+allapot: lecke
+kulcsszavak: [reláció, Descartes-szorzat, részhalmaz, feltétel, rendezett pár, nagyobb, osztó, egyenlő, üres reláció]
+forras: relations.pdf
+---
+
+<Lecke>
+
+<Kartya cim="A reláció: kiválogatott párok">
+Egy $A$ és $B$ közötti **reláció** a Descartes-szorzat egy **részhalmaza**: $R \subseteq A \times B$. Ha $(a, b) \in R$, azt mondjuk, $a$ **relációban áll** $b$-vel.
+
+Általában egy **feltétellel** adjuk meg: a táblázat celláiból azokat válogatjuk ki, amelyekre a feltétel igaz.
+
+<Valasztas valaszok={["igen, minden reláció része A × B-nek", "nem, a relációnak lehetnek A × B-n kívüli elemei is"]} helyes={0} miert={["", "Definíció szerint R ⊆ A × B."]}>
+Igaz-e, hogy egy $A$ és $B$ közötti reláció elemei mind rendezett párok $A \times B$-ből?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A gyakorlat példája: a > b">
+$A = \{1, 4, 5\}$, $B = \{1, 2, 6\}$, $R = \{(a, b) \mid a > b\}$.
+
+Menj végig sorban: minden $a$-ra nézd meg, mely $b$-knél igaz, hogy $a > b$.
+
+<ParKijelolo A={[1, 4, 5]} B={[1, 2, 6]} helyes={[[4, 1], [4, 2], [5, 1], [5, 2]]} magyarazat="Az 1 semminél sem nagyobb (1 > 1 sem!), a 4 és az 5 az 1-nél és a 2-nél nagyobb, a 6-nál egyik sem.">
+Jelöld ki $R$ párjait!
+</ParKijelolo>
+</Kartya>
+
+<Kartya cim="Egy másik feltétel: a = 4">
+Ugyanezekkel a halmazokkal: $R = \{(a, b) \mid a = 4\}$. A feltétel csak $a$-ról szól, $b$-ről semmit: $b$ bármi lehet.
+
+<ParKijelolo A={[1, 4, 5]} B={[1, 2, 6]} helyes={[[4, 1], [4, 2], [4, 6]]} magyarazat="A 4-es sor minden cellája: (4, 1), (4, 2), (4, 6).">
+Jelöld ki!
+</ParKijelolo>
+</Kartya>
+
+<Kartya cim="Kisebb">
+<ParKijelolo A={[1, 4, 5]} B={[1, 2, 6]} helyes={[[1, 2], [1, 6], [4, 6], [5, 6]]} magyarazat="Szigorúan kisebb: az (1, 1) nem tartozik bele.">
+$R = \{(a, b) \mid a < b\}$
+</ParKijelolo>
+
+<SzamValasz helyes="1" magyarazat="9 párból 4 kisebb, 4 nagyobb, és egy egyenlő: (1, 1).">
+A 9 párból 4-ben $a > b$, 4-ben $a < b$. Hány párban $a = b$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Oszthatóság">
+$A = \{1, 2, 3\}$, $B = \{2, 3, 4, 6\}$, $R = \{(a, b) \mid a \text{ osztója } b\text{-nek}\}$.
+
+<ParKijelolo A={[1, 2, 3]} B={[2, 3, 4, 6]} helyes={[[1, 2], [1, 3], [1, 4], [1, 6], [2, 2], [2, 4], [2, 6], [3, 3], [3, 6]]} magyarazat="Az 1 mindennek osztója; a 2 a 2-nek, 4-nek, 6-nak; a 3 a 3-nak és a 6-nak.">
+Jelöld ki!
+</ParKijelolo>
+</Kartya>
+
+<Kartya cim="Összeg">
+<ParKijelolo A={[1, 4, 5]} B={[1, 2, 6]} helyes={[[1, 6], [5, 2]]} magyarazat="1 + 6 = 7 és 5 + 2 = 7. A 4-hez 3 kellene, az nincs B-ben.">
+$A = \{1, 4, 5\}$, $B = \{1, 2, 6\}$, $R = \{(a, b) \mid a + b = 7\}$
+</ParKijelolo>
+</Kartya>
+
+<Kartya cim="Az üres és a teljes reláció">
+A reláció lehet **üres** is (egyik pár sem felel meg a feltételnek), vagy lehet az **egész** $A \times B$ (mindegyik megfelel).
+
+<ParKijelolo A={[1, 4, 5]} B={[2, 6]} helyes={[]} magyarazat="Az A és a B elemei közt nincs közös, tehát a = b sosem teljesül. Ez az üres reláció; ilyenkor semmit nem kell kijelölni.">
+$A = \{1, 4, 5\}$, $B = \{2, 6\}$, $R = \{(a, b) \mid a = b\}$
+</ParKijelolo>
+
+<SzamValasz helyes="6" magyarazat="Minden a ∈ A kisebb 10-nél, tehát az összes pár: 3 · 2 = 6.">
+Ugyanezekkel a halmazokkal hány párból áll az $R = \{(a, b) \mid a < 10\}$ reláció?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Próbáld ki">
+A felfedezőben a feltételt és a halmazokat is változtathatod; a kiemelt cellák a reláció párjai.
+
+<RelacioFelfedezo />
+
+<SzamValasz helyes="64" magyarazat="Minden pár vagy benne van, vagy nincs: 6 igen/nem döntés, 2⁶ = 64. (Ugyanaz, mint a hatványhalmaz elemszáma: a relációk A × B részhalmazai.)">
+Hány különböző reláció van egy 3 elemű $A$ és egy 2 elemű $B$ között? (Tipp: hány részhalmaza van $A \times B$-nek?)
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Reláció: $R \subseteq A \times B$, általában feltétellel megadva.
+- Kiválogatás: menj végig a táblázaton soronként ($a$-nként), és jelöld, ahol a feltétel igaz.
+- Lehet üres, és lehet az egész $A \times B$. Összesen $2^{|A| \cdot |B|}$ reláció van.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>
