@@ -3,7 +3,7 @@ cim: ZH-gyakorló
 osszefoglalo: Végtelen, véletlen feladatok a számolós rutinfeladatokhoz (vektorok, deriválás, érintő), egy ellenőrző lista a számonkérés előtti estére, és vegyes feladatok megoldással.
 allapot: lecke
 kulcsszavak: [ZH, zárthelyi, gyakorlás, vegyes feladatok, ellenőrző lista, vektor, derivált, érintő, GeoGebra]
-forras: relations.pdf · functions.pdf · vector operations.pdf
+forras: relations.pdf · functions.pdf · vector operations.pdf · parameteres_gorbek.pdf
 ---
 
 ## Végtelen gyakorló: függvények
@@ -24,7 +24,7 @@ Ahol bizonytalan vagy, nyisd meg újra a leckét (a végén lévő **Röviden** 
 |---|---|
 | a Descartes-szorzatot és az elemszámát; hogy $A \times B \ne B \times A$ | [2](/szmv-nullarol/descartes-szorzat) |
 | relációt kiválogatni feltétel alapján | [3](/szmv-nullarol/relaciok) |
-| az értelmezési tartományt, értékkészletet, inverzet; mikor függvény egy reláció | [4](/szmv-nullarol/inverz-es-fuggveny) |
+| az értelmezési tartományt, értékkészletet, inverzet; mikor függvény egy reláció; A-ból / A-t / B-be / B-re | [4](/szmv-nullarol/inverz-es-fuggveny) |
 | egyenest illeszteni két pontra, és ellenőrizni | [5](/szmv-nullarol/egyenes-ket-ponton) |
 | parabolát illeszteni három pontra egyenletrendszerrel | [6](/szmv-nullarol/polinom-illesztes) |
 | polinomot deriválni, és a derivált előjeléből a monotonitást | [7](/szmv-nullarol/derivalt) |
@@ -35,7 +35,12 @@ Ahol bizonytalan vagy, nyisd meg újra a leckét (a végén lévő **Röviden** 
 | skaláris szorzatot, szöget, merőlegességet | [12](/szmv-nullarol/skalaris-szorzat) |
 | vektoriális szorzatot és a paralelogramma területét | [13](/szmv-nullarol/vektorialis-szorzat) |
 | vegyes szorzatot, térfogatot, komplanaritást | [14](/szmv-nullarol/vegyes-szorzat) |
-| melyik feladathoz melyik GeoGebra-parancs kell | [15](/szmv-nullarol/geogebra-parancsok) |
+| szakaszt és egyenest paraméteresen, a görbe pontját `a(t0)`-lal | [15](/szmv-nullarol/parameteres-egyenes) |
+| kört paraméteresen, csúszkát, érintővektort | [16](/szmv-nullarol/parameteres-kor) |
+| görbét pontokra adott paraméterértékekkel (két `FitPoly`) | [17](/szmv-nullarol/interpolacios-gorbe) |
+| implicit görbét, pont az alakzaton, `ImplicitCurve` | [18](/szmv-nullarol/implicit-gorbek) |
+| melyik feladathoz melyik GeoGebra-parancs kell | [19](/szmv-nullarol/geogebra-parancsok) |
+| a 2025-ös gyakorlófeladatsort | [20](/szmv-nullarol/gyakorlofeladatok-2025) |
 
 ## Vegyes feladatok
 
@@ -90,5 +95,23 @@ $\mathbf{a} = (1, 0, 2)$, $\mathbf{b} = (2, 1, 0)$, $\mathbf{c} = (0, 1, 1)$. Sz
 $\mathbf{b} \times \mathbf{c} = (1 \cdot 1 - 0 \cdot 1,\ 0 \cdot 0 - 2 \cdot 1,\ 2 \cdot 1 - 1 \cdot 0) = (1, -2, 2)$. Ellenőrzés: $(1, -2, 2) \cdot (2, 1, 0) = 0$ ✓, $(1, -2, 2) \cdot (0, 1, 1) = 0$ ✓.
 
 Terület: $\|(1, -2, 2)\| = \sqrt{1 + 4 + 4} = 3$. Térfogat: $|\mathbf{a} \cdot (1, -2, 2)| = |1 + 0 + 4| = 5$.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="7. paraméteres görbék">
+$A = (1, 1)$, $B = (5, 3)$. Írd fel az $AB$ szakaszt paraméteresen, add meg a $t = 0{,}25$-höz tartozó pontot, és a $(2, -1)$ középpontú, 3 sugarú kört! Mi a kör érintővektora $t = \frac{\pi}{2}$-nél?
+
+<Megoldas>
+$\mathbf{vec} = B - A = (4, 2)$, tehát $x(t) = 1 + 4t$, $y(t) = 1 + 2t$, $t \in [0, 1]$. GeoGebra: `a = Curve(1 + 4t, 1 + 2t, t, 0, 1)`. A $t = 0{,}25$ pont: `a(0.25)` $= (2;\ 1{,}5)$.
+
+Kör: $x(t) = 3\cos t + 2$, $y(t) = 3\sin t - 1$, `Curve(3 cos(t) + 2, 3 sin(t) - 1, t, 0, 2pi)`. Érintővektor: $(-3\sin t,\ 3\cos t)$, $t = \frac{\pi}{2}$-nél $(-3, 0)$; a pont maga $(2, 2)$, a kör teteje, ahol a pont balra halad.
+</Megoldas>
+</Feladat>
+
+<Feladat cim="8. implicit görbe">
+Rajta van-e a $(2, 1)$ és az $(1, 2)$ pont az $x^2 - 3xy + y^3 + 1 = 0$ alakzaton?
+
+<Megoldas>
+$(2, 1)$: $4 - 6 + 1 + 1 = 0$, **rajta van**. $(1, 2)$: $1 - 6 + 8 + 1 = 4 \ne 0$, **nincs rajta**. GeoGebrában: írd be az egyenletet, és vedd fel a pontokat; vagy írd be a bal oldalt a koordinátákkal, és nézd meg, hogy 0-t ad-e.
 </Megoldas>
 </Feladat>

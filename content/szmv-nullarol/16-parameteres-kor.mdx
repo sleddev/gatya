@@ -1,0 +1,138 @@
+---
+cim: Paraméteres kör és az érintővektor
+osszefoglalo: A kör paraméteres felírása középponttal és sugárral, a t tartománya egy teljes körhöz, csúszka a paraméterhez, és a görbe érintővektora (x′(t), y′(t)) egy adott pontban.
+allapot: lecke
+kulcsszavak: [paraméteres kör, középpont, sugár, cos, sin, 2π, csúszka, érintővektor, derivált, hipocikloid, Curve, Vector]
+forras: parameteres_gorbek.pdf · kör.ggb · SzMV gyakorlófeladatok (2025) 10., 12.
+---
+
+<Lecke>
+
+<Kartya cim="Az egységkör">
+Az origó középpontú, 1 sugarú kör pontja a $t$ szögnél (radiánban):
+
+$$
+x(t) = \cos t, \qquad y(t) = \sin t.
+$$
+
+A $t$ itt a pozitív $x$ tengellyel bezárt **szög**.
+
+<SzamValasz helyes={["0", "1"]} forma="vektor" magyarazat="cos(π/2) = 0, sin(π/2) = 1: a kör legfelső pontja.">
+Hol van a pont $t = \frac{\pi}{2}$-nél?
+</SzamValasz>
+
+<SzamValasz helyes={["sqrt(2)/2", "sqrt(2)/2"]} forma="vektor" tures={0.002} tipp="cos(π/4) = sin(π/4) = √2/2 ≈ 0,707." magyarazat="(√2/2, √2/2) ≈ (0,707; 0,707): az első síknegyed felezőjén.">
+És $t_0 = \frac{\pi}{4}$-nél?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Hány t kell egy körhöz?">
+<Valasztas valaszok={["t ∈ [0, 2π]", "t ∈ [0, π]", "t ∈ [0, 1]"]} helyes={0} miert={["", "Ez csak a felső félkör.", "Ez csak egy kb. 57°-os ív: a t radiánban értendő."]}>
+Milyen tartomány kell egy **teljes** körhöz?
+</Valasztas>
+
+GeoGebrában: `Curve(cos(t), sin(t), t, 0, 2pi)`.
+</Kartya>
+
+<Kartya cim="Tetszőleges kör">
+Középpont $K = (u, v)$, sugár $r$: a kört **felnagyítjuk** $r$-szeresére, és **eltoljuk** $K$-ba:
+
+$$
+\begin{aligned} q_x(t) &= r\cos t + u, \\ q_y(t) &= r\sin t + v. \end{aligned}
+$$
+
+A gyakorlat példája: `radius = 1.7`, `MiddleOfTheCircle = (2, 2)`, és
+
+`qx(t) = radius * cos(t) + x(MiddleOfTheCircle)`
+
+<SzamValasz helyes={["2cos(t)+3", "2sin(t)-1"]} mezok={["qx(t) =", "qy(t) ="]} valtozok={["t"]}>
+Írd fel a $(3, -1)$ középpontú, 2 sugarú kört!
+</SzamValasz>
+
+<SzamValasz helyes={["1", "-1"]} forma="vektor" magyarazat="2 · cos π + 3 = −2 + 3 = 1, 2 · sin π − 1 = −1. A középponttól 2-vel balra.">
+Hol van ezen a körön a $t = \pi$-hez tartozó pont?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Kör egy pont körül">
+ZH-feladat (2025, 12. d): „Hozza létre azt a kört paraméteres megadással, amelynek középpontja $P$, sugara pedig 0,5!”
+
+<Valasztas valaszok={["Curve(0.5 cos(t) + x(P), 0.5 sin(t) + y(P), t, 0, 2pi)", "Curve(cos(t) + 0.5, sin(t) + 0.5, t, 0, 2pi)", "Curve(0.5 cos(t), 0.5 sin(t), t, 0, 2pi)"]} helyes={0} miert={["", "Ez 1 sugarú kör a (0,5; 0,5) középponttal.", "Ez az origó körül van, nem P körül."]} sym>
+Melyik a jó bemenet?
+</Valasztas>
+
+Az `x(P)` és `y(P)` a $P$ pont koordinátái; ha $P$ mozog, a kör vele megy.
+</Kartya>
+
+<Kartya cim="Csúszka a paraméterhez">
+ZH-feladat (2025, 12. c): „Hozzon létre egy csúszkát, amely $t_0$ értékét változtatja 0 és $\pi$ között!”
+
+A Csúszka eszközzel, vagy a bevitelben: `t0 = Slider(0, pi)`. Ha utána `P = a(t0)`, a pont a csúszkát húzva **végigfut** a görbén. A laborfájlban ugyanez: `B = a(k)`, ahol `k` csúszka.
+
+<Valasztas valaszok={["A felső félkörön, (1, 0)-tól (−1, 0)-ig", "A teljes körön", "Az alsó félkörön"]} helyes={0} miert={["", "Ahhoz 0-tól 2π-ig kellene a csúszka.", "Az alsó félkörhöz π és 2π közötti t kell."]}>
+Az egységkörön merre mozog $P = a(t_0)$, ha $t_0$ 0-tól $\pi$-ig nő?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Az érintővektor">
+A mozgó pont **sebessége** a $t$ időpillanatban a koordinátafüggvények deriváltja:
+
+$$
+\mathbf{v}(t) = \big(x'(t),\ y'(t)\big).
+$$
+
+Ez az **érintővektor**: érinti a görbét, és a haladás irányába mutat.
+
+<SzamValasz helyes={["2", "1"]} forma="vektor" magyarazat="x(t) = 2 + 2t, y(t) = 3 + t: a deriváltak (2, 1). Az egyenes érintővektora mindenhol az irányvektor, vec = B − A.">
+Mi az $x(t) = 2 + 2t$, $y(t) = 3 + t$ egyenes érintővektora?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A kör érintővektora">
+$x(t) = \cos t$, $y(t) = \sin t$, és $(\cos t)' = -\sin t$, $(\sin t)' = \cos t$:
+
+$$
+\mathbf{v}(t) = (-\sin t,\ \cos t).
+$$
+
+<SzamValasz helyes={["0", "1"]} forma="vektor" magyarazat="(−sin 0, cos 0) = (0, 1): az (1, 0) pontban függőlegesen felfelé mutat.">
+Mi az érintővektor $t = 0$-nál?
+</SzamValasz>
+
+<Valasztas valaszok={["merőleges a sugárra", "párhuzamos a sugárral"]} helyes={0} miert={["", "(cos t, sin t) · (−sin t, cos t) = 0, tehát merőlegesek."]} magyarazat="Ez a jól ismert tény: a kör érintője merőleges az érintési ponthoz húzott sugárra.">
+Milyen helyzetű az érintővektor a sugárhoz képest?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="GeoGebra: érintővektor a pontból">
+Ha a koordinátafüggvények `qx`, `qy`, és `P = a(t0)`:
+
+`v = Vector(P, P + (qx'(t0), qy'(t0)))`
+
+A `Vector(P, Q)` a $P$-ből $Q$-ba mutató vektor; a $Q = P + \mathbf{v}(t_0)$ pontot úgy kapjuk, hogy $P$-hez hozzáadjuk az érintővektort. A szaggatott vonalstílus az objektum beállításaiban (Stílus fül) állítható.
+
+<Valasztas valaszok={["Vector((qx'(t0), qy'(t0)))", "Vector(P, P + (qx'(t0), qy'(t0)))"]} helyes={1} miert={["Ez az origóból indulna, nem P-ből.", ""]} sym>
+Melyik rajzolja az érintővektort **a $P$ pontból kiindulva**?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Próbáld ki">
+<ParameteresGorbe tipus="kor" tipusok={["kor", "hipocikloid"]} erinto />
+
+A „hipocikloid” a 2025-ös gyakorlófeladatok 10. görbéje ($a = 8{,}5$, $b = 3{,}9$, $t \in [0, 12\pi]$): egy kis kör gördül egy nagy kör belsejében, és a kis kör egy pontja rajzolja.
+
+<Valasztas valaszok={["6", "12", "2"]} helyes={0} miert={["", "Egy kör 2π, nem π.", "Ez csak 4π lenne."]}>
+Hányszor 2π a $[0, 12\pi]$ tartomány?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Kör: $q_x(t) = r\cos t + u$, $q_y(t) = r\sin t + v$, $t \in [0, 2\pi]$. GeoGebra: `Curve(r cos(t) + x(K), r sin(t) + y(K), t, 0, 2pi)`.
+- Csúszka: `t0 = Slider(0, pi)`, és `P = a(t0)` végigfut a görbén.
+- Érintővektor: $(x'(t), y'(t))$; a körnél $(-r\sin t, r\cos t)$, merőleges a sugárra.
+- GeoGebra: `v = Vector(P, P + (qx'(t0), qy'(t0)))`.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

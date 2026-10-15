@@ -2,8 +2,8 @@
 cim: GeoGebra-parancsok
 osszefoglalo: Az eddigi laborokon használt GeoGebra-parancsok egy helyen, példákkal.
 allapot: ismetles
-kulcsszavak: [GeoGebra, parancs, FitPoly, Root, Extremum, Tangent, Derivative, Vector, Translate, Length, Distance, Dot, Angle, Cross, csúszka]
-forras: functions.pdf, vector operations.pdf, .ggb fájlok
+kulcsszavak: [GeoGebra, parancs, FitPoly, Root, Extremum, Tangent, Derivative, Vector, Translate, Length, Distance, Dot, Angle, Cross, csúszka, Curve, ImplicitCurve]
+forras: functions.pdf, vector operations.pdf, parameteres_gorbek.pdf, .ggb fájlok
 ---
 
 A parancsokat a GeoGebra **Bevitel** sorába írjuk. Pontot nagybetűvel (`A = (2, 3)`), vektort kisbetűvel (`u = (3, 4)`) érdemes elnevezni: a GeoGebra így tudja, mit akarunk.
@@ -24,6 +24,9 @@ A parancsokat a GeoGebra **Bevitel** sorába írjuk. Pontot nagybetűvel (`A = (
 | `u * v` vagy `Dot(u, v)` | skaláris szorzat | 23 |
 | `Angle(u, v)` | vektorok szöge | $\approx 31{,}33°$ |
 | `Cross(b, c)` | vektoriális szorzat (térben) | $(4,5,6) \times (7,8,9) = (-3,6,-3)$ |
+| `Curve(qx(t), qy(t), t, 0, 1)` | paraméteres görbe | szakasz, kör (`t, 0, 2pi`) |
+| `a(t0)` | a görbe pontja a $t_0$ paraméternél | `kör.ggb`: `B = a(k)` |
+| `ImplicitCurve({…})` | implicit görbe pontokon át | harmadfokúhoz 9 pont |
 
 <Tipp cim="csúszkák">
 A `root_extremum_examples` fájlokban a polinom együtthatói ($a, b, c, \dots$) **csúszkák**. Ha egy betűnek nincs értéke, a GeoGebra felajánlja, hogy csúszkát hoz létre hozzá. Egy objektum beállításait dupla kattintással éred el.

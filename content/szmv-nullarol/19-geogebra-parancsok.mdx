@@ -2,8 +2,8 @@
 cim: GeoGebra-parancsok
 osszefoglalo: A laborokon használt GeoGebra-parancsok egy helyen, és gyakorlás arra, melyik feladathoz melyik parancs kell, és mit ad vissza.
 allapot: lecke
-kulcsszavak: [GeoGebra, parancs, FitPoly, Root, Extremum, Derivative, Tangent, Vector, Translate, Length, Distance, Dot, Angle, Cross, Line]
-forras: functions.pdf · vector operations.pdf · .ggb fájlok
+kulcsszavak: [GeoGebra, parancs, FitPoly, Root, Extremum, Derivative, Tangent, Vector, Translate, Length, Distance, Dot, Angle, Cross, Line, Curve, Slider, Function, If, ImplicitCurve]
+forras: functions.pdf · vector operations.pdf · parameteres_gorbek.pdf · .ggb fájlok
 ---
 
 <Lecke>
@@ -25,6 +25,11 @@ forras: functions.pdf · vector operations.pdf · .ggb fájlok
 | `u * v` vagy `Dot(u, v)` | skaláris szorzat |
 | `Angle(u, v)` | két vektor szöge |
 | `Cross(b, c)` | vektoriális szorzat |
+| `Curve(qx(t), qy(t), t, t0, t1)` | paraméteres görbe, $t$ a $t_0$ és $t_1$ között |
+| `a(t0)` | az `a` görbe pontja a $t_0$ paraméternél |
+| `Slider(0, pi)` | csúszka |
+| `Function(f, a, b)` | $f$ az $[a, b]$ intervallumra szűkítve |
+| `ImplicitCurve({…})` | implicit görbe pontokon át |
 
 <Valasztas valaszok={["Megtanultam, mehetünk"]} helyes={0}>
 Nézd át a táblázatot, aztán gyakoroljunk.
@@ -56,6 +61,20 @@ Nézd át a táblázatot, aztán gyakoroljunk.
     { kerdes: "Egy vektor, ami merőleges b-re és c-re is", helyes: 4, miert: "Cross(b, c)." },
     { kerdes: "Hány fokos szöget zár be u és v?", helyes: 3, miert: "Angle(u, v)." },
     { kerdes: "Egy síkban van-e a, b, c?", helyes: 4, miert: "Előbb Cross(b, c), aztán a skaláris szorzat a-val: a * Cross(b, c) = 0?" }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Görbék">
+<Besorolo
+  cim="Melyik parancs kell?"
+  opciok={["Curve", "a(t0)", "ImplicitCurve", "Function(f, a, b)"]}
+  elemek={[
+    { kerdes: "Kör paraméteres megadással", helyes: 0, miert: "Curve(r cos(t) + u, r sin(t) + v, t, 0, 2pi)." },
+    { kerdes: "A görbe pontja a t = 9π paraméternél, Point nélkül", helyes: 1, miert: "Ha a görbe neve a: P = a(9pi)." },
+    { kerdes: "Harmadfokú görbe 9 ponton át, x és y egyenletével", helyes: 2, miert: "ImplicitCurve({A, B, …, I})." },
+    { kerdes: "f csak a [0,2; 1,5] intervallumon", helyes: 3, miert: "Function(f, 0.2, 1.5), vagy If(0.2 <= x <= 1.5, f(x))." },
+    { kerdes: "Szakasz A és B között", helyes: 0, miert: "Curve((1 - t) x(A) + t x(B), (1 - t) y(A) + t y(B), t, 0, 1). (Nem paraméteresen: Segment(A, B).)" }
   ]}
 />
 </Kartya>
@@ -100,6 +119,7 @@ Melyik pontot add meg, hogy a `Line(P, Q)` az érintő legyen?
 <Osszefoglalo>
 - Függvények: `FitPoly`, `Root`, `Extremum`, `Derivative`/`f'(x)`, `Tangent`, `Line`.
 - Vektorok: `Vector`, `Translate`, `Length`, `Distance`, `+`, `k * u`, `u * v`/`Dot`, `Angle`, `Cross`.
+- Görbék: `Curve`, `a(t0)`, `Slider`, `ImplicitCurve`; érintővektor: `Vector(P, P + (qx'(t0), qy'(t0)))`.
 - Nagybetű: pont. Kisbetű: vektor. A `*` vektorok közt skaláris szorzat.
 - Mindig becsüld meg fejben az eredményt.
 </Osszefoglalo>

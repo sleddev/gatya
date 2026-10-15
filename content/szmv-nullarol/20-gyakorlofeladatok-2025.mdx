@@ -1,0 +1,198 @@
+---
+cim: A 2025-ös gyakorlófeladatsor
+osszefoglalo: Az elearningen kiadott SzMV gyakorlófeladatok (2025) lépésről lépésre végigoldva, mindegyiknél a szükséges számolással és GeoGebra-paranccsal.
+allapot: lecke
+kulcsszavak: [gyakorlófeladatok, ZH, zárthelyi, igaz-hamis, vektoriális szorzat, skaláris szorzat, zérushely, szélsőérték, érintő Tangent nélkül, Point nélkül, reláció képez, paraméteres görbe, érintővektor]
+forras: SzMV gyakorlófeladatok (2025)
+---
+
+<Lecke>
+
+<Kartya cim="Hogyan használd">
+Ez a lecke az elearningen kiadott **2025-ös gyakorlófeladatsort** oldja meg, feladatonként egy-két kártyán. Minden kártyán előbb próbáld meg magad, és csak utána nézz bele a tippbe!
+
+A GeoGebrás részfeladatoknál („Ábrázolja…”, „Jelenítse meg…”) a parancsot kérdezzük; ezeket érdemes utána a gépen is kipróbálni.
+
+<Valasztas valaszok={["Kezdjük!"]} helyes={0}>
+Készen állsz?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="1. Vektoros állítások">
+<Valasztas valaszok={["A. Ha két vektor vektoriális szorzata nullvektor, akkor a két vektor merőleges egymásra.", "B. Ha két vektor skaláris szorzata nulla, akkor a két vektor merőleges egymásra.", "C. Két egységhosszú vektor skaláris szorzata nulla, ha a két vektor ellentétes irányú."]} helyes={[1]} miert={["Hamis: ‖a × b‖ = ‖a‖‖b‖ sin γ, ez akkor 0, ha párhuzamosak (γ = 0° vagy 180°).", "", "Hamis: ellentétes irányban γ = 180°, cos 180° = −1, tehát a skaláris szorzat −1."]} magyarazat="Csak a B igaz. (Szigorúan véve a nullvektor mindenre merőleges, a B így is igaz.)">
+Mely állítás(ok) igaz(ak)?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="2. Hol metszi az y tengelyt?">
+Az $y$ tengelyen $x = 0$, tehát a metszéspont $(0, f(0))$.
+
+<SzamValasz helyes="-3" mezok={["f(0) ="]}>
+$f(x) = 2x^4 + 3x - 3$. Mennyi $f(0)$?
+</SzamValasz>
+
+<Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["f(0) = −3, nem 3.", ""]} magyarazat="Hamis: a metszéspont (0, −3). A laborfájlokban ez az A = (0, d) pont: a konstans tag.">
+„Az $f(x) = 2x^4 + 3x - 3$ grafikonja az $y$ tengelyt a $(0, 3)$ pontban metszi.”
+</Valasztas>
+</Kartya>
+
+<Kartya cim="3. Átmegy-e a ponton?">
+Egy pont pontosan akkor van a grafikonon, ha $f(x_A) = y_A$.
+
+<Valasztas valaszok={["igaz", "hamis"]} helyes={0} miert={["", "Számold ki: f(2) = 5 · 2 − 6."]} magyarazat="Igaz: f(2) = 10 − 6 = 4 = y_A.">
+„Az $f(x) = 5x - 6$ grafikonja áthalad az $A = (2, 4)$ ponton.”
+</Valasztas>
+</Kartya>
+
+<Kartya cim="4. (a)–(d): ábrázolás, gyökök, szélsőértékek">
+$f(x) = 3x^6 - 2{,}9x^5 - 4{,}9x^4 + 2{,}7x^3 + 0{,}9x^2 + 1{,}1x + 0{,}5$.
+
+GeoGebra: `f(x) = 3x^6 - 2.9x^5 - 4.9x^4 + 2.7x^3 + 0.9x^2 + 1.1x + 0.5` (tizedes**pont**!), aztán `Root(f)` és `Extremum(f)`.
+
+<SzamValasz helyes="0.5" mezok={["f(0) ="]} magyarazat="Minden x-es tag 0 lesz, marad a konstans: f(0) = 0,5 ≠ 0. Ezért az x = 0 nem zérushely. Ez a (c) feladat matematikai igazolása.">
+(c) Igazold, hogy $x = 0$ nem zérushely: mennyi $f(0)$?
+</SzamValasz>
+
+<Besorolo
+  cim="Melyik parancs kell?"
+  opciok={["Root(f)", "Extremum(f)"]}
+  elemek={[
+    { kerdes: "(b) zérushelyekhez tartozó pontok", helyes: 0, miert: "A zérushely ott van, ahol f(x) = 0." },
+    { kerdes: "(d) szélsőértékhelyekhez tartozó pontok", helyes: 1, miert: "A helyi minimumok és maximumok." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="4. (e): pont Point nélkül">
+„Jelenítse meg az $x = 1{,}23$ helyhez tartozó pontot! Nem használható a Pont (Point) parancs.”
+
+A grafikon pontja $(x_0, f(x_0))$, tehát: `P = (1.23, f(1.23))`.
+
+<SzamValasz helyes="-0.752" tures={0.005} mezok={["f(1,23) ≈"]} magyarazat="f(1,23) ≈ −0,752. A pont: P ≈ (1,23; −0,752).">
+Mennyi $f(1{,}23)$ (három tizedesre)? (Számológéppel vagy GeoGebrában.)
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="4. (f): érintő Tangent nélkül">
+Az érintő meredeksége $m = f'(1{,}23)$. Két út ([az érintős lecke](/szmv-nullarol/erinto)):
+
+- `m = f'(1.23)`, és az egyenlet: `y - y(P) = m (x - x(P))`;
+- vagy `Q = (x(P) + 1, y(P) + m)` és `Line(P, Q)`.
+
+<SzamValasz helyes="-3.418" tures={0.005} mezok={["m ≈"]} tipp="f′(x) = 18x⁵ − 14,5x⁴ − 19,6x³ + 8,1x² + 1,8x + 1,1." magyarazat="f′(1,23) ≈ −3,418: itt a függvény csökken.">
+Mennyi a meredekség (három tizedesre)?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="4. (g): szűkített értelmezési tartomány">
+„Ábrázolja zölddel a $g : [0{,}2;\ 1{,}5] \to \R$, $g(x) = f(x)$ függvényt!” Ugyanaz a képlet, csak **kisebb értelmezési tartományon**.
+
+<Valasztas valaszok={["g = Function(f, 0.2, 1.5)", "g(x) = f(x) + 0.2", "g = FitPoly({0.2, 1.5}, 6)"]} helyes={0} miert={["", "Ez eltolás felfelé, nem szűkítés.", "Ez értelmetlen: a FitPoly pontokat vár."]} sym magyarazat="Másik lehetőség: g(x) = If(0.2 <= x <= 1.5, f(x)). A színt az objektum beállításaiban (jobb gomb → Beállítások → Szín) állítod zöldre.">
+Melyik bemenet jó?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="5. Meredekség két pontból">
+<SzamValasz helyes="-6" tipp="m = (y_B − y_A) / (x_B − x_A)." magyarazat="(−2 − 4) / (3 − 2) = −6 / 1 = −6.">
+$A = (2, 4)$, $B = (3, -2)$. Mi az $AB$ egyenes meredeksége?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="6. Vektor reprezentánsa egy pontból">
+A $\mathbf{v}$ vektor $P$-ből induló példányának végpontja $P + \mathbf{v}$ (GeoGebra: `Translate(v, P)`, a végpont `P + v`).
+
+<PontRako cel={[-1, 10]} meret={11} kezdo={[1, 6]} pontok={[{p: [1, 6], cimke: "P"}]} nyilak={[{a: [0, 0], b: [-2, 4], cimke: "v"}]} hibak={{"3;2": "Kivontad a vektort: P − v. A végpont P + v.", "-2;4": "Ez maga a v vektor (az origóból). P-ből kell indulni."}} magyarazat="(1 + (−2), 6 + 4) = (−1, 10).">
+$P = (1, 6)$, $\mathbf{v} = (-2, 4)$. Hol a végpont?
+</PontRako>
+</Kartya>
+
+<Kartya cim="7. Implicit alakzat">
+$x^3 + y^3 - 5xy^2 - x + 1 = 0$. Részletesen: [Implicit görbék](/szmv-nullarol/implicit-gorbek).
+
+<Valasztas valaszok={["(a) beírom az egyenletet, kék színnel; (b) nem, mert pl. x = 1-hez 3 pont tartozik; (c) B: nincs rajta, mert F(1, 4) = −15 ≠ 0", "(a) FitPoly; (b) igen; (c) A: rajta van"]} helyes={0} miert={["", "Az egyenletet csak be kell írni; az x = 1 egyenes háromszor metszi; és F(1, 4) = −15."]}>
+Melyik a jó megoldás?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="8. Gyökök és a derivált gyökei">
+<Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["Próbáld ki: f(x) = x² − 1.", ""]} magyarazat="Hamis. Ellenpélda: f(x) = x² − 1 zérushelyei ±1, de f′(x) = 2x zérushelye 0. Az f′ zérushelyei a lehetséges szélsőértékhelyek, nem f gyökei.">
+„Az $f$ polinomiális függvény zérushelyei egybeesnek az $f'$ deriváltfüggvény zérushelyeivel.”
+</Valasztas>
+</Kartya>
+
+<Kartya cim="9. Képez-e, függvény-e?">
+$F = \{(2, 4), (3, 8), (4, 5), (6, 5)\} \subseteq A \times B$, $A = \{1, 2, 3, 4, 5, 6\}$, $B = \{4, 5, 6, 7, 8\}$. A szavakról: [Értelmezési tartomány, értékkészlet, inverz](/szmv-nullarol/inverz-es-fuggveny).
+
+<SzamValasz helyes="2, 3, 4, 6" forma="halmaz">
+$D_F = ?$
+</SzamValasz>
+
+<SzamValasz helyes="4, 5, 8" forma="halmaz">
+$R_F = ?$
+</SzamValasz>
+
+<Valasztas valaszok={["A. A-ból képez", "B. A-t képezi", "C. B-be képez", "D. B-re képez", "E. F függvény", "F. F invertálható függvény", "G. F⁻¹ függvény"]} helyes={[0, 2, 4]} miert={["D_F ⊆ A, tehát igaz.", "D_F ≠ A: az 1 és az 5 kimarad.", "R_F ⊆ B, tehát igaz.", "R_F ≠ B: a 6 és a 7 kimarad.", "Minden első elemhez pontosan egy pár tartozik.", "A 4 és a 6 is az 5-be megy, nem kölcsönösen egyértelmű.", "Az 5-höz két elem (4 és 6) tartozna."]}>
+Mely állítás(ok) igaz(ak)?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="10. A hipocikloid">
+$x(t) = (a - b)\cos t + b\cos\!\left(\left(\tfrac ab - 1\right)t\right)$, $y(t) = (a - b)\sin t - b\sin\!\left(\left(\tfrac ab - 1\right)t\right)$, $t \in [0, 12\pi]$, $a = 8{,}5$, $b = 3{,}9$.
+
+<Lepesek>
+<Lepes>
+`a = 8.5`, `b = 3.9`, aztán `p(t) = (a - b) cos(t) + b cos((a/b - 1) t)` és `q(t) = (a - b) sin(t) - b sin((a/b - 1) t)`. (Az `x` és `y` név foglalt: az `x(P)` a pont első koordinátája.)
+</Lepes>
+<Lepes>
+(a) `c = Curve(p(t), q(t), t, 0, 12pi)`, pirosra színezve; a `p` és `q` grafikonját rejtsd el.
+</Lepes>
+<Lepes>
+(b) `P = c(9pi)`: a görbe pontja $t = 9\pi$-nél, Point parancs nélkül.
+</Lepes>
+<Lepes>
+(c) `v = Vector(P, P + (p'(9pi), q'(9pi)))`, szaggatott vonallal.
+</Lepes>
+</Lepesek>
+
+<Valasztas valaszok={["Curve(p(t), q(t), t, 0, 12pi)", "Curve(p(t), q(t), t, 0, 9pi)", "Function(p, 0, 12pi)"]} helyes={0} miert={["", "A 9π csak a P pont paramétere; a görbe 0-tól 12π-ig fut.", "Ez p grafikonját rajzolná, de a feladat szerint a koordináta-függvények külön ne kerüljenek ábrázolásra."]} sym>
+Melyik rajzolja a görbét?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="11. és 12.">
+<Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["Lásd a paraméteres egyenes leckét: (1 − t)A + tB, t ∈ [0, 1].", ""]}>
+11. „Egyenes szakasz nem írható fel paraméteres görbeként.”
+</Valasztas>
+
+12.: origó középpontú egységkör, $P = a(\pi/4)$, csúszka 0 és $\pi$ között, kör $P$ körül 0,5 sugárral. Részletesen: [Paraméteres kör](/szmv-nullarol/parameteres-kor).
+
+<Valasztas valaszok={["a = Curve(cos(t), sin(t), t, 0, 2pi); P = a(t0); t0 = Slider(0, pi); Curve(0.5 cos(t) + x(P), 0.5 sin(t) + y(P), t, 0, 2pi)", "a = Circle((0, 0), 1); P = Point(a); …"]} helyes={0} miert={["", "A Circle nem paraméteres megadás, és a Point paranccsal nem a t₀-hoz tartozó pontot kapod."]}>
+Melyik a jó parancssor?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="13. és 14.">
+13.: harmadfokú paraméteres görbe négy ponton, 0, 1, 2, 3 paraméterértékeknél, és az érintővektor $P_3$-ban. Részletesen: [Pontokra illesztett paraméteres görbe](/szmv-nullarol/interpolacios-gorbe).
+
+<SzamValasz helyes="2" magyarazat="Egyet az x koordinátákra (f), egyet az y koordinátákra (g).">
+Hány `FitPoly` parancs kell a 13. feladathoz?
+</SzamValasz>
+
+14.: két harmadfokú implicit görbe 14 pont két részhalmazára. Részletesen: [Implicit görbék](/szmv-nullarol/implicit-gorbek).
+
+<SzamValasz helyes="9">
+Hány pontot adj meg egy `ImplicitCurve` parancsnak harmadfokú görbéhez?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- $y$-tengelymetszet: $(0, f(0))$. Pont a grafikonon: $f(x_A) = y_A$. Pont az implicit görbén: behelyettesítve 0.
+- Pont Point nélkül: `(x0, f(x0))`, illetve görbénél `a(t0)`. Érintő Tangent nélkül: `m = f'(x0)` és `Line(P, P + (1, m))`.
+- Szűkített tartomány: `Function(f, a, b)` vagy `If(a <= x <= b, f(x))`.
+- $\times = \mathbf{0}$: párhuzamos; $\cdot = 0$: merőleges.
+- $A$-ból: $D_F \subseteq A$; $A$-t: $D_F = A$; $B$-be: $R_F \subseteq B$; $B$-re: $R_F = B$.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

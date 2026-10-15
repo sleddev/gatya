@@ -1,0 +1,107 @@
+---
+cim: Implicit görbék
+osszefoglalo: Görbe megadása F(x, y) = 0 egyenlettel, annak ellenőrzése, hogy egy pont rajta van-e, mikor lehet egy alakzat függvény grafikonja, és implicit görbe illesztése pontokra (ImplicitCurve).
+allapot: lecke
+kulcsszavak: [implicit görbe, implicit egyenlet, F(x, y) = 0, pont az alakzaton, függőleges egyenes teszt, függvény grafikonja, ImplicitCurve, harmadfokú görbe]
+forras: SzMV gyakorlófeladatok (2025) 7., 14.
+---
+
+<Lecke>
+
+<Kartya cim="Egyenlet, ami nem y = …">
+Az **implicit** megadásnál a görbe azon $(x, y)$ pontok halmaza, amelyekre egy egyenlet teljesül:
+
+$$
+F(x, y) = 0.
+$$
+
+A legismertebb az egységkör: $x^2 + y^2 - 1 = 0$. GeoGebrában egyszerűen beírod az egyenletet: `x^2 + y^2 = 1`.
+
+<Valasztas valaszok={["igen", "nem"]} helyes={0} miert={["", "0,36 + 0,64 = 1, tehát teljesül az egyenlet."]}>
+Rajta van-e a $(0{,}6;\ 0{,}8)$ pont az egységkörön?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Rajta van-e a pont?">
+Egy pont pontosan akkor van az alakzaton, ha a koordinátáit behelyettesítve **0-t** kapunk. ZH-feladat (2025, 7.):
+
+$$
+x^3 + y^3 - 5xy^2 - x + 1 = 0.
+$$
+
+<SzamValasz helyes="-15" mezok={["F(1, 4) ="]} tipp="1 + 64 − 5 · 1 · 16 − 1 + 1." magyarazat="1 + 64 − 80 − 1 + 1 = −15.">
+Helyettesítsd be a $P = (1, 4)$ pontot a bal oldalba!
+</SzamValasz>
+
+<Valasztas valaszok={["A P pont rajta van az alakzaton", "A P pont nincs rajta az alakzaton"]} helyes={1} miert={["−15 ≠ 0.", ""]} magyarazat="A GeoGebrában is ellenőrizheted: írd be a bal oldalt a P koordinátáival, vagy add meg a pontot, és nézd meg, hogy a görbén van-e.">
+Melyik igaz?
+</Valasztas>
+
+<SzamValasz helyes="0" mezok={["F(0, −1) ="]} magyarazat="0 − 1 − 0 − 0 + 1 = 0: a (0, −1) pont rajta van.">
+És a $(0, -1)$ pont?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Függvény grafikonja lehet-e?">
+Egy függvény minden $x$-hez **legfeljebb egy** $y$-t rendel. A grafikonját tehát minden **függőleges egyenes legfeljebb egyszer** metszi.
+
+<Valasztas valaszok={["igen", "nem"]} helyes={1} miert={["Az x = 0 egyenes két pontban metszi: (0, 1) és (0, −1).", ""]}>
+Lehet-e az egységkör egy valós függvény grafikonja?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A ZH-alakzat">
+Nézzük az $x = 1$ egyenest! Behelyettesítve $1 + y^3 - 5y^2 - 1 + 1 = 0$, azaz
+
+$$
+y^3 - 5y^2 + 1 = 0.
+$$
+
+A bal oldal értéke $y = -1$-nél $-5$, $y = 0$-nál $1$, $y = 1$-nél $-3$, $y = 5$-nél $1$.
+
+<SzamValasz helyes="3" tipp="Ahol az előjel vált, ott van gyök: (−1, 0), (0, 1) és (1, 5) között." magyarazat="Háromszor vált előjelet, tehát legalább három gyök van, és harmadfokúnak több nem is lehet: pontosan 3.">
+Hány pontban metszi az $x = 1$ egyenes az alakzatot?
+</SzamValasz>
+
+<Valasztas valaszok={["Nem, mert az x = 1-hez több y is tartozik", "Igen, minden egyenlet függvény"]} helyes={0} miert={["", "Az egységkör például nem az."]}>
+Előállítható-e ez az alakzat egy valós függvény grafikonjaként?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Fordítva mindig megy">
+Minden $y = f(x)$ grafikon felírható implicit alakban: $y - f(x) = 0$.
+
+<SzamValasz helyes="x^2" valtozok={["x"]} mezok={["y −"]} magyarazat="y − x² = 0. (Az x² − y = 0 is ugyanez a görbe: az egyenletet −1-gyel szorozhatjuk.)">
+Írd fel az $y = x^2$ parabolát $y - (\dots) = 0$ alakban!
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Illesztés pontokra: ImplicitCurve">
+Ahogy a `FitPoly` polinomot illeszt pontokra, az `ImplicitCurve(lista)` **implicit görbét** illeszt. A fokszámot a pontok száma határozza meg:
+
+| fokszám | általános egyenlet | pontok száma |
+|---|---|---|
+| 1 (egyenes) | $ax + by + c = 0$ | 2 |
+| 2 (kúpszelet) | 6 együttható | 5 |
+| 3 | 10 együttható | 9 |
+
+Az együtthatók száma mínusz 1 pont kell, mert az egyenletet bármilyen nem nulla számmal szorozhatjuk.
+
+<SzamValasz helyes="9" magyarazat="A harmadfokú implicit egyenletnek 10 tagja van (1, x, y, x², xy, y², x³, x²y, xy², y³), ebből 10 − 1 = 9 pont kell.">
+ZH-feladat (2025, 14.): 14 pontból két részhalmazra kell harmadfokú implicit görbét illeszteni. Hány pontot tartalmazzon egy részhalmaz?
+</SzamValasz>
+
+GeoGebrában: `c1 = ImplicitCurve({A, B, C, D, E, F, G, H, I})`.
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Implicit görbe: $F(x, y) = 0$; GeoGebrában csak beírod az egyenletet.
+- Pont az alakzaton: behelyettesítve 0 jön ki.
+- Függvény grafikonja csak akkor lehet, ha minden függőleges egyenes legfeljebb egyszer metszi.
+- `ImplicitCurve(lista)`: egyeneshez 2, kúpszelethez 5, harmadfokúhoz 9 pont.
+- Színezés: objektum beállításai (jobb gomb), Szín fül.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

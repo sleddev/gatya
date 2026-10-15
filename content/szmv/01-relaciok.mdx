@@ -65,7 +65,18 @@ A $(7, 7)$ megfordítva önmaga.
 
 ## A függvény mint reláció
 
-Egy $R \subseteq A \times B$ reláció pontosan akkor **függvény** $A$-ból $B$-be, ha $A$ minden eleme **pontosan egy** párban szerepel első tagként. Ez ugyanaz a feltétel, mint a [Diszkrét matematikában](/dimat/fuggvenyek#mi-a-fuggveny) az „egyértelmű hozzárendelés”.
+Egy $R \subseteq A \times B$ reláció **függvény**, ha **egyértelmű**: minden első elemhez pontosan egy második elem tartozik (nincs két pár ugyanazzal az első, de különböző második taggal). Ez a [Diszkrét matematika](/dimat/fuggvenyek#mi-a-fuggveny) „egyértelmű hozzárendelése”.
+
+Azt, hogy mennyit fed le $A$-ból és $B$-ből, négy kifejezés írja le:
+
+| kifejezés | jelentése |
+|---|---|
+| $A$-ból képez | $D_R \subseteq A$ |
+| $A$-t képezi | $D_R = A$ |
+| $B$-be képez | $R_R \subseteq B$ |
+| $B$-re képez | $R_R = B$ |
+
+Egy függvény **invertálható**, ha az inverz relációja is függvény, vagyis különböző elemekhez különböző képek tartoznak.
 
 <Kviz
   kerdes="Függvény-e az R = {(2,4), (2,6), (4,7), (6,9), (7,7)} reláció?"
@@ -75,5 +86,5 @@ Egy $R \subseteq A \times B$ reláció pontosan akkor **függvény** $A$-ból $B
 />
 
 <Tipp>
-A relációfelfedezőben a „függvény?” sor mutatja, mikor teljesül ez. Próbáld ki az „a = b” feltétellel: ha $A \subseteq B$, az egy függvény (az identitás).
+A relációfelfedezőben a „függvény?” sor mutatja, mikor teljesül ez. Próbáld ki az „a = b” feltétellel: az egy függvény (az identitás a közös elemeken).
 </Tipp>

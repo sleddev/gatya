@@ -1,0 +1,135 @@
+---
+cim: Pontokra illesztett paraméteres görbe
+osszefoglalo: Görbe, amely adott pontokon adott paraméterértékeknél megy át (a laborjegyzet Hermite-íve) két FitPoly-jal, külön az x és külön az y koordinátákra; és az érintővektor egy pontjában.
+allapot: lecke
+kulcsszavak: [interpolációs görbe, Hermite-ív, paraméterérték, FitPoly, Curve, harmadfokú paraméteres görbe, érintővektor, segédobjektum]
+forras: parameteres_gorbek.pdf · hermite.ggb · SzMV gyakorlófeladatok (2025) 13.
+---
+
+<Lecke>
+
+<Kartya cim="Amikor az y = f(x) kevés">
+A 2025-ös gyakorlófeladatban a görbének sorban a $P_0 = (140, 80)$, $P_1 = (60, 80)$, $P_2 = (90, 50)$, $P_3 = (120, 100)$ pontokon kell átmennie.
+
+<Valasztas valaszok={["Nem: az x előbb csökken (140 → 60), aztán nő, a görbe visszafordul", "Igen, FitPoly({P0, P1, P2, P3}, 3) pont ezt adja"]} helyes={0} miert={["", "A FitPoly egy y = f(x) grafikont ad, ami balról jobbra halad: a pontokat x szerint rendezve köti össze, nem a megadott sorrendben."]}>
+Megoldható-e ez egy $y = f(x)$ függvény grafikonjával, a megadott **sorrendben**?
+</Valasztas>
+
+Paraméteres görbével viszont igen: a pont bármerre mehet, akár vissza is fordulhat.
+</Kartya>
+
+<Kartya cim="Az ötlet: külön x, külön y">
+Megmondjuk, **melyik $t$-nél** legyen a görbe az egyes pontokban (ezek a **paraméterértékek**). Utána:
+
+- az $x$ koordinátákra illesztünk egy $f(t)$ polinomot: $f(t_i) = x(P_i)$;
+- az $y$ koordinátákra egy $g(t)$ polinomot: $g(t_i) = y(P_i)$;
+- a görbe: `Curve(f(t), g(t), t, t0, t3)`.
+
+Az $f$-hez a GeoGebrában „segédpontokat” veszünk fel: **első koordináta a paraméterérték, második a pont $x$ koordinátája**.
+
+<Valasztas valaszok={["X0 = (t0, x(A))", "X0 = (x(A), y(A))", "X0 = (t0, y(A))"]} helyes={0} miert={["", "Ez maga az A pont.", "Ez az y koordinátákhoz kell (Y0)."]} sym>
+Melyik a jó segédpont az $x$ koordinátákhoz?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Kicsiben, kézzel">
+Legyen $A = (0, 0)$, $B = (2, 2)$, $C = (6, 2)$, rendre a $t = 0, 1, 2$ paraméterértéknél. Három pontra másodfokú polinom illeszthető.
+
+<SzamValasz helyes={["1", "2"]} forma="vektor">
+Mi az $X_1$ segédpont (a $B$ pont $x$ koordinátájához)?
+</SzamValasz>
+
+Az $x$ segédpontok tehát $(0, 0)$, $(1, 2)$, $(2, 6)$.
+
+<SzamValasz helyes="t^2+t" valtozok={["t"]} mezok={["f(t) ="]} tipp="f(t) = at² + bt + c. f(0) = 0, tehát c = 0. a + b = 2 és 4a + 2b = 6." magyarazat="a = 1, b = 1: f(t) = t² + t. Ellenőrzés: f(2) = 4 + 2 = 6. ✓">
+Melyik másodfokú $f(t)$ megy át rajtuk?
+</SzamValasz>
+
+<SzamValasz helyes="-t^2+3t" valtozok={["t"]} mezok={["g(t) ="]} tipp="Az y segédpontok: (0, 0), (1, 2), (2, 2)." magyarazat="c = 0, a + b = 2, 4a + 2b = 2: a = −1, b = 3. g(t) = −t² + 3t.">
+És az $y$ koordinátákra $g(t)$?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Az érintővektor itt is">
+A görbe $(f(t), g(t))$, tehát az érintővektor $(f'(t), g'(t))$.
+
+<SzamValasz helyes={["3", "1"]} forma="vektor" tipp="f′(t) = 2t + 1, g′(t) = −2t + 3." magyarazat="(2 · 1 + 1, −2 · 1 + 3) = (3, 1).">
+Mi az érintővektor a $B$ pontban ($t = 1$)?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A laborjegyzet példája">
+$A = (2, 4)$, $B = (3, 6)$, $C = (6, 5)$, $D = (7, 3)$, a paraméterértékek $t_0 = -1$, $t_1 = 0$, $t_2 = 1$, $t_3 = 2$. Négy pontra **harmadfokú** polinom kell:
+
+`f = FitPoly({X0, X1, X2, X3}, 3)`, `g = FitPoly({Y0, Y1, Y2, Y3}, 3)`
+
+A GeoGebra ezt adja:
+
+$$
+\begin{aligned} f(t) &= -\tfrac23 t^3 + t^2 + \tfrac83 t + 3, \\ g(t) &= \tfrac13 t^3 - \tfrac32 t^2 + \tfrac16 t + 6. \end{aligned}
+$$
+
+<SzamValasz helyes={["6", "5"]} forma="vektor" tipp="f(1) = −2/3 + 1 + 8/3 + 3." magyarazat="f(1) = 6, g(1) = 1/3 − 3/2 + 1/6 + 6 = 5: ez a C pont. ✓">
+Ellenőrizd: mi $(f(1), g(1))$?
+</SzamValasz>
+
+<SzamValasz helyes={["8/3", "1/6"]} forma="vektor" tures={0.002} magyarazat="f′(t) = −2t² + 2t + 8/3, g′(t) = t² − 3t + 1/6; t = 0-nál (8/3, 1/6).">
+Mi az érintővektor a $B$ pontban ($t = 0$)?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Próbáld ki">
+<ParameteresGorbe tipus="hermite" erinto />
+
+<Valasztas valaszok={["A görbe továbbra is átmegy mind a négy ponton", "A görbe csak a mozgatott ponton nem megy át"]} helyes={0} miert={["", "Az f és g újra illesztődik, így mindig mind a négy ponton átmegy."]}>
+Mi történik, ha elhúzol egy pontot?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A ZH-feladat lépései">
+2025, 13.: a görbe $P_0, P_1, P_2, P_3$-on **rendre a 0, 1, 2, 3** paraméterértéknél megy át; kezdőpontja $P_0$, végpontja $P_3$; a pontokon és a görbén kívül **más segédobjektum ne látsszon**.
+
+<Lepesek>
+<Lepes>
+`X0 = (0, x(P0))`, …, `X3 = (3, x(P3))`, és `f = FitPoly({X0, X1, X2, X3}, 3)`.
+</Lepes>
+<Lepes>
+`Y0 = (0, y(P0))`, …, `Y3 = (3, y(P3))`, és `g = FitPoly({Y0, Y1, Y2, Y3}, 3)`.
+</Lepes>
+<Lepes>
+`a = Curve(f(t), g(t), t, 0, 3)`: így $t = 0$-nál indul ($P_0$) és $t = 3$-nál ér véget ($P_3$).
+</Lepes>
+<Lepes>
+Az Algebra nézetben kapcsold ki az $X_i$, $Y_i$, $f$, $g$ láthatóságát (a kis kör a nevük előtt).
+</Lepes>
+</Lepesek>
+
+<Valasztas valaszok={["Curve(f(t), g(t), t, 0, 3)", "Curve(f(t), g(t), t, 0, 2pi)", "Curve(f(t), g(t), t, -1, 2)"]} helyes={0} miert={["", "A 2π a körnél kell. Itt a paraméterértékek 0-tól 3-ig mennek.", "Ezek a laborjegyzet paraméterértékei, a ZH-ban 0, 1, 2, 3 van."]} sym>
+Melyik a jó `Curve` parancs?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Az érintővektor a végpontban">
+A GeoGebra a ZH-feladatra ezt adja:
+
+$$
+\begin{aligned} f(t) &= -\tfrac{55}{3}t^3 + 110t^2 - \tfrac{515}{3}t + 140, \\ g(t) &= \tfrac{55}{3}t^3 - 70t^2 + \tfrac{155}{3}t + 80. \end{aligned}
+$$
+
+<SzamValasz helyes={["-20/3", "380/3"]} forma="vektor" tures={0.001} tipp="f′(t) = −55t² + 220t − 515/3, g′(t) = 55t² − 140t + 155/3. Helyettesíts t = 3-at." magyarazat="f′(3) = −495 + 660 − 515/3 = −20/3 ≈ −6,67; g′(3) = 495 − 420 + 155/3 = 380/3 ≈ 126,67.">
+Mi az érintővektor a $P_3$ pontban?
+</SzamValasz>
+
+GeoGebrában: `v = Vector(P3, P3 + (f'(3), g'(3)))`.
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Pontokon adott paraméterértékeknél átmenő görbe: külön polinom az $x$-ekre és az $y$-okra.
+- Segédpontok: $X_i = (t_i, x(P_i))$, $Y_i = (t_i, y(P_i))$; $n$ pontra $(n-1)$-ed fokú `FitPoly`.
+- `Curve(f(t), g(t), t, t0, t3)`: a $t$ az első paraméterértéktől az utolsóig fut.
+- Érintővektor: $(f'(t), g'(t))$, a pontból: `Vector(P, P + (f'(t), g'(t)))`.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>
