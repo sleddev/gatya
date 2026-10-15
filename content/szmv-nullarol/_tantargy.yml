@@ -6,6 +6,6 @@ oktato: önálló gyakorló kurzus · a laborjegyzetek alapján
 sorrend: 3.5
 leiras: >-
   Lépésenként felépített kurzus a Számítógépes matematika és vizualizáció számonkéréseire, a laborok
-  anyaga (relations.pdf, functions.pdf, vector operations.pdf) alapján: relációk, polinomok illesztése,
-  gyökök, szélsőértékek és érintők, végül vektorműveletek síkban és térben. Mindent kézzel is kiszámolunk,
+  anyaga és a 2025-ös gyakorlófeladatsor alapján: relációk, polinomok illesztése, gyökök, szélsőértékek
+  és érintők, vektorműveletek síkban és térben, paraméteres és implicit görbék. Mindent kézzel is kiszámolunk,
   és mindenhez megmutatjuk a GeoGebra-parancsot. Egy kártya, egy gondolat, utána rögtön egy feladat.

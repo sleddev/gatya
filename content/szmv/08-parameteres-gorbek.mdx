@@ -1,0 +1,59 @@
+---
+cim: Paraméteres és implicit görbék
+osszefoglalo: Paraméteres egyenes két módszerrel, paraméteres kör, pontokra adott paraméterértékekkel illesztett görbe (Hermite-ív), érintővektor, és implicit görbék; a GeoGebra Curve és ImplicitCurve parancsaival.
+allapot: kimaradt
+kulcsszavak: [paraméteres görbe, paraméter, Curve, paraméteres egyenes, szakasz, irányvektor, paraméteres kör, Hermite-ív, interpolációs görbe, FitPoly, érintővektor, implicit görbe, ImplicitCurve]
+forras: parameteres_gorbek.pdf · parameteres_gorbek.zip · SzMV gyakorlófeladatok (2025)
+---
+
+A **paraméteres görbe** a pontok koordinátáit egy $t$ paraméterrel adja meg, két egyenlettel: $x = x(t)$ és $y = y(t)$. GeoGebrában: `a = Curve(x(t), y(t), t, t0, t1)`, ahol a $t$ a $t_0$ és $t_1$ között fut. Lépésenként: [Paraméteres egyenes](/szmv-nullarol/parameteres-egyenes), [kör](/szmv-nullarol/parameteres-kor), [illesztett görbe](/szmv-nullarol/interpolacios-gorbe).
+
+<ParameteresGorbe tipus="egyenes" tipusok={["egyenes", "kor", "hermite", "hipocikloid"]} />
+
+## Paraméteres egyenes
+
+<Definicio>
+**1. módszer** (két pont súlyozott átlaga): $q_x(t) = (1 - t)\cdot x(A) + t\cdot x(B)$, $q_y(t) = (1 - t)\cdot y(A) + t\cdot y(B)$.
+
+**2. módszer** (irányvektorral): $\mathbf{vec} = B - A$, és $n_x(t) = x(A) + x(\mathbf{vec})\cdot t$, $n_y(t) = y(A) + y(\mathbf{vec})\cdot t$.
+</Definicio>
+
+A kettő ugyanaz, mert $(1 - t)A + tB = A + t(B - A)$. A $t = 0$ értéknél az $A$, a $t = 1$ értéknél a $B$ pontban vagyunk: `Curve(qx(t), qy(t), t, 0, 1)` az $AB$ **szakasz**. Tágabb tartománnyal (például `t, -2, 1.6`) a vonal mindkét irányban túlnyúlik.
+
+<Pelda cim="a gyakorlatról: A = (2, 3), B = (4, 4)">
+$\mathbf{vec} = (2, 1)$, $n_x(t) = 2 + 2t$, $n_y(t) = 3 + t$. A $t = 0{,}5$ pont: $(3;\ 3{,}5)$, a szakasz felezőpontja.
+</Pelda>
+
+## Paraméteres kör
+
+<Definicio>
+$K = (u, v)$ középpontú, $r$ sugarú kör: $q_x(t) = r\cos t + u$, $q_y(t) = r\sin t + v$, és egy teljes körhöz $t \in [0, 2\pi]$: `Curve(qx(t), qy(t), t, 0, 2pi)`.
+</Definicio>
+
+A laborfájlban a sugár csúszka, és a görbe pontjai `A = a(3)`, illetve `B = a(k)` (`k` csúszka): a görbe neve után zárójelben a paraméter adja a görbe pontját, **Point parancs nélkül**.
+
+## Pontokra illesztett görbe (Hermite-ív)
+
+Ha a görbének az $A, B, C, D$ pontokon a $t_0, t_1, t_2, t_3$ paraméterértékeknél kell átmennie, **külön** illesztünk polinomot az $x$ és az $y$ koordinátákra:
+
+1. `X0 = (t0, x(A))`, …, `X3 = (t3, x(D))`, és `f = FitPoly({X0, X1, X2, X3}, 3)`;
+2. `Y0 = (t0, y(A))`, …, `Y3 = (t3, y(D))`, és `g = FitPoly({Y0, Y1, Y2, Y3}, 3)`;
+3. `Curve(f(t), g(t), t, t0, t3)`.
+
+<Pelda cim="a gyakorlatról: A = (2, 4), B = (3, 6), C = (6, 5), D = (7, 3); t = −1, 0, 1, 2">
+$f(t) = -\frac23 t^3 + t^2 + \frac83 t + 3$, $g(t) = \frac13 t^3 - \frac32 t^2 + \frac16 t + 6$. Ellenőrzés: $(f(1), g(1)) = (6, 5) = C$.
+</Pelda>
+
+Az $y = f(x)$ alakú `FitPoly({A, B, C, D})` itt nem jó: az balról jobbra halad, nem a megadott sorrendben.
+
+## Érintővektor
+
+A görbe érintővektora a $t$ paraméternél $(x'(t), y'(t))$; a körnél $(-r\sin t, r\cos t)$, ami merőleges a sugárra. GeoGebrában a $P = a(t_0)$ pontból: `v = Vector(P, P + (qx'(t0), qy'(t0)))`.
+
+## Implicit görbék
+
+<Definicio>
+Az **implicit** görbe az $F(x, y) = 0$ egyenletet kielégítő pontok halmaza (például `x^2 + y^2 = 1`). Egy pont rajta van, ha a koordinátáit behelyettesítve 0-t kapunk.
+</Definicio>
+
+Egy alakzat csak akkor lehet függvény grafikonja, ha minden függőleges egyenes legfeljebb egyszer metszi. `ImplicitCurve({…})` implicit görbét illeszt pontokra: egyeneshez 2, kúpszelethez 5, harmadfokú görbéhez 9 pont kell. Lépésenként: [Implicit görbék](/szmv-nullarol/implicit-gorbek).

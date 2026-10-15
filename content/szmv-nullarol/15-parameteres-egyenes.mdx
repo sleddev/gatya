@@ -1,0 +1,145 @@
+---
+cim: Paraméteres egyenes
+osszefoglalo: Mi a paraméteres görbe, a szakasz és az egyenes két felírása (két pont súlyozott átlaga, illetve pont és irányvektor), a t tartománya, és a görbe pontja egy adott paraméternél.
+allapot: lecke
+kulcsszavak: [paraméteres görbe, paraméter, paraméteres egyenes, szakasz, súlyozott átlag, irányvektor, Curve, görbepont]
+forras: parameteres_gorbek.pdf · egyenes_ket_modszer.ggb
+---
+
+<Lecke>
+
+<Kartya cim="Egy pont, ami mozog">
+Eddig a görbéket $y = f(x)$ alakban írtuk fel. A **paraméteres görbe** másképp gondolkodik: képzelj el egy pontot, ami **időben mozog**. A $t$ időpontban a helye:
+
+$$
+\big(x(t),\ y(t)\big).
+$$
+
+A $t$ a **paraméter**. Két külön függvény adja meg a pont két koordinátáját.
+
+Például $x(t) = t$, $y(t) = t^2$: a $t = 2$ időpontban a pont a $(2, 4)$-ben van.
+
+<SzamValasz helyes={["-1", "1"]} forma="vektor" magyarazat="x(−1) = −1, y(−1) = (−1)² = 1. Ez a görbe a jó öreg y = x² parabola, csak most egy mozgó pont rajzolja ki.">
+Hol van a pont a $t = -1$ időpontban?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="1. módszer: két pont súlyozott átlaga">
+Az $A$ és $B$ pontot összekötő egyenes:
+
+$$
+\begin{aligned} q_x(t) &= (1 - t)\cdot x(A) + t \cdot x(B), \\ q_y(t) &= (1 - t)\cdot y(A) + t \cdot y(B). \end{aligned}
+$$
+
+A gyakorlat példája: $A = (2, 3)$ és $B = (4, 4)$.
+
+<SzamValasz helyes={["2", "3"]} forma="vektor" hibak={{"4;4": "t = 0-nál az (1 − t) súly 1, a t súly 0: csak A számít."}}>
+Hol van a pont $t = 0$-nál?
+</SzamValasz>
+
+<SzamValasz helyes={["4", "4"]} forma="vektor">
+És $t = 1$-nél?
+</SzamValasz>
+
+<SzamValasz helyes={["3", "3.5"]} forma="vektor" magyarazat="0,5 · 2 + 0,5 · 4 = 3 és 0,5 · 3 + 0,5 · 4 = 3,5: a szakasz felezőpontja.">
+És $t = 0{,}5$-nél?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A t tartománya">
+A GeoGebrában a görbét a `Curve` paranccsal rajzoljuk, és megadjuk, **milyen $t$-k között** fusson:
+
+`Curve(qx(t), qy(t), t, 0, 1)`
+
+<Valasztas valaszok={["az AB szakaszt", "a teljes egyenest", "csak az A és B pontot"]} helyes={0} miert={["", "A teljes egyeneshez minden valós t kellene.", "A köztes t-k (például 0,5) a szakasz belső pontjait adják."]}>
+Mit rajzol a fenti parancs?
+</Valasztas>
+
+Ha a tartomány tágabb, például `Curve(qx(t), qy(t), t, -2, 1.6)`, a vonal **mindkét irányban túlnyúlik** $A$-n és $B$-n.
+
+<Valasztas valaszok={["A-n túl, a B-vel ellentétes oldalon", "B-n túl", "A és B között"]} helyes={0} miert={["", "B-n túl az 1-nél nagyobb t-k vannak.", "A és B között 0 és 1 közötti t-k vannak."]} magyarazat="t = −1-nél: 2 · A − B = (0, 2). Ez az A-tól a B-vel ellentétes irányba esik.">
+Hova esik a $t = -1$-hez tartozó pont?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="2. módszer: irányvektorral">
+Vegyük az $A$-ból $B$-be mutató vektort, $\mathbf{vec} = B - A$, és induljunk el $A$-ból ebbe az irányba:
+
+$$
+\begin{aligned} n_x(t) &= x(A) + x(\mathbf{vec})\cdot t, \\ n_y(t) &= y(A) + y(\mathbf{vec})\cdot t. \end{aligned}
+$$
+
+<SzamValasz helyes={["2", "1"]} forma="vektor">
+$A = (2, 3)$, $B = (4, 4)$. Mennyi $\mathbf{vec}$?
+</SzamValasz>
+
+<SzamValasz helyes={["2+2t", "3+t"]} mezok={["nx(t) =", "ny(t) ="]} valtozok={["t"]}>
+Írd fel a két függvényt!
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Ugyanaz a kettő">
+A két módszer ugyanazt az egyenest adja, ugyanazzal a paraméterezéssel:
+
+$$
+(1 - t)\cdot A + t \cdot B = A + t\cdot(B - A).
+$$
+
+<Valasztas valaszok={["A − tA + tB, ami pont A + t(B − A)", "Csak t = 0-ra egyezik meg a kettő"]} helyes={0} miert={["", "Minden t-re egyezik: bontsd fel a zárójelet."]}>
+Miért igaz?
+</Valasztas>
+
+<SzamValasz helyes={["3", "3.5"]} forma="vektor" magyarazat="2 + 2 · 0,5 = 3 és 3 + 0,5 = 3,5: ugyanaz, mint az 1. módszerrel.">
+Ellenőrizd: hol van a pont $t = 0{,}5$-nél a 2. módszerrel?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="Próbáld ki">
+<ParameteresGorbe tipus="egyenes" />
+
+<Valasztas valaszok={["A-ból B felé", "B-ből A felé"]} helyes={0} miert={["", "t = 0-nál A-ban van, t = 1-nél B-ben."]}>
+Merre halad a pont, ha $t$ nő?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Egy másik szakasz">
+$A = (1, -2)$, $B = (5, 0)$.
+
+<SzamValasz helyes={["1+4t", "-2+2t"]} mezok={["x(t) =", "y(t) ="]} valtozok={["t"]} tipp="vec = B − A = (4, 2)." magyarazat="x(t) = 1 + 4t, y(t) = −2 + 2t, t ∈ [0, 1].">
+Írd fel az $AB$ szakasz paraméteres egyenletét!
+</SzamValasz>
+
+<SzamValasz helyes={["4", "-0.5"]} forma="vektor" magyarazat="x = 1 + 4 · 0,75 = 4, y = −2 + 2 · 0,75 = −0,5.">
+Hol van a pont $t = 0{,}75$-nél?
+</SzamValasz>
+</Kartya>
+
+<Kartya cim="A görbe pontja, Point parancs nélkül">
+ZH-feladat: „Jelenítse meg a görbén a $t_0$ értékhez tartozó pontot! **Nem használható a Pont (Point) parancs.**”
+
+Két út van:
+
+- ha a koordinátafüggvényeknek van nevük: `P = (qx(t0), qy(t0))`;
+- ha a görbének van neve (például `a = Curve(...)`), akkor a görbe **függvényként** is hívható: `P = a(t0)`.
+
+<Valasztas valaszok={["P = a(0.5)", "P = Point(a)", "P = (0.5, a)"]} helyes={0} miert={["", "A Point parancs tiltott, és ráadásul nem a megadott paraméterhez tenné a pontot.", "Ez nem a görbe pontja: a második koordináta egy görbe lenne."]} sym>
+Az `a = Curve(qx(t), qy(t), t, 0, 1)` görbén melyik bemenet adja a $t = 0{,}5$-höz tartozó pontot?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Igaz vagy hamis?">
+<Valasztas valaszok={["igaz", "hamis"]} helyes={1} miert={["Az előbb írtunk fel ilyet!", ""]} magyarazat="Hamis: a szakasz x(t) = (1 − t)x(A) + t·x(B), y(t) = (1 − t)y(A) + t·y(B), t ∈ [0, 1]. (2025-ös gyakorlófeladat.)">
+„Egyenes szakasz nem írható fel paraméteres görbeként.”
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Röviden">
+<Osszefoglalo>
+- Paraméteres görbe: $(x(t), y(t))$; a $t$ a paraméter („idő”).
+- Szakasz, 1. módszer: $(1 - t)A + tB$; 2. módszer: $A + t(B - A)$. A kettő ugyanaz.
+- $t \in [0, 1]$: az $AB$ szakasz; tágabb tartomány: túlnyúlik $A$-n és $B$-n.
+- GeoGebra: `a = Curve(qx(t), qy(t), t, 0, 1)`; a $t_0$-hoz tartozó pont `a(t0)` vagy `(qx(t0), qy(t0))`.
+</Osszefoglalo>
+</Kartya>
+
+</Lecke>

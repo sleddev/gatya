@@ -1,8 +1,8 @@
 ---
 cim: Értelmezési tartomány, értékkészlet, inverz
-osszefoglalo: Egy reláció értelmezési tartománya és értékkészlete, az inverz reláció, és mikor függvény egy reláció.
+osszefoglalo: Egy reláció értelmezési tartománya és értékkészlete, az inverz reláció, mikor függvény egy reláció, mit jelent, hogy A-ból, A-t, B-be vagy B-re képez, és mikor invertálható.
 allapot: lecke
-kulcsszavak: [értelmezési tartomány, értékkészlet, inverz reláció, függvény, reláció, rendezett pár, egyértelmű]
+kulcsszavak: [értelmezési tartomány, értékkészlet, inverz reláció, függvény, reláció, rendezett pár, egyértelmű, A-ból képez, A-t képezi, B-be képez, B-re képez, invertálható]
 forras: relations.pdf
 ---
 
@@ -43,7 +43,9 @@ Mi a kapcsolat $R$ és $R^{-1}$ értelmezési tartománya és értékkészlete k
 </Kartya>
 
 <Kartya cim="Mikor függvény egy reláció?">
-Egy $R \subseteq A \times B$ reláció **függvény** $A$-ból $B$-be, ha $A$ **minden** eleme **pontosan egy** párban szerepel első tagként. Vagyis minden $a$-hoz pontosan egy $b$ tartozik.
+Egy $R \subseteq A \times B$ reláció **függvény**, ha **egyértelmű**: minden első elemhez **pontosan egy** második elem tartozik. Vagyis nincs két pár, amelynek ugyanaz az első tagja, de más a második.
+
+A gyakorlat szövege: „$F$ nem függvény, mert az $A$ halmaz 2 eleme a $B$ halmaz több eleméhez is kapcsolódik.”
 
 <Valasztas valaszok={["igen", "nem"]} helyes={1} miert={["Nézd meg a 2-t!", ""]} magyarazat="A 2-höz két érték is tartozik, a 4 és a 6: a hozzárendelés nem egyértelmű.">
 Függvény-e az $R = \{(2,4), (2,6), (4,7), (6,9), (7,7)\}$?
@@ -52,22 +54,76 @@ Függvény-e az $R = \{(2,4), (2,6), (4,7), (6,9), (7,7)\}$?
 
 <Kartya cim="Függvény vagy nem?">
 <Besorolo
-  cim="A = {1, 2, 3}, B = {a, b, c}. Függvény-e A-ból B-be?"
+  cim="A = {1, 2, 3}, B = {a, b, c}. Függvény-e a reláció?"
   opciok={["függvény", "nem függvény"]}
   elemek={[
-    { kerdes: "{(1, a), (2, b), (3, c)}", helyes: 0, miert: "Minden elemnek pontosan egy párja van." },
+    { kerdes: "{(1, a), (2, b), (3, c)}", helyes: 0, miert: "Minden első elemhez pontosan egy pár tartozik." },
     { kerdes: "{(1, a), (2, a), (3, a)}", helyes: 0, miert: "Az nem baj, hogy mind ugyanoda megy: ez a konstans függvény." },
-    { kerdes: "{(1, a), (2, b)}", helyes: 1, miert: "A 3-hoz nem tartozik semmi." },
+    { kerdes: "{(1, a), (2, b)}", helyes: 0, miert: "Függvény: az 1-hez és a 2-höz is egy érték tartozik. A 3-hoz nem tartozik semmi, ezért nem „képezi A-t”, de ez a következő kártya témája." },
     { kerdes: "{(1, a), (1, b), (2, c), (3, c)}", helyes: 1, miert: "Az 1-hez két érték tartozik." }
   ]}
 />
 </Kartya>
 
-<Kartya cim="Az inverz is függvény?">
-Ha $f$ függvény, az inverz relációja nem feltétlenül az. Például $\{(1, a), (2, a), (3, a)\}$ függvény, de az inverze, $\{(a, 1), (a, 2), (a, 3)\}$, nem: az $a$-hoz három érték tartozik.
+<Kartya cim="A-ból, A-t, B-be, B-re">
+Ha $F \subseteq A \times B$, négy szóval írjuk le, mennyit „fed le” $A$-ból és $B$-ből:
 
-<Valasztas valaszok={["Ha különböző elemek különböző helyre mennek (injektív), és mindent eltalál (szürjektív)", "Mindig"]} helyes={0} miert={["", "Láttuk, hogy nem mindig."]} magyarazat="Ez a bijektív függvény; csak ennek az inverze függvény. (Részletesen: Diszkrét matematika, injektív és szürjektív függvények.)">
-Mikor függvény az inverz $B$-ből $A$-ba?
+| kifejezés | jelentése |
+|---|---|
+| $A$-**ból** képez | $D_F \subseteq A$ (ez mindig igaz) |
+| $A$-**t** képezi | $D_F = A$: $A$ **minden** eleme szerepel |
+| $B$-**be** képez | $R_F \subseteq B$ (ez is mindig igaz) |
+| $B$-**re** képez | $R_F = B$: $B$ **minden** eleme kép |
+
+<Valasztas valaszok={["A-t képezi", "B-re képez", "egyik sem"]} helyes={1} miert={["A 3-nak nincs párja, tehát D_F = {1, 2} ≠ A.", "", "R_F = {a, b} = B, tehát B-re képez."]} magyarazat="D_F = {1, 2} ≠ A, de R_F = {a, b} = B.">
+$A = \{1, 2, 3\}$, $B = \{a, b\}$, $F = \{(1, a), (2, b)\}$. Melyik igaz?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="Gyakorold: a 2025-ös feladat">
+$F = \{(2, 4), (3, 8), (4, 5), (6, 5)\}$, $A = \{1, 2, 3, 4, 5, 6\}$, $B = \{4, 5, 6, 7, 8\}$.
+
+<Besorolo
+  cim="Igaz vagy hamis?"
+  opciok={["igaz", "hamis"]}
+  elemek={[
+    { kerdes: "F A-t képezi", helyes: 1, miert: "D_F = {2, 3, 4, 6}: az 1 és az 5 hiányzik." },
+    { kerdes: "F B-be képez", helyes: 0, miert: "R_F = {4, 5, 8} ⊆ B." },
+    { kerdes: "F B-re képez", helyes: 1, miert: "A 6 és a 7 nem kép." },
+    { kerdes: "F függvény", helyes: 0, miert: "A 2, 3, 4, 6 mindegyikéhez pontosan egy pár tartozik." }
+  ]}
+/>
+</Kartya>
+
+<Kartya cim="Az inverz is függvény?">
+Ha $F$ függvény, az inverz relációja nem feltétlenül az. Például $\{(1, a), (2, a), (3, a)\}$ függvény, de az inverze, $\{(a, 1), (a, 2), (a, 3)\}$, nem: az $a$-hoz három érték tartozik.
+
+$F$ **invertálható függvény**, ha az inverze is függvény: ehhez az kell, hogy **különböző elemek különböző helyre menjenek** (kölcsönösen egyértelmű, injektív).
+
+<Valasztas valaszok={["igen", "nem"]} helyes={1} miert={["A 4 és a 6 is az 5-be megy.", ""]} magyarazat="F⁻¹ = {(4, 2), (8, 3), (5, 4), (5, 6)}: az 5-höz két érték tartozik, tehát F⁻¹ nem függvény, F nem invertálható.">
+Invertálható-e az $F = \{(2, 4), (3, 8), (4, 5), (6, 5)\}$ függvény?
+</Valasztas>
+</Kartya>
+
+<Kartya cim="A laborjegyzet nagy példája">
+$A = \{2, 4, 6, 9\}$, $B = \{4, 6, 18, 27, 54\}$, $F = \{(a, b) \mid a \text{ osztója } b\text{-nek, és } a < b\}$.
+
+<ParKijelolo A={[2, 4, 6, 9]} B={[4, 6, 18, 27, 54]} helyes={[[2, 4], [2, 6], [2, 18], [2, 54], [6, 18], [6, 54], [9, 18], [9, 27], [9, 54]]} magyarazat="A 2 a páros számok osztója (4, 6, 18, 54); a 4 egyiknek sem; a 6 a 18-nak és az 54-nek (a 6-nak is, de 6 < 6 nem igaz); a 9 a 18, 27, 54 osztója.">
+Jelöld ki $F$ párjait!
+</ParKijelolo>
+
+<SzamValasz helyes="2, 6, 9" forma="halmaz" hibak={{"2, 4, 6, 9": "A 4-nek nincs párja, így nincs benne az értelmezési tartományban."}}>
+$D_F = ?$
+</SzamValasz>
+
+A **leszűkítés** csak a feltételnek megfelelő párokat tartja meg. Például $F_{a=2}$: azok a párok, ahol $a = 2$.
+
+<SzamValasz helyes="4" magyarazat="F_{a=2} = {(2, 4), (2, 6), (2, 18), (2, 54)}.">
+Hány párból áll $F_{a=2}$?
+</SzamValasz>
+
+<Valasztas valaszok={["F függvény, F⁻¹ nem", "F nem függvény, F⁻¹ sem", "mindkettő függvény"]} helyes={1} miert={["A 2-höz négy érték tartozik.", "", "A 2-höz négy érték tartozik."]} magyarazat="F nem függvény, mert a 2 a B több eleméhez (4, 6, 18, 54) is kapcsolódik. F⁻¹ sem az, mert például a 18 és az 54 több A-beli elemhez kapcsolódik.">
+Függvény-e $F$ és $F^{-1}$?
 </Valasztas>
 </Kartya>
 
@@ -75,8 +131,9 @@ Mikor függvény az inverz $B$-ből $A$-ba?
 <Osszefoglalo>
 - $D_R$: az első koordináták; $R_R$: a második koordináták.
 - $R^{-1}$: minden pár megfordítva; $D_{R^{-1}} = R_R$, $R_{R^{-1}} = D_R$.
-- $R$ függvény $A \to B$, ha minden $a \in A$ pontosan egy párban első.
-- Az inverz pontosan akkor függvény, ha az eredeti bijektív.
+- $R$ függvény, ha egyértelmű: minden első elemhez pontosan egy pár.
+- $A$-ból: $D_F \subseteq A$; $A$-t: $D_F = A$; $B$-be: $R_F \subseteq B$; $B$-re: $R_F = B$.
+- Invertálható függvény: különböző elemek különböző helyre mennek; ekkor $F^{-1}$ is függvény.
 </Osszefoglalo>
 </Kartya>
 

@@ -185,6 +185,7 @@ Változók: `x y z v w` (számmal is), a többi kisbetűs szó név.
 |---|---|---|
 | `<RelacioFelfedezo />` | A × B rács, reláció, inverz | `A`, `B`, `feltetel` (`nagyobb`, `kisebb`, `egyenlo`, `nagyobbegyenlo`, `oszto`, `paros`, `a-k`, `b-k`, `osszeg-k`), `k` |
 | `<PolinomIllesztes />` | polinom pontokon át | `pontok` (`[[x, y], …]`) |
+| `<ParameteresGorbe />` | paraméteres görbe t csúszkával, görbepont, érintővektor | `tipus` (`egyenes`, `kor`, `hermite`, `hipocikloid`), `tipusok` (váltógombok), `erinto` |
 | `<PolinomVizsgalo />` | gyökök, szélsőértékek, érintő | `fok` (2–4), `egyutthatok` (`[a, b, c, …]`) |
 | `<VektorLabor />` | síkvektorok | `mod` (`pontok`, `osszeg`, `skalar`, `szorzat`), `modok` |
 | `<VegyesSzorzat />` | vektoriális és vegyes szorzat | `a`, `b`, `c` (`[x, y, z]`) |

@@ -46,6 +46,7 @@ import { ModellKereso } from './ModellKereso';
 import { ModularisHatvany } from './ModularisHatvany';
 import { NormalformaTabla } from './NormalformaTabla';
 import { Osszefoglalo } from './Osszefoglalo';
+import { ParameteresGorbe } from './ParameteresGorbe';
 import { ParKijelolo } from './ParKijelolo';
 import { Pelda } from './Pelda';
 import { PolinomIllesztes } from './PolinomIllesztes';
@@ -115,6 +116,7 @@ export const mdxComponents = {
   ModularisHatvany,
   NormalformaTabla,
   Osszefoglalo,
+  ParameteresGorbe,
   ParKijelolo,
   Pelda,
   PolinomIllesztes,

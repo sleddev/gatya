@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 
 import { mod, parseList, sgn, showSet } from '@/lib/numbers';
 
@@ -41,7 +41,12 @@ export function RelacioFelfedezo({
   const R: [number, number][] = [];
   if (!bad) as.forEach((a) => bs.forEach((b) => cond.f(a, b, k) && R.push([a, b])));
   const pairs = (r: [number, number][]) => (r.length ? `{${r.map(([x, y]) => `(${sgn(x)}, ${sgn(y)})`).join(', ')}}` : '∅');
-  const isFunction = as.every((a) => R.filter((p) => p[0] === a).length === 1);
+  const count = (a: number) => R.filter((p) => p[0] === a).length;
+  const isFunction = as.every((a) => count(a) <= 1);
+  const coversA = as.every((a) => count(a) > 0);
+  const coversB = bs.every((b) => R.some((p) => p[1] === b));
+  const injective = new Set(R.map((p) => p[1])).size === R.length;
+  const yes = (ok: boolean, why: string) => (ok ? <Chip kind="ok">igen</Chip> : <><Chip kind="no">nem</Chip> <span className="note">{why}</span></>);
   return (
     <Bench title="Relációk A × B-ben" hint="A rács A × B összes párja; a színezett cellák vannak benne R-ben.">
       <div className="row">
@@ -102,16 +107,10 @@ export function RelacioFelfedezo({
               ['értelmezési tartomány', showSet([...new Set(R.map((p) => String(p[0])))])],
               ['értékkészlet', showSet([...new Set(R.map((p) => String(p[1])))])],
               ['inverz R⁻¹', pairs(R.map(([x, y]) => [y, x]))],
-              [
-                'függvény A → B?',
-                isFunction ? (
-                  <Chip kind="ok">igen</Chip>
-                ) : (
-                  <>
-                    <Chip kind="no">nem</Chip> <span className="note">van olyan a, amelynek 0 vagy több párja van</span>
-                  </>
-                ),
-              ],
+              ['függvény?', yes(isFunction, 'van olyan a, amelynek több párja van')],
+              ['A-t képezi?', yes(coversA, 'van olyan a, amelynek nincs párja')],
+              ['B-re képez?', yes(coversB, 'van olyan b, ami nem kép')],
+              ...(isFunction ? ([['invertálható?', yes(injective, 'két a ugyanoda megy')]] as [string, ReactNode][]) : []),
             ]}
           />
         </div>
