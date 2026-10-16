@@ -150,7 +150,8 @@ export function SzamValasz({
         refs.current[i] = el;
       }}
       type="text"
-      inputMode={valtozok.length || syms.length || forma === 'halmaz' ? 'text' : 'decimal'}
+      // not "decimal": phone number pads have no "/" and (on iOS) no "−", so 7/3 or −4 couldn't be typed
+      inputMode="text"
       className={`numin${bad[i] ? ' bad' : ''}${forma === 'halmaz' ? ' wide' : ''}`}
       aria-label={mezok?.[i] ?? 'Válasz'}
       value={vals[i]}
